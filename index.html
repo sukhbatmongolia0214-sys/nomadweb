@@ -150,9 +150,9 @@ button.site{padding:0;border:0;cursor:zoom-in;font:inherit;text-align:left;width
 .sc-hint i{width:36px;height:1px;background:var(--sun);display:block}
 .rail{position:relative;margin-top:44px;padding-block:10px 24px}
 .track{display:flex;align-items:flex-start;gap:clamp(18px,2.6vw,40px);width:max-content;padding-inline:max(20px,calc((100vw - 1240px) / 2 + 20px));will-change:transform}
-.pv{flex:none;width:clamp(220px,20vw,320px);background:none;border:0;padding:0;color:inherit;text-align:left;cursor:pointer;font:inherit;perspective:1000px}
-.pv:nth-child(even){margin-top:64px}
-.pvf{position:relative;aspect-ratio:9/16;max-width:100%;border-radius:4px;overflow:hidden;background:#111;box-shadow:0 40px 90px rgba(0,0,0,.6),0 0 0 1px var(--line);transform-origin:50% 50%;will-change:transform;transition:box-shadow .35s}
+.pv{flex:none;width:clamp(300px,36vw,580px);background:none;border:0;padding:0;color:inherit;text-align:left;cursor:pointer;font:inherit;perspective:1000px}
+.pv:nth-child(even){margin-top:56px}
+.pvf{position:relative;aspect-ratio:16/9;max-width:100%;border-radius:8px;overflow:hidden;background:#111;box-shadow:0 40px 90px rgba(0,0,0,.6),0 0 0 1px var(--line);transform-origin:50% 50%;will-change:transform;transition:box-shadow .35s}
 .pvf video,.pvf img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
 .pv:hover .pvf,.pv:focus-visible .pvf{box-shadow:0 50px 110px rgba(0,0,0,.7),0 0 0 1px var(--sun)}
 .pvl{display:grid;grid-template-columns:auto 1fr;column-gap:12px;align-items:baseline;margin-top:18px;padding-top:14px;border-top:1px solid var(--line2)}
@@ -162,9 +162,9 @@ button.site{padding:0;border:0;cursor:zoom-in;font:inherit;text-align:left;width
 .rail.touch{overflow-x:auto;scroll-snap-type:x mandatory;scrollbar-width:none;-webkit-overflow-scrolling:touch}
 .rail.touch::-webkit-scrollbar{display:none}
 .rail.touch .pv{scroll-snap-align:center}
-@media (max-width:900px){.pv{width:62vw;max-width:300px}.pv:nth-child(even){margin-top:32px}}
-.lb video{display:block;max-height:86vh;max-width:100%;aspect-ratio:9/16;margin:0 auto;border-radius:6px;background:#000}
-.lb .in.vid{width:auto}
+@media (max-width:900px){.pv{width:84vw;max-width:480px}.pv:nth-child(even){margin-top:24px}}
+.lb video{display:block;width:min(1100px,100%);aspect-ratio:16/9;margin:0 auto;border-radius:10px;background:#000}
+.lb .in.vid{width:min(1100px,100%)}
 
 /* lightbox */
 .lb{position:fixed;inset:0;z-index:80;background:rgba(5,6,8,.86);backdrop-filter:blur(8px);display:flex;align-items:center;justify-content:center;padding:max(20px,env(safe-area-inset-top,0px)) max(16px,env(safe-area-inset-right,0px)) max(20px,env(safe-area-inset-bottom,0px)) max(16px,env(safe-area-inset-left,0px))}
@@ -497,7 +497,7 @@ else requestAnimationFrame(frame);
 /* ---------- showcase: moving posters that follow the mouse / finger ---------- */
 const PV=[['online_delguur_v3','Онлайн дэлгүүр','Сагс · QPay · хүргэлт'],['hurgelt_v3','Хүргэлт','Цэс · байршил хянах'],['tsag_zahialga_v3','Цаг захиалга','Салон · эмнэлэг · буудал'],['event_tasalbar_v3','Тасалбар','QR тасалбар · суудал'],['kino_v3','Кино сайт','Багц эрх · SMS нэвтрэлт'],['baiguullaga_v3','Байгууллага','Танилцуулга · тайлан'],['taniltsuulga_v3','Танилцуулга','Жижиг бизнес · 1 хуудас'],['amid_saituud','Хөдөлгөөнт сайт','Видео нүүр хуудас'],['premium_v3','Брэнд сайт','Premium загвар']];
 const track=$('#track'),rail=$('#rail');
-track.innerHTML=PV.map((p,i)=>`<button class="pv" type="button" data-i="${i}" aria-label="${p[1]} — жишээ бичлэг томоор үзэх"><div class="pvf"><video muted playsinline loop preload="none" poster="a/v_${p[0]}.jpg" data-src="a/v_${p[0]}.mp4"></video></div><div class="pvl"><span class="n">0${i+1}</span><span class="t">${p[1]}</span><span class="s">${p[2]}</span></div></button>`).join('');
+track.innerHTML=PV.map((p,i)=>`<button class="pv" type="button" data-i="${i}" aria-label="${p[1]} — жишээ бичлэг томоор үзэх"><div class="pvf"><video muted playsinline loop preload="none" poster="a/w_${p[0]}.jpg" data-src="a/w_${p[0]}.mp4"></video></div><div class="pvl"><span class="n">0${i+1}</span><span class="t">${p[1]}</span><span class="s">${p[2]}</span></div></button>`).join('');
 const pvs=[...track.children],vids=pvs.map(p=>p.querySelector('video')),frames=pvs.map(p=>p.querySelector('.pvf'));
 // play only what is on screen
 const vio=new IntersectionObserver(es=>es.forEach(e=>{const v=e.target;if(reduce)return;if(e.isIntersecting){if(!v.src)v.src=v.dataset.src;const p=v.play();if(p&&p.catch)p.catch(()=>{})}else v.pause()}),{threshold:.25});
@@ -524,7 +524,7 @@ if(fine){
 }else{['touchstart','pointerdown','wheel'].forEach(ev=>rail.addEventListener(ev,()=>{touched=true},{passive:true}))}
 // open large
 pvs.forEach((p,i)=>p.addEventListener('click',()=>{const lb=document.createElement('div');lb.className='lb';lb.setAttribute('role','dialog');lb.setAttribute('aria-modal','true');lb.setAttribute('aria-label',PV[i][1]);
- lb.innerHTML=`<button class="x" type="button" aria-label="Хаах">×</button><div class="in vid"><video src="a/v_${PV[i][0]}.mp4" poster="a/v_${PV[i][0]}.jpg" autoplay muted loop playsinline controls></video><p>${PV[i][1]} · жишээ загвар. Таны сайт таны брэндээр хийгдэнэ.</p></div>`;
+ lb.innerHTML=`<button class="x" type="button" aria-label="Хаах">×</button><div class="in vid"><video src="a/w_${PV[i][0]}.mp4" poster="a/w_${PV[i][0]}.jpg" autoplay muted loop playsinline controls></video><p>${PV[i][1]} · жишээ загвар. Таны сайт таны брэндээр хийгдэнэ.</p></div>`;
  document.body.appendChild(lb);const close=()=>{lb.remove();removeEventListener('keydown',esc)};const esc=e=>{if(e.key==='Escape')close()};
  lb.addEventListener('click',e=>{if(e.target===lb||e.target.classList.contains('x'))close()});addEventListener('keydown',esc);lb.querySelector('.x').focus()}));
 
