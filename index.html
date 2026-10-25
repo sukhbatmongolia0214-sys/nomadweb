@@ -144,49 +144,27 @@ button.site{padding:0;border:0;cursor:zoom-in;font:inherit;text-align:left;width
 .checks svg{flex:none;margin-top:2px}
 @media (max-width:820px){.ba{grid-template-columns:minmax(0,1fr)}}
 
-/* showcase — self-playing site film (ref: floating card, fan-out row, marquee, carousel, scroll to next section) */
-#show .sc-grid{display:grid;grid-template-columns:minmax(0,3fr) minmax(0,9fr);gap:44px;align-items:center;margin-top:44px}
-.cats{display:flex;flex-direction:column;gap:2px}
-.cats button{position:relative;display:flex;align-items:center;gap:14px;text-align:left;font-family:var(--f-display);font-weight:300;font-size:22px;padding:12px 0;background:none;border:0;color:var(--mute);cursor:pointer;transition:color .3s}
-.cats button i{width:22px;height:2px;background:var(--line2);transition:width .3s,background .3s}
-.cats button[aria-selected="true"]{color:var(--fg);font-weight:500}
-.cats button[aria-selected="true"] i{width:44px;background:var(--sun)}
-.cats .n{font-family:var(--f-mono);font-size:12px;color:var(--mute);margin-left:auto;letter-spacing:.1em}
-.cats button .pg{position:absolute;left:0;right:0;bottom:2px;height:1px;background:transparent;overflow:hidden}
-.cats button .pg b{display:block;height:100%;width:0;background:var(--sun)}
-.film{position:relative;min-width:0}
-.fcard{position:relative;aspect-ratio:16/10;border-radius:22px;overflow:hidden;container-type:inline-size;background:var(--cbg,#f6efe2);color:#17130e;box-shadow:0 2px 0 rgba(255,255,255,.06) inset;max-width:100%}
-.fshadow{height:34px;margin:18px 8% 0;border-radius:50%;background:radial-gradient(closest-side,rgba(0,0,0,.55),rgba(0,0,0,0));filter:blur(6px)}
-.fnav{position:absolute;left:2.4cqw;right:2.4cqw;top:2cqw;height:5.4cqw;border-radius:1.4cqw;background:var(--acc,#ffd43b);display:flex;align-items:center;gap:3cqw;padding:0 2cqw;font-family:var(--f-mono);font-size:1.15cqw;letter-spacing:.12em;text-transform:uppercase;z-index:5;color:#17130e}
-.fnav .bn{font-family:var(--f-num);font-weight:900;font-size:1.7cqw;letter-spacing:.02em;margin-right:auto;display:flex;align-items:center;gap:.8cqw}
-.fnav .bn i{width:2.2cqw;height:2.2cqw;border-radius:50%;border:.45cqw solid #17130e;display:block}
-.fnav .pl{padding:.6cqw 1.4cqw;border-radius:999px;background:#17130e;color:#fff}
-.scene{position:absolute;inset:0;will-change:transform}
-.mq{position:absolute;left:0;top:9.5cqw;white-space:nowrap;font-family:var(--f-num);font-weight:900;font-size:8.6cqw;letter-spacing:-.02em;line-height:1;text-transform:uppercase;will-change:transform}
-.tile{position:absolute;left:0;top:0;width:19cqw;height:19cqw;border-radius:50%;overflow:hidden;box-shadow:0 1.6cqw 2.4cqw rgba(40,25,10,.28);will-change:transform,opacity}
-.tile img{width:100%;height:100%;object-fit:cover}
-.ped{position:absolute;top:43cqw;width:15cqw;height:30cqw;margin-left:-7.5cqw;border-radius:50% 50% 0 0/ 1.6cqw 1.6cqw 0 0;background:linear-gradient(90deg,#c9c5bd,#efece6 45%,#bdb8af);will-change:transform}
-.ped::before{content:"";position:absolute;left:-1.2cqw;right:-1.2cqw;top:-1.2cqw;height:2.4cqw;border-radius:50%;background:linear-gradient(90deg,#d6d2ca,#f7f5f1,#cbc6be)}
-.cta2{position:absolute;left:50%;top:51cqw;transform:translateX(-50%);padding:.9cqw 2cqw;border-radius:999px;background:var(--acc,#ffd43b);font-family:var(--f-num);font-weight:800;font-size:1.5cqw;white-space:nowrap;display:flex;align-items:center;gap:.8cqw;z-index:4;box-shadow:0 .6cqw 1.4cqw rgba(0,0,0,.18)}
-.cta2 i{width:2cqw;height:2cqw;border-radius:50%;background:#17130e;display:block}
-.cap2{position:absolute;left:50%;top:46cqw;transform:translateX(-50%);font-family:var(--f-mono);font-size:1.3cqw;letter-spacing:.14em;text-transform:uppercase;white-space:nowrap;z-index:4}
-.detail{position:absolute;inset:0;will-change:transform}
-.detail .dt{position:absolute;left:4cqw;top:12cqw;width:40cqw}
-.detail .dt .e{font-family:var(--f-mono);font-size:1.3cqw;letter-spacing:.16em;text-transform:uppercase;opacity:.65}
-.detail .dt h4{margin:1.4cqw 0 1.6cqw;font-family:var(--f-num);font-weight:900;font-size:6.4cqw;line-height:.95;letter-spacing:-.03em;text-transform:uppercase;text-wrap:balance}
-.detail .dt p{margin:0;font-size:1.55cqw;line-height:1.45;opacity:.75;max-width:30cqw}
-.detail .dim{position:absolute;right:16cqw;top:11cqw;width:34cqw;height:44cqw;border-radius:2cqw;overflow:hidden;box-shadow:0 2cqw 4cqw rgba(40,25,10,.3)}
-.detail .dim img{width:100%;height:100%;object-fit:cover;will-change:transform}
-.detail .pp{position:absolute;right:2.6cqw;width:15cqw;padding:1.4cqw 1.6cqw;border-radius:2cqw;background:var(--acc,#ffd43b);font-size:1.3cqw;line-height:1.35;font-weight:500;box-shadow:0 1cqw 2cqw rgba(0,0,0,.15)}
-.detail .pp b{display:block;font-family:var(--f-num);font-weight:900;font-size:1.9cqw;margin-bottom:.3cqw}
-@media (max-width:900px){
- #show .sc-grid{grid-template-columns:minmax(0,1fr);gap:18px}
- .cats{flex-direction:row;overflow-x:auto;gap:8px;scrollbar-width:none;padding-bottom:4px}
- .cats button{flex:none;font-size:15px;font-weight:400;padding:10px 16px;border-radius:999px;border:1px solid var(--line2)}
- .cats button i,.cats .n{display:none}
- .cats button[aria-selected="true"]{background:var(--fg);color:var(--bg);border-color:var(--fg)}
- .fcard{border-radius:14px}
-}
+/* showcase — free-floating moving posters on the dark page, follow the mouse / finger */
+#show{overflow:hidden;padding-bottom:clamp(64px,8vw,110px)}
+.sc-hint{display:flex;align-items:center;gap:12px;margin-top:22px;font-family:var(--f-mono);font-size:12px;letter-spacing:.2em;text-transform:uppercase;color:var(--mute)}
+.sc-hint i{width:36px;height:1px;background:var(--sun);display:block}
+.rail{position:relative;margin-top:44px;padding-block:10px 24px}
+.track{display:flex;align-items:flex-start;gap:clamp(18px,2.6vw,40px);width:max-content;padding-inline:max(20px,calc((100vw - 1240px) / 2 + 20px));will-change:transform}
+.pv{flex:none;width:clamp(220px,20vw,320px);background:none;border:0;padding:0;color:inherit;text-align:left;cursor:pointer;font:inherit;perspective:1000px}
+.pv:nth-child(even){margin-top:64px}
+.pvf{position:relative;aspect-ratio:9/16;max-width:100%;border-radius:4px;overflow:hidden;background:#111;box-shadow:0 40px 90px rgba(0,0,0,.6),0 0 0 1px var(--line);transform-origin:50% 50%;will-change:transform;transition:box-shadow .35s}
+.pvf video,.pvf img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+.pv:hover .pvf,.pv:focus-visible .pvf{box-shadow:0 50px 110px rgba(0,0,0,.7),0 0 0 1px var(--sun)}
+.pvl{display:grid;grid-template-columns:auto 1fr;column-gap:12px;align-items:baseline;margin-top:18px;padding-top:14px;border-top:1px solid var(--line2)}
+.pvl .n{font-family:var(--f-mono);font-size:12px;color:var(--sun);letter-spacing:.1em;grid-row:span 2}
+.pvl .t{font-size:clamp(19px,1.6vw,24px);font-weight:500;letter-spacing:-.01em}
+.pvl .s{font-family:var(--f-mono);font-size:11px;letter-spacing:.14em;color:var(--mute);text-transform:uppercase;margin-top:4px}
+.rail.touch{overflow-x:auto;scroll-snap-type:x mandatory;scrollbar-width:none;-webkit-overflow-scrolling:touch}
+.rail.touch::-webkit-scrollbar{display:none}
+.rail.touch .pv{scroll-snap-align:center}
+@media (max-width:900px){.pv{width:62vw;max-width:300px}.pv:nth-child(even){margin-top:32px}}
+.lb video{display:block;max-height:86vh;max-width:100%;aspect-ratio:9/16;margin:0 auto;border-radius:6px;background:#000}
+.lb .in.vid{width:auto}
 
 /* lightbox */
 .lb{position:fixed;inset:0;z-index:80;background:rgba(5,6,8,.86);backdrop-filter:blur(8px);display:flex;align-items:center;justify-content:center;padding:max(20px,env(safe-area-inset-top,0px)) max(16px,env(safe-area-inset-right,0px)) max(20px,env(safe-area-inset-bottom,0px)) max(16px,env(safe-area-inset-left,0px))}
@@ -357,30 +335,10 @@ footer .wrap{display:flex;justify-content:space-between;align-items:center;gap:2
  <div class="wrap">
   <div class="eyebrow">Загварууд</div>
   <h2>Таны салбарт <b>ийм харагдана.</b></h2>
-  <p class="lead">Салбар бүрт туршигдсан бүтэц бэлэн. Доорх брэндүүд жишээ, таны сайт таны лого, зураг, өнгөөр хийгдэнэ.</p>
-  <div class="sc-grid">
-   <div class="cats" role="tablist" id="cats" aria-label="Салбарууд"></div>
-   <div class="film">
-    <div class="fcard" id="fcard" aria-live="polite">
-     <div class="fnav"><span class="bn"><i></i><span id="fbn">ОДОН</span></span><span>Бүтээгдэхүүн</span><span>Бидний тухай</span><span>Холбоо барих</span><span class="pl" id="fpl">Сагс</span></div>
-     <div class="scene" id="scene">
-      <div class="mq" id="mq"></div>
-      <div id="peds"></div>
-      <div id="tiles"></div>
-      <div class="cap2" id="cap2"></div>
-      <div class="cta2"><i></i><span id="cta2">Сагсанд нэмэх</span></div>
-     </div>
-     <div class="detail" id="detail">
-      <div class="dt"><div class="e" id="dte"></div><h4 id="dth"></h4><p id="dtp"></p></div>
-      <div class="dim"><img id="dimg2" alt=""></div>
-      <div class="pp" id="pp1" style="top:14cqw"></div>
-      <div class="pp" id="pp2" style="top:30cqw"></div>
-     </div>
-    </div>
-    <div class="fshadow" aria-hidden="true"></div>
-   </div>
-  </div>
+  <p class="lead">Салбар бүрт туршигдсан бүтэц бэлэн. Бичлэг дээрх брэндүүд жишээ, таны сайт таны лого, зураг, өнгөөр хийгдэнэ.</p>
+  <div class="sc-hint"><i></i><span id="schint">Хулганаа хөдөлгөхөд загварууд дагаж гүйнэ</span></div>
  </div>
+ <div class="rail" id="rail"><div class="track" id="track"></div></div>
 </section>
 
 <section id="days">
@@ -536,58 +494,39 @@ function frame(now){
 if(reduce){setDemo(0);setHead(0);hd.querySelectorAll('.w>span').forEach(s=>s.style.transform='none');cur.style.display='none'}
 else requestAnimationFrame(frame);
 
-/* ---------- showcase: self-playing site film ---------- */
-const T={
- 'Онлайн дэлгүүр':{acc:'#ffd43b',bg:'#f6efe2',mq:'Онлайн дэлгүүр',cta:'Сагсанд нэмэх',pl:'Сагс',it:[['p_jacket','ОДОН','Голограф хүрэм','389,000₮'],['s_sneaker','СТЕП','Air пүүз','329,000₮'],['p_cashmere','ТАЛ НООЛУУР','Ноолуур ороолт','189,000₮'],['s_serum','ЛУУЗ','Витамин C серум','89,000₮'],['p_phone','АРКТИК','X50 утас','2,490,000₮']],d:['Шинэ улирал','Таны бараа онлайнаар','Сагс, QPay төлбөр, хүргэлтийн бүс, үлдэгдлийн хяналт нэг дор.','QPay','Төлбөр автоматаар баталгаажна','24/7','Шөнө ч захиалга авна']},
- 'Байгууллага':{acc:'#9cc3ff',bg:'#eef2f7',mq:'Байгууллага',cta:'Холбогдох',pl:'Нэвтрэх',it:[['o_bank','ТЭНГЭР КАПИТАЛ','Санхүүгийн групп','1998 оноос'],['o_mine','ГОВЬ МАЙНИНГ','Уул уурхай','Тайлан 2026'],['o_clinic','ЭРҮҮЛ ХОТ','Эмнэлэг','24/7'],['o_uni','ӨРНӨ ИС','Их сургууль','Элсэлт 2026'],['o_law','ШУДАРГА ХУУЛЬ','Хуулийн фирм','Зөвлөгөө']],d:['Байгууллагын сайт','Итгэл төрүүлэх нүүр','Танилцуулга, мэдээ, тайлан, ажлын байр, холбоо барих хэсэгтэй.','SEO','Google-д эхэнд гарна','Админ','Мэдээгээ өөрөө нэмнэ']},
- 'Хүргэлт':{acc:'#ff8a5c',bg:'#f8eee6',mq:'Хүргэлт 30 мин',cta:'Захиалах',pl:'Сагс',it:[['d_burger','БУРГЕР ХАУС','Бургер сет','24,900₮'],['d_pizza','ПИЦЦА ЛАБ','Пепперони','32,000₮'],['d_grocery','НОГООН САГС','Хүнсний сагс','45,000₮'],['d_scooter','ШУУРХАЙ','Шуурхай хүргэлт','30 мин'],['d_drone','SKYDROP','Илгээмж','12:40']],d:['Хоол, хүнс','Халуунаар нь хүргэнэ','Цэс, сагс, QPay, жолоочийн байршил, хүргэлтийн бүсийн үнэ.','GPS','Захиалгаа газрын зураг дээр хянана','SMS','Хүргэгдсэн үед мэдэгдэнэ']},
- 'Цаг захиалга':{acc:'#e8c27a',bg:'#f5efe6',mq:'Цаг захиалга',cta:'Цаг авах',pl:'Цаг авах',it:[['b_salon','ЛЮМЕ САЛОН','Үс засалт','45,000₮'],['b_spa','ЗЭН СПА','Массаж 90 мин','120,000₮'],['b_dental','СМАЙЛ ДЕНТ','Шүдний үзлэг','35,000₮'],['b_hotel','УУЛЫН ОРД','Өрөө · 2 хүн','690,000₮'],['b_dine','ЛА ШИРЭЭ','Оройн ширээ','19:30']],d:['Салон, эмнэлэг, буудал','Сул цагаа шууд сонго','Мастер, үйлчилгээ, цагаа сонгоод урьдчилгаагаа QPay-ээр төлнө.','SMS','Цаг болохоос өмнө сануулна','0','Дараалал, давхцал байхгүй']},
- 'Тасалбар':{acc:'#c9a6ff',bg:'#f1edf8',mq:'Тасалбар · QR',cta:'Тасалбар авах',pl:'Миний тасалбар',it:[['e_concert','ЛАЙВ 26','Тоглолт','VIP 250,000₮'],['e_ticket','TICKET.MN','Цахим тасалбар','QR'],['e_morin','ӨВ ТАЙЗ','Морин хуур','11.15'],['e_mic','STAND-UP UB','Стэнд-ап','35,000₮'],['e_fire','НААДАМ ФЕСТ','Гэр бааз','89,000₮']],d:['Тоглолт, эвент','Суудлаа өөрөө сонго','Суудлын зураг, QPay төлбөр, утсанд ирэх QR тасалбар, хаалган дээр уншуулна.','QR','Хуурамч тасалбаргүй','Live','Үлдсэн суудал шууд харагдана']},
- 'Кино':{acc:'#ff6b75',bg:'#f6ecec',mq:'Кино · Цуврал',cta:'Үзэх',pl:'Багц',it:[['k_hero','ТАЛЫН БААТАР','Монгол кино','4,900₮'],['k_cinema','КИНО ХАЛЛ','Нээлт','19:00'],['k_pop','КИНОБОКС','1000+ кино','9,900₮/сар'],['k_tv','ГЭРИЙН КИНО','Smart TV','4K'],['k_reel','МОН КИНО','Кино сан','1,200+']],d:['Кино сайт','Кино театр гэртээ','Багц эрх, QPay төлбөр, SMS нэвтрэлт, видео хамгаалалт, TV-ээр үзэх.','1 өдөр','Кино сайтыг ажиллуулж байсан','DRM','Видео хуулбарлахаас хамгаална']},
- 'Танилцуулга':{acc:'#7fe0a8',bg:'#edf4ef',mq:'Танилцуулга',cta:'Холбогдох',pl:'Холбогдох',it:[['l_car','ГЛОСС','Авто детейлинг','Цаг авах'],['l_coffee','БРЮ КОФЕ','Кофе шоп','7:00–22:00'],['l_fit','АЙРОН','Дасгалжуулагч','30 хоног'],['l_camera','ФРЕЙМ','Гэрэл зурагчин','Портфолио'],['l_arch','ОРОН ЗАЙ','Архитектор','Төсөл 64']],d:['Жижиг бизнес','Таныг нэг хуудсанд','Үйлчилгээ, үнэ, ажлын зураг, газрын зураг, Viber, Messenger товч.','1 хуудас','Бүх мэдээлэл нэг дор','Pixel','Рекламын үр дүнг хэмжинэ']}
-};
-const keys=Object.keys(T);
-$('#cats').innerHTML=keys.map((k,i)=>`<button role="tab" type="button" aria-selected="${i?'false':'true'}"><i></i>${k}<span class="n">0${i+1}</span><span class="pg"><b></b></span></button>`).join('');
-const catBtns=[...document.querySelectorAll('#cats button')];
-const fc=$('#fcard'),scene=$('#scene'),det=$('#detail'),mq=$('#mq'),tilesEl=$('#tiles'),pedsEl=$('#peds');
-tilesEl.innerHTML=Array.from({length:5},()=>'<div class="tile"><img alt=""></div>').join('');pedsEl.innerHTML=Array.from({length:5},()=>'<div class="ped"></div>').join('');
-const TL=[...tilesEl.children],PD=[...pedsEl.children];
-Object.values(T).forEach(c=>c.it.forEach(it=>{const im=new Image();im.src=`a/${it[0]}.jpg`}));
-const DUR=7.2;let ci=0,t0=performance.now(),inView=true;
-function loadCat(i){ci=i;const c=T[keys[i]];fc.style.setProperty('--acc',c.acc);fc.style.setProperty('--cbg',c.bg);
- $('#fbn').textContent=c.it[0][1];$('#fpl').textContent=c.pl;$('#cta2').textContent=c.cta;
- mq.textContent=Array(6).fill(c.mq).join(' · ')+' · ';
- TL.forEach((t,j)=>t.querySelector('img').src=`a/${c.it[j][0]}.jpg`);
- const im=c.it[0];$('#dimg2').src=`a/${im[0]}.jpg`;$('#dte').textContent=c.d[0];$('#dth').textContent=c.d[1];$('#dtp').textContent=c.d[2];
- $('#pp1').innerHTML=`<b>${c.d[3]}</b>${c.d[4]}`;$('#pp2').innerHTML=`<b>${c.d[5]}</b>${c.d[6]}`;
- catBtns.forEach((b,j)=>b.setAttribute('aria-selected',j===i?'true':'false'));
- if(innerWidth<=900){const b=catBtns[i];b.parentElement.scrollTo({left:b.offsetLeft-20,behavior:'smooth'})}
- t0=performance.now();}
-catBtns.forEach((b,i)=>b.addEventListener('click',()=>loadCat(i)));
-const E=x=>x<0?0:x>1?1:1-Math.pow(1-x,3),EI=x=>x<0?0:x>1?1:x<.5?4*x*x*x:1-Math.pow(-2*x+2,3)/2;
-function film(now){
- let lt=(now-t0)/1000;if(lt>DUR&&!reduce){loadCat((ci+1)%keys.length);lt=0}
- if(reduce)lt=3.0;
- const W=fc.clientWidth/100,c=T[keys[ci]];
- // phase A (0-1.1): hero zoom on first item; B (1.1-1.9): fan out; C (1.9-4.6): carousel; D (4.6-5.4): scroll up to detail
- const fan=EI((lt-1.1)/0.8),up=EI((lt-4.6)/0.8);
- const step=Math.max(0,Math.min(3,(lt-1.9)/0.7));const k=Math.floor(step),f=EI((step-k)/1)*0+EI(Math.min(1,(step-k)/0.55));const act=k+f; // fractional active index 0..3
- const gap=22,cx=50,cy=33;
- TL.forEach((t,j)=>{const rel=j-act;const x=cx+rel*gap*fan,y=cy-(Math.abs(rel)<0.5?2.2:0)*fan;
-  const isA=1-Math.min(1,Math.abs(rel));const sc=(j===0?1.55*(1-fan)+fan*(0.92+0.28*isA):(0.6+0.32*fan+0.28*isA*fan));
-  const op=j===0?1:Math.min(1,fan*1.6);
-  t.style.opacity=op;t.style.transform=`translate(${(x-9.5)*W}px,${(y-9.5)*W}px) scale(${sc*(1+0.04*(1-fan)*Math.sin(lt*2))})`;t.style.zIndex=j===0&&fan<0.5?5:Math.round(isA*3)+1;});
- PD.forEach((p,j)=>{const rel=j-act;const rise=E((lt-1.5-j*0.06)/0.6);p.style.left=(cx+rel*gap)*W+'px';p.style.transform=`translateY(${(1-rise)*30*W}px)`;p.style.opacity=rise;});
- mq.style.opacity=E((lt-1.3)/0.5);mq.style.transform=`translateX(${-((lt*5.5)%100)*W*0.6}px)`;
- const ai=Math.max(0,Math.min(4,Math.round(act)));$('#cap2').textContent=c.it[ai][2]+' · '+c.it[ai][3];$('#cap2').style.opacity=E((lt-1.9)/0.4);
- document.querySelector('.cta2').style.opacity=E((lt-1.9)/0.4);
- scene.style.transform=`translateY(${-up*100}%)`;det.style.transform=`translateY(${(1-up)*100}%)`;
- $('#dimg2').style.transform=`scale(${1.12-0.1*E((lt-4.8)/2.2)})`;
- ['#pp1','#pp2'].forEach((q,j)=>{const e=E((lt-5.2-j*0.25)/0.45);const el=$(q);el.style.opacity=e;el.style.transform=`translateX(${(1-e)*6*W}px)`});
- const fade=lt>DUR-0.35?(DUR-lt)/0.35:Math.min(1,lt/0.3);fc.style.opacity=reduce?1:Math.max(0,fade);
- catBtns.forEach((b,j)=>b.querySelector('.pg b').style.width=(j===ci&&!reduce?Math.min(100,lt/DUR*100):0)+'%');
- requestAnimationFrame(film);}
-loadCat(0);requestAnimationFrame(film);
+/* ---------- showcase: moving posters that follow the mouse / finger ---------- */
+const PV=[['online_delguur_v3','Онлайн дэлгүүр','Сагс · QPay · хүргэлт'],['hurgelt_v3','Хүргэлт','Цэс · байршил хянах'],['tsag_zahialga_v3','Цаг захиалга','Салон · эмнэлэг · буудал'],['event_tasalbar_v3','Тасалбар','QR тасалбар · суудал'],['kino_v3','Кино сайт','Багц эрх · SMS нэвтрэлт'],['baiguullaga_v3','Байгууллага','Танилцуулга · тайлан'],['taniltsuulga_v3','Танилцуулга','Жижиг бизнес · 1 хуудас'],['amid_saituud','Хөдөлгөөнт сайт','Видео нүүр хуудас'],['premium_v3','Брэнд сайт','Premium загвар']];
+const track=$('#track'),rail=$('#rail');
+track.innerHTML=PV.map((p,i)=>`<button class="pv" type="button" data-i="${i}" aria-label="${p[1]} — жишээ бичлэг томоор үзэх"><div class="pvf"><video muted playsinline loop preload="none" poster="a/v_${p[0]}.jpg" data-src="a/v_${p[0]}.mp4"></video></div><div class="pvl"><span class="n">0${i+1}</span><span class="t">${p[1]}</span><span class="s">${p[2]}</span></div></button>`).join('');
+const pvs=[...track.children],vids=pvs.map(p=>p.querySelector('video')),frames=pvs.map(p=>p.querySelector('.pvf'));
+// play only what is on screen
+const vio=new IntersectionObserver(es=>es.forEach(e=>{const v=e.target;if(reduce)return;if(e.isIntersecting){if(!v.src)v.src=v.dataset.src;const p=v.play();if(p&&p.catch)p.catch(()=>{})}else v.pause()}),{threshold:.25});
+vids.forEach(v=>vio.observe(v));
+const fine=matchMedia('(hover: hover) and (pointer: fine)').matches;
+let rc=0,rt=0,mx=.5,my=.5,touched=false,introDone=false;
+const stepW=()=>pvs[1].getBoundingClientRect().left-pvs[0].getBoundingClientRect().left;
+const maxShift=()=>Math.max(0,track.scrollWidth-rail.clientWidth);
+if(!fine){rail.classList.add('touch');$('#schint').textContent='Хуруугаараа хажуу тийш гүйлгээрэй';}
+function intro(){if(introDone||reduce)return;introDone=true;let k=0;
+ const tick=()=>{if(touched||k>=3)return;k++;
+  if(fine)rt=Math.min(maxShift(),stepW()*k*1.15);else rail.scrollTo({left:stepW()*k,behavior:'smooth'});
+  setTimeout(tick,1500)};setTimeout(tick,500);}
+new IntersectionObserver(es=>{if(es[0].isIntersecting)intro()},{threshold:.45}).observe(rail);
+if(fine){
+ rail.addEventListener('mousemove',e=>{touched=true;const r=rail.getBoundingClientRect();mx=(e.clientX-r.left)/r.width;my=(e.clientY-r.top)/r.height;
+  const edge=0.12;rt=Math.min(1,Math.max(0,(mx-edge)/(1-2*edge)))*maxShift();});
+ rail.addEventListener('mouseleave',()=>{mx=.5;my=.5});
+ rail.addEventListener('wheel',e=>{if(Math.abs(e.deltaX)>Math.abs(e.deltaY)){e.preventDefault();touched=true;rt=Math.min(maxShift(),Math.max(0,rt+e.deltaX))}},{passive:false});
+ const loop=()=>{rc+=(rt-rc)*0.075;track.style.transform=`translateX(${-rc}px)`;
+  const vw=innerWidth;frames.forEach((f,i)=>{const r=f.getBoundingClientRect();const c=(r.left+r.width/2)/vw-0.5;
+   const ry=reduce?0:-c*10,rx=reduce?0:(my-0.5)*-6;f.style.transform=`rotateY(${ry}deg) rotateX(${rx}deg)`});
+  requestAnimationFrame(loop)};requestAnimationFrame(loop);
+}else{['touchstart','pointerdown','wheel'].forEach(ev=>rail.addEventListener(ev,()=>{touched=true},{passive:true}))}
+// open large
+pvs.forEach((p,i)=>p.addEventListener('click',()=>{const lb=document.createElement('div');lb.className='lb';lb.setAttribute('role','dialog');lb.setAttribute('aria-modal','true');lb.setAttribute('aria-label',PV[i][1]);
+ lb.innerHTML=`<button class="x" type="button" aria-label="Хаах">×</button><div class="in vid"><video src="a/v_${PV[i][0]}.mp4" poster="a/v_${PV[i][0]}.jpg" autoplay muted loop playsinline controls></video><p>${PV[i][1]} · жишээ загвар. Таны сайт таны брэндээр хийгдэнэ.</p></div>`;
+ document.body.appendChild(lb);const close=()=>{lb.remove();removeEventListener('keydown',esc)};const esc=e=>{if(e.key==='Escape')close()};
+ lb.addEventListener('click',e=>{if(e.target===lb||e.target.classList.contains('x'))close()});addEventListener('keydown',esc);lb.querySelector('.x').focus()}));
 
 /* studio parallax reveal */
 const stw=$('#studio'),sti=$('#stimg');
