@@ -266,6 +266,7 @@ footer .wrap{display:flex;justify-content:space-between;align-items:center;gap:2
 #intro.out{opacity:0;pointer-events:none}
 #intro.gone{display:none}
 #intro .ibox{position:absolute;left:50%;top:50%;transform:translate(-50%,-50%)}
+#intro.vert .iend{transition-duration:.3s}
 #intro.port .ibox{-webkit-mask-image:linear-gradient(180deg,transparent,#000 22%,#000 78%,transparent);mask-image:linear-gradient(180deg,transparent,#000 22%,#000 78%,transparent)}
 #intro video,#intro .iend{position:absolute;inset:0;width:100%;height:100%;display:block}
 #intro .iend{opacity:0;transition:opacity .14s linear}
@@ -281,8 +282,8 @@ html.intro-on{overflow:hidden}
 <body>
 <div id="intro" aria-hidden="true">
  <div class="ibox" id="ibox">
-  <video id="ivid" muted autoplay playsinline webkit-playsinline preload="auto" poster="a/intro_start_v2.jpg"></video>
-  <img class="iend" src="a/intro_end_169.jpg" alt="">
+  <video id="ivid" muted autoplay playsinline webkit-playsinline preload="auto" ></video>
+  <img class="iend" id="iend" alt="">
  </div>
  <div class="iwel" id="iwel">Тавтай морил</div>
  <div class="iskip">Алгасах ›</div>
@@ -293,10 +294,13 @@ html.intro-on{overflow:hidden}
  R.classList.add('intro-on');
  const v=document.getElementById('ivid'),b=document.getElementById('ibox'),w=document.getElementById('iwel');
  const small=Math.min(screen.width,screen.height)<700;
- v.muted=true;v.defaultMuted=true;v.setAttribute('muted','');v.src=small?'a/intro_v2_m.mp4':'a/intro_v2.mp4';
- function lay(){const vw=innerWidth,vh=innerHeight,port=vh>vw*1.05;I.classList.toggle('port',port);
-  let W=port?Math.min(vw*1.62,vh*1.2):Math.max(vw,vh*16/9);const H=W*9/16;b.style.width=W+'px';b.style.height=H+'px';
-  const cy=vh/2-H/2+H*(735/1080);w.style.top=cy+'px';w.style.fontSize=Math.max(20,W*0.026)+'px'}
+ v.muted=true;v.defaultMuted=true;v.setAttribute('muted','');const P0=innerHeight>innerWidth*1.05;const e=document.getElementById('iend');
+ if(P0){v.poster='a/intro_start_p.jpg';v.src='a/intro_v2_p.mp4';e.src='a/intro_end_916.jpg';I.classList.add('vert')}
+ else{v.poster='a/intro_start_v2.jpg';v.src=small?'a/intro_v2_m.mp4':'a/intro_v2.mp4';e.src='a/intro_end_169.jpg'}
+ function lay(){const vw=innerWidth,vh=innerHeight;
+  if(P0){const W=Math.max(vw,vh*9/16),H=W*16/9;b.style.width=W+'px';b.style.height=H+'px';w.style.top=(vh/2-H/2+H*(1112/1920))+'px';w.style.fontSize=Math.max(20,W*0.05)+'px';return}
+  const W=Math.max(vw,vh*16/9),H=W*9/16;b.style.width=W+'px';b.style.height=H+'px';
+  w.style.top=(vh/2-H/2+H*(735/1080))+'px';w.style.fontSize=Math.max(20,W*0.026)+'px'}
  lay();addEventListener('resize',lay);
  let done=false,ended=false,started=false;
  function fin(){if(done)return;done=true;I.classList.add('out');R.classList.remove('intro-on');window.dispatchEvent(new Event('introdone'));setTimeout(()=>I.classList.add('gone'),340)}
