@@ -261,11 +261,76 @@ textarea{min-height:110px;resize:vertical}
 footer{border-top:1px solid var(--line);padding-block:40px;color:var(--mute);font-size:14px}
 footer .wrap{display:flex;justify-content:space-between;align-items:center;gap:20px;flex-wrap:wrap}
 .toast{position:fixed;left:50%;bottom:calc(24px + env(safe-area-inset-bottom,0px));transform:translateX(-50%);background:var(--fg);color:var(--bg);padding:12px 20px;border-radius:999px;font-size:15px;z-index:90}
+/* ---------- welcome intro ---------- */
+#intro{position:fixed;inset:0;z-index:9999;background:#040404;overflow:hidden;cursor:pointer}
+#intro.gone{display:none}
+#intro .isc{position:absolute;left:0;top:0;will-change:transform,opacity,filter;opacity:0}
+#intro .isc img{display:block;width:100%;height:auto}
+#intro .ivg{position:absolute;inset:0;background:radial-gradient(120% 90% at 50% 45%,rgba(0,0,0,0) 40%,rgba(0,0,0,.75));pointer-events:none}
+#intro .ilg{position:absolute;left:50%;top:44%;transform:translate(-50%,-50%);display:flex;flex-direction:column;align-items:center;font-size:min(13vw,104px)}
+#intro .iwm{position:relative;display:flex;align-items:flex-end;font-family:var(--f-logo);letter-spacing:.06em;gap:.05em;line-height:1;color:var(--fg);white-space:nowrap}
+#intro .ich{display:inline-block;opacity:0;will-change:transform,opacity,filter}
+#intro .isun{position:relative;width:1.3em;height:.72em;margin:0 .08em}
+#intro .ihalo{position:absolute;left:50%;bottom:0;width:7em;height:7em;transform:translate(-50%,50%);border-radius:50%;background:radial-gradient(closest-side,rgba(255,150,60,.55),rgba(255,122,26,.18) 45%,rgba(255,122,26,0));opacity:0;pointer-events:none}
+#intro .iclip{position:absolute;inset:0;clip-path:inset(-3em -3em 0 -3em)}
+#intro .idisc{position:absolute;left:0;right:0;bottom:0;height:100%;border-radius:999px 999px 0 0;background:var(--fg);box-shadow:0 0 .5em rgba(255,170,90,.8),0 -.1em .9em rgba(255,138,42,.5)}
+#intro .ihz{position:absolute;left:50%;height:.08em;min-height:2px;background:var(--sun);box-shadow:0 0 .35em rgba(255,122,26,.9);transform:translateX(-50%)}
+#intro .isub{font-family:var(--f-mono);font-size:.3em;letter-spacing:.62em;margin:1.1em -.62em 0 0;color:var(--fg);opacity:0;white-space:nowrap}
+#intro .iwel{font-family:"Cormorant",serif;font-style:italic;font-weight:500;font-size:.42em;color:var(--sun);margin-top:.7em;opacity:0;white-space:nowrap}
+#intro .iskip{position:absolute;right:20px;bottom:20px;font:500 12px/1 var(--f-mono);letter-spacing:.2em;color:rgba(255,255,255,.45);text-transform:uppercase}
+html.intro-on{overflow:hidden}
 @media (prefers-reduced-motion:reduce){.strip .row{animation:none}html{scroll-behavior:auto}}
 </style>
 
 </head>
 <body>
+<div id="intro" aria-hidden="true">
+ <div class="isc"><img src="a/intro_scene.jpg" alt="" fetchpriority="high"></div>
+ <div class="ivg"></div>
+ <div class="ilg">
+  <div class="iwm"><span class="ich">N</span><span class="isun"><i class="ihalo"></i><span class="iclip"><i class="idisc"></i></span></span><span class="ich">M</span><span class="ich">A</span><span class="ich">D</span><i class="ihz"></i></div>
+  <div class="isub">WEB STUDIO</div>
+  <div class="iwel">Тавтай морил</div>
+ </div>
+ <div class="iskip">Алгасах ›</div>
+</div>
+<script>
+(()=>{const I=document.getElementById('intro');const R=document.documentElement;
+ if(!I)return;if(matchMedia('(prefers-reduced-motion: reduce)').matches){I.classList.add('gone');return}
+ R.classList.add('intro-on');
+ const sc=I.querySelector('.isc'),img=sc.querySelector('img'),lg=I.querySelector('.ilg'),wm=I.querySelector('.iwm'),sun=I.querySelector('.isun'),disc=I.querySelector('.idisc'),halo=I.querySelector('.ihalo'),hz=I.querySelector('.ihz'),sub=I.querySelector('.isub'),wel=I.querySelector('.iwel'),ch=[...I.querySelectorAll('.ich')];
+ const SX=.6793,SY=.3684,AR=752/1344;let ox=0,oy=0,W=0,fs=0,bar=0;
+ const cl=x=>x<0?0:x>1?1:x,ez=x=>1-Math.pow(1-cl(x),3),eio=x=>{x=cl(x);return x<.5?4*x*x*x:1-Math.pow(-2*x+2,3)/2};
+ function lay(){const vw=innerWidth,vh=innerHeight;fs=parseFloat(getComputedStyle(lg).fontSize);
+  const r=sun.getBoundingClientRect(),w=wm.getBoundingClientRect();ox=r.left+r.width/2;oy=r.bottom;
+  W=Math.max(vw*1.7,vh*1.75);sc.style.width=W+'px';sc.style.left=(ox-SX*W)+'px';sc.style.top=(oy-SY*W*AR)+'px';sc.style.transformOrigin=(SX*W)+'px '+(SY*W*AR)+'px';
+  hz.style.top=(r.bottom-w.top-fs*.04)+'px';hz.style.marginLeft=((ox-w.left)-w.width/2)+'px';bar=fs*2.06;}
+ let t0=0,done=false,skipAt=0;const END=3.1;
+ function fin(){if(done)return;done=true;I.classList.add('gone');R.classList.remove('intro-on');window.dispatchEvent(new Event('introdone'))}
+ function frame(now){if(done)return;if(!t0)t0=now;let t=(now-t0)/1000;if(skipAt&&t<skipAt)t=skipAt;
+  const vw=innerWidth;
+  // 1) camera glides over the web-grid, sun rises
+  const a=ez(t/.5),cam=eio(t/1.6),out=ez((t-1.15)/.7);
+  sc.style.opacity=a*(1-out);sc.style.transform=`scale(${1+.14*cam+.25*out})`;sc.style.filter=`brightness(${.55+.45*a}) blur(${out*6}px)`;
+  const rise=ez((t-.25)/.85);disc.style.transform=`translateY(${(1-rise)*105}%)`;
+  halo.style.opacity=.25+.75*rise-.35*ez((t-1.6)/.6);halo.style.transform=`translate(-50%,50%) scale(${.6+.6*rise-.35*ez((t-1.4)/.6)})`;
+  // 2) horizon collapses into the logo bar
+  const hk=eio((t-1.1)/.6);hz.style.opacity=ez(t/.3);hz.style.width=(vw*1.2*(1-hk)+bar*hk)+'px';
+  // 3) letters emerge from the sun
+  ch.forEach((c,i)=>{const k=ez((t-1.2-i*.07)/.5);const d=i===0?1:-(1+i*.5);c.style.opacity=k;c.style.transform=`translateX(${d*(1-k)*.55}em)`;c.style.filter=`blur(${(1-k)*10}px)`});
+  const s=ez((t-1.7)/.5);sub.style.opacity=s*.85;sub.style.letterSpacing=(.62+.6*(1-s))+'em';
+  const wk=ez((t-1.95)/.5);wel.style.opacity=wk;wel.style.transform=`translateY(${(1-wk)*.4}em)`;
+  // 4) reveal the site
+  const f=ez((t-2.7)/.4);I.style.opacity=1-f;lg.style.transform=`translate(-50%,-50%) scale(${1+.06*f})`;
+  if(t>=END)return fin();requestAnimationFrame(frame)}
+ function start(){lay();requestAnimationFrame(frame)}
+ const go=()=>{if(document.fonts&&document.fonts.load){Promise.race([document.fonts.load('1em Michroma'),new Promise(r=>setTimeout(r,500))]).then(start)}else start()};
+ if(img.complete)go();else{let s=0;const g=()=>{if(!s){s=1;go()}};img.addEventListener('load',g);img.addEventListener('error',g);setTimeout(g,900)}
+ const skip=()=>{if(!skipAt&&t0){skipAt=Math.max(2.65,(performance.now()-t0)/1000)}};
+ I.addEventListener('click',skip);addEventListener('keydown',skip,{once:true});addEventListener('wheel',skip,{once:true,passive:true});addEventListener('touchmove',skip,{once:true,passive:true});
+ addEventListener('resize',()=>{if(!done)lay()});setTimeout(fin,6000);
+})();
+</script>
 <header>
  <div class="wrap">
   <a class="logo" href="#top" aria-label="Nomad Web Studio"><span class="wm">N<span class="sun"><i></i><b></b></span>MAD</span><span class="sub">WEB STUDIO</span></a>
@@ -451,6 +516,7 @@ $('#incl').innerHTML=['Premium дизайн, гар утас, компьютер
 
 /* ---------- hero video: play the reveal once, then loop the floating tail ---------- */
 (()=>{const v=$('#hvid');if(!v)return;if(reduce){v.removeAttribute('autoplay');v.poster='a/hero_end.jpg';v.removeAttribute('src');v.load();return}
+ if(document.documentElement.classList.contains('intro-on')){v.pause();addEventListener('introdone',()=>{v.currentTime=0;const p=v.play();if(p&&p.catch)p.catch(()=>{})},{once:true})}
  const TAIL=3.84;v.addEventListener('ended',()=>{v.currentTime=TAIL;const p=v.play();if(p&&p.catch)p.catch(()=>{})});
  v.addEventListener('timeupdate',()=>{if(v.duration&&v.currentTime>v.duration-0.08){v.currentTime=TAIL}});})();
 
