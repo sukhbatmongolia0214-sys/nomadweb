@@ -281,7 +281,7 @@ html.intro-on{overflow:hidden}
 <body>
 <div id="intro" aria-hidden="true">
  <div class="ibox" id="ibox">
-  <video id="ivid" muted playsinline preload="auto" poster="a/intro_start_v2.jpg" src="a/intro_v2.mp4"></video>
+  <video id="ivid" muted autoplay playsinline webkit-playsinline preload="auto" poster="a/intro_start_v2.jpg"></video>
   <img class="iend" src="a/intro_end_169.jpg" alt="">
  </div>
  <div class="iwel" id="iwel">Тавтай морил</div>
@@ -292,19 +292,25 @@ html.intro-on{overflow:hidden}
  if(matchMedia('(prefers-reduced-motion: reduce)').matches){I.classList.add('gone');return}
  R.classList.add('intro-on');
  const v=document.getElementById('ivid'),b=document.getElementById('ibox'),w=document.getElementById('iwel');
+ const small=Math.min(screen.width,screen.height)<700;
+ v.muted=true;v.defaultMuted=true;v.setAttribute('muted','');v.src=small?'a/intro_v2_m.mp4':'a/intro_v2.mp4';
  function lay(){const vw=innerWidth,vh=innerHeight,port=vh>vw*1.05;I.classList.toggle('port',port);
   let W=port?Math.min(vw*1.62,vh*1.2):Math.max(vw,vh*16/9);const H=W*9/16;b.style.width=W+'px';b.style.height=H+'px';
   const cy=vh/2-H/2+H*(735/1080);w.style.top=cy+'px';w.style.fontSize=Math.max(20,W*0.026)+'px'}
  lay();addEventListener('resize',lay);
- let done=false,ended=false;
+ let done=false,ended=false,started=false;
  function fin(){if(done)return;done=true;I.classList.add('out');R.classList.remove('intro-on');window.dispatchEvent(new Event('introdone'));setTimeout(()=>I.classList.add('gone'),340)}
- function finale(){if(ended)return;ended=true;I.classList.add('fin');setTimeout(fin,380)}
- v.addEventListener('timeupdate',()=>{if(v.duration&&v.currentTime>v.duration-0.1)finale()});
- v.addEventListener('ended',finale);
- const pl=()=>{const p=v.play();if(p&&p.catch)p.catch(()=>fin())};
- if(v.readyState>=3)pl();else v.addEventListener('canplay',pl,{once:true});
- setTimeout(()=>{if(v.readyState<3&&!ended)fin()},1500);setTimeout(fin,4000);
- const skip=()=>fin();I.addEventListener('click',skip);addEventListener('keydown',skip,{once:true});addEventListener('wheel',skip,{once:true,passive:true});addEventListener('touchmove',skip,{once:true,passive:true});
+ function finale(hold){if(ended)return;ended=true;I.classList.add('fin');setTimeout(fin,hold||380)}
+ /* video can't autoplay (low-power mode, data saver, slow net): still greet with the logo, briefly */
+ const fallback=()=>{if(!started)finale(900)};
+ v.addEventListener('playing',()=>{started=true});
+ v.addEventListener('timeupdate',()=>{if(v.currentTime>0)started=true;if(v.duration&&v.currentTime>v.duration-0.1)finale()});
+ v.addEventListener('ended',()=>finale());
+ const pl=()=>{try{const p=v.play();if(p&&p.catch)p.catch(fallback)}catch(e){fallback()}};
+ pl();v.addEventListener('loadeddata',pl,{once:true});
+ setTimeout(()=>{if(!started)fallback()},2200);setTimeout(fin,5000);
+ const skip=()=>fin();I.addEventListener('click',skip);addEventListener('keydown',skip,{once:true});addEventListener('wheel',skip,{once:true,passive:true});
+ let ty=null;addEventListener('touchstart',e=>{ty=e.touches[0].clientY},{passive:true});addEventListener('touchmove',e=>{if(ty!==null&&Math.abs(e.touches[0].clientY-ty)>30)skip()},{passive:true});
 })();
 </script>
 <header>
