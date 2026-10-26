@@ -44,20 +44,24 @@ textarea.note{width:100%;min-height:44px;background:#0c0c11;border:1px solid var
 <header><div class="w hd"><div class="logo">NOMAD<small>АДМИН · ЗАХИАЛГА</small></div><div style="display:flex;gap:8px"><button class="btn" id="rf">↻ Шинэчлэх</button><a class="btn" href="/" target="_blank" rel="noopener">Сайт</a></div></div></header>
 <main class="w" id="app"><div class="empty">Ачаалж байна…</div></main>
 <div class="toast" id="t"></div>
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.45.4/dist/umd/supabase.min.js"></script>
 <script>
-(()=>{const API='https://rdekzdmcajycojxutyqz.supabase.co/functions/v1/nomad-orders';const app=document.getElementById('app');
- let key='';const m=location.hash.match(/k=([A-Za-z0-9_-]{20,200})/);
- try{if(m){localStorage.setItem('nomad_admin_k',m[1]);history.replaceState(null,'',location.pathname)}key=localStorage.getItem('nomad_admin_k')||''}catch(_){key=m?m[1]:''}
+(()=>{const API='https://rdekzdmcajycojxutyqz.supabase.co/functions/v1/nomad-orders',OWNER='sukhbatmongolia0214@gmail.com';
+ const sb=supabase.createClient('https://rdekzdmcajycojxutyqz.supabase.co','sb_publishable_PifL06Mih5k4LG4yOPztBQ_7j_yvBzq',{auth:{flowType:'pkce',persistSession:true,detectSessionInUrl:true,storageKey:'nomad-admin-auth'}});
+ const app=document.getElementById('app'),rf=document.getElementById('rf'),hd=document.querySelector('.hd > div:last-child');
+ try{localStorage.removeItem('nomad_admin_k')}catch(_){}
  const toast=s=>{const t=document.getElementById('t');t.textContent=s;t.classList.add('on');setTimeout(()=>t.classList.remove('on'),1600)};
  const esc=s=>String(s??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
- const call=b=>fetch(API,{method:'POST',headers:{'content-type':'application/json'},body:JSON.stringify({...b,key})}).then(async r=>{const j=await r.json().catch(()=>({}));if(!r.ok)throw Object.assign(new Error(j.error||r.status),{status:r.status});return j});
- const deny=()=>{app.innerHTML='<div class="deny"><b>NOMAD</b>Энэ хуудас зөвхөн админд зориулагдсан.</div>';document.getElementById('rf').style.display='none'};
- if(!key)return deny();
- const L={new:'Шинэ',contacted:'Холбогдсон',done:'Гэрээ хийсэн',spam:'Спам'};let all=[],filt='all',q='';
+ let token='';
+ const call=b=>fetch(API,{method:'POST',headers:{'content-type':'application/json',authorization:'Bearer '+token},body:JSON.stringify(b)}).then(async r=>{const j=await r.json().catch(()=>({}));if(!r.ok)throw Object.assign(new Error(j.error||r.status),{status:r.status});return j});
+ function loginView(msg){rf.style.display='none';const lo=document.getElementById('lo');if(lo)lo.remove();
+  app.innerHTML=`<div class="deny"><b>NOMAD АДМИН</b>${msg?`<p style="color:#ff8a8a">${esc(msg)}</p>`:'<p>Зөвхөн эзэмшигчийн Google данс нэвтэрнэ.</p>'}<button class="btn sun" id="gl" style="margin-top:14px;font-size:16px;padding:12px 22px"><svg width="18" height="18" viewBox="0 0 48 48"><path fill="#140800" d="M44.5 20H24v8.5h11.8C34.7 33.9 30.1 37 24 37c-7.2 0-13-5.8-13-13s5.8-13 13-13c3.1 0 5.9 1.1 8.1 2.9l6.4-6.4C34.6 4.1 29.6 2 24 2 11.8 2 2 11.8 2 24s9.8 22 22 22c11 0 21-8 21-22 0-1.3-.2-2.7-.5-4z"/></svg> Google-ээр нэвтрэх</button></div>`;
+  document.getElementById('gl').onclick=()=>sb.auth.signInWithOAuth({provider:'google',options:{redirectTo:location.origin+'/admin/',queryParams:{login_hint:OWNER,prompt:'select_account'}}})}
+ const L={new:'Шинэ',contacted:'Холбогдсон',done:'Гэрээ хийсэн',spam:'Спам'};let all=[],filt='all',q='',notifyOn=true;
  const fmt=d=>{const x=new Date(d);return x.toLocaleDateString('mn-MN',{month:'2-digit',day:'2-digit'})+' '+x.toLocaleTimeString('mn-MN',{hour:'2-digit',minute:'2-digit'})};
  function render(){const c=k=>all.filter(o=>k==='all'||o.status===k).length;
   const rows=all.filter(o=>(filt==='all'?o.status!=='spam':o.status===filt)&&(!q||JSON.stringify(o).toLowerCase().includes(q)));
-  app.innerHTML=`<div class="stats">${['all','new','contacted','done','spam'].map(k=>`<div class="st ${filt===k?'on':''}" data-f="${k}"><b>${c(k)}</b><span>${k==='all'?'Бүгд':L[k]}</span></div>`).join('')}</div>
+  app.innerHTML=`${notifyOn?'':'<div class="tag" style="display:block;margin-top:18px;border-color:rgba(255,122,26,.5)">⚠ Имэйл мэдэгдэл хараахан идэвхжээгүй байна.</div>'}<div class="stats">${['all','new','contacted','done','spam'].map(k=>`<div class="st ${filt===k?'on':''}" data-f="${k}"><b>${c(k)}</b><span>${k==='all'?'Бүгд':L[k]}</span></div>`).join('')}</div>
   <div class="tools"><input class="q" id="q" placeholder="Хайх: нэр, утас, бизнес…" value="${esc(q)}"></div>
   <div class="list">${rows.length?rows.map(o=>{const tel=String(o.phone||'').replace(/[^\d+]/g,'');return `<article class="o ${o.status}" data-id="${o.id}">
    <div class="top"><div class="nm">${esc(o.name)}</div><div class="dt">#${o.id} · ${fmt(o.created_at)}</div></div>
@@ -75,8 +79,13 @@ textarea.note{width:100%;min-height:44px;background:#0c0c11;border:1px solid var
    const n=card.querySelector('.note');n.onchange=async()=>{try{await call({action:'update',id,note:n.value});o.note=n.value;toast('Тэмдэглэл хадгаллаа')}catch(e){toast('Алдаа гарлаа')}};
    card.querySelector('[data-del]').onclick=async()=>{if(!window.confirm('#'+id+' захиалгыг бүр мөсөн устгах уу?'))return;try{await call({action:'delete',id});all=all.filter(x=>x.id!==id);render();toast('Устгалаа')}catch(e){toast('Алдаа гарлаа')}};
   });}
- async function load(){try{const j=await call({action:'list'});all=j.orders||[];render();const n=all.filter(o=>o.status==='new').length;document.title=(n?`(${n}) `:'')+'Nomad · Админ'}catch(e){if(e.status===403){try{localStorage.removeItem('nomad_admin_k')}catch(_){}deny()}else app.innerHTML='<div class="empty">Сервертэй холбогдож чадсангүй. Дахин оролдоно уу.</div>'}}
- document.getElementById('rf').onclick=()=>{load();toast('Шинэчиллээ')};
- load();setInterval(()=>{if(!document.hidden)load()},60000);
+ async function load(){const {data}=await sb.auth.getSession();if(!data.session)return loginView();token=data.session.access_token;
+  try{const j=await call({action:'list'});all=j.orders||[];notifyOn=!!j.notify;rf.style.display='';
+   if(!document.getElementById('lo')){const b=document.createElement('button');b.className='btn';b.id='lo';b.textContent='Гарах';b.onclick=async()=>{await sb.auth.signOut();loginView()};hd.appendChild(b)}
+   render();const n=all.filter(o=>o.status==='new').length;document.title=(n?`(${n}) `:'')+'Nomad · Админ'}
+  catch(e){if(e.status===403){await sb.auth.signOut();loginView('Энэ данс админ эрхгүй. Зөвхөн '+OWNER+' нэвтэрнэ.')}else app.innerHTML='<div class="empty">Сервертэй холбогдож чадсангүй. Дахин оролдоно уу.</div>'}}
+ rf.onclick=()=>{load();toast('Шинэчиллээ')};
+ sb.auth.onAuthStateChange((ev)=>{if(ev==='SIGNED_IN')load()});
+ load();setInterval(()=>{if(!document.hidden&&token)load()},60000);
 })();
 </script></body></html>
