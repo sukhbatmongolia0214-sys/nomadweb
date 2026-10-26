@@ -269,9 +269,9 @@ footer .wrap{display:flex;justify-content:space-between;align-items:center;gap:2
 #intro.vert .iend{transition-duration:.3s}
 #intro.port .ibox{-webkit-mask-image:linear-gradient(180deg,transparent,#000 22%,#000 78%,transparent);mask-image:linear-gradient(180deg,transparent,#000 22%,#000 78%,transparent)}
 #intro video,#intro .iend{position:absolute;inset:0;width:100%;height:100%;display:block}
-#intro .iend{opacity:0;transition:opacity .3s linear}
+#intro .iend{opacity:0;transition:opacity .45s ease}
 #intro.fin .iend{opacity:1}
-#intro .iwel{position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);text-align:center;font-family:"Cormorant",serif;font-style:italic;font-weight:500;color:var(--sun);white-space:nowrap;opacity:0;transition:opacity .25s ease,margin .25s ease;margin-top:8px}
+#intro .iwel{position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);text-align:center;font-family:"Cormorant",serif;font-style:italic;font-weight:500;color:var(--sun);white-space:nowrap;opacity:0;transition:opacity .5s ease .25s,margin .5s ease .25s;margin-top:10px}
 #intro.fin .iwel{opacity:1;margin-top:0}
 #intro .iskip{position:absolute;right:18px;bottom:18px;font:500 11px/1 var(--f-mono);letter-spacing:.2em;color:rgba(255,255,255,.4);text-transform:uppercase}
 html.intro-on{overflow:hidden}
@@ -296,8 +296,8 @@ html.intro-on{overflow:hidden}
  const small=Math.min(screen.width,screen.height)<700;
  v.muted=true;v.defaultMuted=true;v.setAttribute('muted','');const P0=innerHeight>innerWidth*1.05;const e=document.getElementById('iend');
  v.poster='a/intro_start_p.jpg';e.src='a/intro_end_916.jpg';I.classList.add('vert');
- if(P0){v.src='a/intro_v2_p.mp4'}
- else{I.classList.remove('vert');I.classList.add('wide');v.poster='a/intro_start_rf.jpg';e.src='a/intro_end_rf.jpg';v.src=small?'a/intro_rf_m.mp4':'a/intro_rf.mp4'}
+ if(P0){v.src='a/intro5_p.mp4'}
+ else{I.classList.remove('vert');I.classList.add('wide');v.poster='a/intro_start_rf.jpg';e.src='a/intro_end_rf.jpg';v.src=small?'a/intro5_rf_m.mp4':'a/intro5_rf.mp4'}
  function lay(){const vw=innerWidth,vh=innerHeight;
   if(P0){const W=Math.max(vw,vh*9/16),H=W*16/9;b.style.width=W+'px';b.style.height=H+'px';w.style.top=(vh/2-H/2+H*(1112/1920))+'px';w.style.fontSize=Math.max(20,W*0.05)+'px';return}
   const W=Math.max(vw,vh*16/9)*1.45,H=W*9/16,L=vw/2-W*(968/1920),T=vh*0.47-H*(608/1080);
@@ -306,7 +306,7 @@ html.intro-on{overflow:hidden}
  lay();addEventListener('resize',lay);
  let done=false,ended=false,started=false;
  function fin(){if(done)return;done=true;I.classList.add('out');R.classList.remove('intro-on');window.dispatchEvent(new Event('introdone'));setTimeout(()=>I.classList.add('gone'),340)}
- function finale(hold){if(ended)return;ended=true;I.classList.add('fin');setTimeout(fin,hold||880)}
+ function finale(hold){if(ended)return;ended=true;I.classList.add('fin');setTimeout(fin,hold||1550)}
  /* video can't autoplay (low-power mode, data saver, slow net): still greet with the logo, briefly */
  const fallback=()=>{if(!started)finale(900)};
  v.addEventListener('playing',()=>{started=true});
@@ -314,7 +314,7 @@ html.intro-on{overflow:hidden}
  v.addEventListener('ended',()=>finale());
  const pl=()=>{try{const p=v.play();if(p&&p.catch)p.catch(fallback)}catch(e){fallback()}};
  pl();v.addEventListener('loadeddata',pl,{once:true});
- setTimeout(()=>{if(!started)fallback()},2200);setTimeout(fin,5000);
+ setTimeout(()=>{if(!started)fallback()},2200);setTimeout(fin,8000);
  const skip=()=>fin();I.addEventListener('click',skip);addEventListener('keydown',skip,{once:true});addEventListener('wheel',skip,{once:true,passive:true});
  let ty=null;addEventListener('touchstart',e=>{ty=e.touches[0].clientY},{passive:true});addEventListener('touchmove',e=>{if(ty!==null&&Math.abs(e.touches[0].clientY-ty)>30)skip()},{passive:true});
 })();
