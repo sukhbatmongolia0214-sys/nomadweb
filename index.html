@@ -290,7 +290,7 @@ html.intro-on{overflow:hidden}
 </div>
 <script>
 (()=>{const I=document.getElementById('intro'),R=document.documentElement;if(!I)return;
- if(matchMedia('(prefers-reduced-motion: reduce)').matches){I.classList.add('gone');return}
+ if(matchMedia('(prefers-reduced-motion: reduce)').matches||/^#(order|zahialga)$/.test(location.hash)){I.classList.add('gone');return}
  R.classList.add('intro-on');
  const v=document.getElementById('ivid'),b=document.getElementById('ibox'),w=document.getElementById('iwel');
  const small=Math.min(screen.width,screen.height)<700;
@@ -462,7 +462,7 @@ html.intro-on{overflow:hidden}
   <h2>Сайтаа <b>өнөөдөр эхлүүлье.</b></h2>
   <div class="order">
    <div class="contact">
-    <p class="lead" style="margin:0;color:rgba(236,232,224,.8)">Формоо бөглөөд Viber-ээр илгээгээрэй. Багц, хугацаа, үнийг хувийн байдлаар тайлбарлаж өгнө.</p>
+    <p class="lead" style="margin:0;color:rgba(236,232,224,.8)">Формоо бөглөөд «Захиалга илгээх» дарахад л болно — бид удахгүй таны утас руу холбогдож, багц, хугацаа, үнийг хувийн байдлаар тайлбарлана.</p>
     <div class="eyebrow" style="margin-top:12px">Viber · хувийн зөвлөгөө</div>
     <div class="num" id="num">8012 4148</div>
     <div class="crow"><button class="btn" type="button" id="cpNum">Дугаар хуулах</button><a class="btn" href="viber://chat?number=%2B97680124148">Viber нээх</a></div>
@@ -476,9 +476,11 @@ html.intro-on{overflow:hidden}
     <label for="ft">Сайтын төрөл<select id="ft" name="ft"><option>Онлайн дэлгүүр</option><option>Хүргэлт</option><option>Цаг захиалга</option><option>Тасалбар, эвент</option><option>Кино сайт</option><option>Байгууллага</option><option>Танилцуулга сайт</option><option>Тусгай төсөл</option><option>Мэдэхгүй, зөвлөгөө авъя</option></select></label>
     <label class="full" for="fm">Юу хэрэгтэй байна вэ?<textarea id="fm" name="fm" placeholder="Жишээ: Ноолуур бараа зарах дэлгүүр, QPay төлбөр, хүргэлтийн бүс"></textarea></label>
     <label class="agree full" for="fa"><input type="checkbox" id="fa" name="fa">Миний мэдээллийг зөвхөн энэ захиалгад холбогдоход ашиглахыг зөвшөөрч байна.</label>
+    <input type="text" name="website" id="fw" tabindex="-1" autocomplete="off" aria-hidden="true" style="position:absolute;left:-9999px;width:1px;height:1px;opacity:0">
     <p class="err full" id="err" hidden></p>
-    <div class="full"><button class="btn hot" type="submit">Захиалгын мессеж бэлдэх</button></div>
-    <div class="out" id="out" hidden><div class="eyebrow" style="color:var(--ok)">Мессеж бэлэн боллоо</div><pre id="outTxt"></pre><div class="crow"><button class="btn primary" type="button" id="cpMsg">Хуулах</button><span style="align-self:center;color:var(--mute);font-size:14px">Хуулаад Viber 8012 4148 руу илгээнэ үү.</span></div></div>
+    <div class="full"><button class="btn hot" type="submit" id="fsend">Захиалга илгээх</button></div>
+    <div class="out ok full" id="okBox" hidden><div class="eyebrow" style="color:var(--ok)">✓ Захиалга хүлээн авлаа</div><p style="margin:8px 0 0;font-size:18px;line-height:1.5">Баярлалаа! Бид ажлын цагаар 1 цагийн дотор таны утас руу холбогдоно. Яаралтай бол <b>8012 4148</b> руу залгаарай.</p></div>
+    <div class="out" id="out" hidden><div class="eyebrow" style="color:var(--sun2)">Сүлжээний алдаа — доорх мессежийг Viber-ээр илгээнэ үү</div><pre id="outTxt"></pre><div class="crow"><button class="btn primary" type="button" id="cpMsg">Хуулах</button><span style="align-self:center;color:var(--mute);font-size:14px">Хуулаад Viber 8012 4148 руу илгээнэ үү.</span></div></div>
    </form>
   </div>
  </div>
@@ -553,12 +555,22 @@ function toast(t){const e=document.createElement('div');e.className='toast';e.te
 function sel(el){if(!el)return;const r=document.createRange();r.selectNodeContents(el);const s=getSelection();s.removeAllRanges();s.addRange(r);toast('Сонгогдлоо, Ctrl+C дарна уу')}
 function copy(text,el){try{navigator.clipboard.writeText(text).then(()=>toast('Хуулагдлаа'),()=>sel(el))}catch(e){sel(el)}}
 $('#cpNum').addEventListener('click',()=>copy('80124148',$('#num')));
-$('#f').addEventListener('submit',e=>{e.preventDefault();const v=id=>$('#'+id).value.trim();const err=$('#err');
+const ORDER_API='https://rdekzdmcajycojxutyqz.supabase.co/functions/v1/nomad-orders';
+$('#f').addEventListener('submit',async e=>{e.preventDefault();const v=id=>$('#'+id).value.trim();const err=$('#err'),btn=$('#fsend');
  if(!v('fn')||!v('fp')){err.textContent='Нэр, утасны дугаараа бичнэ үү.';err.hidden=false;return}
+ if(v('fp').replace(/\D/g,'').length<8){err.textContent='Утасны дугаараа бүтэн бичнэ үү.';err.hidden=false;return}
  if(!$('#fa').checked){err.textContent='Зөвшөөрлийн нүдийг чагтална уу.';err.hidden=false;return}
- err.hidden=true;
- const msg=`Сайн байна уу, Nomad Web Studio!\nНэр: ${v('fn')}\nУтас: ${v('fp')}\nБизнес: ${v('fb')||'—'}\nСайтын төрөл: ${v('ft')}\nХэрэгцээ: ${v('fm')||'—'}`;
- $('#outTxt').textContent=msg;$('#out').hidden=false;$('#out').scrollIntoView({behavior:reduce?'auto':'smooth',block:'nearest'});});
+ err.hidden=true;$('#out').hidden=true;btn.disabled=true;btn.textContent='Илгээж байна…';
+ const src=(location.search||'')+(location.hash||'');
+ try{const r=await fetch(ORDER_API,{method:'POST',headers:{'content-type':'application/json'},body:JSON.stringify({action:'create',name:v('fn'),phone:v('fp'),business:v('fb'),site_type:v('ft'),message:v('fm'),source:src,website:v('fw')})});
+  if(r.status===429){err.textContent='Таны захиалга аль хэдийн ирсэн байна. Бид удахгүй холбогдоно.';err.hidden=false;btn.disabled=false;btn.textContent='Захиалга илгээх';return}
+  if(!r.ok)throw new Error(r.status);
+  $('#f').querySelectorAll('input:not([type=checkbox]),textarea').forEach(i=>i.value='');
+  $('#okBox').hidden=false;btn.textContent='Илгээгдлээ ✓';$('#okBox').scrollIntoView({behavior:reduce?'auto':'smooth',block:'nearest'});
+  try{if(window.fbq)fbq('track','Lead')}catch(_){}
+ }catch(x){const msg=`Сайн байна уу, Nomad Web Studio!\nНэр: ${v('fn')}\nУтас: ${v('fp')}\nБизнес: ${v('fb')||'—'}\nСайтын төрөл: ${v('ft')}\nХэрэгцээ: ${v('fm')||'—'}`;
+  $('#outTxt').textContent=msg;$('#out').hidden=false;btn.disabled=false;btn.textContent='Дахин илгээх';$('#out').scrollIntoView({behavior:reduce?'auto':'smooth',block:'nearest'})}
+});
 $('#cpMsg').addEventListener('click',()=>copy($('#outTxt').textContent,$('#outTxt')));
 
 /* promo link: #order or #zahialga opens the order form directly */
