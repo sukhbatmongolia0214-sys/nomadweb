@@ -451,7 +451,7 @@ $('#incl').innerHTML=['Premium дизайн, гар утас, компьютер
 
 /* ---------- hero video: play the reveal once, then loop the floating tail ---------- */
 (()=>{const v=$('#hvid');if(!v)return;if(reduce){v.removeAttribute('autoplay');v.poster='a/hero_end.jpg';v.removeAttribute('src');v.load();return}
- const TAIL=3.46;v.addEventListener('ended',()=>{v.currentTime=TAIL;const p=v.play();if(p&&p.catch)p.catch(()=>{})});
+ const TAIL=3.84;v.addEventListener('ended',()=>{v.currentTime=TAIL;const p=v.play();if(p&&p.catch)p.catch(()=>{})});
  v.addEventListener('timeupdate',()=>{if(v.duration&&v.currentTime>v.duration-0.08){v.currentTime=TAIL}});})();
 
 /* ---------- showcase: moving posters that follow the mouse / finger ---------- */
