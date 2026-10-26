@@ -295,7 +295,7 @@ html.intro-on{overflow:hidden}
  const v=document.getElementById('ivid'),b=document.getElementById('ibox'),w=document.getElementById('iwel');
  const small=Math.min(screen.width,screen.height)<700;
  v.muted=true;v.defaultMuted=true;v.setAttribute('muted','');const P0=innerHeight>innerWidth*1.05;const e=document.getElementById('iend');
- if(P0){v.poster='a/intro_start_p.jpg';v.src='a/intro_p3.mp4';e.src='a/intro_end_916.jpg';I.classList.add('vert')}
+ if(P0){v.poster='a/intro_start_p.jpg';v.src='a/intro_v2_p.mp4';e.src='a/intro_end_916.jpg';I.classList.add('vert')}
  else{v.poster='a/intro_start_d3.jpg';v.src=small?'a/intro_d3_m.mp4':'a/intro_d3.mp4';e.src='a/intro_end_169.jpg'}
  function lay(){const vw=innerWidth,vh=innerHeight;
   if(P0){const W=Math.max(vw,vh*9/16),H=W*16/9;b.style.width=W+'px';b.style.height=H+'px';w.style.top=(vh/2-H/2+H*(1112/1920))+'px';w.style.fontSize=Math.max(20,W*0.05)+'px';return}
@@ -304,7 +304,7 @@ html.intro-on{overflow:hidden}
  lay();addEventListener('resize',lay);
  let done=false,ended=false,started=false;
  function fin(){if(done)return;done=true;I.classList.add('out');R.classList.remove('intro-on');window.dispatchEvent(new Event('introdone'));setTimeout(()=>I.classList.add('gone'),340)}
- function finale(hold){if(ended)return;ended=true;I.classList.add('fin');setTimeout(fin,hold||380)}
+ function finale(hold){if(ended)return;ended=true;I.classList.add('fin');setTimeout(fin,hold||(I.classList.contains('vert')?880:380))}
  /* video can't autoplay (low-power mode, data saver, slow net): still greet with the logo, briefly */
  const fallback=()=>{if(!started)finale(900)};
  v.addEventListener('playing',()=>{started=true});
