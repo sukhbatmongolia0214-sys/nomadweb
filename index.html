@@ -451,15 +451,15 @@ html.intro-on{overflow:hidden}
    <div class="contact">
     <p class="lead" style="margin:0;color:rgba(236,232,224,.8)">Формоо бөглөөд «Захиалга илгээх» дарахад л болно — бид удахгүй таны утас руу холбогдож, багц, хугацаа, үнийг хувийн байдлаар тайлбарлана.</p>
     <div class="eyebrow" style="margin-top:12px">Viber · хувийн зөвлөгөө</div>
-    <div class="num" id="num">8012 4148</div>
-    <div class="crow"><button class="btn" type="button" id="cpNum">Дугаар хуулах</button><a class="btn" href="viber://chat?number=%2B97680124148">Viber нээх</a></div>
+    <a class="num" id="num" href="tel:+97680124148" style="color:inherit;text-decoration:none">8012 4148</a>
+    <div class="crow"><a class="btn hot" href="tel:+97680124148" id="callNum">📞 Залгах</a><a class="btn" href="viber://chat?number=%2B97680124148">Viber нээх</a></div>
     <div class="eyebrow" style="margin-top:12px">Facebook</div>
     <div style="font-size:20px">Nomad Web Studio</div>
    </div>
    <form id="f" novalidate>
     <label for="fn">Таны нэр<input id="fn" name="fn" autocomplete="name" placeholder="Жишээ: Болормаа"></label>
     <label for="fp">Утас<input id="fp" name="fp" inputmode="tel" autocomplete="tel" placeholder="Жишээ: 9911 2233"></label>
-    <label for="fb">Бизнесийн нэр<input id="fb" name="fb" placeholder="Жишээ: Тал Ноолуур"></label>
+    <label for="fb">Бизнесийн нэр<input id="fb" name="fb" placeholder="Жишээ: Монгол Ноолуур"></label>
     <label for="ft">Сайтын төрөл<select id="ft" name="ft"><option>Онлайн дэлгүүр</option><option>Хүргэлт</option><option>Цаг захиалга</option><option>Тасалбар, эвент</option><option>Кино сайт</option><option>Байгууллага</option><option>Танилцуулга сайт</option><option>Тусгай төсөл</option><option>Мэдэхгүй, зөвлөгөө авъя</option></select></label>
     <label class="full" for="fm">Юу хэрэгтэй байна вэ?<textarea id="fm" name="fm" placeholder="Жишээ: Ноолуур бараа зарах дэлгүүр, QPay төлбөр, хүргэлтийн бүс"></textarea></label>
     <label class="agree full" for="fa"><input type="checkbox" id="fa" name="fa">Миний мэдээллийг зөвхөн энэ захиалгад холбогдоход ашиглахыг зөвшөөрч байна.</label>
@@ -541,7 +541,7 @@ addEventListener('scroll',studio,{passive:true});studio();
 function toast(t){const e=document.createElement('div');e.className='toast';e.textContent=t;document.body.appendChild(e);setTimeout(()=>e.remove(),1800)}
 function sel(el){if(!el)return;const r=document.createRange();r.selectNodeContents(el);const s=getSelection();s.removeAllRanges();s.addRange(r);toast('Сонгогдлоо, Ctrl+C дарна уу')}
 function copy(text,el){try{navigator.clipboard.writeText(text).then(()=>toast('Хуулагдлаа'),()=>sel(el))}catch(e){sel(el)}}
-$('#cpNum').addEventListener('click',()=>copy('80124148',$('#num')));
+try{if(window.fbq)$('#callNum').addEventListener('click',()=>fbq('track','Contact'))}catch(_){}
 const ORDER_API='https://rdekzdmcajycojxutyqz.supabase.co/functions/v1/nomad-orders';
 $('#f').addEventListener('submit',async e=>{e.preventDefault();const v=id=>$('#'+id).value.trim();const err=$('#err'),btn=$('#fsend');
  if(!v('fn')||!v('fp')){err.textContent='Нэр, утасны дугаараа бичнэ үү.';err.hidden=false;return}
