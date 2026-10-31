@@ -571,7 +571,14 @@ addEventListener('scroll',studio,{passive:true});studio();
 function toast(t){const e=document.createElement('div');e.className='toast';e.textContent=t;document.body.appendChild(e);setTimeout(()=>e.remove(),1800)}
 function sel(el){if(!el)return;const r=document.createRange();r.selectNodeContents(el);const s=getSelection();s.removeAllRanges();s.addRange(r);toast('Сонгогдлоо, Ctrl+C дарна уу')}
 function copy(text,el){try{navigator.clipboard.writeText(text).then(()=>toast('Хуулагдлаа'),()=>sel(el))}catch(e){sel(el)}}
-try{if(window.fbq)$('#callNum').addEventListener('click',()=>fbq('track','Contact'))}catch(_){}
+/* Meta Pixel: helper + Contact on every call/Viber link (once per link per visit) */
+function px(ev,p,id){try{if(window.fbq){id?fbq('track',ev,p||{},{eventID:id}):fbq('track',ev,p||{})}}catch(_){}}
+const pxDone={};
+document.querySelectorAll('a[href^="tel:"],a[href^="viber:"]').forEach(a=>a.addEventListener('click',()=>{const k=a.getAttribute('href');if(pxDone[k])return;pxDone[k]=1;px('Contact',{content_name:k.startsWith('viber')?'Viber':'Phone call'})}));
+/* ViewContent when the price block is actually seen (once) */
+try{const pr=document.getElementById('price');if(pr&&'IntersectionObserver' in window){const io=new IntersectionObserver(es=>{if(es.some(x=>x.isIntersecting)){px('ViewContent',{content_name:'Price 1,500,000',content_category:'Website',value:1500000,currency:'MNT'});io.disconnect()}},{threshold:.35});io.observe(pr)}}catch(_){}
+/* first interaction with the order form (once) */
+let pxForm=0;document.getElementById('f').addEventListener('focusin',()=>{if(pxForm)return;pxForm=1;try{if(window.fbq)fbq('trackCustom','OrderFormStart')}catch(_){}});
 const ORDER_API='https://rdekzdmcajycojxutyqz.supabase.co/functions/v1/nomad-orders';
 $('#f').addEventListener('submit',async e=>{e.preventDefault();const v=id=>$('#'+id).value.trim();const err=$('#err'),btn=$('#fsend');
  if(!v('fn')||!v('fp')){err.textContent='Нэр, утасны дугаараа бичнэ үү.';err.hidden=false;return}
@@ -582,10 +589,12 @@ $('#f').addEventListener('submit',async e=>{e.preventDefault();const v=id=>$('#'
  try{const r=await fetch(ORDER_API,{method:'POST',headers:{'content-type':'application/json'},body:JSON.stringify({action:'create',name:v('fn'),phone:v('fp'),business:v('fb'),site_type:v('ft'),message:v('fm'),source:src,website:v('fw')})});
   if(r.status===429){err.textContent='Таны захиалга аль хэдийн ирсэн байна. Бид удахгүй холбогдоно.';err.hidden=false;btn.disabled=false;btn.textContent='Захиалга илгээх';return}
   if(!r.ok)throw new Error(r.status);
+  const ft0=v('ft');
   $('#f').querySelectorAll('input:not([type=checkbox]),textarea').forEach(i=>i.value='');
   $('#okBox').hidden=false;btn.textContent='Илгээгдлээ ✓';$('#okBox').scrollIntoView({behavior:reduce?'auto':'smooth',block:'nearest'});
-  try{if(window.fbq)fbq('track','Lead')}catch(_){}
+  px('Lead',{content_name:'Website order',content_category:ft0||'Website',value:1500000,currency:'MNT'},'lead-'+Date.now().toString(36)+'-'+Math.random().toString(36).slice(2,8));
  }catch(x){const msg=`Сайн байна уу, Nomad Web Studio!\nНэр: ${v('fn')}\nУтас: ${v('fp')}\nБизнес: ${v('fb')||'—'}\nСайтын төрөл: ${v('ft')}\nХэрэгцээ: ${v('fm')||'—'}`;
+  px('Contact',{content_name:'Order form fallback (Viber)'});
   $('#outTxt').textContent=msg;$('#out').hidden=false;btn.disabled=false;btn.textContent='Дахин илгээх';$('#out').scrollIntoView({behavior:reduce?'auto':'smooth',block:'nearest'})}
 });
 $('#cpMsg').addEventListener('click',()=>copy($('#outTxt').textContent,$('#outTxt')));
