@@ -147,6 +147,21 @@ button,input,select,textarea{font:inherit;color:inherit}
 .card .add{margin-top:2px;align-self:flex-start;font-size:14px;font-weight:700;color:var(--neon);border-bottom:1.5px solid currentColor}
 .empty{grid-column:1/-1;padding:40px 0;color:var(--muted)}
 
+/* delivery band */
+.deliv{background:var(--maroon);color:#fff}
+.deliv .wrap{padding-block:120px}
+.deliv-grid{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.25fr);gap:56px;align-items:start}
+.deliv .tag{display:inline-block;font-family:var(--f-display);font-weight:700;letter-spacing:.16em;text-transform:uppercase;font-size:14px;border:1.5px solid rgba(255,255,255,.5);padding:8px 12px;margin-bottom:22px}
+.deliv h2{font-family:var(--f-display);font-weight:800;font-size:clamp(32px,3.8vw,54px);line-height:1.02;letter-spacing:-.02em;margin:0 0 16px;text-wrap:balance}
+.deliv p{color:#e9dcdf;font-size:17px;max-width:44ch;margin:0}
+.zones{list-style:none;margin:0;padding:0;border-top:1px solid rgba(255,255,255,.22)}
+.zones li{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:4px 24px;padding:20px 0;border-bottom:1px solid rgba(255,255,255,.22)}
+.zones b{font-size:19px;font-weight:700}
+.zones span{color:#e2d3d6;font-size:15px;grid-column:1}
+.zones em{font-style:normal;font-weight:700;font-size:18px;grid-row:1/span 2;grid-column:2;align-self:center;text-align:right}
+.zones em small{display:block;font-size:12px;font-weight:500;color:#e2d3d6}
+@media (max-width:860px){.deliv-grid{grid-template-columns:1fr;gap:32px}.deliv .wrap{padding-block:88px}}
+
 /* 5.11 band */
 .t511{background:var(--granite);color:var(--on-dark)}
 .t511 .wrap{padding-block:140px}
@@ -272,7 +287,7 @@ legend{font-weight:700;margin-bottom:8px}
     <a class="brand" href="#enter" aria-label="88 Boutique нүүр"><img src="img/logo.png" alt="" width="38" height="38"><b>88 Boutique</b></a>
     <nav class="nav" aria-label="Үндсэн цэс">
       <a class="keep" href="#shop">Бараа</a>
-      <a href="#brands">Брэндүүд</a>
+      <a href="#delivery">Хүргэлт</a>
       <a href="#t511">5.11</a>
       <a href="#us">АНУ-аас захиалах</a>
       <a href="#visit">Дэлгүүр</a>
@@ -298,6 +313,7 @@ legend{font-weight:700;margin-bottom:8px}
       <ul class="facts">
         <li>Дархан, 2-р хороолол</li>
         <li class="num">12:00–20:00</li>
+        <li>Өдөр бүр хүргэлттэй</li>
         <li class="num">8888-7598</li>
       </ul>
       <div class="ctas">
@@ -336,6 +352,22 @@ legend{font-weight:700;margin-bottom:8px}
     <div class="tabs" id="tabs" role="group" aria-label="Ангилал"></div>
     <div class="active-brand" id="activeBrand"><span id="activeBrandT"></span><button type="button" id="clearBrand">Брэнд арилгах ✕</button></div>
     <div class="grid" id="grid" aria-live="polite"></div>
+  </div>
+</section>
+
+<section class="deliv" id="delivery" aria-labelledby="delivH">
+  <div class="wrap deliv-grid">
+    <div class="rise">
+      <span class="tag">Өдөр бүр хүргэлттэй</span>
+      <h2 id="delivH">Дархан, УБ, орон нутаг руу</h2>
+      <p>Захиалга өгсний дараа дэлгүүр утсаар холбогдож, хүргэх цагаа тохирно. Сагсандаа хүргэлтийн бүсээ сонгоход дүн шууд гарна.</p>
+    </div>
+    <ul class="zones rise">
+      <li><b>Дархан хот дотор</b><span>Өдөр бүр хүргэнэ</span><em class="num">5,000₮<small>жишээ үнэ</small></em></li>
+      <li><b>Улаанбаатар</b><span>Унаагаар илгээнэ</span><em>Утсаар<small>тохирно</small></em></li>
+      <li><b>Орон нутаг</b><span>Аймаг, сум руу унаа, шуудангаар</span><em>Утсаар<small>тохирно</small></em></li>
+      <li><b>Дэлгүүрээс очиж авах</b><span class="num">2-р хороолол, 12:00–20:00</span><em>Үнэгүй</em></li>
+    </ul>
   </div>
 </section>
 
@@ -432,7 +464,7 @@ legend{font-weight:700;margin-bottom:8px}
       <div><div class="small" style="margin-bottom:8px">Тоо</div><div class="qty"><button type="button" id="qm" aria-label="Хасах">−</button><output id="qv" class="num">1</output><button type="button" id="qp" aria-label="Нэмэх">+</button></div></div>
       <p class="small" id="pdErr" role="alert"></p>
       <button class="btn btn-p" type="button" id="pdAdd">Сагсанд нэмэх</button>
-      <p class="small">Дэлгүүрээс очиж авах үнэгүй. Хэмжээ тохирохгүй бол 8888-7598 руу залгаарай.</p>
+      <p class="small">Өдөр бүр хүргэлттэй, дэлгүүрээс очиж авах үнэгүй. Хэмжээ тохирохгүй бол 8888-7598 руу залгаарай.</p>
     </div>
   </div>
 </dialog>
@@ -446,7 +478,7 @@ legend{font-weight:700;margin-bottom:8px}
 <script>
 const P=[{"id":"mk-red","name":"Улаан мөрний цүнх + loafer","brand":"Michael Kors","cat":"bags","price":690000,"real":false,"sizes":null},{"id":"mk-tote-brown","name":"Signature tote цүнх, хүрэн","brand":"Michael Kors","cat":"bags","price":790000,"real":false,"sizes":null},{"id":"mk-pink-set","name":"Signature цүнх, ягаан-шаргал","brand":"Michael Kors","cat":"bags","price":590000,"real":false,"sizes":null},{"id":"mk-black-cross","name":"Хар crossbody цүнх","brand":"Michael Kors","cat":"bags","price":450000,"real":false,"sizes":null},{"id":"mj-brown","name":"The Snapshot маягийн цүнх, хүрэн","brand":"Marc Jacobs","cat":"bags","price":520000,"real":false,"sizes":null},{"id":"mj-black","name":"Хар camera цүнх","brand":"Marc Jacobs","cat":"bags","price":490000,"real":false,"sizes":null},{"id":"mk-watch","name":"Lennox Pavé алтлаг цаг (limited)","brand":"Michael Kors","cat":"watch","price":1190000,"real":false,"sizes":null},{"id":"tf-lostcherry","name":"Lost Cherry биеийн спрей, 150 мл","brand":"Tom Ford","cat":"beauty","price":199000,"real":true,"sizes":null},{"id":"511-pants","name":"Stryke / Flex-Tac өмд","brand":"5.11 Tactical","cat":"tactical","price":289000,"real":true,"sizes":["30x32","32x32","34x32","36x32","38x30"]},{"id":"511-olive-set","name":"Tactical цамц, чидун ногоон","brand":"5.11 Tactical","cat":"tactical","price":259000,"real":false,"sizes":["S","M","L","XL"]},{"id":"511-tee","name":"Лого футболк, хар","brand":"5.11 Tactical","cat":"tactical","price":99000,"real":false,"sizes":["M","L","XL"]},{"id":"511-shirts","name":"Урт ханцуйтай цамц (өнгө сонгох)","brand":"5.11 Tactical","cat":"tactical","price":249000,"real":false,"sizes":["S","M","L","XL","XXL"]},{"id":"col-parka-orange","name":"Үслэг малгайтай парка, улбар шар","brand":"Columbia","cat":"outer","price":590000,"real":false,"sizes":["S","M","L","XL"]},{"id":"col-parka-khaki","name":"Парка, хаки-хар хөх","brand":"Columbia","cat":"outer","price":590000,"real":false,"sizes":["M","L","XL"]},{"id":"col-puffer-bw","name":"Хөвсгөр куртик, хар-цөцгий","brand":"Columbia","cat":"outer","price":490000,"real":false,"sizes":["S","M","L"]},{"id":"col-mint","name":"Куртик, гаа ногоон","brand":"Columbia","cat":"outer","price":450000,"real":false,"sizes":["S","M","L","XL"]},{"id":"polo-camo","name":"Камуфляж куртик","brand":"Polo Ralph Lauren","cat":"outer","price":690000,"real":false,"sizes":["M","L","XL"]},{"id":"col-camo","name":"Камуфляж хөвсгөр куртик","brand":"Columbia","cat":"outer","price":520000,"real":false,"sizes":["M","L","XL"]},{"id":"nepa-boots","name":"Өвлийн гутал, хүрэн","brand":"NEPA","cat":"shoes","price":299000,"real":true,"sizes":["40","41","42"]},{"id":"nike-am90","name":"Air Max 90, цагаан-ногоон","brand":"Nike","cat":"shoes","price":359000,"real":false,"sizes":["36","37","38","39"]},{"id":"nike-pink","name":"Пүүз, ягаан","brand":"Nike","cat":"shoes","price":289000,"real":false,"sizes":["36","37","38"]},{"id":"nike-sb","name":"SB пүүз, хар","brand":"Nike","cat":"shoes","price":259000,"real":false,"sizes":["40","41","42","43"]},{"id":"vans-check","name":"Slip-On дааман, улаан","brand":"Vans","cat":"shoes","price":189000,"real":false,"sizes":["37","38","39","40"]},{"id":"sorel-kids","name":"Хүүхдийн өвлийн гутал, нил ягаан","brand":"Sorel","cat":"kids","price":229000,"real":false,"sizes":["28","30","32"]},{"id":"sorel-kids-red","name":"Хүүхдийн өвлийн гутал, хар-улаан","brand":"Sorel","cat":"kids","price":249000,"real":false,"sizes":["30","32","34"]},{"id":"carters-set","name":"Хүүхдийн хувцасны багц","brand":"Carter’s","cat":"kids","price":59000,"real":false,"sizes":["12м","18м","2Т","3Т"]},{"id":"carters-socks","name":"Оймсны багц","brand":"Carter’s","cat":"kids","price":29000,"real":false,"sizes":null},{"id":"lacoste-beanie","name":"Ноосон малгай (3 өнгө)","brand":"Lacoste","cat":"watch","price":129000,"real":false,"sizes":null}];
 const CATS={all:"Бүгд",bags:"Цүнх",beauty:"Үнэртэн",tactical:"5.11 Tactical",outer:"Гадуур хувцас",shoes:"Гутал",kids:"Хүүхэд",watch:"Цаг, аксессуар"};
-const SHIP={pickup:{t:"Дэлгүүрээс очиж авах",d:"2-р хороолол, 12:00–20:00",fee:0},dkh:{t:"Дархан хот дотор хүргэлт",d:"Жишээ үнэ, 1–2 өдөрт",fee:5000},far:{t:"УБ болон орон нутаг",d:"Унаа, шуудангийн зардлыг утсаар тохирно",fee:null}};
+const SHIP={pickup:{t:"Дэлгүүрээс очиж авах",d:"2-р хороолол, 12:00–20:00",fee:0},dkh:{t:"Дархан хот дотор хүргэлт",d:"Өдөр бүр · жишээ үнэ",fee:5000},ub:{t:"Улаанбаатар руу",d:"Унаагаар · үнийг утсаар тохирно",fee:null},far:{t:"Орон нутаг руу",d:"Аймаг, сум руу унаа, шуудангаар · үнийг утсаар тохирно",fee:null}};
 const $=s=>document.querySelector(s);
 const fmt=n=>n.toLocaleString("en-US").replace(/,/g,",")+"₮";
 const byId=Object.fromEntries(P.map(p=>[p.id,p]));
