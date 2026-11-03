@@ -47,6 +47,13 @@ textarea.note{width:100%;min-height:44px;background:#0c0c11;border:1px solid var
 .day{display:flex;justify-content:space-between;align-items:baseline;gap:10px;margin:14px 2px -2px;padding-bottom:6px;border-bottom:1px solid var(--line)}
 .day b{font-size:16px;font-weight:600}.day span{font:500 12px "IBM Plex Mono";color:var(--mute)}
 .day:first-child{margin-top:0}
+.fu{display:flex;gap:8px;flex-wrap:wrap;align-items:center;background:#0c0c11;border:1px solid var(--line);border-radius:12px;padding:10px}
+.fu input{background:var(--card);border:1px solid var(--line);color:var(--fg);border-radius:999px;padding:8px 12px;font:400 14px Geologica;color-scheme:dark}
+.fu .q2{font:500 12px "IBM Plex Mono";padding:6px 10px;border-radius:999px;border:1px solid var(--line);background:transparent;color:var(--mute);cursor:pointer}
+.fub{font:500 13px Geologica;padding:7px 12px;border-radius:999px;background:rgba(255,200,60,.12);border:1px solid rgba(255,200,60,.45);color:#ffd36b;display:inline-flex;gap:6px;align-items:center}
+.fub.due{background:rgba(255,90,90,.14);border-color:rgba(255,90,90,.6);color:#ff9a9a;font-weight:600}
+.o.fudue{border-color:rgba(255,90,90,.6)}
+.st.fu b{color:#ffd36b}
 .toast{position:fixed;left:50%;bottom:20px;transform:translateX(-50%);background:#1e1e26;border:1px solid var(--line);padding:10px 16px;border-radius:999px;font-size:14px;opacity:0;transition:.25s;pointer-events:none}.toast.on{opacity:1}
 </style></head><body>
 <header><div class="w hd"><div class="logo">NOMAD<small>АДМИН · ЗАХИАЛГА</small></div><div style="display:flex;gap:8px"><button class="btn" id="rf">↻ Шинэчлэх</button><a class="btn" href="/" target="_blank" rel="noopener">Сайт</a></div></div></header>
@@ -71,30 +78,42 @@ textarea.note{width:100%;min-height:44px;background:#0c0c11;border:1px solid var
  const dk=d=>{const x=new Date(d);return x.getFullYear()+'-'+p2(x.getMonth()+1)+'-'+p2(x.getDate())};
  const WD=['Ням','Даваа','Мягмар','Лхагва','Пүрэв','Баасан','Бямба'];
  const dayLabel=k=>{const [y,m,d]=k.split('-');const t=dk(Date.now()),yd=dk(Date.now()-864e5);const w=WD[new Date(+y,m-1,+d).getDay()];
-  return (k===t?'Өнөөдөр · ':k===yd?'Өчигдөр · ':'')+`${y}.${m}.${d} · ${w}`};
+  const tm=dk(Date.now()+864e5);return (k===t?'Өнөөдөр · ':k===yd?'Өчигдөр · ':k===tm?'Маргааш · ':'')+`${y}.${m}.${d} · ${w}`};
+ const FURE=/^⏰ Дахин холбогдох: (\d{4}-\d{2}-\d{2})(?: (\d{2}:\d{2}))?\n?/;
+ const fuOf=o=>{const m=FURE.exec(o.note||'');return m?{d:m[1],t:m[2]||''}:null};
+ const noteOf=o=>String(o.note||'').replace(FURE,'');
+ const mkNote=(fu,txt)=>(fu?`⏰ Дахин холбогдох: ${fu.d}${fu.t?' '+fu.t:''}\n`:'')+(txt||'');
+ const fuDue=f=>{if(!f)return false;const now=new Date();const k=dk(now),hm=p2(now.getHours())+':'+p2(now.getMinutes());return f.d<k||(f.d===k&&(!f.t||f.t<=hm))};
+ const fuLabel=f=>{const t=dk(Date.now()),tm=dk(Date.now()+864e5);const d=f.d===t?'Өнөөдөр':f.d===tm?'Маргааш':f.d.slice(5).replace('-','.');return d+(f.t?' '+f.t:'')};
+ let openFu=null;
  let rng='all',mon='',from='',to='';
  const inRange=o=>{const k=dk(o.created_at),t=dk(Date.now());
   if(rng==='today')return k===t;if(rng==='yesterday')return k===dk(Date.now()-864e5);
   if(rng==='7d')return k>=dk(Date.now()-6*864e5);if(rng==='month')return k.slice(0,7)===t.slice(0,7);
   if(rng==='mon')return !mon||k.slice(0,7)===mon;if(rng==='custom')return (!from||k>=from)&&(!to||k<=to);return true};
- function render(){const base=all.filter(inRange);const c=k=>base.filter(o=>k==='all'||o.status===k).length;
-  const rows=base.filter(o=>(filt==='all'?o.status!=='spam':o.status===filt)&&(!q||JSON.stringify(o).toLowerCase().includes(q))).sort((a,b)=>new Date(b.created_at)-new Date(a.created_at));
+ function render(){const base=all.filter(inRange);const c=k=>k==='fu'?all.filter(o=>fuOf(o)).length:base.filter(o=>k==='all'||o.status===k).length;const dueN=all.filter(o=>fuDue(fuOf(o))).length;
+  const isFu=filt==='fu';const rows=(isFu?all:base).filter(o=>(filt==='all'?o.status!=='spam':isFu?!!fuOf(o):o.status===filt)&&(!q||JSON.stringify(o).toLowerCase().includes(q))).sort(isFu?(a,b)=>{const x=fuOf(a),y=fuOf(b);return (x.d+x.t).localeCompare(y.d+y.t)}:(a,b)=>new Date(b.created_at)-new Date(a.created_at));
   const months=[...new Set(all.map(o=>dk(o.created_at).slice(0,7)))].sort().reverse();
-  const groups=[];rows.forEach(o=>{const k=dk(o.created_at);let g=groups[groups.length-1];if(!g||g.k!==k){g={k,items:[]};groups.push(g)}g.items.push(o)});
+  const groups=[];rows.forEach(o=>{const k=isFu?fuOf(o).d:dk(o.created_at);let g=groups[groups.length-1];if(!g||g.k!==k){g={k,items:[]};groups.push(g)}g.items.push(o)});
   const R=[['all','Бүгд'],['today','Өнөөдөр'],['yesterday','Өчигдөр'],['7d','7 хоног'],['month','Энэ сар'],['custom','Огноо сонгох']];
-  app.innerHTML=`${notifyOn?'':'<div class="tag" style="display:block;margin-top:18px;border-color:rgba(255,122,26,.5)">⚠ Имэйл мэдэгдэл хараахан идэвхжээгүй байна.</div>'}<div class="stats">${['all','new','contacted','done','spam'].map(k=>`<div class="st ${filt===k?'on':''}" data-f="${k}"><b>${c(k)}</b><span>${k==='all'?'Бүгд':L[k]}</span></div>`).join('')}</div>
+  app.innerHTML=`${notifyOn?'':'<div class="tag" style="display:block;margin-top:18px;border-color:rgba(255,122,26,.5)">⚠ Имэйл мэдэгдэл хараахан идэвхжээгүй байна.</div>'}<div class="stats">${['all','new','fu','contacted','done','spam'].map(k=>`<div class="st ${k==='fu'?'fu':''} ${filt===k?'on':''}" data-f="${k}"><b>${c(k)}${k==='fu'&&dueN?` <small style="font-size:13px;color:#ff9a9a">· ${dueN} хугацаа болсон</small>`:''}</b><span>${k==='all'?'Бүгд':k==='fu'?'Дахин холбогдох':L[k]}</span></div>`).join('')}</div>
   <div class="dates">${R.map(([k,l])=>`<button data-r="${k}" class="${rng===k?'on':''}">${l}</button>`).join('')}
    <select id="mon"><option value="">Сараар…</option>${months.map(m=>`<option value="${m}" ${rng==='mon'&&mon===m?'selected':''}>${m.replace('-','.')} сар</option>`).join('')}</select>
    ${rng==='custom'?`<span class="rng"><input type="date" id="from" value="${from}"> – <input type="date" id="to" value="${to}"></span>`:''}</div>
   <div class="tools"><input class="q" id="q" placeholder="Хайх: нэр, утас, бизнес…" value="${esc(q)}"></div>
-  <div class="list">${rows.length?groups.map(g=>`<div class="day"><b>${dayLabel(g.k)}</b><span>${g.items.length} захиалга</span></div>`+g.items.map(o=>{const tel=String(o.phone||'').replace(/[^\d+]/g,'');return `<article class="o ${o.status}" data-id="${o.id}">
+  <div class="list">${rows.length?groups.map(g=>`<div class="day"><b>${isFu?'⏰ ':''}${dayLabel(g.k)}</b><span>${g.items.length} захиалга</span></div>`+g.items.map(o=>{const tel=String(o.phone||'').replace(/[^\d+]/g,'');const fu=fuOf(o),due=fuDue(fu);return `<article class="o ${o.status} ${due?'fudue':''}" data-id="${o.id}">
    <div class="top"><div class="nm">${esc(o.name)}</div><div class="dt">#${o.id} · ${fmt(o.created_at)}</div></div>
    <div class="meta"><span class="tag">📞 ${esc(o.phone)}</span>${o.business?`<span class="tag">🏪 ${esc(o.business)}</span>`:''}${o.site_type?`<span class="tag">🌐 ${esc(o.site_type)}</span>`:''}${o.source?`<span class="tag">↗ ${esc(o.source)}</span>`:''}</div>
    ${o.message?`<div class="msg">${esc(o.message)}</div>`:''}
-   <div class="acts"><a class="btn sun" href="tel:${esc(tel)}">Залгах</a><a class="btn" href="viber://chat?number=${encodeURIComponent(tel.length===8?'+976'+tel:tel)}">Viber</a>
+   ${fu?`<div class="acts"><span class="fub ${due?'due':''}">⏰ ${due?'Хугацаа болсон · ':''}${esc(fuLabel(fu))}-д дахин холбогдох</span><button class="btn" data-fudone>✓ Холбогдсон</button><button class="btn" data-fuopen>Цаг солих</button></div>`:''}
+   ${openFu===o.id?`<div class="fu"><span style="color:var(--mute);font-size:13px">Хэзээ дахин холбогдох вэ?</span>
+    <button class="q2" data-fq="2h">2 цагийн дараа</button><button class="q2" data-fq="eve">Өнөөдөр 19:00</button><button class="q2" data-fq="tm">Маргааш 10:00</button><button class="q2" data-fq="3d">3 хоногийн дараа</button>
+    <input type="date" data-fd value="${fu?fu.d:dk(Date.now()+864e5)}"><input type="time" data-ft value="${fu?fu.t:'10:00'}">
+    <button class="btn sun" data-fusave>Хадгалах</button><button class="btn" data-fucancel>Болих</button></div>`:''}
+   <div class="acts"><a class="btn sun" href="tel:${esc(tel)}">Залгах</a><a class="btn" href="viber://chat?number=${encodeURIComponent(tel.length===8?'+976'+tel:tel)}">Viber</a>${fu?'':'<button class="btn" data-fuopen>⏰ Дахин холбогдох</button>'}
     <div class="sel">${Object.keys(L).map(s=>`<button data-s="${s}" class="${o.status===s?'on':''}">${L[s]}</button>`).join('')}</div>
     <button class="btn" data-del style="margin-left:auto">Устгах</button></div>
-   <textarea class="note" placeholder="Тэмдэглэл (жишээ: Маргааш 14:00-д дахин залгана)">${esc(o.note||'')}</textarea>
+   <textarea class="note" placeholder="Тэмдэглэл (жишээ: Маргааш 14:00-д дахин залгана)">${esc(noteOf(o))}</textarea>
   </article>`}).join('')).join(''):'<div class="empty">Энэ хугацаанд захиалга алга байна.</div>'}</div>`;
   app.querySelectorAll('.st').forEach(e=>e.onclick=()=>{filt=e.dataset.f;render()});
   app.querySelectorAll('.dates [data-r]').forEach(e=>e.onclick=()=>{rng=e.dataset.r;render()});
@@ -103,13 +122,21 @@ textarea.note{width:100%;min-height:44px;background:#0c0c11;border:1px solid var
   const qi=document.getElementById('q');qi.oninput=()=>{q=qi.value.toLowerCase();const p=qi.selectionStart;render();const n=document.getElementById('q');n.focus();n.setSelectionRange(p,p)};
   app.querySelectorAll('.o').forEach(card=>{const id=+card.dataset.id;const o=all.find(x=>x.id===id);
    card.querySelectorAll('.sel button').forEach(b=>b.onclick=async()=>{try{await call({action:'update',id,status:b.dataset.s});o.status=b.dataset.s;render();toast('Хадгаллаа')}catch(e){toast('Алдаа гарлаа')}});
-   const n=card.querySelector('.note');n.onchange=async()=>{try{await call({action:'update',id,note:n.value});o.note=n.value;toast('Тэмдэглэл хадгаллаа')}catch(e){toast('Алдаа гарлаа')}};
+   const n=card.querySelector('.note');n.onchange=async()=>{const nv=mkNote(fuOf(o),n.value);try{await call({action:'update',id,note:nv});o.note=nv;toast('Тэмдэглэл хадгаллаа')}catch(e){toast('Алдаа гарлаа')}};
+   const setFu=async(f,msg)=>{const nv=mkNote(f,noteOf(o));try{await call({action:'update',id,note:nv});o.note=nv;openFu=null;render();toast(msg)}catch(e){toast('Алдаа гарлаа')}};
+   card.querySelectorAll('[data-fuopen]').forEach(b=>b.onclick=()=>{openFu=id;render()});
+   const fc=card.querySelector('[data-fucancel]');if(fc)fc.onclick=()=>{openFu=null;render()};
+   const fdn=card.querySelector('[data-fudone]');if(fdn)fdn.onclick=()=>setFu(null,'Сануулга арилгалаа');
+   card.querySelectorAll('[data-fq]').forEach(b=>b.onclick=()=>{const now=new Date();let x;const k=b.dataset.fq;
+    if(k==='2h')x=new Date(now.getTime()+2*3600e3);else if(k==='eve'){x=new Date(now);x.setHours(19,0,0,0)}else if(k==='tm'){x=new Date(now.getTime()+864e5);x.setHours(10,0,0,0)}else{x=new Date(now.getTime()+3*864e5);x.setHours(10,0,0,0)}
+    setFu({d:dk(x),t:p2(x.getHours())+':'+p2(x.getMinutes())},'Сануулга хадгаллаа')});
+   const fs=card.querySelector('[data-fusave]');if(fs)fs.onclick=()=>{const d=card.querySelector('[data-fd]').value,t=card.querySelector('[data-ft]').value;if(!d)return toast('Огноо сонгоно уу');setFu({d,t},'Сануулга хадгаллаа')};
    card.querySelector('[data-del]').onclick=async()=>{if(!window.confirm('#'+id+' захиалгыг бүр мөсөн устгах уу?'))return;try{await call({action:'delete',id});all=all.filter(x=>x.id!==id);render();toast('Устгалаа')}catch(e){toast('Алдаа гарлаа')}};
   });}
  async function load(){const {data}=await sb.auth.getSession();if(!data.session)return loginView();token=data.session.access_token;
   try{const j=await call({action:'list'});all=j.orders||[];notifyOn=!!j.notify;rf.style.display='';
    if(!document.getElementById('lo')){const b=document.createElement('button');b.className='btn';b.id='lo';b.textContent='Гарах';b.onclick=async()=>{await sb.auth.signOut();loginView()};hd.appendChild(b)}
-   render();const n=all.filter(o=>o.status==='new').length;document.title=(n?`(${n}) `:'')+'Nomad · Админ'}
+   render();const n=all.filter(o=>o.status==='new').length;const du=all.filter(o=>fuDue(fuOf(o))).length;document.title=(n+du?`(${n+du}) `:'')+'Nomad · Админ'}
   catch(e){if(e.status===403){await sb.auth.signOut();loginView('Энэ данс админ эрхгүй. Зөвхөн '+OWNER+' нэвтэрнэ.')}else app.innerHTML='<div class="empty">Сервертэй холбогдож чадсангүй. Дахин оролдоно уу.</div>'}}
  rf.onclick=()=>{load();toast('Шинэчиллээ')};
  sb.auth.onAuthStateChange((ev)=>{if(ev==='SIGNED_IN')load()});
