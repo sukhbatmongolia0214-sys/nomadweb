@@ -50,7 +50,15 @@ button,input,select,textarea{font:inherit;color:inherit}
 .cartbtn{display:inline-flex;align-items:center;gap:10px;height:42px;padding:0 16px;border:0;border-radius:2px;background:var(--neon);color:#fff;font-weight:700;cursor:pointer;flex:none}
 .cartbtn:hover{background:var(--neon-hi)}
 .cartbtn .n{min-width:22px;height:22px;border-radius:11px;background:#fff;color:var(--neon);font-size:13px;display:inline-grid;place-items:center;padding:0 6px}
+.hdr-cta{height:42px;padding:0 14px;border:0;border-radius:2px;background:transparent;color:#fff;font-weight:700;cursor:pointer;box-shadow:inset 0 0 0 1.5px #5a5d64;flex:none}
+.hdr-cta:hover{box-shadow:inset 0 0 0 1.5px #fff}
 @media (max-width:900px){.nav a:not(.keep){display:none}.nav{gap:14px}}
+@media (max-width:520px){.brand b,.nav{display:none}.hdr-cta{margin-left:auto}.top .wrap{gap:10px}}
+#dord{max-width:min(560px,calc(100vw - 24px))}
+.dord{padding:28px clamp(18px,4vw,32px) 28px;display:grid;gap:14px;position:relative}
+.dord h3{margin:0;font-family:var(--f-display);font-weight:800;font-size:26px}
+.dord fieldset{margin:0}
+.linkbtn{border:0;background:none;padding:0;color:var(--neon);font-weight:700;text-decoration:underline;cursor:pointer;font-size:inherit}
 
 /* HERO — walk-in plays by itself; text waits for the end, then the hero melts into the page colour */
 .hero{position:relative;height:calc(100vh - var(--hh));height:calc(100svh - var(--hh));min-height:520px;overflow:hidden;background:var(--granite)}
@@ -292,6 +300,7 @@ legend{font-weight:700;margin-bottom:8px}
       <a href="#us">АНУ-аас захиалах</a>
       <a href="#visit">Дэлгүүр</a>
     </nav>
+    <button class="hdr-cta" type="button" data-dorder aria-haspopup="dialog">Хүргэлт захиалах</button>
     <button class="cartbtn" id="openCart" type="button" aria-haspopup="dialog">Сагс <span class="n num" id="cartN">0</span></button>
   </div>
 </header>
@@ -317,8 +326,8 @@ legend{font-weight:700;margin-bottom:8px}
         <li class="num">8888-7598</li>
       </ul>
       <div class="ctas">
-        <a class="btn btn-p" href="#shop">Бараа үзэх</a>
-        <a class="btn btn-g" href="#visit">Хаяг, цаг</a>
+        <button class="btn btn-p" type="button" data-dorder>Хүргэлт захиалах</button>
+        <a class="btn btn-g" href="#shop">Бараа үзэх</a>
       </div>
     </div>
   </div>
@@ -361,6 +370,7 @@ legend{font-weight:700;margin-bottom:8px}
       <span class="tag">Өдөр бүр хүргэлттэй</span>
       <h2 id="delivH">Дархан, УБ, орон нутаг руу</h2>
       <p>Захиалга өгсний дараа дэлгүүр утсаар холбогдож, хүргэх цагаа тохирно. Сагсандаа хүргэлтийн бүсээ сонгоход дүн шууд гарна.</p>
+      <button class="btn btn-p" type="button" data-dorder style="margin-top:28px">Хүргэлт захиалах</button>
     </div>
     <ul class="zones rise">
       <li><b>Дархан хот дотор</b><span>Өдөр бүр хүргэнэ</span><em class="num">5,000₮<small>жишээ үнэ</small></em></li>
@@ -467,6 +477,28 @@ legend{font-weight:700;margin-bottom:8px}
       <p class="small">Өдөр бүр хүргэлттэй, дэлгүүрээс очиж авах үнэгүй. Хэмжээ тохирохгүй бол 8888-7598 руу залгаарай.</p>
     </div>
   </div>
+</dialog>
+
+<dialog id="dord" aria-labelledby="dordH">
+  <form class="dord" id="dordForm" novalidate>
+    <button class="x" type="button" data-close aria-label="Хаах">×</button>
+    <h3 id="dordH">Хүргэлт захиалах</h3>
+    <p class="small">Facebook-ээс харсан бараагаа бичээд илгээгээрэй. Дэлгүүр утсаар холбогдож үнэ, хүргэх цагаа тохирно. Сайтаас бараа сонгосон бол <button type="button" class="linkbtn" id="dordToCart">сагсаараа захиална уу</button>.</p>
+    <div class="field"><label for="dItem">Юу захиалах вэ?</label><textarea id="dItem" placeholder="Жишээ: 5.11 өмд 34×32, хар, 1 ширхэг" required></textarea></div>
+    <fieldset><legend>Хаашаа хүргэх вэ?</legend>
+      <label class="radio"><input type="radio" name="dzone" value="Дархан" checked><span><b>Дархан хот дотор</b><small>Өдөр бүр · 5,000₮ (жишээ үнэ)</small></span></label>
+      <label class="radio"><input type="radio" name="dzone" value="Улаанбаатар"><span><b>Улаанбаатар</b><small>Унаагаар · үнийг утсаар тохирно</small></span></label>
+      <label class="radio"><input type="radio" name="dzone" value="Орон нутаг"><span><b>Орон нутаг</b><small>Аймаг, сум руу унаа, шуудангаар</small></span></label>
+    </fieldset>
+    <div class="field"><label for="dAddr">Хаяг</label><textarea id="dAddr" placeholder="Сум/дүүрэг, хороо, байр, тоот" autocomplete="street-address" required></textarea></div>
+    <div class="row2">
+      <div class="field"><label for="dName">Нэр</label><input id="dName" autocomplete="name" required></div>
+      <div class="field"><label for="dPhone">Утас</label><input id="dPhone" type="tel" inputmode="numeric" placeholder="8 оронтой" autocomplete="tel" required></div>
+    </div>
+    <p class="small" id="dErr" role="alert"></p>
+    <button class="btn btn-p" type="submit">Хүргэлт захиалах</button>
+    <div class="ok" id="dOk" hidden></div>
+  </form>
 </dialog>
 
 <dialog id="cart" aria-labelledby="cartH">
@@ -631,6 +663,19 @@ $("#usForm").addEventListener("submit",e=>{
   }
   requestAnimationFrame(paint);
 })();
+/* quick delivery order */
+document.addEventListener("click",e=>{if(e.target.closest("[data-dorder]")){$("#dErr").textContent="";$("#dOk").hidden=true;$("#dord").showModal()}});
+$("#dordToCart").onclick=()=>{$("#dord").close();openCart()};
+$("#dordForm").addEventListener("submit",e=>{
+  e.preventDefault();
+  const it=$("#dItem").value.trim(),ad=$("#dAddr").value.trim(),n=$("#dName").value.trim(),ph=$("#dPhone").value.replace(/\D/g,"");
+  const err=!it?"Юу захиалахаа бичнэ үү.":!ad?"Хүргэх хаягаа бичнэ үү.":!n?"Нэрээ бичнэ үү.":ph.length!==8?"Утасны дугаар 8 оронтой байна.":"";
+  $("#dErr").textContent=err;if(err)return;
+  const z=e.target.querySelector("input[name=dzone]:checked").value;
+  const no="Х-"+String(Math.floor(1000+Math.random()*9000));
+  const ok=$("#dOk");ok.textContent=`Хүргэлтийн захиалга ${no} бүртгэгдлээ (демо). ${z} руу хүргэнэ. Дэлгүүр 8888-7598 дугаараас залгаж үнэ, цагаа тохирно.`;ok.hidden=false;ok.scrollIntoView({block:"nearest"});
+  ["dItem","dAddr"].forEach(id=>$("#"+id).value="");
+});
 refresh();updateN();
 </script>
 </body>
