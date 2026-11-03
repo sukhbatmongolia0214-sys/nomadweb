@@ -1,0 +1,604 @@
+<!doctype html>
+<html lang="mn">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="robots" content="noindex,nofollow">
+<meta name="description" content="88 Boutique, Дархан: АНУ-ын оригинал брэндийн дэлгүүрийн демо вэбсайт (Nomad Web Studio).">
+<meta property="og:title" content="88 Boutique Дархан">
+<meta property="og:image" content="https://nomadweb.mn/demo/88boutique/img/poster.webp">
+<meta name="theme-color" content="#131417">
+<link rel="icon" href="img/logo.png">
+<style>:root{padding-top:env(safe-area-inset-top);padding-bottom:env(safe-area-inset-bottom)}body{margin:0}img{max-width:100%}[hidden]{display:none!important}</style>
+<title>88 Boutique Дархан</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700&family=Montserrat:wght@500;600;700;800&display=swap">
+<style>
+/* Layout: the storefront's signage is the UI — granite façade bands, white sign panels with maroon caption bands, one neon-pink action colour. Single deliberate look (brand world), not theme-switched. */
+:root{
+  --granite:#131417; --granite-2:#1d1f23; --door:#2e333a;
+  --paper:#f4f2ee; --panel:#ffffff; --ink:#16161a; --muted:#5d5852; --line:#ddd8d0;
+  --maroon:#4a2a31; --neon:#d3126f; --neon-hi:#b80f60; --neon-glow:#ff4fa3; --on-dark:#f4f2ee; --on-dark-2:#b9b4ad;
+  --f-display:"Montserrat","Arial Narrow",Arial,sans-serif;
+  --f-body:"Manrope","Segoe UI",Roboto,Arial,sans-serif;
+  --hh:64px; --gut:max(16px, env(safe-area-inset-left, 0px)); --gut-r:max(16px, env(safe-area-inset-right, 0px));
+  color-scheme:dark;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{background:var(--granite);color:var(--on-dark);font-family:var(--f-body);font-size:16px;line-height:1.5;-webkit-font-smoothing:antialiased}
+body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset-top,0px);z-index:60;background:var(--granite)}
+a{color:inherit}
+button,input,select,textarea{font:inherit;color:inherit}
+:focus-visible{outline:3px solid var(--neon-glow);outline-offset:2px}
+.wrap{max-width:1280px;margin:0 auto;padding-left:var(--gut);padding-right:var(--gut-r)}
+.num{font-variant-numeric:tabular-nums}
+.sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
+
+/* demo strip + header */
+.demo{background:var(--maroon);color:#fff;font-size:13px;text-align:center;padding-block:7px}
+.demo .wrap{display:block}
+.top{position:sticky;top:env(safe-area-inset-top,0px);z-index:50;background:rgba(19,20,23,.94);backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);border-bottom:1px solid #26282d}
+.top .wrap{height:var(--hh);display:flex;align-items:center;gap:24px}
+.brand{display:flex;align-items:center;gap:10px;text-decoration:none;flex:none}
+.brand img{width:38px;height:38px;border-radius:50%;background:#fff}
+.brand b{font-family:var(--f-display);font-weight:800;font-size:17px;letter-spacing:.06em;text-transform:uppercase}
+.nav{display:flex;gap:22px;margin-left:auto}
+.nav a{text-decoration:none;font-size:15px;color:var(--on-dark-2);font-weight:500}
+.nav a:hover{color:#fff}
+.cartbtn{display:inline-flex;align-items:center;gap:10px;height:42px;padding:0 16px;border:0;border-radius:2px;background:var(--neon);color:#fff;font-weight:700;cursor:pointer;flex:none}
+.cartbtn:hover{background:var(--neon-hi)}
+.cartbtn .n{min-width:22px;height:22px;border-radius:11px;background:#fff;color:var(--neon);font-size:13px;display:inline-grid;place-items:center;padding:0 6px}
+@media (max-width:900px){.nav a:not(.keep){display:none}.nav{gap:14px}}
+
+/* HERO — walk-in */
+.enter{position:relative;height:250vh;background:var(--granite)}
+.stage{position:sticky;top:calc(var(--hh) + env(safe-area-inset-top,0px));height:calc(100vh - var(--hh));height:calc(100svh - var(--hh));overflow:hidden;--e:0}
+.stage-grid{height:100%;display:grid;grid-template-columns:minmax(0,1fr) auto;align-items:center;gap:56px}
+.copy{max-width:600px;opacity:calc(1 - var(--e)*1.6);transform:translateY(calc(var(--e)*-24px))}
+.copy h1{font-family:var(--f-display);font-weight:800;font-size:clamp(32px,4vw,60px);line-height:1.02;letter-spacing:-.02em;margin:0 0 20px;text-wrap:balance}
+.copy p{font-size:18px;color:var(--on-dark-2);margin:0 0 28px;max-width:46ch}
+.facts{display:flex;flex-wrap:wrap;gap:8px 20px;margin:0 0 32px;padding:0;list-style:none;font-weight:600;font-size:15px}
+.facts li{display:flex;align-items:center;gap:8px}
+.facts li::before{content:"";width:6px;height:6px;background:var(--neon-glow)}
+.ctas{display:flex;flex-wrap:wrap;gap:12px}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;height:50px;padding:0 24px;border-radius:2px;font-weight:700;text-decoration:none;border:0;cursor:pointer;font-size:16px}
+.btn-p{background:var(--neon);color:#fff}.btn-p:hover{background:var(--neon-hi)}
+.btn-g{background:transparent;color:var(--on-dark);box-shadow:inset 0 0 0 1.5px #4a4d54}.btn-g:hover{box-shadow:inset 0 0 0 1.5px var(--on-dark)}
+.hint{margin-top:28px;font-size:13px;letter-spacing:.14em;text-transform:uppercase;color:var(--on-dark-2);font-family:var(--f-display);font-weight:600}
+.door{position:relative;height:calc(100% - 64px);aspect-ratio:3/4;max-width:46vw;background:var(--door);padding:10px;transform-origin:center;will-change:transform}
+.door-in{position:relative;width:100%;height:100%;overflow:hidden;background:#000}
+.door video,.door img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;display:block}
+.door .inside{opacity:0}
+.reveal{position:absolute;inset:0;display:grid;place-items:center;text-align:center;pointer-events:none;opacity:0;z-index:3}
+.reveal-in{padding:24px}
+.reveal b{display:block;font-family:var(--f-display);font-weight:800;font-size:clamp(56px,10vw,150px);letter-spacing:.02em;line-height:.95;color:#fff;text-shadow:0 0 18px rgba(255,79,163,.55),0 0 42px rgba(255,79,163,.35)}
+.reveal span{display:block;margin-top:14px;font-family:var(--f-display);font-weight:600;letter-spacing:.2em;text-transform:uppercase;font-size:clamp(13px,1.3vw,17px);color:#fff}
+.reveal::before{content:"";position:absolute;inset:0;background:rgba(10,10,12,.28);z-index:-1}
+.bar{position:absolute;left:0;bottom:0;height:3px;width:100%;background:#2a2c31}
+.bar i{display:block;height:100%;width:calc(var(--p,0)*100%);background:var(--neon-glow)}
+@media (max-width:819px){
+  .enter{height:220vh}
+  .stage-grid{display:block;position:relative}
+  .door{position:absolute;inset:0;height:100%;max-width:none;width:100%;aspect-ratio:auto;padding:0;transform:none!important}
+  .copy{position:absolute;left:0;right:0;bottom:0;max-width:none;padding:120px var(--gut-r) 28px var(--gut);background:linear-gradient(to top,rgba(12,12,14,.92) 30%,rgba(12,12,14,.6) 70%,rgba(12,12,14,0));z-index:2}
+  .copy p{font-size:16px;margin-bottom:18px}
+  .facts{margin-bottom:20px;font-size:14px}
+  .hint{margin-top:18px}
+  .stage>.wrap{padding:0;height:100%}
+}
+@media (prefers-reduced-motion:reduce){
+  .enter{height:auto}.stage{position:relative;top:0;height:auto;min-height:560px}
+  .stage-grid{padding-block:48px}.door{height:640px;max-height:80vh}
+}
+
+.sign,.shop,.us{color-scheme:light}
+/* sign-panel section: brands */
+.sign{background:var(--paper);color:var(--ink)}
+.sign .wrap{padding-block:120px 0}
+.panel{background:var(--panel);border:1px solid var(--line);border-bottom:0;padding:44px clamp(20px,4vw,56px) 40px}
+.brands{display:flex;flex-wrap:wrap;gap:6px 14px;align-items:baseline;margin:0;padding:0;list-style:none}
+.brands button{background:none;border:0;padding:4px 2px;cursor:pointer;font-family:var(--f-display);font-weight:700;font-size:clamp(19px,2.9vw,40px);letter-spacing:-.01em;color:var(--ink);line-height:1.15}
+.brands button sup{font-family:var(--f-body);font-size:13px;font-weight:600;color:var(--muted);margin-left:3px;vertical-align:super}
+.brands button:hover,.brands button[aria-pressed="true"]{color:var(--neon)}
+.brands li:not(:last-child)::after{content:"·";margin-left:14px;color:#b9b2a8;font-size:28px}
+@media (max-width:600px){.brands{gap:2px 8px}.brands li:not(:last-child)::after{margin-left:8px;font-size:20px}}
+.band{background:var(--maroon);color:#fff;padding:18px clamp(20px,4vw,56px)}
+.band h2,.band .h{margin:0;font-family:var(--f-display);font-weight:700;letter-spacing:.16em;text-transform:uppercase;font-size:clamp(20px,2.6vw,34px);line-height:1.1}
+.sign-note{color:var(--muted);margin:16px 0 0;font-size:15px}
+
+/* catalog */
+.shop{background:var(--paper);color:var(--ink)}
+.shop .wrap{padding-block:96px 140px}
+.shop-head{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,420px);gap:24px 48px;align-items:end;margin-bottom:28px}
+.shop-head h2{font-family:var(--f-display);font-weight:800;font-size:clamp(34px,4vw,56px);line-height:1;letter-spacing:-.02em;margin:0 0 12px}
+.shop-head p{margin:0;color:var(--muted);max-width:56ch}
+.tools{display:flex;gap:10px}
+.tools input,.tools select{height:46px;border:1.5px solid #cfc8bd;background:#fff;border-radius:2px;padding:0 14px;color:var(--ink);min-width:0}
+.tools input{flex:1}
+.tabs{display:flex;gap:8px;overflow-x:auto;padding-bottom:6px;margin-bottom:28px;scrollbar-width:thin}
+.tabs button{flex:none;height:40px;padding:0 16px;border:1.5px solid #cfc8bd;background:transparent;border-radius:2px;cursor:pointer;font-family:var(--f-display);font-weight:600;font-size:13px;letter-spacing:.08em;text-transform:uppercase;color:var(--ink)}
+.tabs button[aria-pressed="true"]{background:var(--maroon);border-color:var(--maroon);color:#fff}
+.active-brand{display:none;align-items:center;gap:10px;margin:-12px 0 24px;font-weight:600}
+.active-brand.on{display:flex}
+.active-brand button{border:0;background:var(--ink);color:#fff;border-radius:2px;height:30px;padding:0 10px;cursor:pointer;font-size:13px}
+.grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:32px 20px}
+@media (max-width:1040px){.grid{grid-template-columns:repeat(3,minmax(0,1fr))}}
+@media (max-width:700px){.grid{grid-template-columns:repeat(2,minmax(0,1fr));gap:24px 12px}.shop-head{grid-template-columns:1fr}}
+.card{display:flex;flex-direction:column;gap:10px;background:none;border:0;padding:0;text-align:left;cursor:pointer;color:var(--ink)}
+.card .ph{position:relative;aspect-ratio:1;background:#e9e5de;overflow:hidden;width:100%}
+.card img{width:100%;height:100%;object-fit:cover;display:block;transition:transform .5s cubic-bezier(.2,.7,.2,1)}
+.card:hover img{transform:scale(1.04)}
+.card .b{font-family:var(--f-display);font-weight:700;font-size:12px;letter-spacing:.12em;text-transform:uppercase;color:var(--muted)}
+.card .t{font-weight:600;font-size:16px;line-height:1.3}
+.card .pr{font-weight:700;font-size:17px}
+.card .ex{font-size:12px;color:var(--muted);font-weight:500;margin-left:6px}
+.card .add{margin-top:2px;align-self:flex-start;font-size:14px;font-weight:700;color:var(--neon);border-bottom:1.5px solid currentColor}
+.empty{grid-column:1/-1;padding:40px 0;color:var(--muted)}
+
+/* 5.11 band */
+.t511{background:var(--granite);color:var(--on-dark)}
+.t511 .wrap{padding-block:140px}
+.t511-grid{display:grid;grid-template-columns:minmax(0,1.15fr) minmax(0,1fr);gap:56px;align-items:center}
+.t511-ph{display:grid;grid-template-columns:2fr 1fr;gap:10px}
+.t511-ph img{width:100%;height:100%;object-fit:cover;display:block;aspect-ratio:1}
+.t511-ph img:last-child{aspect-ratio:auto}
+.t511 .band{margin-bottom:28px;display:inline-block}
+.t511 h3{font-family:var(--f-display);font-weight:800;font-size:clamp(30px,3.4vw,48px);line-height:1.05;letter-spacing:-.02em;margin:0 0 16px}
+.t511 p{color:var(--on-dark-2);font-size:17px;max-width:48ch;margin:0 0 14px}
+.sizes{display:flex;flex-wrap:wrap;gap:8px;margin:20px 0 32px;padding:0;list-style:none}
+.sizes li{border:1.5px solid #3c3f45;padding:8px 12px;font-weight:700;font-size:14px}
+@media (max-width:860px){.t511-grid{grid-template-columns:1fr}.t511 .wrap{padding-block:88px}}
+
+/* US order */
+.us{background:var(--paper);color:var(--ink)}
+.us .wrap{padding-block:140px}
+.us-grid{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:64px;align-items:start}
+.us h2{font-family:var(--f-display);font-weight:800;font-size:clamp(32px,3.8vw,54px);line-height:1.02;letter-spacing:-.02em;margin:0 0 18px;text-wrap:balance}
+.us .lead{color:var(--muted);font-size:17px;max-width:50ch;margin:0 0 36px}
+.steps{list-style:none;margin:0;padding:0;counter-reset:s;display:grid;gap:0}
+.steps li{counter-increment:s;display:grid;grid-template-columns:44px minmax(0,1fr);gap:16px;padding:18px 0;border-top:1px solid var(--line)}
+.steps li::before{content:counter(s);font-family:var(--f-display);font-weight:800;font-size:22px;color:var(--maroon)}
+.steps b{display:block;font-size:17px}
+.steps span{color:var(--muted);font-size:15px}
+.form{background:var(--panel);border:1px solid var(--line);padding:clamp(20px,3vw,36px);display:grid;gap:16px}
+.form h3{margin:0 0 4px;font-family:var(--f-display);font-weight:700;font-size:22px}
+.field{display:grid;gap:6px}
+.field label{font-weight:600;font-size:14px}
+.field input,.field textarea,.field select{border:1.5px solid #cfc8bd;background:#fff;border-radius:2px;padding:12px 14px;color:var(--ink);width:100%}
+.field textarea{min-height:84px;resize:vertical}
+.row2{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.ok{background:#eef6ef;color:#1d4d27;border:1px solid #bcd9c1;padding:14px 16px;font-weight:600}
+@media (max-width:860px){.us-grid{grid-template-columns:1fr;gap:40px}.us .wrap{padding-block:88px}}
+
+/* visit */
+.visit{background:var(--granite-2);color:var(--on-dark)}
+.visit .wrap{padding-block:140px}
+.visit-grid{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:56px;align-items:center}
+.visit figure{margin:0}
+.visit figure img{width:100%;aspect-ratio:3/4;object-fit:cover;display:block}
+.visit figcaption{font-size:13px;color:var(--on-dark-2);margin-top:10px}
+.visit h2{font-family:var(--f-display);font-weight:800;font-size:clamp(32px,3.8vw,54px);line-height:1.02;letter-spacing:-.02em;margin:0 0 14px}
+.addr{font-size:19px;margin:0 0 28px;max-width:30ch}
+.sticker{display:inline-block;border:5px solid #e9e6e0;background:#f6f4f0;color:#111;padding:14px 18px 16px;margin:0 0 28px;text-align:center}
+.sticker small{display:block;font-family:var(--f-display);font-weight:700;letter-spacing:.06em;font-size:13px;margin-bottom:10px}
+.sticker strong{display:block;background:#111;color:#fff;font-family:var(--f-body);font-weight:700;font-size:28px;padding:6px 18px;letter-spacing:.02em}
+.phones{display:grid;gap:10px;margin:0 0 28px;padding:0;list-style:none}
+.phones li{display:flex;align-items:center;gap:14px;flex-wrap:wrap}
+.phones b{font-size:24px;font-weight:700;letter-spacing:.02em}
+.copybtn{height:34px;padding:0 12px;border:1.5px solid #44474e;background:transparent;border-radius:2px;cursor:pointer;font-size:13px;font-weight:600;color:var(--on-dark)}
+.links{display:flex;flex-wrap:wrap;gap:10px}
+@media (max-width:860px){.visit-grid{grid-template-columns:1fr}.visit .wrap{padding-block:88px}}
+
+/* footer */
+.foot{background:var(--granite);color:var(--on-dark-2);border-top:1px solid #26282d}
+.foot .wrap{padding-block:72px 40px}
+.foot{overflow:hidden}
+.foot .big{font-family:var(--f-display);font-weight:800;font-size:min(calc((100vw - 40px) / 6.9), 176px);line-height:.85;letter-spacing:-.03em;color:var(--on-dark);margin:0 0 36px;white-space:nowrap}
+.foot .big i{font-style:normal;color:var(--neon-glow)}
+.foot-row{display:flex;flex-wrap:wrap;gap:12px 32px;justify-content:space-between;font-size:14px}
+.foot-row p{margin:0;max-width:62ch}
+
+/* dialogs */
+dialog{color-scheme:light;border:0;padding:0;color:var(--ink);background:var(--paper);max-width:min(920px,calc(100vw - 32px));width:100%;box-shadow:0 30px 80px rgba(0,0,0,.45)}
+dialog::backdrop{background:rgba(8,8,10,.62)}
+.pd{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr)}
+.pd img{width:100%;aspect-ratio:1;object-fit:cover;display:block;background:#e9e5de}
+.pd-body{padding:32px;display:flex;flex-direction:column;gap:14px;position:relative}
+.pd-body .b{font-family:var(--f-display);font-weight:700;letter-spacing:.12em;text-transform:uppercase;font-size:13px;color:var(--muted)}
+.pd-body h3{margin:0;font-size:26px;line-height:1.2;font-family:var(--f-display);font-weight:700}
+.pd-body .pr{font-size:26px;font-weight:700}
+.opt{display:flex;flex-wrap:wrap;gap:8px}
+.opt button{min-width:52px;height:44px;padding:0 12px;border:1.5px solid #cfc8bd;background:#fff;border-radius:2px;cursor:pointer;font-weight:700}
+.opt button[aria-pressed="true"]{border-color:var(--ink);background:var(--ink);color:#fff}
+.qty{display:inline-flex;align-items:center;border:1.5px solid #cfc8bd;background:#fff;height:44px}
+.qty button{width:42px;height:100%;border:0;background:none;cursor:pointer;font-size:20px;font-weight:700}
+.qty output{min-width:36px;text-align:center;font-weight:700}
+.x{position:absolute;top:10px;right:10px;width:40px;height:40px;border:0;background:transparent;font-size:26px;cursor:pointer;color:var(--ink)}
+.small{font-size:13px;color:var(--muted)}
+@media (max-width:700px){.pd{grid-template-columns:1fr}.pd-body{padding:22px}}
+#cart{margin:0 0 0 auto;height:100%;max-height:100%;max-width:min(460px,100vw);width:100%;padding:0}
+#cart[open]{display:flex;flex-direction:column}
+.c-head{display:flex;align-items:center;justify-content:space-between;padding:18px 20px;border-bottom:1px solid var(--line)}
+.c-head h3{margin:0;font-family:var(--f-display);font-weight:800;font-size:22px}
+.c-body{flex:1;overflow:auto;padding:8px 20px 20px}
+.ci{display:grid;grid-template-columns:72px minmax(0,1fr) auto;gap:12px;padding:14px 0;border-bottom:1px solid var(--line);align-items:center}
+.ci img{width:72px;height:72px;object-fit:cover;display:block}
+.ci .t{font-weight:600;font-size:14px;line-height:1.3}
+.ci .s{font-size:13px;color:var(--muted)}
+.ci .rm{border:0;background:none;color:var(--muted);text-decoration:underline;cursor:pointer;font-size:13px;padding:0}
+.ci .qty{height:36px}.ci .qty button{width:32px;font-size:17px}
+fieldset{border:0;padding:0;margin:18px 0 0;display:grid;gap:8px}
+legend{font-weight:700;margin-bottom:8px}
+.radio{display:flex;gap:10px;align-items:flex-start;border:1.5px solid #d8d2c8;background:#fff;padding:12px;cursor:pointer}
+.radio input{margin-top:3px;accent-color:var(--maroon)}
+.radio span{display:grid}
+.radio small{color:var(--muted)}
+.radio.dis{opacity:.55;cursor:not-allowed}
+.tot{display:grid;gap:6px;margin:18px 0;padding-top:14px;border-top:2px solid var(--ink)}
+.tot div{display:flex;justify-content:space-between}
+.tot .g{font-size:20px;font-weight:800}
+.c-foot{padding:16px 20px calc(16px + env(safe-area-inset-bottom,0px));border-top:1px solid var(--line);background:var(--paper)}
+.c-foot .btn{width:100%}
+
+/* scroll-timeline rise (progressive; content visible without it) */
+@supports (animation-timeline: view()){
+  @media (prefers-reduced-motion:no-preference){
+    .rise{animation:rise linear both;animation-timeline:view();animation-range:entry 0% entry 35%}
+    .rise:nth-child(2){animation-range:entry 5% entry 40%}
+    .rise:nth-child(3){animation-range:entry 10% entry 45%}
+  }
+}
+@keyframes rise{from{transform:translateY(28px)}to{transform:none}}
+</style>
+</head>
+<body>
+
+<div class="demo"><div class="wrap">Демо хувилбар · үнэ, зураг жишээ · QPay ба домэйн батлагдсаны дараа холбогдоно</div></div>
+
+<header class="top">
+  <div class="wrap">
+    <a class="brand" href="#enter" aria-label="88 Boutique нүүр"><img src="img/logo.png" alt="" width="38" height="38"><b>88 Boutique</b></a>
+    <nav class="nav" aria-label="Үндсэн цэс">
+      <a class="keep" href="#shop">Бараа</a>
+      <a href="#brands">Брэндүүд</a>
+      <a href="#t511">5.11</a>
+      <a href="#us">АНУ-аас захиалах</a>
+      <a href="#visit">Дэлгүүр</a>
+    </nav>
+    <button class="cartbtn" id="openCart" type="button" aria-haspopup="dialog">Сагс <span class="n num" id="cartN">0</span></button>
+  </div>
+</header>
+
+<main>
+<section class="enter" id="enter" aria-label="Дэлгүүрт орох">
+  <div class="stage" id="stage">
+    <div class="wrap" style="height:100%">
+      <div class="stage-grid">
+        <div class="copy">
+          <h1>АНУ-ын оригинал брэндүүд</h1>
+          <p>Дарханы 2-р хороололд байрлах дэлгүүр. Michael Kors, Coach, Marc Jacobs, Dior, 5.11 Tactical, Columbia, Carter’s брэндийн бэлэн бараа, мөн АНУ-аас захиалж өгнө.</p>
+          <ul class="facts">
+            <li>Дархан, 2-р хороолол</li>
+            <li class="num">12:00–20:00</li>
+            <li class="num">8888-7598</li>
+          </ul>
+          <div class="ctas">
+            <a class="btn btn-p" href="#shop">Бараа үзэх</a>
+            <a class="btn btn-g" href="#visit">Хаяг, цаг</a>
+          </div>
+          <div class="hint" aria-hidden="true">↓ Гүйлгээд дэлгүүрт ор</div>
+        </div>
+        <div class="door" id="door">
+          <div class="door-in">
+            <img src="img/poster.webp" alt="88 Boutique дэлгүүрийн урд тал, Дархан" width="720" height="960">
+            <video id="walk" muted playsinline preload="none" poster="img/poster.webp" aria-hidden="true"><source src="walkin.mp4" type="video/mp4"><source src="walkin.webm" type="video/webm"></video>
+            <img class="inside" id="inside" src="img/inside.webp" alt="" width="1080" height="1440" loading="lazy">
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="reveal" id="reveal" aria-hidden="true"><div class="reveal-in"><b>88 BOUTIQUE</b><span>Тавтай морил</span></div></div>
+    <div class="bar" aria-hidden="true"><i></i></div>
+  </div>
+</section>
+
+<section class="sign" id="brands" aria-labelledby="brandsH">
+  <div class="wrap">
+    <div class="panel"><ul class="brands" id="brandList"></ul></div>
+    <div class="band"><h2 id="brandsH">Дэлхийн брэндүүд</h2></div>
+    <p class="sign-note">Брэнд дээр дарахад тухайн брэндийн бараа доор шүүгдэнэ.</p>
+  </div>
+</section>
+
+<section class="shop" id="shop" aria-labelledby="shopH">
+  <div class="wrap">
+    <div class="shop-head">
+      <div>
+        <h2 id="shopH">Бэлэн бараа</h2>
+        <p>Дэлгүүрт байгаа бараа. Сагсанд хийгээд захиалаарай: дэлгүүрээс очиж авах эсвэл хүргүүлэх.</p>
+      </div>
+      <div class="tools">
+        <label class="sr" for="q">Бараа хайх</label>
+        <input id="q" type="search" placeholder="Бараа, брэнд хайх" autocomplete="off">
+        <label class="sr" for="sort">Эрэмбэ</label>
+        <select id="sort"><option value="new">Шинэ</option><option value="asc">Үнэ: багаас</option><option value="desc">Үнэ: ихээс</option></select>
+      </div>
+    </div>
+    <div class="tabs" id="tabs" role="group" aria-label="Ангилал"></div>
+    <div class="active-brand" id="activeBrand"><span id="activeBrandT"></span><button type="button" id="clearBrand">Брэнд арилгах ✕</button></div>
+    <div class="grid" id="grid" aria-live="polite"></div>
+  </div>
+</section>
+
+<section class="t511" id="t511" aria-labelledby="t511H">
+  <div class="wrap t511-grid">
+    <div class="t511-ph rise">
+      <img src="img/pants-big.webp" alt="5.11 Tactical өмднүүд, шошготойгоо" width="700" height="700" loading="lazy">
+      <img src="img/racks.webp" alt="Дэлгүүрийн 5.11 хувцасны тавиур" width="600" height="600" loading="lazy">
+    </div>
+    <div class="rise">
+      <div class="band"><span class="h">5.11 нэг дор</span></div>
+      <h3 id="t511H">Tactical өмд, цамц, куртик, гутал</h3>
+      <p>Ажил, ан агнуур, өдөр тутамд. АНУ-ын 5.11 Tactical шошготойгоо ирдэг.</p>
+      <p>Өмдний хэмжээ инчээр: бүсэлхий × урт.</p>
+      <ul class="sizes num" aria-label="Өмдний хэмжээ"><li>30×32</li><li>32×32</li><li>34×32</li><li>36×32</li><li>38×30</li></ul>
+      <button class="btn btn-p" type="button" id="go511">5.11 бараа үзэх</button>
+    </div>
+  </div>
+</section>
+
+<section class="us" id="us" aria-labelledby="usH">
+  <div class="wrap us-grid">
+    <div>
+      <h2 id="usH">Байхгүй бараагаа АНУ-аас захиал</h2>
+      <p class="lead">Дэлгүүрт байхгүй бараа, хэмжээ, өнгийг АНУ-ын дэлгүүрээс захиалж өгнө. Үнэ, ирэх хугацааг захиалга бүрээр тооцож хэлнэ.</p>
+      <ol class="steps">
+        <li><div><b>Барааны линкээ илгээнэ</b><span>Amazon, Macy’s, брэндийн сайт гээд аль ч дэлгүүрээс.</span></div></li>
+        <li><div><b>Үнийн санал авна</b><span>Барааны үнэ, тээвэр, үйлчилгээний хөлс нэг дүнгээр.</span></div></li>
+        <li><div><b>Урьдчилгаа төлж баталгаажуулна</b><span>Захиалга АНУ-д хийгдэж, явцыг мэдэгдэнэ.</span></div></li>
+        <li><div><b>Дэлгүүрээс авна эсвэл хүргүүлнэ</b><span>Дархан хот дотор болон орон нутаг руу.</span></div></li>
+      </ol>
+    </div>
+    <form class="form" id="usForm" novalidate>
+      <h3>Захиалгын хүсэлт</h3>
+      <div class="field"><label for="usLink">Барааны линк</label><input id="usLink" type="url" placeholder="https://" required></div>
+      <div class="row2">
+        <div class="field"><label for="usSize">Хэмжээ, өнгө</label><input id="usSize" type="text" placeholder="Жишээ: M, хар"></div>
+        <div class="field"><label for="usQty">Тоо</label><input id="usQty" type="number" min="1" value="1"></div>
+      </div>
+      <div class="row2">
+        <div class="field"><label for="usName">Нэр</label><input id="usName" type="text" autocomplete="name" required></div>
+        <div class="field"><label for="usPhone">Утас</label><input id="usPhone" type="tel" inputmode="numeric" placeholder="8 оронтой" autocomplete="tel" required></div>
+      </div>
+      <p class="small" id="usErr" role="alert"></p>
+      <button class="btn btn-p" type="submit">Хүсэлт илгээх</button>
+      <div class="ok" id="usOk" hidden>Хүсэлт бүртгэгдлээ (демо). Дэлгүүр үнийн саналтай холбогдоно.</div>
+    </form>
+  </div>
+</section>
+
+<section class="visit" id="visit" aria-labelledby="visitH">
+  <div class="wrap visit-grid">
+    <figure class="rise">
+      <img src="img/storefront.webp" alt="88 Boutique дэлгүүрийн фасад: ягаан неон, 5.11 нэг дор, дэлхийн брэндүүд" width="900" height="1200" loading="lazy">
+      <figcaption>Ягаан неон "88 boutique", хаалга дээр "Дэлхийн брэндүүд".</figcaption>
+    </figure>
+    <div class="rise">
+      <h2 id="visitH">Дэлгүүрт ирээрэй</h2>
+      <p class="addr">Дархан-Уул аймаг, Дархан сум, 2-р хороолол</p>
+      <div class="sticker"><small>АЖИЛЛАХ ЦАГИЙН ХУВААРЬ</small><strong class="num">12:00 – 20:00</strong></div>
+      <ul class="phones">
+        <li><b class="num" id="ph1">8888-7598</b><button class="copybtn" type="button" data-copy="ph1">Хуулах</button></li>
+        <li><b class="num" id="ph2">7766-0088</b><button class="copybtn" type="button" data-copy="ph2">Хуулах</button></li>
+      </ul>
+      <div class="links">
+        <a class="btn btn-p" href="https://www.google.com/maps/search/?api=1&query=88+boutique+Darkhan" target="_blank" rel="noopener">Газрын зураг</a>
+        <a class="btn btn-g" href="https://www.facebook.com/profile.php?id=61570401480410" target="_blank" rel="noopener">Facebook</a>
+        <a class="btn btn-g" href="https://www.instagram.com/88_boutique_usa/" target="_blank" rel="noopener">Instagram</a>
+      </div>
+    </div>
+  </div>
+</section>
+</main>
+
+<footer class="foot">
+  <div class="wrap">
+    <p class="big" aria-hidden="true"><i>88</i> BOUTIQUE</p>
+    <div class="foot-row">
+      <p>АНУ-аас худалдан авсан оригинал бараа. Брэндүүдийн албан ёсны дистрибьютор биш. Брэндийн нэр тус бүр эзэмшигчийнх.</p>
+      <p>© 2026 88 Boutique · Демо вэбсайт: Nomad Web Studio</p>
+    </div>
+  </div>
+</footer>
+
+<dialog id="pd" aria-labelledby="pdT">
+  <div class="pd">
+    <img id="pdImg" src="img/poster.webp" alt="">
+    <div class="pd-body">
+      <button class="x" type="button" data-close aria-label="Хаах">×</button>
+      <div class="b" id="pdB"></div>
+      <h3 id="pdT"></h3>
+      <div><span class="pr num" id="pdP"></span> <span class="small" id="pdEx"></span></div>
+      <div id="pdSizesWrap"><div class="small" style="margin-bottom:8px">Хэмжээ</div><div class="opt" id="pdSizes" role="group" aria-label="Хэмжээ"></div></div>
+      <div><div class="small" style="margin-bottom:8px">Тоо</div><div class="qty"><button type="button" id="qm" aria-label="Хасах">−</button><output id="qv" class="num">1</output><button type="button" id="qp" aria-label="Нэмэх">+</button></div></div>
+      <p class="small" id="pdErr" role="alert"></p>
+      <button class="btn btn-p" type="button" id="pdAdd">Сагсанд нэмэх</button>
+      <p class="small">Дэлгүүрээс очиж авах үнэгүй. Хэмжээ тохирохгүй бол 8888-7598 руу залгаарай.</p>
+    </div>
+  </div>
+</dialog>
+
+<dialog id="cart" aria-labelledby="cartH">
+  <div class="c-head"><h3 id="cartH">Сагс</h3><button class="x" style="position:static" type="button" data-close aria-label="Хаах">×</button></div>
+  <div class="c-body" id="cBody"></div>
+  <div class="c-foot" id="cFoot"></div>
+</dialog>
+
+<script>
+const P=[{"id":"mk-red","name":"Улаан мөрний цүнх + loafer","brand":"Michael Kors","cat":"bags","price":690000,"real":false,"sizes":null},{"id":"mk-tote-brown","name":"Signature tote цүнх, хүрэн","brand":"Michael Kors","cat":"bags","price":790000,"real":false,"sizes":null},{"id":"mk-pink-set","name":"Signature цүнх, ягаан-шаргал","brand":"Michael Kors","cat":"bags","price":590000,"real":false,"sizes":null},{"id":"mk-black-cross","name":"Хар crossbody цүнх","brand":"Michael Kors","cat":"bags","price":450000,"real":false,"sizes":null},{"id":"mj-brown","name":"The Snapshot маягийн цүнх, хүрэн","brand":"Marc Jacobs","cat":"bags","price":520000,"real":false,"sizes":null},{"id":"mj-black","name":"Хар camera цүнх","brand":"Marc Jacobs","cat":"bags","price":490000,"real":false,"sizes":null},{"id":"mk-watch","name":"Lennox Pavé алтлаг цаг (limited)","brand":"Michael Kors","cat":"watch","price":1190000,"real":false,"sizes":null},{"id":"tf-lostcherry","name":"Lost Cherry биеийн спрей, 150 мл","brand":"Tom Ford","cat":"beauty","price":199000,"real":true,"sizes":null},{"id":"511-pants","name":"Stryke / Flex-Tac өмд","brand":"5.11 Tactical","cat":"tactical","price":289000,"real":true,"sizes":["30x32","32x32","34x32","36x32","38x30"]},{"id":"511-olive-set","name":"Tactical цамц, чидун ногоон","brand":"5.11 Tactical","cat":"tactical","price":259000,"real":false,"sizes":["S","M","L","XL"]},{"id":"511-tee","name":"Лого футболк, хар","brand":"5.11 Tactical","cat":"tactical","price":99000,"real":false,"sizes":["M","L","XL"]},{"id":"511-shirts","name":"Урт ханцуйтай цамц (өнгө сонгох)","brand":"5.11 Tactical","cat":"tactical","price":249000,"real":false,"sizes":["S","M","L","XL","XXL"]},{"id":"col-parka-orange","name":"Үслэг малгайтай парка, улбар шар","brand":"Columbia","cat":"outer","price":590000,"real":false,"sizes":["S","M","L","XL"]},{"id":"col-parka-khaki","name":"Парка, хаки-хар хөх","brand":"Columbia","cat":"outer","price":590000,"real":false,"sizes":["M","L","XL"]},{"id":"col-puffer-bw","name":"Хөвсгөр куртик, хар-цөцгий","brand":"Columbia","cat":"outer","price":490000,"real":false,"sizes":["S","M","L"]},{"id":"col-mint","name":"Куртик, гаа ногоон","brand":"Columbia","cat":"outer","price":450000,"real":false,"sizes":["S","M","L","XL"]},{"id":"polo-camo","name":"Камуфляж куртик","brand":"Polo Ralph Lauren","cat":"outer","price":690000,"real":false,"sizes":["M","L","XL"]},{"id":"col-camo","name":"Камуфляж хөвсгөр куртик","brand":"Columbia","cat":"outer","price":520000,"real":false,"sizes":["M","L","XL"]},{"id":"nepa-boots","name":"Өвлийн гутал, хүрэн","brand":"NEPA","cat":"shoes","price":299000,"real":true,"sizes":["40","41","42"]},{"id":"nike-am90","name":"Air Max 90, цагаан-ногоон","brand":"Nike","cat":"shoes","price":359000,"real":false,"sizes":["36","37","38","39"]},{"id":"nike-pink","name":"Пүүз, ягаан","brand":"Nike","cat":"shoes","price":289000,"real":false,"sizes":["36","37","38"]},{"id":"nike-sb","name":"SB пүүз, хар","brand":"Nike","cat":"shoes","price":259000,"real":false,"sizes":["40","41","42","43"]},{"id":"vans-check","name":"Slip-On дааман, улаан","brand":"Vans","cat":"shoes","price":189000,"real":false,"sizes":["37","38","39","40"]},{"id":"sorel-kids","name":"Хүүхдийн өвлийн гутал, нил ягаан","brand":"Sorel","cat":"kids","price":229000,"real":false,"sizes":["28","30","32"]},{"id":"sorel-kids-red","name":"Хүүхдийн өвлийн гутал, хар-улаан","brand":"Sorel","cat":"kids","price":249000,"real":false,"sizes":["30","32","34"]},{"id":"carters-set","name":"Хүүхдийн хувцасны багц","brand":"Carter’s","cat":"kids","price":59000,"real":false,"sizes":["12м","18м","2Т","3Т"]},{"id":"carters-socks","name":"Оймсны багц","brand":"Carter’s","cat":"kids","price":29000,"real":false,"sizes":null},{"id":"lacoste-beanie","name":"Ноосон малгай (3 өнгө)","brand":"Lacoste","cat":"watch","price":129000,"real":false,"sizes":null}];
+const CATS={all:"Бүгд",bags:"Цүнх",beauty:"Үнэртэн",tactical:"5.11 Tactical",outer:"Гадуур хувцас",shoes:"Гутал",kids:"Хүүхэд",watch:"Цаг, аксессуар"};
+const SHIP={pickup:{t:"Дэлгүүрээс очиж авах",d:"2-р хороолол, 12:00–20:00",fee:0},dkh:{t:"Дархан хот дотор хүргэлт",d:"Жишээ үнэ, 1–2 өдөрт",fee:5000},far:{t:"УБ болон орон нутаг",d:"Унаа, шуудангийн зардлыг утсаар тохирно",fee:null}};
+const $=s=>document.querySelector(s);
+const fmt=n=>n.toLocaleString("en-US").replace(/,/g,",")+"₮";
+const byId=Object.fromEntries(P.map(p=>[p.id,p]));
+const st={cat:"all",brand:null,q:"",sort:"new"};
+let cart=[];let ship="pickup";let done=null;
+try{cart=JSON.parse(localStorage.getItem("88cart")||"[]").filter(i=>byId[i.id])}catch(e){cart=[]}
+function save(){try{localStorage.setItem("88cart",JSON.stringify(cart))}catch(e){}}
+
+/* brands + tabs */
+function renderBrands(){
+  const counts={};P.forEach(p=>counts[p.brand]=(counts[p.brand]||0)+1);
+  const order=["Michael Kors","Marc Jacobs","Tom Ford","5.11 Tactical","Columbia","Polo Ralph Lauren","Nike","NEPA","Sorel","Vans","Carter’s","Lacoste"];
+  $("#brandList").innerHTML=order.filter(b=>counts[b]).map(b=>`<li><button type="button" data-brand="${b}" aria-pressed="${st.brand===b}">${b}<sup class="num">${counts[b]}</sup></button></li>`).join("");
+}
+function renderTabs(){
+  $("#tabs").innerHTML=Object.entries(CATS).map(([k,v])=>`<button type="button" data-cat="${k}" aria-pressed="${st.cat===k}">${v}</button>`).join("");
+}
+function list(){
+  const q=st.q.trim().toLowerCase();
+  let r=P.filter(p=>(st.cat==="all"||p.cat===st.cat)&&(!st.brand||p.brand===st.brand)&&(!q||(p.name+" "+p.brand).toLowerCase().includes(q)));
+  if(st.sort==="asc")r=[...r].sort((a,b)=>a.price-b.price);
+  if(st.sort==="desc")r=[...r].sort((a,b)=>b.price-a.price);
+  return r;
+}
+function renderGrid(){
+  const r=list();
+  $("#grid").innerHTML=r.length?r.map(p=>`<button class="card" type="button" data-id="${p.id}"><span class="ph"><img src="img/${p.id}.webp" alt="${p.brand} ${p.name}" width="520" height="520" loading="lazy"></span><span class="b">${p.brand}</span><span class="t">${p.name}</span><span class="pr num">${fmt(p.price)}${p.real?"":'<span class="ex">жишээ үнэ</span>'}</span><span class="add">Сагсанд</span></button>`).join(""):`<p class="empty">Энэ шүүлтүүрээр бараа олдсонгүй. Ангилал эсвэл хайлтаа өөрчилнө үү.</p>`;
+  const ab=$("#activeBrand");ab.classList.toggle("on",!!st.brand);$("#activeBrandT").textContent=st.brand?("Брэнд: "+st.brand):"";
+}
+function refresh(){renderBrands();renderTabs();renderGrid()}
+document.addEventListener("click",e=>{
+  const t=e.target.closest("[data-cat],[data-brand],.card,[data-close],[data-copy]");if(!t)return;
+  if(t.dataset.cat){st.cat=t.dataset.cat;refresh()}
+  else if(t.dataset.brand){st.brand=st.brand===t.dataset.brand?null:t.dataset.brand;st.cat="all";refresh();if(st.brand)$("#shop").scrollIntoView({behavior:"smooth"})}
+  else if(t.classList.contains("card"))openPd(t.dataset.id);
+  else if(t.hasAttribute("data-close"))t.closest("dialog").close();
+  else if(t.dataset.copy){const v=document.getElementById(t.dataset.copy).textContent;const ok=()=>{t.textContent="Хуулсан";setTimeout(()=>t.textContent="Хуулах",1600)};
+    try{navigator.clipboard.writeText(v).then(ok,()=>{selectText(t.dataset.copy)})}catch(err){selectText(t.dataset.copy)}}
+});
+function selectText(id){const r=document.createRange();r.selectNodeContents(document.getElementById(id));const s=getSelection();s.removeAllRanges();s.addRange(r)}
+$("#clearBrand").onclick=()=>{st.brand=null;refresh()};
+$("#q").addEventListener("input",e=>{st.q=e.target.value;renderGrid()});
+$("#sort").addEventListener("change",e=>{st.sort=e.target.value;renderGrid()});
+$("#go511").onclick=()=>{st.cat="tactical";st.brand=null;refresh();$("#shop").scrollIntoView({behavior:"smooth"})};
+
+/* product dialog */
+let cur=null,size=null,qty=1;
+function openPd(id){
+  cur=byId[id];size=null;qty=1;
+  $("#pdImg").src=`img/${id}.webp`;$("#pdImg").alt=cur.brand+" "+cur.name;
+  $("#pdB").textContent=cur.brand;$("#pdT").textContent=cur.name;$("#pdP").textContent=fmt(cur.price);
+  $("#pdEx").textContent=cur.real?"Facebook-т зарласан үнэ":"жишээ үнэ";
+  $("#pdSizesWrap").hidden=!cur.sizes;
+  $("#pdSizes").innerHTML=(cur.sizes||[]).map(s=>`<button type="button" aria-pressed="false" data-size="${s}">${s.replace("x","×")}</button>`).join("");
+  $("#qv").textContent=1;$("#pdErr").textContent="";
+  $("#pd").showModal();
+}
+$("#pdSizes").addEventListener("click",e=>{const b=e.target.closest("[data-size]");if(!b)return;size=b.dataset.size;[...$("#pdSizes").children].forEach(x=>x.setAttribute("aria-pressed",x===b));$("#pdErr").textContent=""});
+$("#qm").onclick=()=>{qty=Math.max(1,qty-1);$("#qv").textContent=qty};
+$("#qp").onclick=()=>{qty=Math.min(9,qty+1);$("#qv").textContent=qty};
+$("#pdAdd").onclick=()=>{
+  if(cur.sizes&&!size){$("#pdErr").textContent="Хэмжээгээ сонгоно уу.";return}
+  const k=cart.find(i=>i.id===cur.id&&i.size===size);if(k)k.qty=Math.min(9,k.qty+qty);else cart.push({id:cur.id,size,qty});
+  save();updateN();$("#pd").close();done=null;openCart();
+};
+function updateN(){$("#cartN").textContent=cart.reduce((a,i)=>a+i.qty,0)}
+
+/* cart */
+function openCart(){renderCart();$("#cart").showModal()}
+$("#openCart").onclick=()=>{openCart()};
+function sub(){return cart.reduce((a,i)=>a+byId[i.id].price*i.qty,0)}
+function renderCart(){
+  const body=$("#cBody"),foot=$("#cFoot");
+  if(done){body.innerHTML=`<div class="ok" style="margin-top:16px">Захиалга <b class="num">${done}</b> бүртгэгдлээ (демо).</div><p>Дэлгүүр <b class="num">8888-7598</b> дугаараас залгаж баталгаажуулна. Дансны мэдээллийг баталгаажуулсны дараа илгээнэ.</p>`;foot.innerHTML=`<button class="btn btn-p" type="button" data-close>Дэлгүүр рүү буцах</button>`;return}
+  if(!cart.length){body.innerHTML=`<p style="margin-top:20px">Сагс хоосон байна.</p><p class="small">Бараан дээр дарж хэмжээгээ сонгоод сагсанд нэмнэ.</p>`;foot.innerHTML=`<a class="btn btn-p" href="#shop" data-close>Бараа үзэх</a>`;return}
+  const items=cart.map((i,ix)=>{const p=byId[i.id];return `<div class="ci"><img src="img/${p.id}.webp" alt=""><div><div class="t">${p.brand} · ${p.name}</div><div class="s">${i.size?("Хэмжээ "+i.size.replace("x","×")+" · "):""}<span class="num">${fmt(p.price)}</span></div><button class="rm" type="button" data-rm="${ix}">Хасах</button></div><div class="qty"><button type="button" data-dq="${ix}" data-d="-1" aria-label="Хасах">−</button><output class="num">${i.qty}</output><button type="button" data-dq="${ix}" data-d="1" aria-label="Нэмэх">+</button></div></div>`}).join("");
+  const opts=Object.entries(SHIP).map(([k,o])=>`<label class="radio"><input type="radio" name="ship" value="${k}" ${ship===k?"checked":""}><span><b>${o.t}${o.fee===0?" — үнэгүй":o.fee?(" — "+fmt(o.fee)):""}</b><small>${o.d}</small></span></label>`).join("");
+  const fee=SHIP[ship].fee;
+  body.innerHTML=`${items}
+  <fieldset><legend>Хүлээн авах</legend>${opts}</fieldset>
+  <form id="co" novalidate>
+   <fieldset><legend>Холбоо барих</legend>
+    <div class="field"><label for="coName">Нэр</label><input id="coName" autocomplete="name" required></div>
+    <div class="field"><label for="coPhone">Утас</label><input id="coPhone" type="tel" inputmode="numeric" placeholder="8 оронтой" autocomplete="tel" required></div>
+    ${ship==="pickup"?"":`<div class="field"><label for="coAddr">Хаяг</label><textarea id="coAddr" placeholder="Сум/дүүрэг, хороо, байр, тоот" required></textarea></div>`}
+   </fieldset>
+   <fieldset><legend>Төлбөр</legend>
+    <label class="radio"><input type="radio" name="pay" value="bank" checked><span><b>Дансаар шилжүүлэх</b><small>Захиалга баталгаажсаны дараа дансны мэдээлэл илгээнэ</small></span></label>
+    <label class="radio dis"><input type="radio" name="pay" value="qpay" disabled><span><b>QPay</b><small>Удахгүй холбогдоно</small></span></label>
+   </fieldset>
+  </form>
+  <div class="tot num"><div><span>Бараа</span><span>${fmt(sub())}</span></div><div><span>Хүргэлт</span><span>${fee===null?"тохирно":fmt(fee)}</span></div><div class="g"><span>Нийт</span><span>${fmt(sub()+(fee||0))}</span></div></div>`;
+  foot.innerHTML=`<p class="small" id="coErr" role="alert" style="margin:0 0 8px"></p><button class="btn btn-p" type="button" id="coGo">Захиалга илгээх · <span class="num">${fmt(sub()+(fee||0))}</span></button>`;
+  $("#coGo").onclick=submitOrder;
+}
+let draft={};
+$("#cBody").addEventListener("input",e=>{if(e.target.id)draft[e.target.id]=e.target.value});
+$("#cBody").addEventListener("change",e=>{if(e.target.name==="ship"){ship=e.target.value;renderCart();restore()}});
+function restore(){Object.entries(draft).forEach(([k,v])=>{const el=document.getElementById(k);if(el)el.value=v})}
+$("#cBody").addEventListener("click",e=>{
+  const rm=e.target.closest("[data-rm]"),dq=e.target.closest("[data-dq]");
+  if(rm){cart.splice(+rm.dataset.rm,1)}else if(dq){const i=cart[+dq.dataset.dq];i.qty=Math.max(1,Math.min(9,i.qty+(+dq.dataset.d)))}else return;
+  save();updateN();renderCart();restore();
+});
+function submitOrder(){
+  const n=$("#coName").value.trim(),ph=$("#coPhone").value.replace(/\D/g,""),ad=$("#coAddr")?$("#coAddr").value.trim():"x";
+  const err=!n?"Нэрээ бичнэ үү.":ph.length!==8?"Утасны дугаар 8 оронтой байна.":!ad?"Хүргэх хаягаа бичнэ үү.":"";
+  if(err){$("#coErr").textContent=err;return}
+  done="88-"+String(Math.floor(1000+Math.random()*9000));cart=[];draft={};save();updateN();renderCart();
+}
+$("#cart").addEventListener("close",()=>{if(done){done=null}});
+
+/* US order form */
+$("#usForm").addEventListener("submit",e=>{
+  e.preventDefault();
+  const l=$("#usLink").value.trim(),n=$("#usName").value.trim(),ph=$("#usPhone").value.replace(/\D/g,"");
+  const err=!/^https?:\/\/\S+\.\S+/.test(l)?"Барааны линкийг https://-ээр эхэлсэн бүтнээр нь хуулна уу.":!n?"Нэрээ бичнэ үү.":ph.length!==8?"Утасны дугаар 8 оронтой байна.":"";
+  $("#usErr").textContent=err;if(err)return;
+  $("#usOk").hidden=false;e.target.querySelectorAll("input").forEach(i=>{if(i.id!=="usQty")i.value=""});
+});
+
+/* walk-in scrub */
+(function(){
+  const enter=$("#enter"),stage=$("#stage"),door=$("#door"),v=$("#walk"),inside=$("#inside"),rev=$("#reveal");
+  const reduce=matchMedia("(prefers-reduced-motion: reduce)").matches;
+  if(reduce){v.remove();return}
+  let dur=8,cur=0,geo={s:1,tx:0,ty:0},mobile=false;
+  v.addEventListener("loadedmetadata",()=>{dur=v.duration||8});
+  const prime=()=>{const p=v.play();if(p&&p.then)p.then(()=>v.pause()).catch(()=>{});window.removeEventListener("touchstart",prime);window.removeEventListener("pointerdown",prime)};
+  window.addEventListener("touchstart",prime,{passive:true});window.addEventListener("pointerdown",prime);
+  /* load the clip as a blob so it is seekable on any host (scrubbing needs random access) */
+  const file=v.canPlayType('video/mp4; codecs="avc1.42E01E"')?"walkin.mp4":"walkin.webm";
+  fetch(file).then(r=>{if(!r.ok)throw 0;return r.blob()}).then(b=>{v.src=URL.createObjectURL(b);v.load()})
+    .catch(()=>{v.preload="auto";try{v.load()}catch(e){}});
+  function measure(){
+    mobile=innerWidth<820;door.style.transform="";
+    if(mobile)return;
+    const r=door.getBoundingClientRect(),sr=stage.getBoundingClientRect();
+    const s=Math.max(sr.width/r.width,sr.height/r.height)*1.02;
+    geo={s,tx:(sr.left+sr.width/2)-(r.left+r.width/2),ty:(sr.top+sr.height/2)-(r.top+r.height/2)};
+  }
+  addEventListener("resize",measure);measure();
+  const cl=(x,a,b)=>Math.min(b,Math.max(a,x));
+  function tick(){
+    const r=enter.getBoundingClientRect(),total=enter.offsetHeight-stage.offsetHeight;
+    const p=cl(-r.top/Math.max(1,total),0,1);
+    const pv=cl(p/0.74,0,1),e=cl((p-0.74)/0.2,0,1);
+    const target=pv*(dur-0.06);cur+=(target-cur)*0.2;
+    if(v.readyState>=1&&!v.seeking&&Math.abs(v.currentTime-cur)>0.03){try{v.currentTime=cur}catch(err){}}
+    stage.style.setProperty("--e",e.toFixed(3));stage.style.setProperty("--p",pv.toFixed(3));
+    const ee=e*e*(3-2*e);
+    if(!mobile){door.style.transform=`translate(${geo.tx*ee}px,${geo.ty*ee}px) scale(${1+(geo.s-1)*ee})`;door.style.padding=(10*(1-ee))+"px"}
+    inside.style.opacity=cl((e-0.15)/0.5,0,1);
+    rev.style.opacity=cl((e-0.45)/0.45,0,1);
+    requestAnimationFrame(tick);
+  }
+  requestAnimationFrame(tick);
+})();
+refresh();updateN();
+</script>
+</body>
+</html>
