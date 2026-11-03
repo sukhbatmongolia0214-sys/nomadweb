@@ -60,8 +60,9 @@ button,input,select,textarea{font:inherit;color:inherit}
 .dord fieldset{margin:0}
 .linkbtn{border:0;background:none;padding:0;color:var(--neon);font-weight:700;text-decoration:underline;cursor:pointer;font-size:inherit}
 
-/* HERO — walk-in plays by itself; text waits for the end, then the hero melts into the page colour */
-.hero{position:relative;height:calc(100vh - var(--hh));height:calc(100svh - var(--hh));min-height:520px;overflow:hidden;background:var(--granite)}
+/* HERO — scroll walks you in; no text until the end, then logo + info and the hero melts into the page colour */
+.enter{position:relative;height:240vh;background:var(--granite)}
+.hero{position:sticky;top:calc(var(--hh) + env(safe-area-inset-top,0px));height:calc(100vh - var(--hh));height:calc(100svh - var(--hh));min-height:520px;overflow:hidden;background:var(--granite)}
 .hero-media{position:absolute;inset:0}
 .amb{position:absolute;inset:-6%;width:112%;height:112%;filter:blur(36px) brightness(.5) saturate(1.1);opacity:.9}
 .hero video,.hero .still{position:absolute;top:0;left:50%;height:100%;width:auto;aspect-ratio:3/4;transform:translateX(-50%);object-fit:cover;display:block}
@@ -93,23 +94,26 @@ button,input,select,textarea{font:inherit;color:inherit}
 .btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;height:50px;padding:0 24px;border-radius:2px;font-weight:700;text-decoration:none;border:0;cursor:pointer;font-size:16px}
 .btn-p{background:var(--neon);color:#fff}.btn-p:hover{background:var(--neon-hi)}
 .btn-g{background:transparent;color:var(--on-dark);box-shadow:inset 0 0 0 1.5px #5a5d64}.btn-g:hover{box-shadow:inset 0 0 0 1.5px var(--on-dark)}
-.hero-ctrl{position:absolute;right:calc(var(--gut-r) + 4px);bottom:24px;z-index:4;display:flex;gap:8px}
-.hero-ctrl button{height:38px;padding:0 14px;border:0;border-radius:2px;background:rgba(19,20,23,.62);color:#fff;font-weight:600;font-size:14px;cursor:pointer;backdrop-filter:blur(6px);-webkit-backdrop-filter:blur(6px)}
-.hero-ctrl button:hover{background:rgba(19,20,23,.85)}
-.hero.done .hero-ctrl{bottom:132px}
+.hero-ctrl{position:absolute;right:calc(var(--gut-r) + 4px);bottom:22px;z-index:4;transition:opacity .4s}
+.hero-ctrl a{display:inline-flex;align-items:center;height:36px;padding:0 14px;border-radius:2px;background:rgba(19,20,23,.6);color:#fff;font-weight:600;font-size:14px;text-decoration:none;backdrop-filter:blur(6px);-webkit-backdrop-filter:blur(6px)}
+.hero.done .hero-ctrl{opacity:0;pointer-events:none}
+.cue{position:absolute;left:50%;bottom:26px;width:28px;height:44px;margin-left:-14px;border:2px solid rgba(255,255,255,.8);border-radius:14px;z-index:4;transition:opacity .4s}
+.cue span{position:absolute;left:50%;top:8px;width:4px;height:8px;margin-left:-2px;border-radius:2px;background:#fff;animation:cue 1.6s ease-in-out infinite}
+@keyframes cue{0%{transform:translateY(0);opacity:1}70%{transform:translateY(14px);opacity:0}100%{opacity:0}}
+.hero.moved .cue{opacity:0}
 .bar{position:absolute;left:0;bottom:0;height:3px;width:100%;background:rgba(255,255,255,.12);z-index:3}
 .bar i{display:block;height:100%;width:0;background:var(--neon-glow)}
 .hero.done .bar{opacity:0;transition:opacity .4s}
 @media (max-width:819px){
+  .enter{height:210vh}
   .amb{display:none}
   .hero video,.hero .still{left:0;width:100%;transform:none;aspect-ratio:auto}
   .hero-end{align-items:end;padding-bottom:132px}
   .hero-end img{width:64px;height:64px;margin-bottom:12px}
   .hero-end p{font-size:15px}
   .facts{font-size:14px}
-  .hero.done .hero-ctrl{bottom:auto;top:16px}
 }
-@media (prefers-reduced-motion:reduce){.hero-end>div>*{transition:none}}
+@media (prefers-reduced-motion:reduce){.enter{height:auto}.hero{position:relative;top:0}.hero-end>div>*{transition:none}.cue span{animation:none}}
 
 .sign,.shop,.us{color-scheme:light}
 /* sign-panel section: brands */
@@ -135,6 +139,17 @@ button,input,select,textarea{font:inherit;color:inherit}
 .tools{display:flex;gap:10px}
 .tools input,.tools select{height:46px;border:1.5px solid var(--edge);background:var(--field);border-radius:2px;padding:0 14px;color:var(--ink);min-width:0}
 .tools input{flex:1}
+.cats{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:12px;margin-bottom:20px}
+.cat{position:relative;display:block;padding:0;border:0;background:var(--ph);cursor:pointer;aspect-ratio:4/5;overflow:hidden;text-align:left;color:#fff}
+.cat img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;transition:transform .5s cubic-bezier(.2,.7,.2,1)}
+.cat:hover img{transform:scale(1.04)}
+.cat::after{content:"";position:absolute;inset:0;background:linear-gradient(to top,rgba(20,14,16,.78),rgba(20,14,16,0) 58%)}
+.cat span{position:absolute;left:14px;right:14px;bottom:12px;z-index:1;display:grid;gap:2px}
+.cat b{font-family:var(--f-display);font-weight:700;font-size:clamp(15px,1.5vw,19px);line-height:1.15}
+.cat small{font-size:13px;opacity:.85}
+.cat[aria-pressed="true"]{box-shadow:inset 0 0 0 3px var(--neon)}
+.cat[aria-pressed="true"]::before{content:"✓";position:absolute;top:10px;right:10px;z-index:1;width:26px;height:26px;border-radius:13px;background:var(--neon);color:#fff;display:grid;place-items:center;font-size:14px;font-weight:700}
+@media (max-width:700px){.cats{display:flex;overflow-x:auto;scroll-snap-type:x mandatory;gap:10px;margin-left:calc(-1*var(--gut));margin-right:calc(-1*var(--gut-r));padding:0 var(--gut-r) 6px var(--gut);scrollbar-width:none}.cats::-webkit-scrollbar{display:none}.cat{flex:0 0 38%;scroll-snap-align:start}}
 .tabs{display:flex;gap:8px;overflow-x:auto;padding-bottom:6px;margin-bottom:28px;scrollbar-width:thin}
 .tabs button{flex:none;height:40px;padding:0 16px;border:1.5px solid var(--edge);background:transparent;border-radius:2px;cursor:pointer;font-family:var(--f-display);font-weight:600;font-size:13px;letter-spacing:.08em;text-transform:uppercase;color:var(--ink)}
 .tabs button[aria-pressed="true"]{background:var(--maroon);border-color:var(--maroon);color:#fff}
@@ -306,10 +321,11 @@ legend{font-weight:700;margin-bottom:8px}
 </header>
 
 <main>
-<section class="hero" id="enter" aria-labelledby="heroH">
+<section class="enter" id="enter" aria-labelledby="heroH">
+ <div class="hero" id="hero">
   <div class="hero-media">
     <canvas class="amb" id="amb" width="36" height="48" aria-hidden="true"></canvas>
-    <video id="walk" autoplay muted playsinline preload="auto" poster="img/poster.webp" aria-label="88 Boutique дэлгүүрийн хаалгаар орж буй бичлэг"><source src="walkin.mp4" type="video/mp4"><source src="walkin.webm" type="video/webm"></video>
+    <video id="walk" muted playsinline preload="none" poster="img/poster.webp" aria-label="88 Boutique дэлгүүрийн хаалгаар орж буй бичлэг"><source src="walkin.mp4" type="video/mp4"><source src="walkin.webm" type="video/webm"></video>
     <img class="still" src="img/inside.webp" alt="" width="1080" height="1440">
     <div class="scrim"></div>
   </div>
@@ -332,8 +348,10 @@ legend{font-weight:700;margin-bottom:8px}
     </div>
   </div>
   <div class="melt" aria-hidden="true"></div>
-  <div class="hero-ctrl"><button type="button" id="heroBtn">Алгасах ›</button></div>
+  <div class="cue" aria-hidden="true"><span></span></div>
+  <div class="hero-ctrl"><a href="#brands">Алгасах ↓</a></div>
   <div class="bar" aria-hidden="true"><i id="heroBar"></i></div>
+ </div>
 </section>
 
 <section class="sign" id="brands" aria-labelledby="brandsH">
@@ -358,7 +376,8 @@ legend{font-weight:700;margin-bottom:8px}
         <select id="sort"><option value="new">Шинэ</option><option value="asc">Үнэ: багаас</option><option value="desc">Үнэ: ихээс</option></select>
       </div>
     </div>
-    <div class="tabs" id="tabs" role="group" aria-label="Ангилал"></div>
+    <div class="cats" id="cats" role="group" aria-label="Ангилал"></div>
+    <div class="tabs" id="tabs" role="group" aria-label="Төрөл"></div>
     <div class="active-brand" id="activeBrand"><span id="activeBrandT"></span><button type="button" id="clearBrand">Брэнд арилгах ✕</button></div>
     <div class="grid" id="grid" aria-live="polite"></div>
   </div>
@@ -508,13 +527,46 @@ legend{font-weight:700;margin-bottom:8px}
 </dialog>
 
 <script>
-const P=[{"id":"mk-red","name":"Улаан мөрний цүнх + loafer","brand":"Michael Kors","cat":"bags","price":690000,"real":false,"sizes":null},{"id":"mk-tote-brown","name":"Signature tote цүнх, хүрэн","brand":"Michael Kors","cat":"bags","price":790000,"real":false,"sizes":null},{"id":"mk-pink-set","name":"Signature цүнх, ягаан-шаргал","brand":"Michael Kors","cat":"bags","price":590000,"real":false,"sizes":null},{"id":"mk-black-cross","name":"Хар crossbody цүнх","brand":"Michael Kors","cat":"bags","price":450000,"real":false,"sizes":null},{"id":"mj-brown","name":"The Snapshot маягийн цүнх, хүрэн","brand":"Marc Jacobs","cat":"bags","price":520000,"real":false,"sizes":null},{"id":"mj-black","name":"Хар camera цүнх","brand":"Marc Jacobs","cat":"bags","price":490000,"real":false,"sizes":null},{"id":"mk-watch","name":"Lennox Pavé алтлаг цаг (limited)","brand":"Michael Kors","cat":"watch","price":1190000,"real":false,"sizes":null},{"id":"tf-lostcherry","name":"Lost Cherry биеийн спрей, 150 мл","brand":"Tom Ford","cat":"beauty","price":199000,"real":true,"sizes":null},{"id":"511-pants","name":"Stryke / Flex-Tac өмд","brand":"5.11 Tactical","cat":"tactical","price":289000,"real":true,"sizes":["30x32","32x32","34x32","36x32","38x30"]},{"id":"511-olive-set","name":"Tactical цамц, чидун ногоон","brand":"5.11 Tactical","cat":"tactical","price":259000,"real":false,"sizes":["S","M","L","XL"]},{"id":"511-tee","name":"Лого футболк, хар","brand":"5.11 Tactical","cat":"tactical","price":99000,"real":false,"sizes":["M","L","XL"]},{"id":"511-shirts","name":"Урт ханцуйтай цамц (өнгө сонгох)","brand":"5.11 Tactical","cat":"tactical","price":249000,"real":false,"sizes":["S","M","L","XL","XXL"]},{"id":"col-parka-orange","name":"Үслэг малгайтай парка, улбар шар","brand":"Columbia","cat":"outer","price":590000,"real":false,"sizes":["S","M","L","XL"]},{"id":"col-parka-khaki","name":"Парка, хаки-хар хөх","brand":"Columbia","cat":"outer","price":590000,"real":false,"sizes":["M","L","XL"]},{"id":"col-puffer-bw","name":"Хөвсгөр куртик, хар-цөцгий","brand":"Columbia","cat":"outer","price":490000,"real":false,"sizes":["S","M","L"]},{"id":"col-mint","name":"Куртик, гаа ногоон","brand":"Columbia","cat":"outer","price":450000,"real":false,"sizes":["S","M","L","XL"]},{"id":"polo-camo","name":"Камуфляж куртик","brand":"Polo Ralph Lauren","cat":"outer","price":690000,"real":false,"sizes":["M","L","XL"]},{"id":"col-camo","name":"Камуфляж хөвсгөр куртик","brand":"Columbia","cat":"outer","price":520000,"real":false,"sizes":["M","L","XL"]},{"id":"nepa-boots","name":"Өвлийн гутал, хүрэн","brand":"NEPA","cat":"shoes","price":299000,"real":true,"sizes":["40","41","42"]},{"id":"nike-am90","name":"Air Max 90, цагаан-ногоон","brand":"Nike","cat":"shoes","price":359000,"real":false,"sizes":["36","37","38","39"]},{"id":"nike-pink","name":"Пүүз, ягаан","brand":"Nike","cat":"shoes","price":289000,"real":false,"sizes":["36","37","38"]},{"id":"nike-sb","name":"SB пүүз, хар","brand":"Nike","cat":"shoes","price":259000,"real":false,"sizes":["40","41","42","43"]},{"id":"vans-check","name":"Slip-On дааман, улаан","brand":"Vans","cat":"shoes","price":189000,"real":false,"sizes":["37","38","39","40"]},{"id":"sorel-kids","name":"Хүүхдийн өвлийн гутал, нил ягаан","brand":"Sorel","cat":"kids","price":229000,"real":false,"sizes":["28","30","32"]},{"id":"sorel-kids-red","name":"Хүүхдийн өвлийн гутал, хар-улаан","brand":"Sorel","cat":"kids","price":249000,"real":false,"sizes":["30","32","34"]},{"id":"carters-set","name":"Хүүхдийн хувцасны багц","brand":"Carter’s","cat":"kids","price":59000,"real":false,"sizes":["12м","18м","2Т","3Т"]},{"id":"carters-socks","name":"Оймсны багц","brand":"Carter’s","cat":"kids","price":29000,"real":false,"sizes":null},{"id":"lacoste-beanie","name":"Ноосон малгай (3 өнгө)","brand":"Lacoste","cat":"watch","price":129000,"real":false,"sizes":null}];
-const CATS={all:"Бүгд",bags:"Цүнх",beauty:"Үнэртэн",tactical:"5.11 Tactical",outer:"Гадуур хувцас",shoes:"Гутал",kids:"Хүүхэд",watch:"Цаг, аксессуар"};
+const P=[
+{"id":"mk-red","name":"Улаан мөрний цүнх + loafer","brand":"Michael Kors","g":["women"],"type":"bags","price":690000,"real":false,"sizes":null},
+{"id":"mk-tote-brown","name":"Signature tote цүнх, хүрэн","brand":"Michael Kors","g":["women"],"type":"bags","price":790000,"real":false,"sizes":null},
+{"id":"mk-pink-set","name":"Signature цүнх, ягаан-шаргал","brand":"Michael Kors","g":["women"],"type":"bags","price":590000,"real":false,"sizes":null},
+{"id":"mk-black-cross","name":"Хар crossbody цүнх","brand":"Michael Kors","g":["women"],"type":"bags","price":450000,"real":false,"sizes":null},
+{"id":"mj-brown","name":"The Snapshot маягийн цүнх, хүрэн","brand":"Marc Jacobs","g":["women"],"type":"bags","price":520000,"real":false,"sizes":null},
+{"id":"mj-black","name":"Хар camera цүнх","brand":"Marc Jacobs","g":["women"],"type":"bags","price":490000,"real":false,"sizes":null},
+{"id":"mk-watch","name":"Lennox Pavé алтлаг цаг (limited)","brand":"Michael Kors","g":["jewelry","women"],"type":"watch","price":1190000,"real":false,"sizes":null},
+{"id":"hugo-black","name":"Арьсан оосортой цаг, хар","brand":"Hugo","g":["jewelry","men"],"type":"watch","price":590000,"real":false,"sizes":null},
+{"id":"tf-lostcherry","name":"Lost Cherry биеийн спрей, 150 мл","brand":"Tom Ford","g":["beauty"],"type":"perfume","price":199000,"real":true,"sizes":null},
+{"id":"mfk-br540","name":"Baccarat Rouge 540 үнэртэн","brand":"Maison Francis Kurkdjian","g":["beauty"],"type":"perfume","price":1290000,"real":false,"sizes":["35 мл","70 мл"]},
+{"id":"dior-lip","name":"Rouge Dior Forever шингэн уруулын будаг","brand":"Dior","g":["beauty"],"type":"makeup","price":129000,"real":false,"sizes":null},
+{"id":"dior-palette","name":"5 Couleurs нүдний будгийн палитр","brand":"Dior","g":["beauty"],"type":"makeup","price":249000,"real":false,"sizes":null},
+{"id":"511-pants","name":"Stryke / Flex-Tac өмд","brand":"5.11 Tactical","g":["men"],"type":"clothes","price":289000,"real":true,"sizes":["30x32","32x32","34x32","36x32","38x30"]},
+{"id":"511-olive-set","name":"Tactical цамц, чидун ногоон","brand":"5.11 Tactical","g":["men"],"type":"clothes","price":259000,"real":false,"sizes":["S","M","L","XL"]},
+{"id":"511-tee","name":"Лого футболк, хар","brand":"5.11 Tactical","g":["men"],"type":"clothes","price":99000,"real":false,"sizes":["M","L","XL"]},
+{"id":"511-shirts","name":"Урт ханцуйтай цамц (өнгө сонгох)","brand":"5.11 Tactical","g":["men"],"type":"clothes","price":249000,"real":false,"sizes":["S","M","L","XL","XXL"]},
+{"id":"col-parka-orange","name":"Үслэг малгайтай парка, улбар шар","brand":"Columbia","g":["men"],"type":"clothes","price":590000,"real":false,"sizes":["S","M","L","XL"]},
+{"id":"col-parka-khaki","name":"Парка, хаки-хар хөх","brand":"Columbia","g":["men"],"type":"clothes","price":590000,"real":false,"sizes":["M","L","XL"]},
+{"id":"col-puffer-bw","name":"Хөвсгөр куртик, хар-цөцгий","brand":"Columbia","g":["men"],"type":"clothes","price":490000,"real":false,"sizes":["S","M","L"]},
+{"id":"col-mint","name":"Куртик, гаа ногоон","brand":"Columbia","g":["women"],"type":"clothes","price":450000,"real":false,"sizes":["S","M","L","XL"]},
+{"id":"polo-camo","name":"Камуфляж куртик","brand":"Polo Ralph Lauren","g":["men"],"type":"clothes","price":690000,"real":false,"sizes":["M","L","XL"]},
+{"id":"col-camo","name":"Камуфляж хөвсгөр куртик","brand":"Columbia","g":["men"],"type":"clothes","price":520000,"real":false,"sizes":["M","L","XL"]},
+{"id":"nepa-boots","name":"Өвлийн гутал, хүрэн","brand":"NEPA","g":["men"],"type":"shoes","price":299000,"real":true,"sizes":["40","41","42"]},
+{"id":"nike-am90","name":"Air Max 90, цагаан-ногоон","brand":"Nike","g":["women"],"type":"shoes","price":359000,"real":false,"sizes":["36","37","38","39"]},
+{"id":"nike-pink","name":"Пүүз, ягаан","brand":"Nike","g":["women"],"type":"shoes","price":289000,"real":false,"sizes":["36","37","38"]},
+{"id":"nike-sb","name":"SB пүүз, хар","brand":"Nike","g":["men"],"type":"shoes","price":259000,"real":false,"sizes":["40","41","42","43"]},
+{"id":"vans-check","name":"Slip-On дааман, улаан","brand":"Vans","g":["women","men"],"type":"shoes","price":189000,"real":false,"sizes":["37","38","39","40"]},
+{"id":"sorel-kids","name":"Хүүхдийн өвлийн гутал, нил ягаан","brand":"Sorel","g":["kids"],"type":"shoes","price":229000,"real":false,"sizes":["28","30","32"]},
+{"id":"sorel-kids-red","name":"Хүүхдийн өвлийн гутал, хар-улаан","brand":"Sorel","g":["kids"],"type":"shoes","price":249000,"real":false,"sizes":["30","32","34"]},
+{"id":"carters-set","name":"Хүүхдийн хувцасны багц","brand":"Carter’s","g":["kids"],"type":"clothes","price":59000,"real":false,"sizes":["12м","18м","2Т","3Т"]},
+{"id":"carters-socks","name":"Оймсны багц","brand":"Carter’s","g":["kids"],"type":"clothes","price":29000,"real":false,"sizes":null},
+{"id":"lacoste-beanie","name":"Ноосон малгай (3 өнгө)","brand":"Lacoste","g":["men","women"],"type":"acc","price":129000,"real":false,"sizes":null}];
+const GROUPS={women:["Эмэгтэй","mk-red"],men:["Эрэгтэй","511-pants"],kids:["Хүүхэд","sorel-kids"],jewelry:["Үнэт эдлэл, цаг","mk-watch"],beauty:["Гоо сайхан","mfk-br540"]};
+const TYPES={bags:"Цүнх",clothes:"Хувцас",shoes:"Гутал",watch:"Цаг",perfume:"Үнэртэн",makeup:"Нүүр будалт",acc:"Малгай, аксессуар"};
 const SHIP={pickup:{t:"Дэлгүүрээс очиж авах",d:"2-р хороолол, 12:00–20:00",fee:0},dkh:{t:"Дархан хот дотор хүргэлт",d:"Өдөр бүр · жишээ үнэ",fee:5000},ub:{t:"Улаанбаатар руу",d:"Унаагаар · үнийг утсаар тохирно",fee:null},far:{t:"Орон нутаг руу",d:"Аймаг, сум руу унаа, шуудангаар · үнийг утсаар тохирно",fee:null}};
 const $=s=>document.querySelector(s);
 const fmt=n=>n.toLocaleString("en-US").replace(/,/g,",")+"₮";
 const byId=Object.fromEntries(P.map(p=>[p.id,p]));
-const st={cat:"all",brand:null,q:"",sort:"new"};
+const st={grp:"all",type:"all",brand:null,q:"",sort:"new"};
 let cart=[];let ship="pickup";let done=null;
 try{cart=JSON.parse(localStorage.getItem("88cart")||"[]").filter(i=>byId[i.id])}catch(e){cart=[]}
 function save(){try{localStorage.setItem("88cart",JSON.stringify(cart))}catch(e){}}
@@ -522,15 +574,19 @@ function save(){try{localStorage.setItem("88cart",JSON.stringify(cart))}catch(e)
 /* brands + tabs */
 function renderBrands(){
   const counts={};P.forEach(p=>counts[p.brand]=(counts[p.brand]||0)+1);
-  const order=["Michael Kors","Marc Jacobs","Tom Ford","5.11 Tactical","Columbia","Polo Ralph Lauren","Nike","NEPA","Sorel","Vans","Carter’s","Lacoste"];
+  const order=["Michael Kors","Marc Jacobs","Dior","Tom Ford","Maison Francis Kurkdjian","Hugo","5.11 Tactical","Columbia","Polo Ralph Lauren","Nike","NEPA","Sorel","Vans","Carter’s","Lacoste"];
   $("#brandList").innerHTML=order.filter(b=>counts[b]).map(b=>`<li><button type="button" data-brand="${b}" aria-pressed="${st.brand===b}">${b}<sup class="num">${counts[b]}</sup></button></li>`).join("");
 }
+function inGrp(p){return st.grp==="all"||p.g.includes(st.grp)}
 function renderTabs(){
-  $("#tabs").innerHTML=Object.entries(CATS).map(([k,v])=>`<button type="button" data-cat="${k}" aria-pressed="${st.cat===k}">${v}</button>`).join("");
+  $("#cats").innerHTML=Object.entries(GROUPS).map(([k,[label,img]])=>{const n=P.filter(p=>p.g.includes(k)).length;return `<button class="cat" type="button" data-grp="${k}" aria-pressed="${st.grp===k}"><img src="img/${img}.webp" alt="" width="520" height="520" loading="lazy"><span><b>${label}</b><small class="num">${n} бараа</small></span></button>`}).join("");
+  const types=[...new Set(P.filter(inGrp).map(p=>p.type))];
+  if(st.type!=="all"&&!types.includes(st.type))st.type="all";
+  $("#tabs").innerHTML=`<button type="button" data-type="all" aria-pressed="${st.type==="all"}">${st.grp==="all"?"Бүгд":"Бүх "+GROUPS[st.grp][0].toLowerCase()}</button>`+Object.entries(TYPES).filter(([k])=>types.includes(k)).map(([k,v])=>`<button type="button" data-type="${k}" aria-pressed="${st.type===k}">${v}</button>`).join("");
 }
 function list(){
   const q=st.q.trim().toLowerCase();
-  let r=P.filter(p=>(st.cat==="all"||p.cat===st.cat)&&(!st.brand||p.brand===st.brand)&&(!q||(p.name+" "+p.brand).toLowerCase().includes(q)));
+  let r=P.filter(p=>inGrp(p)&&(st.type==="all"||p.type===st.type)&&(!st.brand||p.brand===st.brand)&&(!q||(p.name+" "+p.brand).toLowerCase().includes(q)));
   if(st.sort==="asc")r=[...r].sort((a,b)=>a.price-b.price);
   if(st.sort==="desc")r=[...r].sort((a,b)=>b.price-a.price);
   return r;
@@ -542,9 +598,10 @@ function renderGrid(){
 }
 function refresh(){renderBrands();renderTabs();renderGrid()}
 document.addEventListener("click",e=>{
-  const t=e.target.closest("[data-cat],[data-brand],.card,[data-close],[data-copy]");if(!t)return;
-  if(t.dataset.cat){st.cat=t.dataset.cat;refresh()}
-  else if(t.dataset.brand){st.brand=st.brand===t.dataset.brand?null:t.dataset.brand;st.cat="all";refresh();if(st.brand)$("#shop").scrollIntoView({behavior:"smooth"})}
+  const t=e.target.closest("[data-grp],[data-type],[data-brand],.card,[data-close],[data-copy]");if(!t)return;
+  if(t.dataset.grp){st.grp=st.grp===t.dataset.grp?"all":t.dataset.grp;st.type="all";refresh()}
+  else if(t.dataset.type){st.type=t.dataset.type;refresh()}
+  else if(t.dataset.brand){st.brand=st.brand===t.dataset.brand?null:t.dataset.brand;st.grp="all";st.type="all";refresh();if(st.brand)$("#shop").scrollIntoView({behavior:"smooth"})}
   else if(t.classList.contains("card"))openPd(t.dataset.id);
   else if(t.hasAttribute("data-close"))t.closest("dialog").close();
   else if(t.dataset.copy){const v=document.getElementById(t.dataset.copy).textContent;const ok=()=>{t.textContent="Хуулсан";setTimeout(()=>t.textContent="Хуулах",1600)};
@@ -554,7 +611,7 @@ function selectText(id){const r=document.createRange();r.selectNodeContents(docu
 $("#clearBrand").onclick=()=>{st.brand=null;refresh()};
 $("#q").addEventListener("input",e=>{st.q=e.target.value;renderGrid()});
 $("#sort").addEventListener("change",e=>{st.sort=e.target.value;renderGrid()});
-$("#go511").onclick=()=>{st.cat="tactical";st.brand=null;refresh();$("#shop").scrollIntoView({behavior:"smooth"})};
+$("#go511").onclick=()=>{st.grp="all";st.type="all";st.brand="5.11 Tactical";refresh();$("#shop").scrollIntoView({behavior:"smooth"})};
 
 /* product dialog */
 let cur=null,size=null,qty=1;
@@ -632,36 +689,32 @@ $("#usForm").addEventListener("submit",e=>{
   $("#usOk").hidden=false;e.target.querySelectorAll("input").forEach(i=>{if(i.id!=="usQty")i.value=""});
 });
 
-/* walk-in: plays once by itself, text appears at the end */
+/* walk-in: scroll walks through the door; text only at the end */
 (function(){
-  const hero=$("#enter"),v=$("#walk"),btn=$("#heroBtn"),bar=$("#heroBar"),amb=$("#amb"),ctx=amb.getContext("2d");
-  const reduce=matchMedia("(prefers-reduced-motion: reduce)").matches;
-  let ended=false;
-  function finish(){
-    if(ended)return;ended=true;
-    try{v.pause()}catch(e){}
-    hero.classList.add("done","nov");btn.textContent="↻ Дахин үзэх";bar.style.width="100%";
-  }
-  function replay(){
-    ended=false;hero.classList.remove("done","nov");btn.textContent="Алгасах ›";
-    try{v.currentTime=0}catch(e){}
-    const p=v.play();if(p&&p.catch)p.catch(()=>{hero.classList.add("nov");finish()});
-  }
-  btn.onclick=()=>{ended?replay():finish()};
-  v.addEventListener("ended",finish);
-  const srcs=v.querySelectorAll("source");srcs[srcs.length-1].addEventListener("error",()=>{hero.classList.add("nov");finish();btn.textContent="↻ Дахин үзэх"});
-  v.addEventListener("timeupdate",()=>{if(v.duration)bar.style.width=(v.currentTime/v.duration*100)+"%"});
-  if(reduce){v.removeAttribute("autoplay");v.pause();hero.classList.add("nov");finish();btn.textContent="▶ Бичлэг үзэх";}
-  else{
-    const p=v.play();
-    if(p&&p.catch)p.catch(()=>{hero.classList.add("nov");finish();btn.textContent="▶ Бичлэг үзэх"});
-  }
-  /* soft blurred colour behind the 3:4 clip on wide screens */
-  function paint(){
+  const enter=$("#enter"),hero=$("#hero"),v=$("#walk"),bar=$("#heroBar"),amb=$("#amb"),ctx=amb.getContext("2d");
+  if(matchMedia("(prefers-reduced-motion: reduce)").matches){hero.classList.add("done","nov","moved");return}
+  let dur=8,cur=0,done=false;
+  v.addEventListener("loadedmetadata",()=>{dur=v.duration||8});
+  /* blob = seekable on any host, so scrubbing never stalls on range requests */
+  const file=v.canPlayType('video/mp4; codecs="avc1.42E01E"')?"walkin.mp4":"walkin.webm";
+  fetch(file).then(r=>{if(!r.ok)throw 0;return r.blob()}).then(b=>{v.src=URL.createObjectURL(b);v.load()})
+    .catch(()=>{v.preload="auto";try{v.load()}catch(e){}});
+  const prime=()=>{const p=v.play();if(p&&p.then)p.then(()=>v.pause()).catch(()=>{});removeEventListener("touchstart",prime);removeEventListener("pointerdown",prime)};
+  addEventListener("touchstart",prime,{passive:true});addEventListener("pointerdown",prime);
+  const cl=(x,a,b)=>Math.min(b,Math.max(a,x));
+  function tick(){
+    const r=enter.getBoundingClientRect(),total=enter.offsetHeight-hero.offsetHeight;
+    const p=cl(-r.top/Math.max(1,total),0,1),pv=cl(p/0.8,0,1);
+    cur+=(pv*(dur-0.06)-cur)*0.22;
+    if(v.readyState>=1&&!v.seeking&&Math.abs(v.currentTime-cur)>0.03){try{v.currentTime=cur}catch(e){}}
+    bar.style.width=(pv*100)+"%";
+    hero.classList.toggle("moved",p>0.015);
+    if(!done&&p>=0.84){done=true;hero.classList.add("done","nov")}
+    else if(done&&p<0.78){done=false;hero.classList.remove("done","nov")}
     if(innerWidth>=820&&v.readyState>=2){try{ctx.drawImage(v,0,0,amb.width,amb.height)}catch(e){}}
-    requestAnimationFrame(paint);
+    requestAnimationFrame(tick);
   }
-  requestAnimationFrame(paint);
+  requestAnimationFrame(tick);
 })();
 /* quick delivery order */
 document.addEventListener("click",e=>{if(e.target.closest("[data-dorder]")){$("#dErr").textContent="";$("#dOk").hidden=true;$("#dord").showModal()}});
