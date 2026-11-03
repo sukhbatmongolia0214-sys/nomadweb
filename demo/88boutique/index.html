@@ -60,9 +60,8 @@ button,input,select,textarea{font:inherit;color:inherit}
 .dord fieldset{margin:0}
 .linkbtn{border:0;background:none;padding:0;color:var(--neon);font-weight:700;text-decoration:underline;cursor:pointer;font-size:inherit}
 
-/* HERO — scroll walks you in; no text until the end, then logo + info and the hero melts into the page colour */
-.enter{position:relative;height:240vh;background:var(--granite)}
-.hero{position:sticky;top:calc(var(--hh) + env(safe-area-inset-top,0px));height:calc(100vh - var(--hh));height:calc(100svh - var(--hh));min-height:520px;overflow:hidden;background:var(--granite)}
+/* HERO — walk-in plays by itself; text waits for the end, then the hero melts into the page colour */
+.hero{position:relative;height:calc(100vh - var(--hh));height:calc(100svh - var(--hh));min-height:520px;overflow:hidden;background:var(--granite)}
 .hero-media{position:absolute;inset:0}
 .amb{position:absolute;inset:-6%;width:112%;height:112%;filter:blur(36px) brightness(.5) saturate(1.1);opacity:.9}
 .hero video,.hero .still{position:absolute;top:0;left:50%;height:100%;width:auto;aspect-ratio:3/4;transform:translateX(-50%);object-fit:cover;display:block}
@@ -94,26 +93,23 @@ button,input,select,textarea{font:inherit;color:inherit}
 .btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;height:50px;padding:0 24px;border-radius:2px;font-weight:700;text-decoration:none;border:0;cursor:pointer;font-size:16px}
 .btn-p{background:var(--neon);color:#fff}.btn-p:hover{background:var(--neon-hi)}
 .btn-g{background:transparent;color:var(--on-dark);box-shadow:inset 0 0 0 1.5px #5a5d64}.btn-g:hover{box-shadow:inset 0 0 0 1.5px var(--on-dark)}
-.hero-ctrl{position:absolute;right:calc(var(--gut-r) + 4px);bottom:22px;z-index:4;transition:opacity .4s}
-.hero-ctrl a{display:inline-flex;align-items:center;height:36px;padding:0 14px;border-radius:2px;background:rgba(19,20,23,.6);color:#fff;font-weight:600;font-size:14px;text-decoration:none;backdrop-filter:blur(6px);-webkit-backdrop-filter:blur(6px)}
-.hero.done .hero-ctrl{opacity:0;pointer-events:none}
-.cue{position:absolute;left:50%;bottom:26px;width:28px;height:44px;margin-left:-14px;border:2px solid rgba(255,255,255,.8);border-radius:14px;z-index:4;transition:opacity .4s}
-.cue span{position:absolute;left:50%;top:8px;width:4px;height:8px;margin-left:-2px;border-radius:2px;background:#fff;animation:cue 1.6s ease-in-out infinite}
-@keyframes cue{0%{transform:translateY(0);opacity:1}70%{transform:translateY(14px);opacity:0}100%{opacity:0}}
-.hero.moved .cue{opacity:0}
+.hero-ctrl{position:absolute;right:calc(var(--gut-r) + 4px);bottom:24px;z-index:4;display:flex;gap:8px}
+.hero-ctrl button{height:38px;padding:0 14px;border:0;border-radius:2px;background:rgba(19,20,23,.62);color:#fff;font-weight:600;font-size:14px;cursor:pointer;backdrop-filter:blur(6px);-webkit-backdrop-filter:blur(6px)}
+.hero-ctrl button:hover{background:rgba(19,20,23,.85)}
+.hero.done .hero-ctrl{bottom:132px}
 .bar{position:absolute;left:0;bottom:0;height:3px;width:100%;background:rgba(255,255,255,.12);z-index:3}
 .bar i{display:block;height:100%;width:0;background:var(--neon-glow)}
 .hero.done .bar{opacity:0;transition:opacity .4s}
 @media (max-width:819px){
-  .enter{height:210vh}
   .amb{display:none}
   .hero video,.hero .still{left:0;width:100%;transform:none;aspect-ratio:auto}
   .hero-end{align-items:end;padding-bottom:132px}
   .hero-end img{width:64px;height:64px;margin-bottom:12px}
   .hero-end p{font-size:15px}
   .facts{font-size:14px}
+  .hero.done .hero-ctrl{bottom:auto;top:16px}
 }
-@media (prefers-reduced-motion:reduce){.enter{height:auto}.hero{position:relative;top:0}.hero-end>div>*{transition:none}.cue span{animation:none}}
+@media (prefers-reduced-motion:reduce){.hero-end>div>*{transition:none}}
 
 .sign,.shop,.us{color-scheme:light}
 /* sign-panel section: brands */
@@ -1007,8 +1003,7 @@ legend{font-weight:700;margin-bottom:8px}
 </header>
 
 <main>
-<section class="enter" id="enter" aria-labelledby="heroH">
- <div class="hero" id="hero">
+<section class="hero" id="enter" aria-labelledby="heroH">
   <div class="hero-media">
     <canvas class="amb" id="amb" width="36" height="48" aria-hidden="true"></canvas>
     <video id="walk" muted playsinline preload="none" poster="img/poster.webp" aria-label="88 Boutique дэлгүүрийн хаалгаар орж буй бичлэг"><source src="walkin.mp4" type="video/mp4"><source src="walkin.webm" type="video/webm"></video>
@@ -1034,10 +1029,8 @@ legend{font-weight:700;margin-bottom:8px}
     </div>
   </div>
   <div class="melt" aria-hidden="true"></div>
-  <div class="cue" aria-hidden="true"><span></span></div>
-  <div class="hero-ctrl"><a href="#brands">Алгасах ↓</a></div>
+  <div class="hero-ctrl"><button type="button" id="heroBtn">Алгасах ›</button></div>
   <div class="bar" aria-hidden="true"><i id="heroBar"></i></div>
- </div>
 </section>
 
 <section class="sign" id="brands" aria-labelledby="brandsH">
@@ -1389,32 +1382,46 @@ $("#usForm").addEventListener("submit",e=>{
   $("#usOk").hidden=false;e.target.querySelectorAll("input").forEach(i=>{if(i.id!=="usQty")i.value=""});
 });
 
-/* walk-in: scroll walks through the door; text only at the end */
+/* walk-in: downloads fully first (no buffering stutter), then plays once; text appears at the end */
 (function(){
-  const enter=$("#enter"),hero=$("#hero"),v=$("#walk"),bar=$("#heroBar"),amb=$("#amb"),ctx=amb.getContext("2d");
-  if(matchMedia("(prefers-reduced-motion: reduce)").matches){hero.classList.add("done","nov","moved");return}
-  let dur=8,cur=0,done=false;
-  v.addEventListener("loadedmetadata",()=>{dur=v.duration||8});
-  /* blob = seekable on any host, so scrubbing never stalls on range requests */
-  const file=v.canPlayType('video/mp4; codecs="avc1.42E01E"')?"walkin.mp4":"walkin.webm";
-  fetch(file).then(r=>{if(!r.ok)throw 0;return r.blob()}).then(b=>{v.src=URL.createObjectURL(b);v.load()})
-    .catch(()=>{v.preload="auto";try{v.load()}catch(e){}});
-  const prime=()=>{const p=v.play();if(p&&p.then)p.then(()=>v.pause()).catch(()=>{});removeEventListener("touchstart",prime);removeEventListener("pointerdown",prime)};
-  addEventListener("touchstart",prime,{passive:true});addEventListener("pointerdown",prime);
-  const cl=(x,a,b)=>Math.min(b,Math.max(a,x));
-  function tick(){
-    const r=enter.getBoundingClientRect(),total=enter.offsetHeight-hero.offsetHeight;
-    const p=cl(-r.top/Math.max(1,total),0,1),pv=cl(p/0.8,0,1);
-    cur+=(pv*(dur-0.06)-cur)*0.22;
-    if(v.readyState>=1&&!v.seeking&&Math.abs(v.currentTime-cur)>0.03){try{v.currentTime=cur}catch(e){}}
-    bar.style.width=(pv*100)+"%";
-    hero.classList.toggle("moved",p>0.015);
-    if(!done&&p>=0.84){done=true;hero.classList.add("done","nov")}
-    else if(done&&p<0.78){done=false;hero.classList.remove("done","nov")}
-    if(innerWidth>=820&&v.readyState>=2){try{ctx.drawImage(v,0,0,amb.width,amb.height)}catch(e){}}
-    requestAnimationFrame(tick);
+  const hero=$("#enter"),v=$("#walk"),btn=$("#heroBtn"),bar=$("#heroBar"),amb=$("#amb"),ctx=amb.getContext("2d");
+  let ended=false;
+  function finish(){
+    if(ended)return;ended=true;
+    try{v.pause()}catch(e){}
+    hero.classList.add("done","nov");btn.textContent="↻ Дахин үзэх";bar.style.width="100%";
   }
-  requestAnimationFrame(tick);
+  function start(){
+    if(ended)return;
+    const p=v.play();if(p&&p.catch)p.catch(()=>{finish();btn.textContent="▶ Бичлэг үзэх"});
+  }
+  function replay(){
+    ended=false;hero.classList.remove("done","nov");btn.textContent="Алгасах ›";
+    try{v.currentTime=0}catch(e){}
+    const p=v.play();if(p&&p.catch)p.catch(()=>finish());
+  }
+  btn.onclick=()=>{ended?replay():finish()};
+  v.addEventListener("ended",finish);
+  v.addEventListener("timeupdate",()=>{if(v.duration&&!ended)bar.style.width=(v.currentTime/v.duration*100)+"%"});
+  if(matchMedia("(prefers-reduced-motion: reduce)").matches){finish();btn.textContent="▶ Бичлэг үзэх";btn.onclick=()=>{if(!v.src)v.src=file;replay()};}
+  const file=v.canPlayType('video/mp4; codecs="avc1.42E01E"')?"walkin.mp4":"walkin.webm";
+  async function load(){
+    const r=await fetch(file);if(!r.ok)throw 0;
+    const total=+r.headers.get("content-length")||0;
+    if(!r.body||!total)return r.blob();
+    const rd=r.body.getReader(),parts=[];let got=0;
+    for(;;){const {done,value}=await rd.read();if(done)break;parts.push(value);got+=value.length;if(!ended)bar.style.width=(got/total*100)+"%"}
+    return new Blob(parts,{type:file.endsWith(".mp4")?"video/mp4":"video/webm"});
+  }
+  if(!hero.classList.contains("done")){
+    load().then(b=>{v.src=URL.createObjectURL(b);bar.style.width="0%";start()})
+      .catch(()=>{v.src=file;start()});
+  }
+  /* soft blurred colour behind the 3:4 clip on wide screens */
+  (function paint(){
+    if(innerWidth>=820&&v.readyState>=2){try{ctx.drawImage(v,0,0,amb.width,amb.height)}catch(e){}}
+    requestAnimationFrame(paint);
+  })();
 })();
 /* quick delivery order */
 document.addEventListener("click",e=>{if(e.target.closest("[data-dorder]")){$("#dErr").textContent="";$("#dOk").hidden=true;$("#dord").showModal()}});
