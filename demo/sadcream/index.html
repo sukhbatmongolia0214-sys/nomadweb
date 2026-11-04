@@ -7,243 +7,272 @@
 <title>SADCREAM — Монгол брэнд · NEVER DIE</title>
 <meta name="description" content="SADCREAM — Улаанбаатарын гудамжны хувцасны брэнд. Hoodie, хүрэм, урьдчилсан захиалга.">
 <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Oswald:wght@500;600;700&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Tektur:wght@600;800;900&family=JetBrains+Mono:wght@500;700;800&family=Rubik:wght@400;500;600&display=swap" rel="stylesheet">
 <style>
-:root{--bg:#0b0b0c;--bg2:#121214;--ink:#f2f0ea;--line:rgba(242,240,234,.14);--mute:rgba(242,240,234,.64);--red:#e3302b;--m:clamp(16px,4vw,48px)}
+:root{--paper:#e4e3df;--ink:#0d0d0d;--tag:#f7f6f2;--red:#ff2a1f;--line:rgba(13,13,13,.16);--mute:rgba(13,13,13,.6);--m:clamp(16px,4vw,48px)}
 *{box-sizing:border-box;margin:0;padding:0}
 html{scroll-behavior:smooth}
-body{background:var(--bg);color:var(--ink);font:400 17px/1.5 Manrope,system-ui,sans-serif;-webkit-font-smoothing:antialiased;overflow-x:hidden}
+body{background:var(--paper);color:var(--ink);font:400 17px/1.5 Rubik,system-ui,sans-serif;-webkit-font-smoothing:antialiased;overflow-x:hidden}
+body::before{content:"";position:fixed;inset:0;pointer-events:none;z-index:50;opacity:.06;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='2'/%3E%3C/filter%3E%3Crect width='160' height='160' filter='url(%23n)'/%3E%3C/svg%3E")}
 a{color:inherit;text-decoration:none}
 img{display:block;width:100%;height:100%;object-fit:cover}
-.d{font-family:Oswald,Manrope,sans-serif;text-transform:uppercase;letter-spacing:-.01em;line-height:.9;font-weight:700}
-.num{font-variant-numeric:tabular-nums}
+.d{font-family:Tektur,Rubik,sans-serif;text-transform:uppercase;font-weight:900;letter-spacing:-.02em;line-height:.88}
+.mono{font-family:"JetBrains Mono",monospace}
 .wrap{padding-left:var(--m);padding-right:var(--m)}
-.btn{display:inline-flex;align-items:center;justify-content:center;gap:10px;height:56px;padding:0 28px;font:800 15px Manrope;letter-spacing:.06em;text-transform:uppercase;border:1.5px solid var(--ink);transition:background .2s,color .2s,transform .15s}
-.btn:active{transform:scale(.97)}
-.btn.fill{background:var(--ink);color:var(--bg)}.btn.fill:hover{background:var(--red);border-color:var(--red);color:var(--ink)}
-.btn.line:hover{background:var(--ink);color:var(--bg)}
-.btn:focus-visible,a:focus-visible,input:focus-visible{outline:2px solid var(--red);outline-offset:3px}
+.btn{display:inline-flex;align-items:center;gap:12px;height:58px;padding:0 26px;font:800 14px "JetBrains Mono";letter-spacing:.04em;text-transform:uppercase;background:var(--ink);color:var(--paper);transition:background .2s,transform .15s}
+.btn:hover{background:var(--red)}.btn:active{transform:translateY(2px)}
+.btn.o{background:transparent;color:var(--ink);box-shadow:inset 0 0 0 2px var(--ink)}.btn.o:hover{background:var(--ink);color:var(--paper)}
+.btn svg{width:18px;height:18px}
+:focus-visible{outline:3px solid var(--red);outline-offset:3px}
 
-/* header */
-header{position:fixed;inset:0 0 auto;z-index:20;display:flex;align-items:center;justify-content:space-between;height:68px;padding:0 var(--m);transition:background .3s}
-header.s{background:rgba(11,11,12,.86);backdrop-filter:blur(12px);border-bottom:1px solid var(--line)}
-.logo{font:700 26px Oswald;letter-spacing:.02em}
-nav{display:flex;gap:30px;font:700 13px Manrope;letter-spacing:.12em;text-transform:uppercase}
-nav a{color:var(--mute);transition:color .2s}nav a:hover{color:var(--ink)}
-header .btn{height:42px;padding:0 18px;font-size:13px}
+/* ticker + header */
+.tick{background:var(--ink);color:var(--paper);overflow:hidden;white-space:nowrap;font:700 13px "JetBrains Mono";letter-spacing:.08em;height:34px;display:flex;align-items:center}
+.tick div{display:inline-block;animation:mq 38s linear infinite;padding-left:100%}
+.tick span{margin:0 26px}.tick i{color:var(--red);font-style:normal}
+@keyframes mq{to{transform:translateX(-100%)}}
+header{position:sticky;top:0;z-index:30;display:flex;align-items:center;justify-content:space-between;height:66px;padding:0 var(--m);background:var(--paper);border-bottom:2px solid var(--ink)}
+.logo{font:900 24px Tektur;letter-spacing:-.01em}
+nav{display:flex;gap:28px;font:700 13px "JetBrains Mono";text-transform:uppercase}
+nav a{position:relative}nav a::after{content:"";position:absolute;left:0;right:0;bottom:-4px;height:2px;background:var(--red);transform:scaleX(0);transition:transform .2s;transform-origin:left}nav a:hover::after{transform:none}
+header .btn{height:42px;padding:0 16px;font-size:12px}
 @media(max-width:900px){nav{display:none}}
 
 /* hero */
-.hero{position:relative;height:100svh;min-height:640px;overflow:hidden}
-.hero .ph{position:absolute;inset:0}
-.hero .ph img{object-position:68% 40%;animation:kb 9s ease-out both}
-@keyframes kb{from{transform:scale(1.07)}to{transform:scale(1)}}
-.hero::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(11,11,12,.55) 0,rgba(11,11,12,0) 22%,rgba(11,11,12,0) 45%,rgba(11,11,12,.92) 82%,var(--bg) 100%)}
-.hero .in{position:absolute;left:0;right:0;bottom:0;z-index:2;padding:0 var(--m) 40px}
-.hero h1{font-size:clamp(56px,19.6vw,330px);margin-left:-.04em}
-.hero .row{display:flex;justify-content:space-between;align-items:flex-end;gap:24px;margin-top:22px;flex-wrap:wrap}
-.hero p{max-width:520px;font-size:clamp(17px,1.6vw,21px);font-weight:500}
-.hero .cta{display:flex;gap:12px;flex-wrap:wrap}
+.hero{position:relative;min-height:calc(100svh - 100px);padding:28px var(--m) 40px;display:grid;grid-template-rows:auto 1fr auto;overflow:hidden}
+.hero .w1,.hero .w2{font-size:clamp(92px,21vw,360px);position:relative;z-index:1}
+.hero .w2{text-align:right;margin-top:-.06em}
+.stack{position:absolute;inset:0;z-index:2;pointer-events:none}
+.card{position:absolute;background:var(--tag);padding:10px 10px 44px;box-shadow:0 2px 0 rgba(0,0,0,.08),0 24px 50px rgba(0,0,0,.22);pointer-events:auto}
+.card .ph{overflow:hidden;background:#222}
+.card .cp{position:absolute;left:12px;right:12px;bottom:12px;display:flex;justify-content:space-between;font:700 12px "JetBrains Mono";text-transform:uppercase}
+.c1{left:50%;top:50%;width:min(34vw,440px);transform:translate(-62%,-52%) rotate(-5deg)}
+.c1 .ph{aspect-ratio:4/5}.c1 img{object-position:72% 40%}
+.c2{left:50%;top:50%;width:min(24vw,310px);transform:translate(28%,-18%) rotate(6deg)}
+.c2 .ph{aspect-ratio:4/5}.c2 img{object-position:48% 50%}
+.hero .bot{position:relative;z-index:3;display:flex;justify-content:space-between;align-items:flex-end;gap:24px;flex-wrap:wrap;margin-top:24px}
+.hero p{max-width:440px;font-size:clamp(17px,1.5vw,20px);font-weight:500;background:var(--paper);padding:4px 0}
+.hero .cta{display:flex;gap:10px;flex-wrap:wrap}
+@media(max-width:760px){.hero{min-height:auto}.hero .w1,.hero .w2{font-size:23.5vw}.stack{position:relative;height:118vw;margin:-6vw 0 -4vw}.c1{width:66vw;transform:translate(-70%,-50%) rotate(-5deg)}.c2{width:46vw;transform:translate(8%,-30%) rotate(6deg)}}
 
 /* section head */
-section{padding-top:clamp(96px,12vw,170px)}
-.sh{display:flex;justify-content:space-between;align-items:flex-end;gap:24px;border-bottom:1px solid var(--line);padding-bottom:22px;margin-bottom:36px;flex-wrap:wrap}
-.sh h2{font-size:clamp(46px,7vw,104px)}
-.sh p{max-width:420px;color:var(--mute)}
-.tag{display:inline-block;font:800 11px Manrope;letter-spacing:.14em;text-transform:uppercase;padding:6px 9px;background:var(--red);color:var(--ink)}
-.tag.k{background:var(--ink);color:var(--bg)}.tag.g{background:transparent;border:1px solid var(--line);color:var(--mute)}
+section{padding-top:clamp(96px,11vw,150px)}
+.sh{display:grid;grid-template-columns:1fr auto;align-items:end;gap:20px 40px;margin-bottom:36px}
+.sh h2{font-size:clamp(52px,8.2vw,128px)}
+.sh p{max-width:380px;font-size:16px;color:var(--mute)}
+@media(max-width:760px){.sh{grid-template-columns:1fr}}
 
-/* preorder */
-.pre{display:grid;grid-template-columns:repeat(4,1fr);gap:16px}
-.pc .im{aspect-ratio:4/5;background:#e9e7e2;position:relative;overflow:hidden}
-.pc .im img{object-fit:contain;transition:transform .5s}
-.pc:hover .im img{transform:scale(1.04)}
-.pc .im .tag{position:absolute;left:12px;top:12px}
-.pc h3{font:600 22px Oswald;text-transform:uppercase;margin-top:16px;letter-spacing:.01em}
-.pc .pr{display:flex;justify-content:space-between;margin-top:6px;font-weight:700}
-.pc .sz{color:var(--mute);font-size:14px;margin-top:4px}
-@media(max-width:1000px){.pre{grid-template-columns:repeat(2,1fr)}}
-@media(max-width:560px){.pre{grid-template-columns:1fr 1fr;gap:10px}.pc h3{font-size:17px}.pc .pr{font-size:15px;flex-direction:column}}
+/* hang tags */
+.rail{display:flex;gap:22px;overflow-x:auto;scroll-snap-type:x mandatory;padding:30px var(--m) 30px;margin:0 calc(-1*var(--m));scrollbar-width:none}
+.rail::-webkit-scrollbar{display:none}
+.tg{flex:0 0 clamp(260px,26vw,340px);scroll-snap-align:start;position:relative;transform-origin:50% 0;transition:transform .5s cubic-bezier(.3,1.6,.5,1)}
+.tg:hover{transform:rotate(-2.5deg)}
+.tg .str{position:absolute;left:50%;top:-30px;width:2px;height:44px;background:var(--ink);opacity:.7}
+.tg .body{background:var(--tag);clip-path:polygon(14% 0,86% 0,100% 7%,100% 100%,0 100%,0 7%);padding:34px 18px 18px;position:relative;box-shadow:0 18px 40px rgba(0,0,0,.14)}
+.tg .hole{position:absolute;left:50%;top:12px;width:14px;height:14px;margin-left:-7px;border-radius:50%;background:var(--paper);box-shadow:inset 0 0 0 2px rgba(0,0,0,.25)}
+.tg .im{aspect-ratio:1;background:#fff;margin-bottom:16px}
+.tg .im img{object-fit:contain}
+.tg h3{font:800 22px/1 Tektur;text-transform:uppercase;letter-spacing:-.01em}
+.tg dl{display:grid;grid-template-columns:auto 1fr;gap:4px 14px;margin:14px 0;font:500 13px "JetBrains Mono";text-transform:uppercase}
+.tg dt{color:var(--mute)}.tg dd{text-align:right}
+.tg .pr{display:flex;justify-content:space-between;align-items:center;border-top:2px dashed var(--line);padding-top:14px}
+.tg .pr b{font:800 26px "JetBrains Mono";letter-spacing:-.03em}
+.bar{height:34px;width:110px;background:repeating-linear-gradient(90deg,var(--ink) 0 2px,transparent 2px 4px,var(--ink) 4px 5px,transparent 5px 8px,var(--ink) 8px 11px,transparent 11px 12px)}
+.st{position:absolute;right:14px;top:44px;transform:rotate(8deg);border:3px solid var(--red);color:var(--red);font:800 14px "JetBrains Mono";padding:6px 9px;text-transform:uppercase;background:rgba(247,246,242,.85)}
+.rhint{font:700 13px "JetBrains Mono";text-transform:uppercase;color:var(--mute);display:flex;gap:10px;align-items:center}
 
-/* bestseller */
-.best{display:grid;grid-template-columns:1.05fr 1fr;gap:clamp(24px,4vw,64px);align-items:stretch}
-.best .big{position:relative;background:#e9e7e2;min-height:640px}
-.best .big img{object-fit:contain}
-.best .big .cap{position:absolute;left:0;right:0;bottom:0;padding:22px;display:flex;justify-content:space-between;align-items:flex-end;background:linear-gradient(transparent,rgba(0,0,0,.55));color:#fff}
-.best .big .cap b{font:700 clamp(30px,3.4vw,48px)/1 Oswald;text-transform:uppercase}
-.bl{list-style:none;border-top:1px solid var(--line)}
-.bl li{border-bottom:1px solid var(--line)}
-.bl a{display:grid;grid-template-columns:84px 1fr auto;gap:20px;align-items:center;padding:16px 0;transition:padding .25s}
-.bl a:hover{padding-left:10px}
-.bl .th{width:84px;height:104px;background:#e9e7e2}.bl .th img{object-fit:contain}
-.bl b{font:600 clamp(22px,2.2vw,30px)/1 Oswald;text-transform:uppercase;display:block}
-.bl small{color:var(--mute);font-size:14px}
-.bl .p{font-weight:800;font-size:18px;text-align:right}
-.bl .so .p{text-decoration:line-through;color:var(--mute)}
-@media(max-width:900px){.best{grid-template-columns:1fr}.best .big{min-height:0;aspect-ratio:4/5}}
+/* lookbook */
+.lb{background:var(--ink);color:var(--paper);margin-top:clamp(96px,11vw,150px);padding:clamp(80px,10vw,140px) var(--m)}
+.lb h2{font-size:clamp(52px,8.2vw,128px)}
+.lbg{display:grid;grid-template-columns:repeat(12,1fr);gap:18px;margin-top:44px}
+.lbg figure{position:relative;overflow:hidden}
+.lbg figcaption{font:700 12px "JetBrains Mono";text-transform:uppercase;margin-top:10px;display:flex;justify-content:space-between;color:rgba(228,227,223,.7)}
+.l1{grid-column:1/8}.l1 .ph{aspect-ratio:16/10}
+.l2{grid-column:8/13;margin-top:18%}.l2 .ph{aspect-ratio:4/5}.l2 img{object-position:30% 50%}
+.l3{grid-column:2/7}.l3 .ph{aspect-ratio:4/5}.l3 img{object-position:40% 50%}
+.l4{grid-column:7/13;margin-top:-8%}.l4 .ph{aspect-ratio:16/11}
+.lbg .ph{overflow:hidden}.lbg img{transition:transform 1.2s}.lbg figure:hover img{transform:scale(1.04)}
+@media(max-width:760px){.lbg{grid-template-columns:1fr}.l1,.l2,.l3,.l4{grid-column:auto;margin-top:0}}
 
-/* statement */
-.stmt{position:relative;margin-top:clamp(96px,12vw,170px);min-height:92svh;display:flex;align-items:center;overflow:hidden}
-.stmt .ph{position:absolute;inset:0}
-.stmt .ph img{object-position:40% 50%;filter:grayscale(.2) contrast(1.05)}
-.stmt::after{content:"";position:absolute;inset:0;background:rgba(11,11,12,.62)}
-.stmt .in{position:relative;z-index:2;padding:120px var(--m);width:100%}
-.stmt h2{font-size:clamp(46px,6.6vw,118px)}
-.stmt h2 span{display:block}
-.stmt p{margin-top:28px;max-width:560px;font-size:clamp(17px,1.5vw,20px)}
+/* receipt */
+.rcp{display:grid;grid-template-columns:1fr minmax(320px,440px);gap:clamp(24px,5vw,80px);align-items:start}
+.rcp .hero2{position:relative;background:#fff;aspect-ratio:4/5;max-height:760px}
+.rcp .hero2 img{object-fit:contain}
+.rcp .hero2 .st{top:20px;right:20px;font-size:18px}
+.paper{background:var(--tag);padding:30px 28px 40px;font:500 15px/1.5 "JetBrains Mono";position:relative;box-shadow:0 18px 40px rgba(0,0,0,.12);transform:rotate(1deg);
+ -webkit-mask:radial-gradient(10px at 50% 100%,#0000 98%,#000) 50% 100%/20px 100% repeat-x;mask:radial-gradient(10px at 50% 100%,#0000 98%,#000) 50% 100%/20px 100% repeat-x}
+.paper h3{font:900 30px Tektur;text-align:center;letter-spacing:-.01em}
+.paper .c{text-align:center;color:var(--mute);font-size:12px;text-transform:uppercase;margin:6px 0 18px}
+.paper hr{border:0;border-top:2px dashed var(--line);margin:14px 0}
+.paper .li{display:flex;justify-content:space-between;gap:12px;text-transform:uppercase;padding:5px 0}
+.paper .li span:first-child{overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.paper .so{color:var(--mute);text-decoration:line-through}
+.paper .tot{font-weight:800;font-size:18px}
+.paper .bar{margin:22px auto 6px;width:70%;height:46px}
+.paper .ty{text-align:center;font-weight:800;margin-top:10px}
+@media(max-width:860px){.rcp{grid-template-columns:1fr}.paper{transform:none}}
 
-/* archive */
-.arc{display:grid;grid-template-columns:1.3fr 1fr 1fr 1fr;gap:16px}
-.ac{position:relative}
-.ac .im{aspect-ratio:4/5;background:#d9d7d2;overflow:hidden;position:relative}
-.ac .im img{filter:grayscale(1) contrast(1.05);opacity:.86;object-fit:contain}
-.ac .stamp{position:absolute;left:50%;top:50%;transform:translate(-50%,-50%) rotate(-12deg);border:3px solid var(--red);color:var(--red);font:700 clamp(18px,1.8vw,26px)/1 Oswald;letter-spacing:.06em;padding:10px 14px;white-space:nowrap;background:rgba(242,240,234,.08)}
-.ac.lead .im{aspect-ratio:auto;height:100%;min-height:100%}
-.ac.lead .im img{object-fit:cover;opacity:1}
-.ac h3{font:600 20px Oswald;text-transform:uppercase;margin-top:14px}
-.ac .p{color:var(--mute);font-weight:700;text-decoration:line-through}
-.ac.lead .cap{position:absolute;left:18px;right:18px;bottom:18px;color:#fff}
-.ac.lead .cap b{font:700 clamp(28px,2.6vw,40px)/.95 Oswald;text-transform:uppercase;display:block}
-.ac.lead .cap span{font-size:15px;opacity:.85}
-.sold{margin-top:40px;display:flex;flex-wrap:wrap;gap:10px 28px;color:var(--mute);font-size:15px}
-.sold b{color:var(--ink);font-weight:700}
-@media(max-width:1000px){.arc{grid-template-columns:1fr 1fr}.ac.lead{grid-column:1/-1}.ac.lead .im{aspect-ratio:16/10;height:auto}}
+/* archive board */
+.board{background:#1a1a1a;padding:clamp(28px,4vw,56px);display:grid;grid-template-columns:repeat(3,1fr);gap:clamp(18px,3vw,40px);position:relative}
+.board::before{content:"АРХИВ · ДАХИН ГАРАХГҮЙ";position:absolute;left:clamp(28px,4vw,56px);top:-14px;background:var(--red);color:#fff;font:800 13px "JetBrains Mono";padding:6px 12px}
+.pin{background:var(--tag);padding:12px 12px 16px;position:relative}
+.pin:nth-child(1){transform:rotate(-2deg)}.pin:nth-child(2){transform:rotate(1.5deg) translateY(16px)}.pin:nth-child(3){transform:rotate(-1deg)}
+.pin::before{content:"";position:absolute;left:50%;top:-8px;width:16px;height:16px;margin-left:-8px;border-radius:50%;background:var(--red);box-shadow:0 3px 4px rgba(0,0,0,.4)}
+.pin .im{aspect-ratio:1;background:#fff}.pin img{object-fit:contain;filter:grayscale(1) contrast(1.05)}
+.pin h3{font:800 18px Tektur;text-transform:uppercase;margin-top:12px}
+.pin .p{font:700 14px "JetBrains Mono";color:var(--mute);text-decoration:line-through}
+.pin .st{top:28%;right:auto;left:50%;transform:translateX(-50%) rotate(-12deg);font-size:15px;white-space:nowrap}
+.gone{margin-top:28px;font:700 14px "JetBrains Mono";text-transform:uppercase;display:flex;flex-wrap:wrap;gap:8px 22px}
+.gone s{color:var(--mute)}
+@media(max-width:760px){.board{grid-template-columns:1fr 1fr}.pin:nth-child(3){grid-column:1/-1;width:60%;justify-self:center}}
 
-/* size */
-.size{display:grid;grid-template-columns:1fr 1fr;gap:clamp(24px,5vw,80px);align-items:center;background:var(--bg2);padding:clamp(32px,5vw,72px);border:1px solid var(--line)}
-.size h2{font-size:clamp(46px,6vw,92px)}
-.size p.l{color:var(--mute);margin-top:18px;max-width:440px}
-.hv{display:flex;align-items:baseline;gap:10px}
-.hv b{font:700 clamp(90px,11vw,160px)/.85 Oswald}
-.hv span{font:700 28px Oswald;color:var(--mute)}
-input[type=range]{width:100%;margin:26px 0 30px;accent-color:var(--red);height:36px}
-.res{display:grid;grid-template-columns:1fr 1fr;border-top:1px solid var(--line)}
-.res div{padding:18px 0}.res div+div{border-left:1px solid var(--line);padding-left:22px}
-.res small{display:block;color:var(--mute);font-weight:700;letter-spacing:.1em;text-transform:uppercase;font-size:12px}
-.res b{font:700 64px/1 Oswald}
-.note{color:var(--mute);font-size:13px;margin-top:14px}
-@media(max-width:860px){.size{grid-template-columns:1fr}}
+/* size tag */
+.sz{display:grid;grid-template-columns:1fr 1fr;gap:clamp(24px,5vw,80px);align-items:center}
+.sz h2{font-size:clamp(52px,7vw,110px)}
+.sz p.l{color:var(--mute);margin-top:16px;max-width:420px}
+.stag{background:var(--tag);clip-path:polygon(10% 0,90% 0,100% 8%,100% 100%,0 100%,0 8%);padding:52px clamp(20px,3vw,40px) 30px;position:relative;box-shadow:0 18px 40px rgba(0,0,0,.14);max-width:520px}
+.stag .hole{position:absolute;left:50%;top:16px;width:16px;height:16px;margin-left:-8px;border-radius:50%;background:var(--paper);box-shadow:inset 0 0 0 2px rgba(0,0,0,.25)}
+.stag label{display:flex;justify-content:space-between;align-items:baseline;font:700 13px "JetBrains Mono";text-transform:uppercase;color:var(--mute)}
+.stag label b{font:800 clamp(64px,8vw,104px)/1 "JetBrains Mono";color:var(--ink);letter-spacing:-.05em}
+input[type=range]{width:100%;margin:20px 0 26px;accent-color:var(--red);height:34px}
+.out{display:grid;grid-template-columns:1fr 1fr;border-top:2px dashed var(--line);border-bottom:2px dashed var(--line)}
+.out div{padding:16px 0;text-align:center}.out div+div{border-left:2px dashed var(--line)}
+.out small{display:block;font:700 12px "JetBrains Mono";text-transform:uppercase;color:var(--mute)}
+.out b{font:900 72px/1 Tektur}
+.stag .n{font:500 12px/1.5 "JetBrains Mono";color:var(--mute);margin-top:14px}
+@media(max-width:860px){.sz{grid-template-columns:1fr}}
 
 /* visit */
-.visit{display:grid;grid-template-columns:1fr 1fr;gap:clamp(24px,4vw,64px)}
-.visit .ph{aspect-ratio:16/11;overflow:hidden}
-.visit h2{font-size:clamp(46px,6vw,92px)}
-.vi{margin-top:30px;border-top:1px solid var(--line)}
-.vi div{display:grid;grid-template-columns:130px 1fr;gap:16px;padding:18px 0;border-bottom:1px solid var(--line)}
-.vi small{color:var(--mute);font-weight:700;letter-spacing:.1em;text-transform:uppercase;font-size:12px;padding-top:4px}
-.vi a{border-bottom:1px solid var(--line)}.vi a:hover{border-color:var(--ink)}
-.visit .cta{display:flex;gap:12px;flex-wrap:wrap;margin-top:30px}
-@media(max-width:900px){.visit{grid-template-columns:1fr}.vi div{grid-template-columns:100px 1fr}}
+.vs{border-top:2px solid var(--ink);display:grid;grid-template-columns:1.2fr 1fr;gap:clamp(24px,5vw,80px);padding-top:40px}
+.vs h2{font-size:clamp(52px,7vw,110px)}
+.vs .addr{font:800 clamp(22px,2.4vw,32px)/1.25 "JetBrains Mono";letter-spacing:-.02em;margin-top:22px;text-transform:uppercase}
+.vs dl{display:grid;grid-template-columns:120px 1fr;gap:0;border-top:2px dashed var(--line)}
+.vs dt,.vs dd{padding:16px 0;border-bottom:2px dashed var(--line)}
+.vs dt{font:700 12px "JetBrains Mono";text-transform:uppercase;color:var(--mute);padding-top:20px}
+.vs dd{font-weight:500}
+.vs dd a{border-bottom:2px solid var(--red)}
+.vs .cta{display:flex;gap:10px;flex-wrap:wrap;margin-top:26px}
+@media(max-width:860px){.vs{grid-template-columns:1fr}}
 
-footer{margin-top:clamp(96px,12vw,170px);border-top:1px solid var(--line);padding:40px var(--m) 24px;overflow:hidden}
-footer .big{font-size:clamp(56px,18.6vw,330px);margin-left:-.04em;line-height:.82}
-footer .fr{display:flex;justify-content:space-between;flex-wrap:wrap;gap:16px;margin-top:26px;color:var(--mute);font-size:14px}
-footer .fr a:hover{color:var(--ink)}
+footer{margin-top:clamp(96px,11vw,150px);background:var(--ink);color:var(--paper);padding:30px var(--m) 22px;overflow:hidden}
+footer .big{font-size:clamp(64px,19vw,330px);line-height:.8;white-space:nowrap}
+footer .big span{color:var(--red)}
+footer .fr{display:flex;justify-content:space-between;flex-wrap:wrap;gap:12px;margin-top:22px;font:700 12px "JetBrains Mono";text-transform:uppercase;color:rgba(228,227,223,.65)}
+footer .fr a:hover{color:var(--paper)}
 
-/* motion */
-.rv{opacity:0;transform:translateY(24px);transition:opacity .7s ease,transform .7s cubic-bezier(.2,.7,.2,1)}
-.rv.on{opacity:1;transform:none}
-.no-js .rv{opacity:1;transform:none}
-@media(prefers-reduced-motion:reduce){.rv{opacity:1;transform:none;transition:none}.hero .ph img{animation:none}html{scroll-behavior:auto}}
+.rv{opacity:0;transform:translateY(24px);transition:opacity .7s,transform .7s cubic-bezier(.2,.7,.2,1)}
+.rv.on{opacity:1;transform:none}.no-js .rv{opacity:1;transform:none}
+@media(prefers-reduced-motion:reduce){.rv{opacity:1;transform:none;transition:none}.tick div{animation:none;padding-left:0}html{scroll-behavior:auto}.tg{transition:none}}
 </style>
 </head>
 <body class="no-js">
-<header id="hd"><a class="logo" href="#top" aria-label="SADCREAM нүүр">SADCREAM</a>
- <nav aria-label="Үндсэн цэс"><a href="#preorder">Шинэ коллекц</a><a href="#best">Bestseller</a><a href="#archive">Архив</a><a href="#size">Хэмжээ</a><a href="#visit">Дэлгүүр</a></nav>
- <a class="btn fill" href="https://sadcream.com/">Захиалах</a></header>
+<div class="tick" aria-hidden="true"><div><span>SADCREAM <i>●</i> NEVER DIE</span><span>ҮНДЭСНИЙ ҮЙЛДВЭРЛЭГЧ БРЭНД</span><span>WINTER 26–27 <i>●</i> УРЬДЧИЛСАН ЗАХИАЛГА НЭЭЛТТЭЙ</span><span>ДАВАА–НЯМ 12:00–20:00</span><span>НАРАН МОЛЛЫН УРД, 45-Р БАЙР</span><span>SADCREAM <i>●</i> NEVER DIE</span><span>ҮНДЭСНИЙ ҮЙЛДВЭРЛЭГЧ БРЭНД</span><span>WINTER 26–27 <i>●</i> УРЬДЧИЛСАН ЗАХИАЛГА НЭЭЛТТЭЙ</span></div></div>
+<header><a class="logo" href="#top">SADCREAM</a>
+ <nav aria-label="Үндсэн цэс"><a href="#drop">Drop</a><a href="#look">Lookbook</a><a href="#best">Bestseller</a><a href="#archive">Архив</a><a href="#size">Хэмжээ</a></nav>
+ <a class="btn" href="https://sadcream.com/">Захиалах</a></header>
 
 <main id="top">
-<section class="hero" style="padding:0" aria-label="SADCREAM">
- <div class="ph"><img src="https://pub-cc9be6a741434f95bc9c90bba1617d16.r2.dev/sadcream/homepage-slider/6fe412fe-ab63-41f3-9b70-e7151a641d3e-znvdld-8fc97eb0-c7e4-4ee7-acea-6590a72ca5e5-main.webp" alt="SADCREAM-ийн hoodie өмссөн хоёр загвар өмсөгч графиттай хананы өмнө" fetchpriority="high"></div>
- <div class="in">
-  <h1 class="d">Sadcream</h1>
-  <div class="row"><p>Улаанбаатарт оёсон монгол гудамжны хувцас. Hoodie, хүрэм — хязгаартай тоогоор, дахин давтагдахгүй.</p>
-   <div class="cta"><a class="btn fill" href="#preorder">Winter 26–27 захиалах</a><a class="btn line" href="#archive">Архив үзэх</a></div></div>
+<section class="hero" style="padding-top:28px">
+ <h1 class="d"><span class="w1" style="display:block">Sad</span><span class="w2" style="display:block">Cream</span></h1>
+ <div class="stack">
+  <a class="card c1" href="#look"><div class="ph"><img src="https://pub-cc9be6a741434f95bc9c90bba1617d16.r2.dev/sadcream/homepage-slider/6fe412fe-ab63-41f3-9b70-e7151a641d3e-znvdld-8fc97eb0-c7e4-4ee7-acea-6590a72ca5e5-main.webp" alt="Графиттай хананы өмнө SADCREAM hoodie өмссөн загвар өмсөгчид" fetchpriority="high"></div><span class="cp"><span>Lookbook</span><span>УБ</span></span></a>
+  <a class="card c2" href="#look"><div class="ph"><img src="https://pub-cc9be6a741434f95bc9c90bba1617d16.r2.dev/sadcream/homepage-slider/6bdcd59e-5078-4b46-9e3c-49991245d47b-zd7ani-1984e05d-25fc-4624-a85e-58c98b15aeda-main.webp" alt="Шөнийн мотоцикл, SADCREAM hoodie"></div><span class="cp"><span>Night ride</span><span>2026</span></span></a>
+ </div>
+ <div class="bot"><p>Улаанбаатарын гудамжаас төрсөн монгол брэнд. Hoodie, хүрэм — хязгаартай тоогоор оёдог, дууссан загвар дахин гарахгүй.</p>
+  <div class="cta"><a class="btn" href="#drop">Шинэ drop үзэх <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a><a class="btn o" href="#archive">Архив</a></div></div>
+</section>
+
+<section id="drop" class="wrap">
+ <div class="sh rv"><h2 class="d">Шинэ drop</h2><div><p>Winter 26–27 ба Fall/Spring 2026 — урьдчилсан захиалгаар. Шошгоо гүйлгэж үзээрэй.</p><p class="rhint" style="margin-top:12px" aria-hidden="true">← Гүйлгэх →</p></div></div>
+ <div class="rail" tabindex="0" aria-label="Урьдчилсан захиалгын бараанууд">
+  <a class="tg" href="https://sadcream.com/"><span class="str"></span><div class="body"><span class="hole"></span><div class="im"><img loading="lazy" src="https://pub-cc9be6a741434f95bc9c90bba1617d16.r2.dev/sadcream/products/d2c8daad-3e41-4e13-8d4f-204ffc927d1b-0e61f440-dcc6-4419-8110-373da0b6c1be-main.webp" alt="Winter 26-27 #4 хүрэм"></div><h3>Winter 26–27 #4</h3><dl><dt>Төрөл</dt><dd>Хүрэм</dd><dt>Хэмжээ</dt><dd>M — XL</dd><dt>Төлөв</dt><dd style="color:var(--red)">Урьдчилсан</dd></dl><div class="pr"><b>300,000₮</b><span class="bar"></span></div></div></a>
+  <a class="tg" href="https://sadcream.com/"><span class="str"></span><div class="body"><span class="hole"></span><div class="im"><img loading="lazy" src="https://pub-cc9be6a741434f95bc9c90bba1617d16.r2.dev/sadcream/products/4df3acb7-1799-4616-864b-f4cdd1cd79b2-ede18d5c-ddfa-46d1-8ce7-26404ce0d00c-main.webp" alt="Winter 26-27 #3 хүрэм"></div><h3>Winter 26–27 #3</h3><dl><dt>Төрөл</dt><dd>Хүрэм</dd><dt>Хэмжээ</dt><dd>M — XL</dd><dt>Төлөв</dt><dd style="color:var(--red)">Урьдчилсан</dd></dl><div class="pr"><b>300,000₮</b><span class="bar"></span></div></div></a>
+  <a class="tg" href="https://sadcream.com/"><span class="str"></span><div class="body"><span class="hole"></span><div class="im"><img loading="lazy" src="https://pub-cc9be6a741434f95bc9c90bba1617d16.r2.dev/sadcream/products/b8c647bc-5f34-44ac-bc7e-367a9ad2fe42-c7563018-06bb-4810-b7f3-ba2190f8e591-main.webp" alt="Fall Spring 2026 #2 хүрэм"></div><h3>Fall/Spring 26 #2</h3><dl><dt>Төрөл</dt><dd>Хүрэм</dd><dt>Хэмжээ</dt><dd>M — XL</dd><dt>Төлөв</dt><dd style="color:var(--red)">Урьдчилсан</dd></dl><div class="pr"><b>250,000₮</b><span class="bar"></span></div></div></a>
+  <a class="tg" href="https://sadcream.com/"><span class="str"></span><div class="body"><span class="hole"></span><div class="im"><img loading="lazy" src="https://pub-cc9be6a741434f95bc9c90bba1617d16.r2.dev/sadcream/products/17300eb2-7fed-4907-8322-672e02f99b6c-16e06a7a-00c9-416a-b365-4a3089684ad7-main.webp" alt="Fall Spring 2026 хүрэм"></div><h3>Fall/Spring 26</h3><dl><dt>Төрөл</dt><dd>Хүрэм</dd><dt>Хэмжээ</dt><dd>M — XL</dd><dt>Төлөв</dt><dd style="color:var(--red)">Урьдчилсан</dd></dl><div class="pr"><b>250,000₮</b><span class="bar"></span></div></div></a>
+  <a class="tg" href="https://sadcream.com/"><span class="str"></span><div class="body"><span class="hole"></span><div class="im"><img loading="lazy" src="https://pub-cc9be6a741434f95bc9c90bba1617d16.r2.dev/sadcream/products/1783306468210-1d6cbdec-a20c-4cb3-886b-0a194e33f7-e45aa41c-3871-46c3-935e-6ddb3968bfd6-main.webp" alt="Blue Aura hoodie"></div><h3>Blue Aura</h3><dl><dt>Төрөл</dt><dd>Hoodie</dd><dt>Хэмжээ</dt><dd>L — XL</dd><dt>Төлөв</dt><dd>Бэлэн</dd></dl><div class="pr"><b>230,000₮</b><span class="bar"></span></div></div></a>
+  <a class="tg" href="https://sadcream.com/"><span class="str"></span><div class="body"><span class="hole"></span><div class="im"><img loading="lazy" src="https://pub-cc9be6a741434f95bc9c90bba1617d16.r2.dev/sadcream/products/491c1647-67ce-4c96-90a0-3accb73d0e6b-vpy2fy-024b3768-b0f3-4842-a11a-45a46cacd0ac-main.webp" alt="White and Black hoodie"></div><h3>White &amp; Black</h3><dl><dt>Төрөл</dt><dd>Hoodie</dd><dt>Хэмжээ</dt><dd>L — XL</dd><dt>Төлөв</dt><dd>Бэлэн</dd></dl><div class="pr"><b>230,000₮</b><span class="bar"></span></div></div></a>
+  <a class="tg" href="https://sadcream.com/"><span class="str"></span><div class="body"><span class="hole"></span><div class="im"><img loading="lazy" src="https://pub-cc9be6a741434f95bc9c90bba1617d16.r2.dev/sadcream/products/db609038-6ca7-4eba-b83b-b55f0f148c17-yx18fr-8e0c6645-abae-48c6-936b-a9205749e968-main.webp" alt="5 Zipped hoodie"></div><h3>5 Zipped</h3><dl><dt>Төрөл</dt><dd>Hoodie</dd><dt>Хэмжээ</dt><dd>L — XL</dd><dt>Төлөв</dt><dd>Бэлэн</dd></dl><div class="pr"><b>230,000₮</b><span class="bar"></span></div></div></a>
  </div>
 </section>
 
-<section id="preorder" class="wrap">
- <div class="sh rv"><h2 class="d">Урьдчилсан захиалга</h2><p>Winter 26–27 ба 2026 Fall/Spring коллекц. Захиалгаа одоо өгвөл оёдлын эхний ээлжинд багтана.</p></div>
- <div class="pre">
-  <a class="pc rv" href="https://sadcream.com/"><div class="im"><img loading="lazy" src="https://pub-cc9be6a741434f95bc9c90bba1617d16.r2.dev/sadcream/products/d2c8daad-3e41-4e13-8d4f-204ffc927d1b-0e61f440-dcc6-4419-8110-373da0b6c1be-main.webp" alt="Winter collection 26-27 #4 хүрэм"><span class="tag">Урьдчилсан</span></div><h3>Winter 26–27 #4</h3><div class="pr num"><span>300,000₮</span><span class="sz">M–XL</span></div></a>
-  <a class="pc rv" href="https://sadcream.com/"><div class="im"><img loading="lazy" src="https://pub-cc9be6a741434f95bc9c90bba1617d16.r2.dev/sadcream/products/4df3acb7-1799-4616-864b-f4cdd1cd79b2-ede18d5c-ddfa-46d1-8ce7-26404ce0d00c-main.webp" alt="Winter collection 26-27 #3 хүрэм"><span class="tag">Урьдчилсан</span></div><h3>Winter 26–27 #3</h3><div class="pr num"><span>300,000₮</span><span class="sz">M–XL</span></div></a>
-  <a class="pc rv" href="https://sadcream.com/"><div class="im"><img loading="lazy" src="https://pub-cc9be6a741434f95bc9c90bba1617d16.r2.dev/sadcream/products/b8c647bc-5f34-44ac-bc7e-367a9ad2fe42-c7563018-06bb-4810-b7f3-ba2190f8e591-main.webp" alt="2026 Fall Spring collection #2 хүрэм"><span class="tag">Урьдчилсан</span></div><h3>Fall/Spring 2026 #2</h3><div class="pr num"><span>250,000₮</span><span class="sz">M–XL</span></div></a>
-  <a class="pc rv" href="https://sadcream.com/"><div class="im"><img loading="lazy" src="https://pub-cc9be6a741434f95bc9c90bba1617d16.r2.dev/sadcream/products/17300eb2-7fed-4907-8322-672e02f99b6c-16e06a7a-00c9-416a-b365-4a3089684ad7-main.webp" alt="2026 Fall Spring collection хүрэм"><span class="tag">Урьдчилсан</span></div><h3>Fall/Spring 2026</h3><div class="pr num"><span>250,000₮</span><span class="sz">M–XL</span></div></a>
+<div class="lb" id="look">
+ <div class="sh rv" style="margin-bottom:0"><h2 class="d">Lookbook</h2><p style="color:rgba(228,227,223,.7)">Гудамж, шөнө, машин, бетон хана — SADCREAM-ийг өмсдөг хотын зургууд.</p></div>
+ <div class="lbg">
+  <figure class="l1 rv"><div class="ph"><img loading="lazy" src="https://pub-cc9be6a741434f95bc9c90bba1617d16.r2.dev/sadcream/homepage-slider/ab7e4804-febf-486d-a37a-518543ceabbb-odozbq-11788398-3304-47f9-9308-2ac2c07f4adb-main.webp" alt="Бороотой гудамжинд цагаан машины өмнө SADCREAM хүрэмтэй бүсгүй"></div><figcaption><span>Wet asphalt</span><span>Хүрэм</span></figcaption></figure>
+  <figure class="l2 rv"><div class="ph"><img loading="lazy" src="https://pub-cc9be6a741434f95bc9c90bba1617d16.r2.dev/sadcream/homepage-slider/a7a5b942-cd37-44f5-b36b-2a146870da26-d5d7vo-6ab09196-0180-4c76-a038-36450fc7e986-main.webp" alt="Camo hoodie өмссөн хоёр бүсгүй машин дотор"></div><figcaption><span>Camo</span><span>Архив</span></figcaption></figure>
+  <figure class="l3 rv"><div class="ph"><img loading="lazy" src="https://pub-cc9be6a741434f95bc9c90bba1617d16.r2.dev/sadcream/homepage-slider/6bdcd59e-5078-4b46-9e3c-49991245d47b-zd7ani-1984e05d-25fc-4624-a85e-58c98b15aeda-main.webp" alt="Шөнийн мотоцикл дээр SADCREAM hoodie"></div><figcaption><span>Night ride</span><span>Hoodie</span></figcaption></figure>
+  <figure class="l4 rv"><div class="ph"><img loading="lazy" src="https://pub-cc9be6a741434f95bc9c90bba1617d16.r2.dev/sadcream/homepage-slider/6fe412fe-ab63-41f3-9b70-e7151a641d3e-znvdld-8fc97eb0-c7e4-4ee7-acea-6590a72ca5e5-main.webp" alt="Графиттай хана, Red Heart hoodie"></div><figcaption><span>Concrete</span><span>Red Heart</span></figcaption></figure>
  </div>
-</section>
-
-<section id="best" class="wrap">
- <div class="sh rv"><h2 class="d">Хамгийн их зарагдсан</h2><p>Хүмүүс дахин дахин асуудаг загварууд. Дуусахаас нь өмнө.</p></div>
- <div class="best">
-  <a class="big rv" href="https://sadcream.com/"><img loading="lazy" src="https://pub-cc9be6a741434f95bc9c90bba1617d16.r2.dev/sadcream/products/1ac94b7a-e591-4c52-93fe-7e337870f576-7e433eac-9459-4e50-a1dd-cf8b89cfee0f-main.webp" alt="Purple Glamour hoodie"><div class="cap"><b>Purple Glamour</b><span class="num" style="font-weight:800">230,000₮</span></div></a>
-  <ul class="bl rv">
-   <li><a href="https://sadcream.com/"><span class="th"><img loading="lazy" src="https://pub-cc9be6a741434f95bc9c90bba1617d16.r2.dev/sadcream/products/e1a0adbf-7823-4b39-843d-0a08bbb9cba5-a47f2da9-3b3e-4e72-86d0-bd97cf0b9170-main.webp" alt=""></span><span><b>Desant jacket</b><small>Хүрэм · M–XL</small></span><span class="p num">300,000₮</span></a></li>
-   <li><a href="https://sadcream.com/"><span class="th"><img loading="lazy" src="https://pub-cc9be6a741434f95bc9c90bba1617d16.r2.dev/sadcream/products/b44f6919-8411-4096-af0b-63f5ad3511cc-s5sc3s-57d1d8a0-16e9-4d93-96ca-cd651a6c7328-main.webp" alt=""></span><span><b>Red Heart</b><small>Hoodie · L–XL</small></span><span class="p num">200,000₮</span></a></li>
-   <li><a href="https://sadcream.com/"><span class="th"><img loading="lazy" src="https://pub-cc9be6a741434f95bc9c90bba1617d16.r2.dev/sadcream/products/1783304950786-1ae0faab-ae8e-43b0-a201-541a7e303b-d4e8b002-4df2-4bb8-937c-be55a10402c5-main.webp" alt=""></span><span><b>Black Diamond zip-up</b><small>Hoodie · L–XL</small></span><span class="p num">230,000₮</span></a></li>
-   <li><a href="https://sadcream.com/"><span class="th"><img loading="lazy" src="https://pub-cc9be6a741434f95bc9c90bba1617d16.r2.dev/sadcream/products/40ed1540-bdfc-43c9-9920-811b88e62f54-bwmsgl-138adb9e-eccf-4f28-9de4-e3f8defa0e7e-main.webp" alt=""></span><span><b>Never Die</b><small>Hoodie · L–XL</small></span><span class="p num">230,000₮</span></a></li>
-   <li><a href="https://sadcream.com/"><span class="th"><img loading="lazy" src="https://pub-cc9be6a741434f95bc9c90bba1617d16.r2.dev/sadcream/products/1783304866020-d86342c5-356a-4860-a2d5-d4cf0e9600-efa71dfa-0a9e-44e4-880b-ba22eb7218fd-main.webp" alt=""></span><span><b>Leather bomber</b><small>Хүрэм · L–XL</small></span><span class="p num">250,000₮</span></a></li>
-   <li class="so"><a href="https://sadcream.com/"><span class="th"><img loading="lazy" src="https://pub-cc9be6a741434f95bc9c90bba1617d16.r2.dev/sadcream/products/3e4da392-9859-4039-b4c6-ce2ab278e342-7ac5918e-cf86-48d2-819d-9d82b655b6c7-main.webp" alt=""></span><span><b>Black Glamour</b><small>Hoodie · <span style="color:var(--red);font-weight:800">Дууссан</span></small></span><span class="p num">230,000₮</span></a></li>
-  </ul>
- </div>
-</section>
-
-<div class="stmt" role="region" aria-label="Брэндийн уриа">
- <div class="ph"><img loading="lazy" src="https://pub-cc9be6a741434f95bc9c90bba1617d16.r2.dev/sadcream/homepage-slider/6bdcd59e-5078-4b46-9e3c-49991245d47b-zd7ani-1984e05d-25fc-4624-a85e-58c98b15aeda-main.webp" alt="Шөнийн гудамжинд мотоцикл дээр SADCREAM hoodie өмссөн бүсгүй"></div>
- <div class="in rv"><h2 class="d"><span>Хувцас нь дахин гарахгүй.</span><span>Брэнд нь хэзээ ч үхэхгүй.</span></h2>
-  <p>Загвар бүрийг нэг удаа, хязгаартай тоогоор оёдог. Дууссан загвар архивт орно — SADCREAM NEVER DIE.</p></div>
 </div>
 
-<section id="archive" class="wrap">
- <div class="sh rv"><h2 class="d">Архив</h2><p>Худалдаанд дахин гарахгүй загварууд. Танд байгаа бол хадгалаарай.</p></div>
- <div class="arc">
-  <div class="ac lead rv"><div class="im"><img loading="lazy" src="https://pub-cc9be6a741434f95bc9c90bba1617d16.r2.dev/sadcream/homepage-slider/a7a5b942-cd37-44f5-b36b-2a146870da26-d5d7vo-6ab09196-0180-4c76-a038-36450fc7e986-main.webp" alt="Camo hoodie өмссөн хоёр бүсгүй машин дотор" style="filter:grayscale(1)"></div><div class="cap"><b>Camo цуврал</b><span>Архивт орсон</span></div></div>
-  <div class="ac rv"><div class="im"><img loading="lazy" src="https://pub-cc9be6a741434f95bc9c90bba1617d16.r2.dev/sadcream/products/9326cbf0-dd83-4156-a510-c894399d1140-6f003882-e924-4ee8-b0fc-cd44cce403c3-main.webp" alt="Camo hoodie"><span class="stamp">Дахин гарахгүй</span></div><h3>Camo hoodie</h3><span class="p num">190,000₮</span></div>
-  <div class="ac rv"><div class="im"><img loading="lazy" src="https://pub-cc9be6a741434f95bc9c90bba1617d16.r2.dev/sadcream/products/f750a8ca-185e-4056-b4fb-b2d236cd70b9-43cb8e95-d40e-44a1-8c81-5744b9eae272-main.webp" alt="White camo hoodie"><span class="stamp">Дахин гарахгүй</span></div><h3>White camo hoodie</h3><span class="p num">230,000₮</span></div>
-  <div class="ac rv"><div class="im"><img loading="lazy" src="https://pub-cc9be6a741434f95bc9c90bba1617d16.r2.dev/sadcream/products/41d72042-3aea-4688-a416-e8023bd0c6ed-d5dbc06f-79cf-433b-a2df-91883b7b9263-main.webp" alt="Winter jacket"><span class="stamp">Дахин гарахгүй</span></div><h3>Winter jacket</h3><span class="p num">250,000₮</span></div>
+<section id="best" class="wrap">
+ <div class="sh rv"><h2 class="d">Bestseller</h2><p>Хамгийн их зарагдсан загварууд — баримт дээрээ.</p></div>
+ <div class="rcp">
+  <a class="hero2 rv" href="https://sadcream.com/"><img loading="lazy" src="https://pub-cc9be6a741434f95bc9c90bba1617d16.r2.dev/sadcream/products/1ac94b7a-e591-4c52-93fe-7e337870f576-7e433eac-9459-4e50-a1dd-cf8b89cfee0f-main.webp" alt="Purple Glamour hoodie"><span class="st">Bestseller</span></a>
+  <div class="paper rv" role="list" aria-label="Bestseller бараанууд">
+   <h3>SADCREAM</h3><div class="c">Сүхбаатар дүүрэг · 3-р хороо · 45-р байр</div>
+   <hr>
+   <div class="li" role="listitem"><span>Purple Glamour hoodie</span><span>230,000</span></div>
+   <div class="li" role="listitem"><span>Desant jacket</span><span>300,000</span></div>
+   <div class="li" role="listitem"><span>Red Heart hoodie</span><span>200,000</span></div>
+   <div class="li" role="listitem"><span>Black Diamond zip-up</span><span>230,000</span></div>
+   <div class="li" role="listitem"><span>Never Die hoodie</span><span>230,000</span></div>
+   <div class="li" role="listitem"><span>Leather bomber</span><span>250,000</span></div>
+   <div class="li so" role="listitem"><span>Black Glamour — дууссан</span><span>230,000</span></div>
+   <div class="li so" role="listitem"><span>Glamour hoodie — дууссан</span><span>230,000</span></div>
+   <hr>
+   <div class="li tot"><span>Валют</span><span>MNT ₮</span></div>
+   <div class="bar"></div>
+   <div class="ty">NEVER DIE · БАЯРЛАЛАА</div>
+  </div>
  </div>
- <p class="sold rv"><span>Дууссан:</span><b>Glamour</b><b>Purple Heart</b><b>Phantom Panther</b><b>Phanter</b><b>Black Glamour</b></p>
+</section>
+
+<section id="archive" class="wrap">
+ <div class="sh rv"><h2 class="d">Дахин гарахгүй</h2><p>Нэг удаа оёгдож дууссан загварууд. Танд байгаа бол — хадгалаарай.</p></div>
+ <div class="board rv">
+  <div class="pin"><div class="im"><img loading="lazy" src="https://pub-cc9be6a741434f95bc9c90bba1617d16.r2.dev/sadcream/products/9326cbf0-dd83-4156-a510-c894399d1140-6f003882-e924-4ee8-b0fc-cd44cce403c3-main.webp" alt="Camo hoodie"></div><span class="st">Дахин гарахгүй</span><h3>Camo hoodie</h3><span class="p">190,000₮</span></div>
+  <div class="pin"><div class="im"><img loading="lazy" src="https://pub-cc9be6a741434f95bc9c90bba1617d16.r2.dev/sadcream/products/f750a8ca-185e-4056-b4fb-b2d236cd70b9-43cb8e95-d40e-44a1-8c81-5744b9eae272-main.webp" alt="White camo hoodie"></div><span class="st">Дахин гарахгүй</span><h3>White camo hoodie</h3><span class="p">230,000₮</span></div>
+  <div class="pin"><div class="im"><img loading="lazy" src="https://pub-cc9be6a741434f95bc9c90bba1617d16.r2.dev/sadcream/products/41d72042-3aea-4688-a416-e8023bd0c6ed-d5dbc06f-79cf-433b-a2df-91883b7b9263-main.webp" alt="Winter jacket"></div><span class="st">Дахин гарахгүй</span><h3>Winter jacket</h3><span class="p">250,000₮</span></div>
+ </div>
+ <p class="gone rv"><span>Дууссан:</span><s>Purple Heart</s><s>Phantom Panther</s><s>Phanter</s><s>Glamour</s><s>Black Glamour</s></p>
 </section>
 
 <section id="size" class="wrap">
- <div class="size rv">
-  <div><h2 class="d">Хэмжээгээ олох</h2><p class="l">Өндрөө гулсуулж тохируулаад hoodie, хүрэм хоёрын аль хэмжээ таарахыг хараарай.</p></div>
-  <div>
-   <label for="h" class="hv"><b class="num" id="hv">172</b><span>см</span></label>
+ <div class="sz">
+  <div class="rv"><h2 class="d">Хэмжээний шошго</h2><p class="l">Өндрөө гулсуулахад шошго таны hoodie, хүрмийн хэмжээг хэвлэнэ.</p></div>
+  <div class="stag rv"><span class="hole"></span>
+   <label for="h"><span>Өндөр, см</span><b id="hv">172</b></label>
    <input type="range" id="h" min="150" max="195" value="172" aria-label="Өндөр, сантиметрээр">
-   <div class="res" aria-live="polite"><div><small>Hoodie</small><b id="rh">L</b></div><div><small>Хүрэм</small><b id="rj">L</b></div></div>
-   <p class="note" id="nt">Hoodie: L 160–175 см, XL 175–190 см. Шинэ хүрэм: M 160–170, L 170–180, XL 180–190 см. * — хүснэгтээс гадуур, дэлгүүрээс зөвлөгөө аваарай.</p>
+   <div class="out" aria-live="polite"><div><small>Hoodie</small><b id="rh">L</b></div><div><small>Хүрэм</small><b id="rj">L</b></div></div>
+   <p class="n">Hoodie: L 160–175 · XL 175–190 см. Шинэ хүрэм: M 160–170 · L 170–180 · XL 180–190 см. * хүснэгтээс гадуур — дэлгүүрээс зөвлөгөө аваарай.</p>
   </div>
  </div>
 </section>
 
 <section id="visit" class="wrap">
- <div class="visit">
-  <div class="ph rv"><img loading="lazy" src="https://pub-cc9be6a741434f95bc9c90bba1617d16.r2.dev/sadcream/homepage-slider/ab7e4804-febf-486d-a37a-518543ceabbb-odozbq-11788398-3304-47f9-9308-2ac2c07f4adb-main.webp" alt="SADCREAM хүрэм өмссөн бүсгүй цагаан машины өмнө"></div>
-  <div class="rv"><h2 class="d">Дэлгүүрээр ирээрэй</h2>
-   <div class="vi">
-    <div><small>Хаяг</small><span>Сүхбаатар дүүрэг, 3-р хороо, 45-р байрны зүүн тал — Хүүхдийн 100, Наран моллын урд</span></div>
-    <div><small>Цаг</small><span class="num">Даваа – Ням · 12:00 – 20:00</span></div>
-    <div><small>Утас</small><span class="num"><a href="tel:+97694461766">9446 1766</a> · <a href="tel:+97688858168">8885 8168</a></span></div>
-    <div><small>Instagram</small><a href="https://www.instagram.com/sadcream_mongolia/" target="_blank" rel="noopener">@sadcream_mongolia · 26K дагагч</a></div>
-   </div>
-   <div class="cta"><a class="btn fill" href="https://maps.google.com/?q=Наран+молл+Улаанбаатар" target="_blank" rel="noopener">Газрын зураг</a><a class="btn line" href="tel:+97694461766">Залгах</a></div>
-  </div>
+ <div class="vs rv">
+  <div><h2 class="d">Дэлгүүр</h2><p class="addr">Хүүхдийн 100,<br>Наран моллын урд,<br>45-р байрны зүүн тал</p>
+   <div class="cta"><a class="btn" href="https://maps.google.com/?q=Наран+молл+Улаанбаатар" target="_blank" rel="noopener">Газрын зураг</a><a class="btn o" href="tel:+97694461766">Залгах</a></div></div>
+  <dl>
+   <dt>Цаг</dt><dd>Даваа – Ням · 12:00 – 20:00</dd>
+   <dt>Утас</dt><dd><a href="tel:+97694461766">9446 1766</a> · <a href="tel:+97688858168">8885 8168</a></dd>
+   <dt>Имэйл</dt><dd><a href="mailto:sadcream321@gmail.com">sadcream321@gmail.com</a></dd>
+   <dt>Instagram</dt><dd><a href="https://www.instagram.com/sadcream_mongolia/" target="_blank" rel="noopener">@sadcream_mongolia</a> · 26K дагагч</dd>
+   <dt>Дүүрэг</dt><dd>Сүхбаатар дүүрэг, 3-р хороо</dd>
+  </dl>
  </div>
 </section>
 </main>
 
-<footer>
- <div class="big d">Never die</div>
- <div class="fr"><span>© 2026 SADCREAM · Үндэсний үйлдвэрлэгч брэнд</span><span><a href="mailto:sadcream321@gmail.com">sadcream321@gmail.com</a> · <a href="https://www.instagram.com/sadcream_mongolia/" target="_blank" rel="noopener">Instagram</a></span></div>
-</footer>
+<footer><div class="big d">Never <span>die</span></div>
+ <div class="fr"><span>© 2026 SADCREAM · Үндэсний үйлдвэрлэгч брэнд</span><span><a href="https://www.instagram.com/sadcream_mongolia/" target="_blank" rel="noopener">Instagram</a> · <a href="https://sadcream.com/">Онлайн дэлгүүр</a></span></div></footer>
 
 <script>
 document.body.classList.remove('no-js');
-const hd=document.getElementById('hd');const onS=()=>hd.classList.toggle('s',scrollY>40);addEventListener('scroll',onS,{passive:true});onS();
-const io=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){const sib=[...e.target.parentElement.children].filter(x=>x.classList.contains('rv'));e.target.style.transitionDelay=Math.max(0,sib.indexOf(e.target))*70+'ms';e.target.classList.add('on');io.unobserve(e.target)}}),{threshold:.12,rootMargin:'0px 0px -6% 0px'});
+const io=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){const sib=[...e.target.parentElement.children].filter(x=>x.classList.contains('rv'));e.target.style.transitionDelay=Math.max(0,sib.indexOf(e.target))*70+'ms';e.target.classList.add('on');io.unobserve(e.target)}}),{threshold:.1,rootMargin:'0px 0px -6% 0px'});
 document.querySelectorAll('.rv').forEach(el=>io.observe(el));
 const h=document.getElementById('h'),hv=document.getElementById('hv'),rh=document.getElementById('rh'),rj=document.getElementById('rj');
-function sz(){const v=+h.value;hv.textContent=v;rh.textContent=v<160?'L*':v<175?'L':v<=190?'XL':'XL*';rj.textContent=v<160?'M*':v<170?'M':v<180?'L':v<=190?'XL':'XL*';}
+function sz(){const v=+h.value;hv.textContent=v;rh.textContent=v<160?'L*':v<175?'L':v<=190?'XL':'XL*';rj.textContent=v<160?'M*':v<170?'M':v<180?'L':v<=190?'XL':'XL*'}
 h.addEventListener('input',sz);sz();
 </script>
 </body>
