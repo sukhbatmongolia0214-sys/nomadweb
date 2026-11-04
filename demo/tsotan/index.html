@@ -153,13 +153,20 @@ main{display:grid;gap:var(--g);min-width:0}
 .prods .head p{max-width:36ch;color:var(--mute);font-size:15px}
 .track{display:flex;gap:16px;padding:clamp(28px,3vw,44px) clamp(26px,4vw,64px) clamp(36px,4vw,56px);width:max-content;will-change:transform}
 .card{width:clamp(260px,24vw,380px);flex:none}
-.card .im{border-radius:20px;overflow:hidden;aspect-ratio:4/5;background:#d9c8ad}
-.card .im img{width:100%;height:100%;object-fit:cover;transition:transform .8s cubic-bezier(.2,.8,.2,1)}
-.card:hover .im img{transform:scale(1.05)}
+.card .im{position:relative;border-radius:20px;overflow:hidden;aspect-ratio:4/5;background:var(--c,var(--teal));color:#fff;isolation:isolate;transition:transform .7s cubic-bezier(.2,.8,.2,1)}
+.card:hover .im{transform:translateY(-6px)}
+.gw{position:absolute;left:18px;top:16px;font:900 clamp(34px,3.4vw,58px)/.86 var(--disp);letter-spacing:-.02em;text-transform:uppercase;color:rgba(255,255,255,.14);white-space:nowrap;pointer-events:none;z-index:-1}
+/* floating 3D cutout (cards + custom) */
+.flo{position:absolute;inset:13% 5% 7%}
+.tl{position:relative;width:100%;height:100%;transform-style:preserve-3d;will-change:transform}
+.tl img{display:block;width:100%;height:100%;object-fit:contain;filter:drop-shadow(0 26px 30px rgba(0,0,0,.32)) drop-shadow(0 8px 10px rgba(0,0,0,.18));animation:bob 5.2s ease-in-out infinite;animation-delay:calc(var(--i,0) * -.75s)}
+.flo::after{content:"";position:absolute;left:24%;right:24%;bottom:-3%;height:6%;border-radius:50%;background:radial-gradient(closest-side,rgba(0,0,0,.4),transparent);filter:blur(6px);z-index:-1;animation:shad 5.2s ease-in-out infinite;animation-delay:calc(var(--i,0) * -.75s)}
+@keyframes bob{0%,100%{transform:translateY(0) rotate(-1.4deg)}50%{transform:translateY(-12px) rotate(1.4deg)}}
+@keyframes shad{0%,100%{transform:scaleX(1);opacity:1}50%{transform:scaleX(.8);opacity:.55}}
 .card h3{font:800 19px/1.15 var(--disp);text-transform:uppercase;margin-top:16px;letter-spacing:.005em}
 .card .m{display:flex;justify-content:space-between;gap:12px;margin-top:6px;font-size:14px;color:var(--mute)}
 .card .m b{color:var(--ink);font:700 16px var(--disp);white-space:nowrap}
-.card.txt .im{display:grid;align-content:end;padding:26px;background:var(--teal);color:var(--cotton)}
+.card.txt .im{display:grid;align-content:end;padding:26px;background:var(--ink);color:var(--cotton)}
 .card.txt .im h4{font:800 26px/1.05 var(--disp);text-transform:uppercase}
 .card.txt .im ul{list-style:none;padding:0;margin-top:16px;font-size:15px}
 .card.txt .im li{display:flex;justify-content:space-between;gap:12px;padding:9px 0;border-top:1px solid rgba(244,241,234,.2)}
@@ -217,13 +224,15 @@ input[type=range]::-moz-range-thumb{width:22px;height:22px;border:0;border-radiu
 .cust{background:var(--cotton);color:var(--ink);padding:clamp(40px,5vw,72px) clamp(26px,4vw,64px);display:grid;grid-template-columns:minmax(0,1.05fr) minmax(0,.95fr);gap:clamp(28px,4vw,64px);align-items:start}
 .cust h2{font-size:clamp(36px,4.2vw,72px)}
 .cust .lead{margin-top:20px;color:var(--mute);font-size:16px;max-width:46ch}
-.cimg{border-radius:22px;overflow:hidden;aspect-ratio:4/4.6;position:relative;background:#cdbfa8}
-.cimg img{width:100%;height:100%;object-fit:cover}
+.cimg{border-radius:22px;overflow:hidden;aspect-ratio:4/4.6;position:relative;background:var(--c);isolation:isolate}
+.cimg .flo{inset:5% 12% 25%}
+.cimg .gw{font-size:clamp(48px,5.4vw,96px)}
 .cimg figcaption{position:absolute;left:14px;bottom:14px;right:14px;background:rgba(14,21,19,.72);color:var(--cotton);padding:12px 14px;border-radius:14px;font-size:14px;line-height:1.4;backdrop-filter:blur(8px)}
 .cimg figcaption b{display:block;font:700 15px var(--disp)}
 .cimg2{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:12px}
-.cimg2 figure{border-radius:16px;overflow:hidden;aspect-ratio:1;background:#cdbfa8}
-.cimg2 img{width:100%;height:100%;object-fit:cover}
+.cimg2 figure{position:relative;border-radius:16px;overflow:hidden;aspect-ratio:1;background:var(--c);isolation:isolate}
+.cimg2 .flo{inset:7% 9% 22%}
+.cimg2 figcaption{position:absolute;left:14px;right:14px;bottom:12px;color:#fff;font-size:13px;line-height:1.3}
 .steps{list-style:none;padding:0;margin-top:30px;counter-reset:s}
 .steps li{counter-increment:s;display:grid;grid-template-columns:52px 1fr;gap:14px;padding:16px 0;border-top:1px solid var(--line)}
 .steps li::before{content:counter(s,decimal-leading-zero);font:800 22px/1 var(--disp);color:var(--teal)}
@@ -288,8 +297,10 @@ footer{padding:clamp(60px,8vw,120px) 0 6px;overflow:hidden}
  .scene .info,.scene .pal{position:relative;left:auto;right:auto;bottom:auto;max-width:none;justify-items:start}
  .sw button{width:64px;height:80px}
  .prods .head{flex-direction:column;align-items:start}
- .track{width:auto;overflow-x:auto;scroll-snap-type:x mandatory;scrollbar-width:none}.track::-webkit-scrollbar{display:none}
+ .track{width:auto;overflow-x:auto;scroll-snap-type:x mandatory;scroll-padding-inline:clamp(26px,4vw,64px);scrollbar-width:none}.track::-webkit-scrollbar{display:none}
  .card{scroll-snap-align:start;width:76vw}
+ .cimg{aspect-ratio:4/5.4}.cimg .flo{inset:4% 8% 34%}
+ .cimg2 figure{aspect-ratio:4/5}.cimg2 .flo{inset:6% 6% 30%}.cimg2 figcaption{font-size:12px;left:12px;right:10px}
  .prog2{display:none}
  .calcp .head,.calc,.cust,.visit{grid-template-columns:1fr}
  .res{grid-template-columns:1fr}.res .big{font-size:34px}
@@ -299,7 +310,7 @@ footer{padding:clamp(60px,8vw,120px) 0 6px;overflow:hidden}
  .vph{min-height:0;aspect-ratio:4/3}
  .vbox dl{grid-template-columns:1fr;gap:2px}.vbox dd{margin-bottom:10px}
 }
-@media(prefers-reduced-motion:reduce){.pill i,.card .im img,.sw button{transition:none}}
+@media(prefers-reduced-motion:reduce){.pill i,.card .im,.sw button{transition:none}.tl img,.flo::after{animation:none}}
 </style>
 </head>
 <body>
@@ -368,47 +379,45 @@ footer{padding:clamp(60px,8vw,120px) 0 6px;overflow:hidden}
    <section class="panel scene" style="--c:#114040" data-sec="Раннер сет">
     <div class="giant" aria-hidden="true">Раннер</div>
     <div class="idx" aria-hidden="true"><i class="on"></i><i></i><i></i><i></i></div><div class="tag">Ногоон палитр</div>
-    <div class="ph"><div class="tilt"><img src="img/cut-teal.webp" alt="Ногоон хээтэй тавгийн суурь, ширээний гол" loading="lazy"></div></div>
+    <div class="ph"><div class="tilt"><img src="img/cut-teal.webp" alt="Ногоон хээтэй тавгийн суурь, ширээний гол" width="900" height="900" decoding="async"></div></div>
     <div class="info"><div class="lbl">Раннер сет</div><h3>Ширээний гол</h3><p class="num">35 × 220 см · 6 тавгийн суурьтай</p><div class="pr num">88,000–120,000₮</div><a class="pill" href="#calc" data-preset="runner,teal,olzii" data-cur>Энэ өнгөөр тооцоол<i><svg><use href="#i-arr"/></svg></i></a></div>
     <div class="pal"><div class="lbl">Палитр — дарж хуулна</div><div class="sw"><button style="--s:#1E5A53" data-hex="#1E5A53"><span>#1E5A53</span></button><button style="--s:#F4F1EA;--t:#211c18" data-hex="#F4F1EA"><span>#F4F1EA</span></button><button style="--s:#0E2B27" data-hex="#0E2B27"><span>#0E2B27</span></button></div></div>
    </section>
    <section class="panel scene" style="--c:#a3412a" data-sec="Бүтээлэг">
     <div class="giant" aria-hidden="true">Бүтээлэг</div>
     <div class="idx" aria-hidden="true"><i></i><i class="on"></i><i></i><i></i></div><div class="tag">Улаан палитр</div>
-    <div class="ph"><div class="tilt"><img src="img/cut-clay.webp" alt="Өлзий хээтэй эвхсэн ширээний бүтээлэг" loading="lazy"></div></div>
+    <div class="ph"><div class="tilt"><img src="img/cut-clay.webp" alt="Өлзий хээтэй эвхсэн ширээний бүтээлэг" width="900" height="900" decoding="async"></div></div>
     <div class="info"><div class="lbl">Ширээний бүтээлэг</div><h3>Өлзий хээ</h3><p class="num">145 × 220 см · 100% хөвөн</p><div class="pr num">88,000₮</div><a class="pill" href="#calc" data-preset="cloth,clay,olzii" data-cur>Энэ өнгөөр тооцоол<i><svg><use href="#i-arr"/></svg></i></a></div>
     <div class="pal"><div class="lbl">Палитр — дарж хуулна</div><div class="sw"><button style="--s:#B0533A" data-hex="#B0533A"><span>#B0533A</span></button><button style="--s:#C4922C" data-hex="#C4922C"><span>#C4922C</span></button><button style="--s:#4A2E1F" data-hex="#4A2E1F"><span>#4A2E1F</span></button></div></div>
    </section>
    <section class="panel scene" style="--c:#a46c1c" data-sec="Дэрний уут">
     <div class="giant" aria-hidden="true">Дэр</div>
     <div class="idx" aria-hidden="true"><i></i><i></i><i class="on"></i><i></i></div><div class="tag">Шар палитр</div>
-    <div class="ph"><div class="tilt"><img src="img/cut-ochre.webp" alt="Монгол хээтэй шар дэрний уут" loading="lazy"></div></div>
+    <div class="ph"><div class="tilt"><img src="img/cut-ochre.webp" alt="Монгол хээтэй шар дэрний уут" width="900" height="900" decoding="async"></div></div>
     <div class="info"><div class="lbl">Дэрний уут</div><h3>Тойрог хээ</h3><p class="num">45 × 45 см · хөвөн, тааран даавуу</p><div class="pr num">27,000₮</div><a class="pill" href="https://m.me/tsotantextile" target="_blank" rel="noopener" data-cur>Messenger-ээр захиалах<i><svg><use href="#i-arr"/></svg></i></a></div>
     <div class="pal"><div class="lbl">Палитр — дарж хуулна</div><div class="sw"><button style="--s:#C4922C" data-hex="#C4922C"><span>#C4922C</span></button><button style="--s:#2E86B5" data-hex="#2E86B5"><span>#2E86B5</span></button><button style="--s:#5A3A1E" data-hex="#5A3A1E"><span>#5A3A1E</span></button></div></div>
    </section>
    <section class="panel scene" style="--c:#153884" data-sec="Аяганы уут">
     <div class="giant" aria-hidden="true">Аяганы уут</div>
     <div class="idx" aria-hidden="true"><i></i><i></i><i></i><i class="on"></i></div><div class="tag">Хөх палитр</div>
-    <div class="ph"><div class="tilt"><img src="img/cut-cobalt.webp" alt="Мөнгөн аяга, хээтэй даавуун уут" loading="lazy"></div></div>
+    <div class="ph"><div class="tilt"><img src="img/cut-cobalt.webp" alt="Мөнгөн аяга, хээтэй даавуун уут" width="900" height="900" decoding="async"></div></div>
     <div class="info"><div class="lbl">Аяганы уут, шагайн уут</div><h3>Мөнгөн аягандаа</h3><p>Мөнгөн аяга, шагайгаа хадгалах хээтэй уут</p><div class="pr num">12,000₮ <small style="font:400 14px var(--sans);opacity:.8">шагайн уут</small></div><a class="pill" href="https://m.me/tsotantextile" target="_blank" rel="noopener" data-cur>Messenger-ээр захиалах<i><svg><use href="#i-arr"/></svg></i></a></div>
     <div class="pal"><div class="lbl">Палитр — дарж хуулна</div><div class="sw"><button style="--s:#2C4A8F" data-hex="#2C4A8F"><span>#2C4A8F</span></button><button style="--s:#3E8E86" data-hex="#3E8E86"><span>#3E8E86</span></button><button style="--s:#C9CCD1;--t:#211c18" data-hex="#C9CCD1"><span>#C9CCD1</span></button></div></div>
    </section>
   </div>
 
   <section class="panel prods" id="products" data-sec="Үнэ">
-   <div class="head"><h2 class="up">Бүх бүтээгдэхүүн,<br>үнэ</h2><p>Бодит зураг, бодит үнэ. Өөр хэмжээ, хээ, өнгөөр захиалж болно.</p></div>
+   <div class="head"><h2 class="up">Бүх бүтээгдэхүүн,<br>үнэ</h2><p>Цотангийн бүтээгдэхүүн, бодит үнэ. Өөр хэмжээ, хээ, өнгөөр захиалж болно.</p></div>
    <div class="track" id="track">
-    <article class="card"><div class="im"><img src="img/cloth-knot.webp" alt="Өлзий хээтэй ширээний бүтээлэг" loading="lazy"></div><h3>Бүтээлэг · Өлзий</h3><div class="m num"><span>145 × 220 см</span><b>88,000₮</b></div></article>
-    <article class="card"><div class="im"><img src="img/cloth-diamond.webp" alt="Ромбон хээтэй ширээний бүтээлэг" loading="lazy"></div><h3>Бүтээлэг · Ромбо</h3><div class="m num"><span>145 × 220 см</span><b>88,000₮</b></div></article>
-    <article class="card"><div class="im"><img src="img/cloth-gold.webp" alt="Шар хүрээтэй ширээний бүтээлэг" loading="lazy"></div><h3>Бүтээлэг · Шар хүрээ</h3><div class="m num"><span>145 × 220 см</span><b>88,000₮</b></div></article>
-    <article class="card"><div class="im"><img src="img/runner-blue.webp" alt="Өнгөлөг хээтэй раннер сет" loading="lazy"></div><h3>Раннер сет · Өнгөлөг</h3><div class="m num"><span>35 × 220 см + 6 суурь</span><b>88,000₮-с</b></div></article>
-    <article class="card"><div class="im"><img src="img/runner-brown.webp" alt="Хүрэн хээтэй раннер сет" loading="lazy"></div><h3>Раннер сет · Хүрэн</h3><div class="m num"><span>35 × 220 см + 6 суурь</span><b>88,000₮-с</b></div></article>
-    <article class="card"><div class="im"><img src="img/runner-teal.webp" alt="Ногоон хээтэй раннер сет" loading="lazy"></div><h3>Раннер сет · Ногоон</h3><div class="m num"><span>35 × 220 см + 6 суурь</span><b>88,000₮-с</b></div></article>
-    <article class="card"><div class="im"><img src="img/runner-ring.webp" alt="Тойрог хээтэй раннер сет" loading="lazy"></div><h3>Раннер сет · Тойрог</h3><div class="m num"><span>35 × 220 см + 6 суурь</span><b>88,000₮-с</b></div></article>
-    <article class="card"><div class="im"><img src="img/cushion.webp" alt="Монгол хээтэй өнгөт дэрний уутнууд" loading="lazy"></div><h3>Дэрний уут</h3><div class="m num"><span>45 × 45 см</span><b>27,000₮</b></div></article>
-    <article class="card"><div class="im"><img src="img/shirts.webp" alt="Монгол хээтэй хөвөн цамцнууд" loading="lazy"></div><h3>Монгол хээтэй цамц</h3><div class="m num"><span>Хүүхэд 55–68 мянга</span><b>88,000₮</b></div></article>
-    <article class="card"><div class="im"><img src="img/bowl.webp" alt="Мөнгөн аяга, хээтэй даавуун уутнууд" loading="lazy"></div><h3>Аяганы, шагайн уут</h3><div class="m num"><span>Шагайн уут</span><b>12,000₮</b></div></article>
-    <article class="card"><div class="im"><img src="img/bags.webp" alt="Монгол хээтэй өнгөт уутнууд" loading="lazy"></div><h3>Эко тор, уут</h3><div class="m num"><span>Хэд хэдэн хэмжээ</span><b>30–45 мянга₮</b></div></article>
+    <article class="card" style="--c:#1e5a53;--i:0"><div class="im"><span class="gw" aria-hidden="true">Бүтээлэг</span><div class="flo"><div class="tl"><img src="img/p-cloth.webp" width="900" height="900" alt="Ромбон хээтэй, эвхсэн ширээний бүтээлэг" loading="lazy" decoding="async"></div></div></div><h3>Бүтээлэг · Ромбо</h3><div class="m num"><span>145 × 220 см</span><b>88,000₮</b></div></article>
+    <article class="card" style="--c:#c4922c;--i:1"><div class="im"><span class="gw" aria-hidden="true">Раннер</span><div class="flo"><div class="tl"><img src="img/p-rblue.webp" width="900" height="900" alt="Өнгөлөг хээтэй раннер, 6 ширээний суурь" loading="lazy" decoding="async"></div></div></div><h3>Раннер сет · Өнгөлөг</h3><div class="m num"><span>35 × 220 см + 6 суурь</span><b>88,000₮-с</b></div></article>
+    <article class="card" style="--c:#2c4a8f;--i:2"><div class="im"><span class="gw" aria-hidden="true">Раннер</span><div class="flo"><div class="tl"><img src="img/p-rbrown.webp" width="900" height="900" alt="Хүрэн хээтэй раннер, 6 ширээний суурь" loading="lazy" decoding="async"></div></div></div><h3>Раннер сет · Хүрэн</h3><div class="m num"><span>35 × 220 см + 6 суурь</span><b>88,000₮-с</b></div></article>
+    <article class="card" style="--c:#b0533a;--i:3"><div class="im"><span class="gw" aria-hidden="true">Раннер</span><div class="flo"><div class="tl"><img src="img/p-rteal.webp" width="900" height="900" alt="Ногоон хээтэй раннер, 6 ширээний суурь" loading="lazy" decoding="async"></div></div></div><h3>Раннер сет · Ногоон</h3><div class="m num"><span>35 × 220 см + 6 суурь</span><b>88,000₮-с</b></div></article>
+    <article class="card" style="--c:#1e5a53;--i:4"><div class="im"><span class="gw" aria-hidden="true">Раннер</span><div class="flo"><div class="tl"><img src="img/p-rring.webp" width="900" height="900" alt="Тойрог хээтэй раннер, 6 ширээний суурь" loading="lazy" decoding="async"></div></div></div><h3>Раннер сет · Тойрог</h3><div class="m num"><span>35 × 220 см + 6 суурь</span><b>88,000₮-с</b></div></article>
+    <article class="card" style="--c:#b0533a;--i:5"><div class="im"><span class="gw" aria-hidden="true">Дэр</span><div class="flo"><div class="tl"><img src="img/p-cushion.webp" width="900" height="900" alt="Монгол хээтэй өнгөт дэрний уутнууд" loading="lazy" decoding="async"></div></div></div><h3>Дэрний уут</h3><div class="m num"><span>45 × 45 см</span><b>27,000₮</b></div></article>
+    <article class="card" style="--c:#2c4a8f;--i:6"><div class="im"><span class="gw" aria-hidden="true">Цамц</span><div class="flo"><div class="tl"><img src="img/p-shirts.webp" width="900" height="900" alt="Монгол хээтэй хөвөн цамцнууд" loading="lazy" decoding="async"></div></div></div><h3>Монгол хээтэй цамц</h3><div class="m num"><span>Хүүхэд 55–68 мянга</span><b>88,000₮</b></div></article>
+    <article class="card" style="--c:#c4922c;--i:7"><div class="im"><span class="gw" aria-hidden="true">Уут</span><div class="flo"><div class="tl"><img src="img/p-bowl.webp" width="900" height="900" alt="Мөнгөн аяга, хээтэй даавуун уутнууд" loading="lazy" decoding="async"></div></div></div><h3>Аяганы, шагайн уут</h3><div class="m num"><span>Шагайн уут</span><b>12,000₮</b></div></article>
+    <article class="card" style="--c:#1e5a53;--i:8"><div class="im"><span class="gw" aria-hidden="true">Уут</span><div class="flo"><div class="tl"><img src="img/p-bags.webp" width="900" height="900" alt="Монгол хээтэй өнгөт уутнууд" loading="lazy" decoding="async"></div></div></div><h3>Эко тор, уут</h3><div class="m num"><span>Хэд хэдэн хэмжээ</span><b>30–45 мянга₮</b></div></article>
     <article class="card txt"><div class="im"><h4>Бусад</h4><ul class="num"><li>Монгол бүс, эрэгтэй<b>49,000₮</b></li><li>Монгол бүс, эмэгтэй<b>35,000₮</b></li><li>Ном, iPad-ны уут<b>44,900₮</b></li><li>Нүдний шилний гэр<b>14,900₮</b></li><li>Картны гэр<b>12,900₮</b></li><li>Түлхүүрийн оосор<b>9,900₮</b></li></ul></div><h3>Жижиг бэлэг</h3><div class="m"><span>Дэлгүүрээс авах боломжтой</span></div></article>
    </div>
    <div class="prog2" aria-hidden="true"><i id="p2"></i></div>
@@ -438,8 +447,8 @@ footer{padding:clamp(60px,8vw,120px) 0 6px;overflow:hidden}
 
   <section class="panel cust" id="custom" data-sec="Захиалгаар">
    <div>
-    <figure class="cimg"><img src="img/vest.webp" width="1000" height="1200" alt="Хүннүгийн хивсний хээтэй ноосон даавуун хантааз" loading="lazy"><figcaption><b>Black Rock Resort Mongolia</b>Хүннүгийн хивсний хээг зохиомжлон, зөөлөн ноосон даавуун дээр хэвлэж хийсэн амрагчдын хантааз</figcaption></figure>
-    <div class="cimg2"><figure><img src="img/tote-lexus.webp" alt="Байгууллагын логотой эко цүнх" loading="lazy"></figure><figure><img src="img/print-blue.webp" alt="Даавуун дээр хэвлэсэн хөх хээ" loading="lazy"></figure></div>
+    <figure class="cimg" style="--c:#1e5a53;--i:1"><span class="gw" aria-hidden="true">Хантааз</span><div class="flo"><div class="tl"><img src="img/c-vest.webp" width="900" height="900" alt="Хүннүгийн хивсний хээтэй ноосон даавуун хантааз" loading="lazy" decoding="async"></div></div><figcaption><b>Black Rock Resort Mongolia</b>Хүннүгийн хивсний хээг зохиомжлон, зөөлөн ноосон даавуун дээр хэвлэж хийсэн амрагчдын хантааз</figcaption></figure>
+    <div class="cimg2"><figure style="--c:#b0533a;--i:3"><div class="flo"><div class="tl"><img src="img/c-tote.webp" width="900" height="900" alt="Байгууллагын лого хэвлэсэн хоёр эко цүнх" loading="lazy" decoding="async"></div></div><figcaption>Лого хэвлэсэн эко цүнх</figcaption></figure><figure style="--c:#c4922c;--i:5"><div class="flo"><div class="tl"><img src="img/c-print.webp" width="900" height="900" alt="Хөх хээ хэвлэсэн цагаан даавуу" loading="lazy" decoding="async"></div></div><figcaption>Даавуун дээр хээ хэвлэх</figcaption></figure></div>
    </div>
    <div>
     <div class="lbl" style="color:var(--teal)">Байгууллага, буудал, арга хэмжээ</div>
@@ -578,6 +587,10 @@ function draw(){
 E('cp').addEventListener('click',async()=>{await copy(E('msg').textContent);say('Мессеж хуулагдлаа')});
 draw();
 
+/* ---------- image retry (flaky mobile networks) ---------- */
+const retry=im=>{if(im.dataset.rt)return;im.dataset.rt=1;setTimeout(()=>{im.src=im.src.split('?')[0]+'?r='+Date.now()},700)};
+$$('img').forEach(im=>{im.addEventListener('error',()=>retry(im));if(im.complete&&im.currentSrc&&!im.naturalWidth)retry(im)});
+
 /* ---------- motion ---------- */
 const hv=$('#hv');
 if(!hasG||RM){if(RM&&hv){hv.removeAttribute('autoplay');hv.pause()}return}
@@ -622,15 +635,23 @@ sc.forEach((s,i)=>{
 
 // products horizontal
 const track=$('#track'),p2=$('#p2');
+// floating 3D cutouts: pointer tilt + swing with scroll speed
+const tq=new Map();
+$$('.tl').forEach(t=>{gsap.set(t,{transformPerspective:900});tq.set(t,{rx:gsap.quickTo(t,'rotationX',{duration:.9,ease:'power3'}),ry:gsap.quickTo(t,'rotationY',{duration:.9,ease:'power3'})});
+ if(FINE){const host=t.closest('.im, figure');host.addEventListener('pointermove',e=>{const r=host.getBoundingClientRect(),q=tq.get(t);q.ry(((e.clientX-r.left)/r.width-.5)*34);q.rx(-((e.clientY-r.top)/r.height-.5)*24)});host.addEventListener('pointerleave',()=>{const q=tq.get(t);q.rx(0);q.ry(0)})}});
+const cq=$$('.card .tl').map(t=>tq.get(t));let vt;
+const swing=v=>{v=gsap.utils.clamp(-26,26,v);cq.forEach(q=>q.ry(v));clearTimeout(vt);vt=setTimeout(()=>cq.forEach(q=>q.ry(0)),160)};
 gsap.matchMedia().add('(min-width: 901px)',()=>{
  const dist=()=>Math.max(0,track.scrollWidth-track.parentElement.clientWidth);
- gsap.to(track,{x:()=>-dist(),ease:'none',scrollTrigger:{trigger:'.prods',start:'top top+=14',end:()=>'+='+dist(),pin:true,scrub:.6,invalidateOnRefresh:true,anticipatePin:1,onUpdate:st=>{p2.style.transform=`scaleX(${.08+.92*st.progress})`}}});
+ gsap.to(track,{x:()=>-dist(),ease:'none',scrollTrigger:{trigger:'.prods',start:'top top+=14',end:()=>'+='+dist(),pin:true,scrub:.6,invalidateOnRefresh:true,anticipatePin:1,onUpdate:st=>{p2.style.transform=`scaleX(${.08+.92*st.progress})`;swing(-st.getVelocity()/60)}}});
 });
+let lx=track.scrollLeft;track.addEventListener('scroll',()=>{swing((lx-track.scrollLeft)*1.4);lx=track.scrollLeft},{passive:true});
 gsap.from('.card',{opacity:0,y:40,stagger:.05,duration:1,ease:'expo.out',scrollTrigger:{trigger:'.prods',start:'top 70%'}});
+gsap.from('.card .flo',{yPercent:18,rotationX:40,scale:.78,transformPerspective:1000,stagger:.06,duration:1.4,ease:'expo.out',scrollTrigger:{trigger:'.prods',start:'top 70%'}});
 
 // calc + custom + visit
 gsap.from('.calcp .head > *, .calc > *',{opacity:0,y:36,stagger:.1,duration:1.1,ease:'expo.out',scrollTrigger:{trigger:'.calcp',start:'top 70%'}});
-gsap.fromTo('.cimg img',{scale:1.25},{scale:1,ease:'none',scrollTrigger:{trigger:'.cust',start:'top bottom',end:'center center',scrub:true}});
+$$('.cust .flo').forEach(f=>gsap.fromTo(f,{yPercent:24,rotationX:42,scale:.76,transformPerspective:1100},{yPercent:0,rotationX:0,scale:1,ease:'none',scrollTrigger:{trigger:f.parentElement,start:'top bottom',end:'top 40%',scrub:true}}));
 gsap.from('.cust .steps li',{opacity:0,x:30,stagger:.1,duration:1,ease:'expo.out',scrollTrigger:{trigger:'.cust .steps',start:'top 80%'}});
 gsap.from('.vbox, .vph',{opacity:0,y:50,stagger:.12,duration:1.2,ease:'expo.out',scrollTrigger:{trigger:'.visit',start:'top 80%'}});
 gsap.fromTo('.vph img',{scale:1.2},{scale:1,ease:'none',scrollTrigger:{trigger:'.visit',start:'top bottom',end:'bottom bottom',scrub:true}});
