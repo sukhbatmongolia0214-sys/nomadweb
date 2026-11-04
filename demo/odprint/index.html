@@ -5,6 +5,9 @@
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <meta name="robots" content="noindex,nofollow">
 <title>Од Принт — Хаяг реклам, хэвлэлийн үйлчилгээ</title>
+<meta property="og:title" content="Од Принт — Хаяг реклам, хэвлэл нэг дороос">
+<meta property="og:image" content="https://nomadweb.mn/demo/odprint/img/og-banner.jpg">
+<meta property="og:type" content="website">
 <meta name="description" content="Од Принт — хаяг реклам, лайтбокс, том форматын хэвлэл, оффис брэндинг, стикер, цаасан хэвлэл. ERP системээр захиалгын явцаа шалгана.">
 <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@500;600;700;800&family=JetBrains+Mono:wght@500;700&display=swap" rel="stylesheet">
@@ -74,6 +77,7 @@ header .btn{height:44px;padding:0 18px;font-size:14px}
 .hero .media{position:absolute;inset:0;border-radius:4px;overflow:hidden;background:#0c1a14}
 .hero .media::after{content:"";position:absolute;inset:0;background:linear-gradient(90deg,rgba(6,12,10,.86) 0%,rgba(6,12,10,.55) 42%,rgba(6,12,10,0) 72%),linear-gradient(0deg,rgba(6,12,10,.6),rgba(6,12,10,0) 40%)}
 .hero .media video,.hero .media img{position:absolute;inset:0}
+@media(min-width:701px){.hero .media video{transform:scale(1.14);transform-origin:0 55%}.hero .media::after{background:linear-gradient(90deg,rgba(6,12,10,.86) 0%,rgba(6,12,10,.5) 38%,rgba(6,12,10,0) 60%),linear-gradient(0deg,rgba(6,12,10,.6),rgba(6,12,10,0) 40%)}}
 .hero .in{position:relative;z-index:2;height:100%;display:flex;flex-direction:column;justify-content:flex-end;padding:clamp(24px,4vw,56px);max-width:780px}
 .hero .cm{color:var(--ink)}
 .hero h1{font-size:clamp(42px,6.2vw,92px)}
@@ -277,20 +281,35 @@ footer .fr a:hover{color:#fff}
 </div>
 
 <section id="work" class="wrap">
- <div class="sh rv"><div><span class="lbl">Хийсэн ажил</span><h2>Сүүлийн ажлууд</h2></div><p>Бодит захиалгууд — кино нээлтээс төгсөлтийн тууз хүртэл.</p></div>
+ <div class="sh rv"><div><span class="lbl">Хийсэн ажил</span><h2>Сүүлийн ажлууд</h2></div><p>Бодит захиалгууд — дэлгүүрийн хаяг, кино нээлтээс бэлгийн багц, үзэг хүртэл.</p></div>
  <div class="chips rv" role="group" aria-label="Ажлын төрлөөр шүүх">
-  <button aria-pressed="true" data-f="all">Бүгд</button><button aria-pressed="false" data-f="sign">Хаяг, брэндинг</button><button aria-pressed="false" data-f="big">Том формат</button><button aria-pressed="false" data-f="small">Стикер, цаас</button><button aria-pressed="false" data-f="event">Арга хэмжээ</button>
+  <button aria-pressed="true" data-f="all">Бүгд</button><button aria-pressed="false" data-f="sign">Хаяг, брэндинг</button><button aria-pressed="false" data-f="big">Том формат</button><button aria-pressed="false" data-f="small">Стикер, цаас, мерч</button><button aria-pressed="false" data-f="event">Арга хэмжээ</button>
  </div>
  <div class="work" id="wg">
-  <figure class="wk wide rv" data-t="big"><img loading="lazy" src="img/sash-wide.webp" alt="Үдшийн ханхүү, гүнжийн тууз"><figcaption>Төгсөлтийн тууз<span>Арга хэмжээ</span></figcaption></figure>
+  <figure class="wk wide rv" data-t="event"><img loading="lazy" src="img/sash-wide.webp" alt="Үдшийн ханхүү, гүнжийн тууз"><figcaption>Төгсөлтийн тууз<span>Арга хэмжээ</span></figcaption></figure>
   <figure class="wk rv" data-t="big"><img loading="lazy" src="img/zochid-wall.webp" alt="Кино нээлтийн том постер"><figcaption>Кино нээлтийн постер<span>Том формат</span></figcaption></figure>
   <figure class="wk rv" data-t="sign"><img loading="lazy" src="img/eduzone-glass.webp" alt="Eduzone-ийн шилэн хана, брэндинг"><figcaption>Eduzone шилэн хана<span>Брэндинг</span></figcaption></figure>
+  <figure class="wk rv" data-t="sign"><img loading="lazy" src="img/w-ipick.webp" alt="iPick дэлгүүрийн гэрэлтэй хаяг"><figcaption>iPick дэлгүүрийн хаяг<span>Хаяг</span></figcaption></figure>
   <figure class="wk rv" data-t="small"><img loading="lazy" src="img/sticker-cup.webp" alt="Тунгалаг аяган дээрх стикер"><figcaption>Аяганы стикер<span>Стикер</span></figcaption></figure>
+  <figure class="wk rv" data-t="event"><img loading="lazy" src="img/w-amur.webp" alt="Amur Studio павильоны ногоон ханатай хаяг"><figcaption>Amur Studio павильон<span>Арга хэмжээ</span></figcaption></figure>
+  <figure class="wk rv" data-t="small"><img loading="lazy" src="img/w-fls.webp" alt="FLS лого бүхий бэлгийн багц"><figcaption>FLS бэлгийн багц<span>Мерч</span></figcaption></figure>
+  <figure class="wk wide rv" data-t="event"><img loading="lazy" src="img/w-pentax.webp" alt="PentaX арга хэмжээний тайзны ар дэвсгэр"><figcaption>PentaX тайзны ар дэвсгэр<span>Арга хэмжээ</span></figcaption></figure>
   <figure class="wk rv" data-t="event"><img loading="lazy" src="img/table-org.webp" alt="Амталгааны ширээ"><figcaption>Амталгааны ширээ<span>Арга хэмжээ</span></figcaption></figure>
   <figure class="wk rv" data-t="small"><img loading="lazy" src="img/notebook-gov.webp" alt="Байгууллагын дэвтэр, үзэг"><figcaption>Байгууллагын дэвтэр<span>Цаас</span></figcaption></figure>
+  <figure class="wk rv" data-t="sign"><img loading="lazy" src="img/w-ufe.webp" alt="UFE-ийн ресепшний металл үсэг"><figcaption>UFE ресепшн хаяг<span>Хаяг</span></figcaption></figure>
+  <figure class="wk rv" data-t="big"><img loading="lazy" src="img/w-cinema.webp" alt="Кино театрын лоббид байрлуулсан постер, стэндүүд"><figcaption>Кино театрын постер<span>Том формат</span></figcaption></figure>
+  <figure class="wk rv" data-t="small"><img loading="lazy" src="img/w-tote.webp" alt="JUR UR лого хэвлэсэн даавуун цүнх"><figcaption>JUR UR даавуун цүнх<span>Мерч</span></figcaption></figure>
+  <figure class="wk rv" data-t="sign"><img loading="lazy" src="img/w-opal.webp" alt="Opal Plus гэрэлтэй үсэгтэй хана"><figcaption>Opal Plus гэрэлтэй үсэг<span>Хаяг</span></figcaption></figure>
   <figure class="wk rv" data-t="small"><img loading="lazy" src="img/notebook-ssm.webp" alt="Education In Mongolia дэвтэр"><figcaption>Хавтастай дэвтэр<span>Цаас</span></figcaption></figure>
+  <figure class="wk rv" data-t="big"><img loading="lazy" src="img/w-billboard.webp" alt="Барилгын фасад дээрх том баннер"><figcaption>Фасадны баннер<span>Том формат</span></figcaption></figure>
+  <figure class="wk rv" data-t="event"><img loading="lazy" src="img/w-wristband.webp" alt="Арга хэмжээний бугуйн тууз"><figcaption>Бугуйн тууз<span>Арга хэмжээ</span></figcaption></figure>
   <figure class="wk rv" data-t="sign"><img loading="lazy" src="img/eduzone-door.webp" alt="Eduzone-ийн хаалганы брэндинг"><figcaption>Eduzone хаалга<span>Брэндинг</span></figcaption></figure>
+  <figure class="wk rv" data-t="small"><img loading="lazy" src="img/w-bags.webp" alt="Брэндийн өнгөт цаасан уутнууд"><figcaption>Брэндийн цаасан уут<span>Сав баглаа</span></figcaption></figure>
+  <figure class="wk rv" data-t="sign"><img loading="lazy" src="img/w-agt.webp" alt="AGT шоурумын хаяг"><figcaption>AGT шоурум<span>Хаяг</span></figcaption></figure>
+  <figure class="wk rv" data-t="small"><img loading="lazy" src="img/w-foil.webp" alt="Алтан фольгон стикер"><figcaption>Алтан фольга стикер<span>Стикер</span></figcaption></figure>
   <figure class="wk rv" data-t="event"><img loading="lazy" src="img/zochid-photo.webp" alt="Кино нээлтийн фото хана"><figcaption>Фото хана<span>Арга хэмжээ</span></figcaption></figure>
+  <figure class="wk rv" data-t="big"><img loading="lazy" src="img/w-court.webp" alt="Сагсан бөмбөгийн талбайн шалны наалт"><figcaption>Талбайн шалны наалт<span>Том формат</span></figcaption></figure>
+  <figure class="wk rv" data-t="small"><img loading="lazy" src="img/w-pens.webp" alt="Лого хэвлэсэн үзэгнүүд"><figcaption>Логотой үзэг<span>Мерч</span></figcaption></figure>
   <figure class="wk rv" data-t="small"><img loading="lazy" src="img/sticker-lid.webp" alt="Лакан товгор стикер"><figcaption>Лакан товгор стикер<span>Стикер</span></figcaption></figure>
   <figure class="wk rv" data-t="event"><img loading="lazy" src="img/table-render.webp" alt="Брэндийн амталгааны ширээ"><figcaption>Брэндийн ширээ<span>Арга хэмжээ</span></figcaption></figure>
  </div>
