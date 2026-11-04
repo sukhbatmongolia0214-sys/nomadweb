@@ -1,0 +1,359 @@
+<!doctype html>
+<html lang="mn">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="robots" content="noindex,nofollow">
+<title>Од Принт — Хаяг реклам, хэвлэлийн үйлчилгээ</title>
+<meta name="description" content="Од Принт — хаяг реклам, лайтбокс, том форматын хэвлэл, оффис брэндинг, стикер, цаасан хэвлэл. ERP системээр захиалгын явцаа шалгана.">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@500;600;700;800&family=JetBrains+Mono:wght@500;700&display=swap" rel="stylesheet">
+<style>
+:root{--paper:#f6f6f2;--ink:#0f1412;--green:#0b6b43;--green2:#0e8a57;--line:rgba(15,20,18,.14);--mute:rgba(15,20,18,.62);--c:#00aeef;--mg:#ec008c;--y:#ffe600;--m:clamp(16px,4vw,56px)}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{background:var(--paper);color:var(--ink);font:500 17px/1.55 Manrope,system-ui,sans-serif;-webkit-font-smoothing:antialiased;overflow-x:hidden}
+a{color:inherit;text-decoration:none}
+img,video{display:block;width:100%;height:100%;object-fit:cover}
+h1,h2,h3{font-weight:800;letter-spacing:-.035em;line-height:1.02}
+.mono{font-family:"JetBrains Mono",monospace;font-weight:500;letter-spacing:.01em}
+.wrap{padding-left:var(--m);padding-right:var(--m)}
+.btn{display:inline-flex;align-items:center;gap:10px;height:54px;padding:0 24px;border-radius:4px;font:700 15px Manrope;background:var(--green);color:#fff;transition:background .2s,transform .15s}
+.btn:hover{background:var(--ink)}.btn:active{transform:translateY(1px)}
+.btn.w{background:#fff;color:var(--ink)}.btn.w:hover{background:var(--y)}
+.btn.o{background:transparent;color:var(--ink);box-shadow:inset 0 0 0 1.5px var(--ink)}.btn.o:hover{background:var(--ink);color:#fff}
+.btn svg{width:18px;height:18px}
+:focus-visible{outline:3px solid var(--mg);outline-offset:3px}
+/* crop marks */
+.cm{position:relative}
+.cm::before,.cm::after,.cm>.cmb::before,.cm>.cmb::after{content:"";position:absolute;width:22px;height:22px;pointer-events:none;z-index:3}
+.cm::before{left:-12px;top:-12px;border-right:1.5px solid currentColor;border-bottom:1.5px solid currentColor}
+.cm::after{right:-12px;top:-12px;border-left:1.5px solid currentColor;border-bottom:1.5px solid currentColor}
+.cm>.cmb::before{left:-12px;bottom:-12px;border-right:1.5px solid currentColor;border-top:1.5px solid currentColor}
+.cm>.cmb::after{right:-12px;bottom:-12px;border-left:1.5px solid currentColor;border-top:1.5px solid currentColor}
+.bars{display:flex;height:10px}.bars i{flex:1}
+.bars i:nth-child(1){background:var(--c)}.bars i:nth-child(2){background:var(--mg)}.bars i:nth-child(3){background:var(--y)}.bars i:nth-child(4){background:var(--ink)}.bars i:nth-child(5){background:var(--green)}
+
+/* top + header */
+.top{background:var(--ink);color:rgba(255,255,255,.82);font:500 13px "JetBrains Mono";display:flex;justify-content:space-between;gap:16px;padding:9px var(--m);flex-wrap:wrap}
+.top a:hover{color:#fff}.top b{color:#fff;font-weight:700}
+header{position:sticky;top:0;z-index:40;background:rgba(246,246,242,.92);backdrop-filter:blur(10px);border-bottom:1px solid var(--line)}
+.hd{display:flex;align-items:center;justify-content:space-between;height:70px;padding:0 var(--m)}
+.logo{display:flex;align-items:center;gap:10px;font:800 21px Manrope;letter-spacing:-.03em}
+.logo svg{width:34px;height:34px}
+nav{display:flex;gap:30px;font-weight:700;font-size:15px}
+nav a{color:var(--mute);transition:color .2s}nav a:hover{color:var(--ink)}
+header .btn{height:44px;padding:0 18px;font-size:14px}
+@media(max-width:980px){nav{display:none}}
+@media(max-width:560px){.top span.h{display:none}}
+
+/* hero */
+.hero{position:relative;margin:24px var(--m) 0;height:min(78svh,760px);min-height:560px;color:#fff;border-radius:4px;overflow:visible}
+.hero .media{position:absolute;inset:0;border-radius:4px;overflow:hidden;background:#0c1a14}
+.hero .media::after{content:"";position:absolute;inset:0;background:linear-gradient(90deg,rgba(6,12,10,.86) 0%,rgba(6,12,10,.55) 42%,rgba(6,12,10,0) 72%),linear-gradient(0deg,rgba(6,12,10,.6),rgba(6,12,10,0) 40%)}
+.hero .media video,.hero .media img{position:absolute;inset:0}
+.hero .in{position:relative;z-index:2;height:100%;display:flex;flex-direction:column;justify-content:flex-end;padding:clamp(24px,4vw,56px);max-width:780px}
+.hero .cm{color:var(--ink)}
+.hero h1{font-size:clamp(42px,6.2vw,92px)}
+.hero p{margin-top:20px;max-width:560px;font-size:clamp(17px,1.5vw,20px);color:rgba(255,255,255,.88)}
+.hero .cta{display:flex;gap:12px;flex-wrap:wrap;margin-top:28px}
+.hero .spec{position:absolute;right:clamp(24px,4vw,56px);top:clamp(24px,4vw,56px);z-index:2;font:500 12px/1.7 "JetBrains Mono";text-align:right;color:rgba(255,255,255,.8)}
+.hero .bars{position:absolute;left:0;right:0;bottom:-10px;z-index:3}
+.hero .play{position:absolute;right:clamp(24px,4vw,56px);bottom:clamp(24px,4vw,56px);z-index:3;width:44px;height:44px;border-radius:50%;background:rgba(255,255,255,.15);color:#fff;border:1px solid rgba(255,255,255,.35);display:grid;place-items:center;cursor:pointer}
+@media(max-width:700px){.hero{height:auto;min-height:620px}.hero .media::after{background:linear-gradient(0deg,rgba(6,12,10,.9) 0%,rgba(6,12,10,.55) 55%,rgba(6,12,10,.15) 100%)}.hero .spec{display:none}}
+
+/* stats line */
+.facts{display:grid;grid-template-columns:repeat(4,1fr);margin-top:56px;border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
+.facts div{padding:26px 0;padding-right:16px}
+.facts div+div{border-left:1px solid var(--line);padding-left:24px}
+.facts b{display:block;font:800 clamp(34px,4vw,56px)/1 Manrope;letter-spacing:-.04em}
+.facts span{color:var(--mute);font-size:15px}
+@media(max-width:760px){.facts{grid-template-columns:1fr 1fr}.facts div:nth-child(3){border-left:0;padding-left:0}.facts div:nth-child(n+3){border-top:1px solid var(--line)}}
+
+section{padding-top:clamp(88px,10vw,140px)}
+.sh{display:grid;grid-template-columns:1fr minmax(260px,420px);gap:20px 48px;align-items:end;margin-bottom:44px}
+.sh h2{font-size:clamp(38px,5vw,72px)}
+.sh p{color:var(--mute)}
+.lbl{font:700 12px "JetBrains Mono";text-transform:uppercase;letter-spacing:.08em;color:var(--green);display:block;margin-bottom:14px}
+@media(max-width:760px){.sh{grid-template-columns:1fr}}
+
+/* services spec list */
+.svc{display:grid;grid-template-columns:1fr 360px;gap:clamp(24px,4vw,64px);align-items:start}
+.sl{list-style:none;border-top:1.5px solid var(--ink)}
+.sl li{border-bottom:1px solid var(--line)}
+.sl button{all:unset;box-sizing:border-box;width:100%;display:grid;grid-template-columns:1fr auto;gap:8px 24px;padding:22px 0;cursor:pointer;align-items:baseline}
+.sl h3{font-size:clamp(24px,2.6vw,36px);transition:color .2s,transform .3s}
+.sl .mono{font-size:13px;color:var(--mute);grid-column:1/-1}
+.sl .ar{font:700 13px "JetBrains Mono";color:var(--mute)}
+.sl li.on h3{color:var(--green);transform:translateX(8px)}
+.sl li.on .ar{color:var(--green)}
+.sl button:focus-visible{outline:3px solid var(--mg);outline-offset:4px}
+.pv{position:sticky;top:100px}
+.pv .frame{aspect-ratio:1;background:#e9e9e4;border-radius:4px;overflow:hidden;position:relative}
+.pv .frame img{position:absolute;inset:0;transition:opacity .35s}
+.pv .cap{display:flex;justify-content:space-between;margin-top:12px;font:500 13px "JetBrains Mono";color:var(--mute)}
+@media(max-width:900px){.svc{grid-template-columns:1fr}.pv{display:none}.sl li .thumb{display:block}}
+.sl .thumb{display:none;grid-column:1/-1;margin-top:10px;aspect-ratio:16/10;border-radius:4px;overflow:hidden}
+
+/* ub cab case */
+.case{background:var(--ink);color:#fff;margin-top:clamp(88px,10vw,140px);padding:clamp(72px,9vw,128px) var(--m)}
+.case .g{display:grid;grid-template-columns:1.05fr 1fr;gap:clamp(28px,5vw,80px);align-items:center}
+.case h2{font-size:clamp(38px,5vw,72px)}
+.case p{color:rgba(255,255,255,.75);margin-top:20px;max-width:520px}
+.case .lbl{color:var(--y)}
+.case ul{list-style:none;margin-top:28px;display:flex;flex-wrap:wrap;gap:8px}
+.case li{font:500 13px "JetBrains Mono";border:1px solid rgba(255,255,255,.22);padding:7px 11px;border-radius:4px}
+.ph3{display:grid;grid-template-columns:1fr 1fr;grid-template-rows:auto auto;gap:14px}
+.ph3 figure{border-radius:4px;overflow:hidden;position:relative;background:#1b1f1d}
+.ph3 .a{grid-row:1/3;aspect-ratio:auto}
+.ph3 figure{aspect-ratio:1}
+.ph3 .a{aspect-ratio:1/2}
+.ph3 figcaption{position:absolute;left:10px;bottom:10px;font:500 12px "JetBrains Mono";background:rgba(0,0,0,.55);padding:4px 8px;border-radius:3px}
+@media(max-width:860px){.case .g{grid-template-columns:1fr}}
+
+/* work grid */
+.work{display:grid;grid-template-columns:repeat(4,1fr);gap:16px}
+.wk{position:relative;border-radius:4px;overflow:hidden;background:#e9e9e4;aspect-ratio:1}
+.wk.wide{grid-column:span 2;aspect-ratio:2/1}
+.wk img{transition:transform .8s}
+.wk:hover img{transform:scale(1.05)}
+.wk figcaption{position:absolute;left:0;right:0;bottom:0;padding:28px 14px 12px;background:linear-gradient(transparent,rgba(0,0,0,.72));color:#fff;display:flex;justify-content:space-between;gap:10px;font-weight:700;font-size:15px}
+.wk figcaption span{font:500 12px "JetBrains Mono";opacity:.8;align-self:end}
+.chips{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:22px}
+.chips button{all:unset;cursor:pointer;font:700 14px Manrope;padding:9px 14px;border-radius:4px;box-shadow:inset 0 0 0 1px var(--line);transition:background .2s,color .2s}
+.chips button[aria-pressed=true]{background:var(--ink);color:#fff;box-shadow:none}
+.chips button:focus-visible{outline:3px solid var(--mg)}
+.wk[hidden]{display:none}
+@media(max-width:860px){.work{grid-template-columns:1fr 1fr}.wk.wide{grid-column:1/-1}}
+
+/* tracking */
+.trk{display:grid;grid-template-columns:1fr 1.1fr;gap:clamp(28px,5vw,80px);align-items:start}
+.trk h2{font-size:clamp(38px,5vw,72px)}
+.trk p.l{color:var(--mute);margin-top:18px;max-width:460px}
+.tbox{background:#fff;border-radius:4px;padding:clamp(22px,3vw,40px);box-shadow:0 1px 0 var(--line),0 20px 50px rgba(15,20,18,.08);color:var(--ink)}
+.tform{display:flex;gap:10px}
+.tform input{flex:1;min-width:0;height:54px;border-radius:4px;border:1.5px solid var(--line);padding:0 16px;font:700 17px "JetBrains Mono";color:var(--ink);background:var(--paper)}
+.tform input:focus{border-color:var(--green);outline:none}
+.hint{font:500 13px "JetBrains Mono";color:var(--mute);margin-top:10px}
+.hint button{all:unset;cursor:pointer;color:var(--green);text-decoration:underline}
+.steps{list-style:none;margin-top:28px;position:relative}
+.steps::before{content:"";position:absolute;left:13px;top:8px;bottom:8px;width:2px;background:var(--line)}
+.steps .fill{position:absolute;left:13px;top:8px;width:2px;background:var(--green);transition:height .8s cubic-bezier(.2,.7,.2,1);height:0}
+.steps li{position:relative;padding:0 0 22px 46px}
+.steps li:last-child{padding-bottom:0}
+.steps .dot{position:absolute;left:4px;top:3px;width:20px;height:20px;border-radius:50%;background:#fff;box-shadow:inset 0 0 0 2px var(--line);transition:background .3s,box-shadow .3s}
+.steps li.done .dot{background:var(--green);box-shadow:none}
+.steps li.now .dot{background:#fff;box-shadow:inset 0 0 0 6px var(--green)}
+.steps b{display:block;font-size:17px}
+.steps span{font:500 13px "JetBrains Mono";color:var(--mute)}
+.steps li:not(.done):not(.now) b{color:var(--mute)}
+.res{display:flex;justify-content:space-between;align-items:center;gap:12px;margin-top:26px;padding-top:20px;border-top:1px dashed var(--line);font:500 13px "JetBrains Mono";color:var(--mute);flex-wrap:wrap}
+.res b{color:var(--ink)}
+.demo{display:inline-block;font:700 11px "JetBrains Mono";background:var(--y);color:var(--ink);padding:3px 7px;border-radius:3px;margin-left:8px;vertical-align:middle}
+@media(max-width:860px){.trk{grid-template-columns:1fr}}
+
+/* contract */
+.ctr{background:var(--green);color:#fff;border-radius:4px;padding:clamp(28px,5vw,72px);display:grid;grid-template-columns:1fr 1fr;gap:clamp(28px,5vw,80px);align-items:center}
+.ctr h2{font-size:clamp(36px,4.6vw,64px)}
+.ctr p{color:rgba(255,255,255,.82);margin-top:16px;max-width:460px}
+.ctr .lbl{color:var(--y)}
+.meter{background:rgba(255,255,255,.1);border-radius:4px;padding:26px}
+.meter .row{display:flex;justify-content:space-between;font:500 13px "JetBrains Mono";color:rgba(255,255,255,.75)}
+.track2{position:relative;height:14px;background:rgba(255,255,255,.18);border-radius:3px;margin:16px 0 22px;overflow:hidden}
+.track2 i{position:absolute;inset:0 auto 0 0;width:0;background:var(--y);transition:width .3s}
+.meter input{width:100%;accent-color:var(--y);height:30px}
+.meter .out{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-top:18px}
+.meter .out div{background:rgba(0,0,0,.18);border-radius:4px;padding:14px}
+.meter .out small{display:block;font:500 12px "JetBrains Mono";color:rgba(255,255,255,.7)}
+.meter .out b{font:800 30px Manrope;letter-spacing:-.03em}
+@media(max-width:860px){.ctr{grid-template-columns:1fr}.meter .out{grid-template-columns:1fr 1fr 1fr}.meter .out b{font-size:22px}}
+
+/* contact */
+.ct{display:grid;grid-template-columns:1fr 1fr;gap:clamp(28px,5vw,80px)}
+.ct h2{font-size:clamp(38px,5vw,72px)}
+.ct dl{display:grid;grid-template-columns:150px 1fr;margin-top:30px;border-top:1.5px solid var(--ink)}
+.ct dt,.ct dd{padding:16px 0;border-bottom:1px solid var(--line)}
+.ct dt{font:700 12px "JetBrains Mono";text-transform:uppercase;color:var(--mute);padding-top:20px}
+.ct dd a{border-bottom:2px solid var(--green)}
+.ub{background:#fff;border-radius:4px;padding:clamp(22px,3vw,40px);box-shadow:0 1px 0 var(--line)}
+.ub h3{font-size:26px}
+.ub ol{margin:20px 0 0 0;padding-left:0;list-style:none;counter-reset:s}
+.ub li{counter-increment:s;position:relative;padding:12px 0 12px 46px;border-bottom:1px solid var(--line)}
+.ub li::before{content:counter(s);position:absolute;left:0;top:10px;width:30px;height:30px;border-radius:4px;background:var(--ink);color:#fff;font:700 14px "JetBrains Mono";display:grid;place-items:center}
+.ub .warn{margin-top:16px;font-size:14px;color:var(--mute)}
+@media(max-width:860px){.ct{grid-template-columns:1fr}.ct dl{grid-template-columns:110px 1fr}}
+
+footer{margin-top:clamp(88px,10vw,140px);background:var(--ink);color:#fff;overflow:hidden}
+footer .bars{height:8px}
+footer .in{padding:40px var(--m) 24px}
+footer .big{font:800 clamp(64px,15vw,240px)/.85 Manrope;letter-spacing:-.06em;white-space:nowrap}
+footer .big span{color:var(--green2)}
+footer .fr{display:flex;justify-content:space-between;flex-wrap:wrap;gap:12px;margin-top:24px;font:500 13px "JetBrains Mono";color:rgba(255,255,255,.6)}
+footer .fr a:hover{color:#fff}
+
+.trk>*,.ct>*,.ctr>*,.svc>*,.case .g>*,.sh>*{min-width:0}
+.rv{opacity:0;transform:translateY(20px);transition:opacity .7s,transform .7s cubic-bezier(.2,.7,.2,1)}
+.rv.on{opacity:1;transform:none}.no-js .rv{opacity:1;transform:none}
+@media(prefers-reduced-motion:reduce){.rv{opacity:1;transform:none;transition:none}html{scroll-behavior:auto}.steps .fill,.track2 i{transition:none}}
+</style>
+</head>
+<body class="no-js">
+<div class="top"><span><a href="tel:77715000"><b>7771-5000</b></a> · <a href="mailto:online@odprint.mn">online@odprint.mn</a></span><span class="h">Да–Ба 10:00–19:00 · Бя 11:00–18:00 · Ням амарна · UB Cab хүргэлт</span></div>
+<header><div class="hd">
+ <a class="logo" href="#top" aria-label="Од Принт нүүр"><svg viewBox="0 0 40 40" aria-hidden="true"><circle cx="20" cy="20" r="17" fill="none" stroke="#0b6b43" stroke-width="4"/><path d="M20 8v24M8 20h24" stroke="#0f1412" stroke-width="1.6"/><circle cx="20" cy="20" r="6" fill="none" stroke="#0f1412" stroke-width="1.6"/></svg>Од Принт</a>
+ <nav aria-label="Үндсэн цэс"><a href="#services">Үйлчилгээ</a><a href="#work">Хийсэн ажил</a><a href="#track">Захиалга шалгах</a><a href="#contract">Гэрээт харилцагч</a><a href="#contact">Холбоо барих</a></nav>
+ <a class="btn" href="https://m.me/OdPrintingServices">Үнийн санал авах</a></div></header>
+
+<main id="top">
+<div class="hero">
+ <div class="media"><video id="hv" autoplay muted loop playsinline preload="auto" poster="img/hero.webp"><source src="hero.mp4" type="video/mp4"></video></div>
+ <div class="spec mono" aria-hidden="true">CMYK · 1440 DPI<br>ФОРМАТ 3.2 М<br>ЗАХИАЛГА → ERP</div>
+ <div class="in">
+  <h1>Хаяг реклам,<br>хэвлэл — нэг дороос</h1>
+  <p>Лайтбоксоос нэрийн хуудас хүртэл. Захиалга бүр ERP системд бүртгэгдэж, явцаа та өөрөө шууд шалгана.</p>
+  <div class="cta"><a class="btn w" href="https://m.me/OdPrintingServices">Үнийн санал авах <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a><a class="btn o" style="color:#fff;box-shadow:inset 0 0 0 1.5px rgba(255,255,255,.6)" href="#track">Захиалгын явц шалгах</a></div>
+ </div>
+ <button class="play" id="pp" aria-label="Видеог зогсоох"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><rect x="6" y="5" width="4" height="14"/><rect x="14" y="5" width="4" height="14"/></svg></button>
+ <div class="bars" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i></div>
+</div>
+
+<div class="wrap">
+ <div class="facts rv">
+  <div><b>2021</b><span>оноос хойш</span></div>
+  <div><b>4,000+</b><span>харилцагч</span></div>
+  <div><b>100+</b><span>гэрээт байгууллага</span></div>
+  <div><b>ERP</b><span>хэвлэлийн салбарт анх удаа</span></div>
+ </div>
+</div>
+
+<section id="services" class="wrap">
+ <div class="sh rv"><div><span class="lbl">Үйлчилгээ</span><h2>Бид юу хэвлэдэг вэ</h2></div><p>Гадна хаяг, оффисын брэндинг, арга хэмжээний самбар, сав баглаа боодлын стикер — нэг газраас, нэг стандартаар.</p></div>
+ <div class="svc">
+  <ul class="sl" id="sl">
+   <li class="on" data-img="img/ubcab-building.webp" data-cap="UB Cab · гадна хаяг"><button aria-controls="pvimg"><h3>Хаяг реклам, лайтбокс</h3><span class="ar">01</span><span class="mono">Гэрэлтэй үсэг · лайтбокс · гадна самбар · угсралт</span></button><div class="thumb"><img loading="lazy" src="img/ubcab-building.webp" alt=""></div></li>
+   <li data-img="img/eduzone-sign.webp" data-cap="Eduzone · оффис"><button aria-controls="pvimg"><h3>Оффис, шилэн брэндинг</h3><span class="ar">02</span><span class="mono">Лого самбар · шилэн наалт · ханын график</span></button><div class="thumb"><img loading="lazy" src="img/eduzone-sign.webp" alt=""></div></li>
+   <li data-img="img/zochid-wall.webp" data-cap="«Ирээдүйгээс ирсэн зочид» кино"><button aria-controls="pvimg"><h3>Том форматын хэвлэл</h3><span class="ar">03</span><span class="mono">Хулдаас · постер · фото хана · кино нээлт</span></button><div class="thumb"><img loading="lazy" src="img/zochid-wall.webp" alt=""></div></li>
+   <li data-img="img/table-studio.webp" data-cap="Амталгааны ширээ · 80×88 см"><button aria-controls="pvimg"><h3>Амталгааны ширээ</h3><span class="ar">04</span><span class="mono">80 × 88 см · зөөврийн цүнхтэй · таны лого, дизайнаар</span></button><div class="thumb"><img loading="lazy" src="img/table-studio.webp" alt=""></div></li>
+   <li data-img="img/sticker-lid.webp" data-cap="Өнгөт, лакан товгор стикер"><button aria-controls="pvimg"><h3>Стикер, наалт</h3><span class="ar">05</span><span class="mono">Лакан товгор · тунгалаг · аяга, сав баглаа боодол</span></button><div class="thumb"><img loading="lazy" src="img/sticker-lid.webp" alt=""></div></li>
+   <li data-img="img/notebook-ssm.webp" data-cap="Цагираган нуруутай дэвтэр"><button aria-controls="pvimg"><h3>Цаасан хэвлэл</h3><span class="ar">06</span><span class="mono">Дэвтэр · нэрийн хуудас · каталог · брошур</span></button><div class="thumb"><img loading="lazy" src="img/notebook-ssm.webp" alt=""></div></li>
+   <li data-img="img/sash-2026.webp" data-cap="Үдшийн ханхүү, гүнж 2026"><button aria-controls="pvimg"><h3>Тууз, мерч</h3><span class="ar">07</span><span class="mono">Шилдэг ажилтан · төгсөлт · байгууллагын бэлэг</span></button><div class="thumb"><img loading="lazy" src="img/sash-2026.webp" alt=""></div></li>
+  </ul>
+  <div class="pv cm" aria-hidden="true"><span class="cmb"></span><div class="frame"><img id="pvimg" src="img/ubcab-building.webp" alt=""></div><div class="cap"><span id="pvcap">UB Cab · гадна хаяг</span><span>Од Принт</span></div></div>
+ </div>
+</section>
+
+<div class="case" id="ubcab">
+ <div class="g">
+  <div class="rv"><span class="lbl">Гэрээт харилцагч</span><h2>UB Cab-тай<br>4 жил хамтдаа</h2>
+   <p>UB Cab компанийн гадна хаяг, лайтбокс болон бүх хэвлэлийн ажлыг Од Принт хийдэг. Мөн та захиалгаа UB Cab-ын хүргэлтээр шууд авах боломжтой.</p>
+   <ul><li>Гадна гэрэлтэй хаяг</li><li>Лайтбокс</li><li>Байнгын хэвлэл</li><li>UB Cab хүргэлт</li></ul></div>
+  <div class="ph3 rv">
+   <figure class="a"><img loading="lazy" src="img/ubcab-lightbox.webp" alt="UB Cab-ын гудамжны лайтбоксууд шөнө"><figcaption>Лайтбокс</figcaption></figure>
+   <figure><img loading="lazy" src="img/ubcab-building.webp" alt="UB Cab-ын гэрэлтэй гадна хаяг"><figcaption>Гадна хаяг</figcaption></figure>
+   <figure><img loading="lazy" src="img/ubcab-night.webp" alt="UB Cab-ын байрны гадна хаяг, лайтбокс"><figcaption>Байрны фасад</figcaption></figure>
+  </div>
+ </div>
+</div>
+
+<section id="work" class="wrap">
+ <div class="sh rv"><div><span class="lbl">Хийсэн ажил</span><h2>Сүүлийн ажлууд</h2></div><p>Бодит захиалгууд — кино нээлтээс төгсөлтийн тууз хүртэл.</p></div>
+ <div class="chips rv" role="group" aria-label="Ажлын төрлөөр шүүх">
+  <button aria-pressed="true" data-f="all">Бүгд</button><button aria-pressed="false" data-f="sign">Хаяг, брэндинг</button><button aria-pressed="false" data-f="big">Том формат</button><button aria-pressed="false" data-f="small">Стикер, цаас</button><button aria-pressed="false" data-f="event">Арга хэмжээ</button>
+ </div>
+ <div class="work" id="wg">
+  <figure class="wk wide rv" data-t="big"><img loading="lazy" src="img/sash-wide.webp" alt="Үдшийн ханхүү, гүнжийн тууз"><figcaption>Төгсөлтийн тууз<span>Арга хэмжээ</span></figcaption></figure>
+  <figure class="wk rv" data-t="big"><img loading="lazy" src="img/zochid-wall.webp" alt="Кино нээлтийн том постер"><figcaption>Кино нээлтийн постер<span>Том формат</span></figcaption></figure>
+  <figure class="wk rv" data-t="sign"><img loading="lazy" src="img/eduzone-glass.webp" alt="Eduzone-ийн шилэн хана, брэндинг"><figcaption>Eduzone шилэн хана<span>Брэндинг</span></figcaption></figure>
+  <figure class="wk rv" data-t="small"><img loading="lazy" src="img/sticker-cup.webp" alt="Тунгалаг аяган дээрх стикер"><figcaption>Аяганы стикер<span>Стикер</span></figcaption></figure>
+  <figure class="wk rv" data-t="event"><img loading="lazy" src="img/table-org.webp" alt="Амталгааны ширээ"><figcaption>Амталгааны ширээ<span>Арга хэмжээ</span></figcaption></figure>
+  <figure class="wk rv" data-t="small"><img loading="lazy" src="img/notebook-gov.webp" alt="Байгууллагын дэвтэр, үзэг"><figcaption>Байгууллагын дэвтэр<span>Цаас</span></figcaption></figure>
+  <figure class="wk rv" data-t="sign"><img loading="lazy" src="img/eduzone-door.webp" alt="Eduzone-ийн хаалганы брэндинг"><figcaption>Eduzone хаалга<span>Брэндинг</span></figcaption></figure>
+  <figure class="wk rv" data-t="event"><img loading="lazy" src="img/zochid-photo.webp" alt="Кино нээлтийн фото хана"><figcaption>Фото хана<span>Арга хэмжээ</span></figcaption></figure>
+  <figure class="wk rv" data-t="small"><img loading="lazy" src="img/notebook-white.webp" alt="Цагаан хавтастай дэвтрүүд"><figcaption>Дэвтэр, тусгай хавтас<span>Цаас</span></figcaption></figure>
+  <figure class="wk rv" data-t="small"><img loading="lazy" src="img/sticker-lid.webp" alt="Лакан товгор стикер"><figcaption>Лакан товгор стикер<span>Стикер</span></figcaption></figure>
+  <figure class="wk rv" data-t="event"><img loading="lazy" src="img/table-render.webp" alt="Брэндийн амталгааны ширээ"><figcaption>Брэндийн ширээ<span>Арга хэмжээ</span></figcaption></figure>
+ </div>
+</section>
+
+<section id="track" class="wrap">
+ <div class="trk">
+  <div class="rv"><span class="lbl">ERP систем</span><h2>Захиалга чинь хаана явна вэ?</h2>
+   <p class="l">Од Принт хэвлэлийн салбарт анх удаа захиалгын бүрэн удирдлагын ERP систем нэвтрүүлсэн. Захиалгын дугаараа оруулаад явцаа шууд хараарай — утсаар асуух шаардлагагүй.</p></div>
+  <div class="tbox rv">
+   <form class="tform" id="tf" autocomplete="off"><label for="on" class="mono" style="position:absolute;left:-9999px">Захиалгын дугаар</label><input id="on" value="OD-24817" inputmode="text" aria-describedby="th"><button class="btn" type="submit">Шалгах</button></form>
+   <p class="hint" id="th">Жишээ дугаар: <button type="button" data-n="OD-24817">OD-24817</button> · <button type="button" data-n="OD-24790">OD-24790</button> · <button type="button" data-n="OD-24655">OD-24655</button><span class="demo">ЖИШЭЭ</span></p>
+   <ol class="steps" id="st" aria-live="polite"><span class="fill" id="sf"></span></ol>
+   <div class="res" id="sr"></div>
+  </div>
+ </div>
+</section>
+
+<section id="contract" class="wrap">
+ <div class="ctr rv">
+  <div><span class="lbl">Гэрээт харилцагч</span><h2>Гэрээ хийгээд хэмнээрэй</h2>
+   <p>Гэрээ байгуулмагц бүх захиалгад 5% хөнгөлөлт. Нийт захиалга 20 сая ₮ хүрмэгц дараагийн захиалгаас 10%. Бүх захиалгад хүргэлт үнэгүй.</p>
+   <div style="margin-top:26px"><a class="btn w" href="https://m.me/OdPrintingServices">Гэрээ байгуулах</a></div></div>
+  <div class="meter">
+   <div class="row"><span>Нийт захиалга</span><span id="mv">8 сая ₮</span></div>
+   <div class="track2"><i id="mb"></i></div>
+   <label class="mono" for="mr" style="position:absolute;left:-9999px">Нийт захиалгын дүн</label>
+   <input type="range" id="mr" min="0" max="30" value="8" step="1">
+   <div class="out"><div><small>Хөнгөлөлт</small><b id="md">5%</b></div><div><small>Хүргэлт</small><b>Үнэгүй</b></div><div><small>10% хүртэл</small><b id="ml">12 сая</b></div></div>
+  </div>
+ </div>
+</section>
+
+<section id="contact" class="wrap">
+ <div class="ct">
+  <div class="rv"><span class="lbl">Холбоо барих</span><h2>Ирэх, захиалах</h2>
+   <dl>
+    <dt>Хаяг</dt><dd>Хөгжим бүжгийн урд, 64-р дэлгүүрийн зүүн талаар урагшаа Багшийн дээд явах зам, ESP сан өнгөрөөд</dd>
+    <dt>Цаг</dt><dd>Даваа–Баасан 10:00–19:00<br>Бямба 11:00–18:00 · Ням амарна</dd>
+    <dt>Утас</dt><dd><a href="tel:77715000">7771-5000</a></dd>
+    <dt>Имэйл</dt><dd><a href="mailto:online@odprint.mn">online@odprint.mn</a></dd>
+    <dt>Чат</dt><dd><a href="https://m.me/OdPrintingServices">Messenger · 24/7</a></dd>
+   </dl></div>
+  <div class="ub rv"><h3>Хэвлэлээ UB Cab-аар авах</h3>
+   <ol><li>UB Cab апп-ын «Хүргэлт» хэсэгт «Од Принт, 64-р дэлгүүр» гэж хайж сонгоно.</li><li>Хүлээлгэн өгөх утсанд өөрийн дугаараа бичнэ.</li><li>Захиалгаа «Орж авах» төлөвтэй оруулна.</li><li>Ачих кодоо бидэнд явуулна.</li></ol>
+   <p class="warn">UB Cab-ыг зөвхөн ажлын цагаар дуудна уу. Ачих код, утас ирээгүй бол захиалгыг таньж хүлээлгэн өгөх боломжгүй.</p></div>
+ </div>
+</section>
+</main>
+
+<footer><div class="bars" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i></div>
+ <div class="in"><div class="big">Од <span>Принт</span></div>
+  <div class="fr"><span>© 2026 «Түнжи» ХХК · Од Принт</span><span><a href="https://www.facebook.com/OdPrintingServices" target="_blank" rel="noopener">Facebook</a> · <a href="https://www.instagram.com/odprint.mn/" target="_blank" rel="noopener">Instagram</a> · <a href="tel:77715000">7771-5000</a></span></div></div></footer>
+
+<script>
+document.body.classList.remove('no-js');
+const io=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){const sib=[...e.target.parentElement.children].filter(x=>x.classList.contains('rv'));e.target.style.transitionDelay=Math.min(6,Math.max(0,sib.indexOf(e.target)))*70+'ms';e.target.classList.add('on');io.unobserve(e.target)}}),{threshold:.1,rootMargin:'0px 0px -6% 0px'});
+document.querySelectorAll('.rv').forEach(el=>io.observe(el));
+// video toggle + reduced motion
+const v=document.getElementById('hv'),pp=document.getElementById('pp');
+if(matchMedia('(prefers-reduced-motion: reduce)').matches){v.removeAttribute('autoplay');v.pause()}
+pp.onclick=()=>{if(v.paused){v.play();pp.setAttribute('aria-label','Видеог зогсоох');pp.innerHTML='<svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><rect x="6" y="5" width="4" height="14"/><rect x="14" y="5" width="4" height="14"/></svg>'}else{v.pause();pp.setAttribute('aria-label','Видео тоглуулах');pp.innerHTML='<svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M7 5l12 7-12 7z"/></svg>'}};
+// services preview
+const sl=[...document.querySelectorAll('#sl li')],pv=document.getElementById('pvimg'),pc=document.getElementById('pvcap');
+sl.forEach(li=>{const act=()=>{sl.forEach(x=>x.classList.toggle('on',x===li));pv.style.opacity=0;setTimeout(()=>{pv.src=li.dataset.img;pc.textContent=li.dataset.cap;pv.style.opacity=1},160)};li.addEventListener('mouseenter',act);li.querySelector('button').addEventListener('click',act);li.querySelector('button').addEventListener('focus',act)});
+// work filter
+const chips=[...document.querySelectorAll('.chips button')],wks=[...document.querySelectorAll('#wg .wk')];
+chips.forEach(c=>c.onclick=()=>{chips.forEach(x=>x.setAttribute('aria-pressed',x===c));wks.forEach(w=>{w.hidden=!(c.dataset.f==='all'||w.dataset.t===c.dataset.f)})});
+// tracking demo
+const STEPS=['Захиалга бүртгэгдсэн','Дизайн батлагдсан','Хэвлэж байна','Боловсруулалт, угсралт','Бэлэн — авахад бэлэн'];
+const ORD={'OD-24817':{s:2,item:'Гэрэлтэй хаяг · 3.2 × 0.8 м',t:['10/28 11:02','10/29 16:40','11/03 09:15','',''],eta:'11/05 18:00'},'OD-24790':{s:4,item:'Нэрийн хуудас · 500 ш',t:['11/01 10:20','11/01 14:05','11/02 11:30','11/02 15:10','11/03 10:00'],eta:'Бэлэн'},'OD-24655':{s:1,item:'Амталгааны ширээ · 2 ш',t:['11/02 17:45','11/04 12:10','','',''],eta:'11/07 17:00'}};
+const st=document.getElementById('st'),sf=document.getElementById('sf'),sr=document.getElementById('sr'),on=document.getElementById('on');
+function show(n){const o=ORD[n.trim().toUpperCase()];st.querySelectorAll('li').forEach(x=>x.remove());
+ if(!o){sf.style.height=0;sr.innerHTML='<span>Ийм дугаартай захиалга олдсонгүй. Жишээ дугаараас сонгоно уу.</span>';return}
+ STEPS.forEach((s,i)=>{const li=document.createElement('li');li.className=i<o.s?'done':i===o.s?(o.s===4?'done':'now'):'';li.innerHTML=`<span class="dot"></span><b>${s}</b><span>${o.t[i]||(i===o.s?'Одоо явагдаж байна':'Хүлээгдэж байна')}</span>`;st.appendChild(li)});
+ requestAnimationFrame(()=>{const lis=st.querySelectorAll('li');const tgt=lis[Math.min(o.s,4)];sf.style.height=(tgt.offsetTop+10)+'px'});
+ sr.innerHTML=`<span><b>${n.toUpperCase()}</b> · ${o.item}</span><span>Бэлэн болох: <b>${o.eta}</b></span>`}
+document.getElementById('tf').onsubmit=e=>{e.preventDefault();show(on.value)};
+document.querySelectorAll('.hint [data-n]').forEach(b=>b.onclick=()=>{on.value=b.dataset.n;show(b.dataset.n)});
+show('OD-24817');
+// contract meter
+const mr=document.getElementById('mr'),mv=document.getElementById('mv'),mb=document.getElementById('mb'),md=document.getElementById('md'),ml=document.getElementById('ml');
+function mt(){const x=+mr.value;mv.textContent=x+' сая ₮';mb.style.width=Math.min(100,x/20*100)+'%';md.textContent=x>=20?'10%':'5%';ml.textContent=x>=20?'Хүрсэн':(20-x)+' сая'}
+mr.oninput=mt;mt();
+</script>
+</body>
+</html>
