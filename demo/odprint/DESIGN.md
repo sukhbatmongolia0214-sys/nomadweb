@@ -12,4 +12,4 @@ Motion:
 - Тоо count-up, зураг clip-path reveal, явцын шугам дүүрэх. Зөвхөн transform/opacity/clip-path.
 Images: Higgsfield gpt_image_2_5 remix (1024px). Текст нь буруу гарсан remix-ийг хасаж эх зургийг үлдээсэн (table-org, notebook-white).
 Ажлын grid-ийн `img/w-*.webp` (15 зураг) = Od Print FB хуудасны бодит гэрэл зураг, Higgsfield upscale (AI дахин зураагүй). 4 багана, 2 өргөн нүд (sash-wide, w-pentax) → 28 нүд.
-Hero: принтерээс Od Print баннер (img/og-banner.jpg artwork) хэвлэгдэж буй gpt_image_2_5 зураг + kling3_0 pro видео (start=end frame → давталт тасралтгүй).
+Hero: принтерээс Od Print баннер (img/og-banner.jpg artwork) хэвлэгдэж буй gpt_image_2_5 зураг + kling3_0 pro 10s видео: хэвлэх толгой байнга баруун-зүүн явна, баннер урагш гарч ирнэ; төгсгөлд 0.4s crossfade-ээр эхэнд буцна (hero2/loop.py).
