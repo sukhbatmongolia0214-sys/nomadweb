@@ -305,9 +305,9 @@ footer{padding:clamp(60px,8vw,120px) 0 6px;overflow:hidden}
  .calcp .head,.calc,.cust,.visit{grid-template-columns:1fr}
  .res{grid-template-columns:1fr}.res .big{font-size:34px}
  .prods h2,.calcp h2,.cust h2{font-size:clamp(30px,9vw,44px)}.vbox h2{font-size:clamp(30px,9vw,44px)}
- .shagai.s1,.shagai.s3{display:none}
  .sw{flex-wrap:wrap}
  .vph{min-height:0;aspect-ratio:4/3}
+ .shagai.s1{left:60%!important;top:50%!important;width:58px!important}.shagai.s2{left:44%!important;top:79%!important;width:50px!important}.shagai.s3{left:82%!important;top:61%!important;width:50px!important}.shagai.s4{left:12%!important;top:70%!important;width:56px!important}
  .vbox dl{grid-template-columns:1fr;gap:2px}.vbox dd{margin-bottom:10px}
 }
 @media(prefers-reduced-motion:reduce){.pill i,.card .im,.sw button{transition:none}.tl img,.flo::after{animation:none}}
@@ -358,10 +358,10 @@ footer{padding:clamp(60px,8vw,120px) 0 6px;overflow:hidden}
    <a class="stack" href="#products" data-cur><span class="th"><img src="img/cloth-knot.webp" alt=""><img src="img/runner-blue.webp" alt=""><img src="img/cushion.webp" alt=""></span><span class="t"><b class="num">145 × 220 см</b>бүтээлэг 88,000₮</span><i><svg><use href="#i-arr"/></svg></i></a>
    <div class="hrule" aria-hidden="true"></div>
    <div class="notch bl"><a class="pill solid" href="#calc" data-cur>Ширээгээ хэмжээд тооцоол<i><svg><use href="#i-arr"/></svg></i></a></div>
-   <div class="shagai s1" data-d="1.4" style="width:96px;left:44%;top:12%"><img src="img/shagai-1.webp" alt=""></div>
-   <div class="shagai s2" data-d="-1" style="width:70px;left:56%;top:72%"><img src="img/shagai-2.webp" alt=""></div>
-   <div class="shagai s3" data-d="2" style="width:58px;left:86%;top:22%"><img src="img/shagai-3.webp" alt=""></div>
-   <div class="shagai s4" data-d="-1.6" style="width:84px;left:34%;top:80%"><img src="img/shagai-4.webp" alt=""></div>
+   <div class="shagai s1" data-d="1.4" style="width:84px;left:44%;top:10%"><img src="img/shagai-mori.webp" width="264" height="360" alt=""></div>
+   <div class="shagai s2" data-d="-1" style="width:66px;left:57%;top:70%"><img src="img/shagai-temee.webp" width="215" height="358" alt=""></div>
+   <div class="shagai s3" data-d="2" style="width:62px;left:86%;top:20%"><img src="img/shagai-honi.webp" width="259" height="360" alt=""></div>
+   <div class="shagai s4" data-d="-1.6" style="width:76px;left:33%;top:76%"><img src="img/shagai-yamaa.webp" width="273" height="351" alt=""></div>
   </section>
 
   <section class="panel state" data-sec="Цотан">
@@ -630,7 +630,10 @@ sc.forEach((s,i)=>{
  if(FINE){gsap.set(tl3,{transformPerspective:1000});const rx=gsap.quickTo(tl3,'rotationX',{duration:.9,ease:'power3'}),ry=gsap.quickTo(tl3,'rotationY',{duration:.9,ease:'power3'});
   s.addEventListener('pointermove',e=>{const r=s.getBoundingClientRect();ry(((e.clientX-r.left)/r.width-.5)*28);rx(-((e.clientY-r.top)/r.height-.5)*20)});s.addEventListener('pointerleave',()=>{rx(0);ry(0)})}
  gsap.from(s.querySelectorAll('.info > *, .pal > *'),{opacity:0,y:24,stagger:.06,duration:1,ease:'expo.out',scrollTrigger:{trigger:s,start:'top 55%'}});
- if(i<sc.length-1&&DESK.matches){gsap.to(s,{scale:.92,filter:'brightness(.55)',ease:'none',scrollTrigger:{trigger:sc[i+1],start:'top bottom',end:'top top',scrub:true}})}
+ // next scene slides over: this one melts into the next colour (no dark flash)
+ if(i<sc.length-1&&DESK.matches){const nx=sc[i+1],nc=getComputedStyle(nx).getPropertyValue('--c').trim()||'#114040';
+  gsap.to(s,{scale:.95,backgroundColor:nc,ease:'none',scrollTrigger:{trigger:nx,start:'top bottom',end:'top top',scrub:.4}});
+  gsap.to(s.querySelectorAll('.ph,.info,.pal,.giant,.idx,.tag'),{opacity:0,ease:'power1.in',scrollTrigger:{trigger:nx,start:'top 85%',end:'top 15%',scrub:.4}})}
 });
 
 // products horizontal
