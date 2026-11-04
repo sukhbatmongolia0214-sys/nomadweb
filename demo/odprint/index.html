@@ -395,7 +395,7 @@ pp.onclick=()=>{if(v.paused){v.play();pp.setAttribute('aria-label','Видеог
 (()=>{const els=[...document.querySelectorAll('.facts b')].filter(b=>/\d,?\d*\+/.test(b.textContent));const io3=new IntersectionObserver(es=>es.forEach(e=>{if(!e.isIntersecting)return;io3.unobserve(e.target);const b=e.target,t=b.textContent,n=+t.replace(/\D/g,''),suf=t.replace(/[\d,]/g,'');const t0=performance.now();const f=now=>{const p=Math.min(1,(now-t0)/1400),e2=1-Math.pow(1-p,3);b.textContent=Math.round(n*e2).toLocaleString('en-US')+suf;if(p<1)requestAnimationFrame(f)};requestAnimationFrame(f)}),{threshold:.6});els.forEach(b=>io3.observe(b))})();
 // work filter
 const chips=[...document.querySelectorAll('.chips button')],wks=[...document.querySelectorAll('#wg .wk')];
-chips.forEach(c=>c.onclick=()=>{chips.forEach(x=>x.setAttribute('aria-pressed',x===c));wks.forEach(w=>{w.hidden=!(c.dataset.f==='all'||w.dataset.t===c.dataset.f)})});
+chips.forEach(c=>c.onclick=()=>{chips.forEach(x=>x.setAttribute('aria-pressed',x===c));let n=0;wks.forEach(w=>{const show=c.dataset.f==='all'||w.dataset.t===c.dataset.f;w.hidden=!show;if(show){w.style.transitionDelay=Math.min(n++,8)*50+'ms';w.classList.add('on');io.unobserve(w)}})});
 // tracking demo
 const STEPS=['Захиалга бүртгэгдсэн','Дизайн батлагдсан','Хэвлэж байна','Боловсруулалт, угсралт','Бэлэн — авахад бэлэн'];
 const ORD={'OD-24817':{s:2,item:'Гэрэлтэй хаяг · 3.2 × 0.8 м',t:['10/28 11:02','10/29 16:40','11/03 09:15','',''],eta:'11/05 18:00'},'OD-24790':{s:4,item:'Нэрийн хуудас · 500 ш',t:['11/01 10:20','11/01 14:05','11/02 11:30','11/02 15:10','11/03 10:00'],eta:'Бэлэн'},'OD-24655':{s:1,item:'Амталгааны ширээ · 2 ш',t:['11/02 17:45','11/04 12:10','','',''],eta:'11/07 17:00'}};
