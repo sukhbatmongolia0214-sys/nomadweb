@@ -611,10 +611,10 @@ sc.forEach((s,i)=>{
 
 // products horizontal
 const track=$('#track'),p2=$('#p2');
-ScrollTrigger.matchMedia({'(min-width: 901px)':function(){
+gsap.matchMedia().add('(min-width: 901px)',()=>{
  const dist=()=>Math.max(0,track.scrollWidth-track.parentElement.clientWidth);
  gsap.to(track,{x:()=>-dist(),ease:'none',scrollTrigger:{trigger:'.prods',start:'top top+=14',end:()=>'+='+dist(),pin:true,scrub:.6,invalidateOnRefresh:true,anticipatePin:1,onUpdate:st=>{p2.style.transform=`scaleX(${.08+.92*st.progress})`}}});
-}});
+});
 gsap.from('.card',{opacity:0,y:40,stagger:.05,duration:1,ease:'expo.out',scrollTrigger:{trigger:'.prods',start:'top 70%'}});
 
 // calc + custom + visit
