@@ -632,7 +632,7 @@ sc.forEach((s,i)=>{
  gsap.from(s.querySelectorAll('.info > *, .pal > *'),{opacity:0,y:24,stagger:.06,duration:1,ease:'expo.out',scrollTrigger:{trigger:s,start:'top 55%'}});
  // next scene slides over: this one melts into the next colour (no dark flash)
  if(i<sc.length-1&&DESK.matches){const nx=sc[i+1],nc=getComputedStyle(nx).getPropertyValue('--c').trim()||'#114040';
-  gsap.to(s,{scale:.95,backgroundColor:nc,ease:'none',scrollTrigger:{trigger:nx,start:'top bottom',end:'top top',scrub:.4}});
+  gsap.to(s,{scale:.95,backgroundColor:nc,ease:'power2.out',scrollTrigger:{trigger:nx,start:'top bottom',end:'top top',scrub:.4}});
   gsap.to(s.querySelectorAll('.ph,.info,.pal,.giant,.idx,.tag'),{opacity:0,ease:'power1.in',scrollTrigger:{trigger:nx,start:'top 85%',end:'top 15%',scrub:.4}})}
 });
 
