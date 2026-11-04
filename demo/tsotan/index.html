@@ -121,8 +121,11 @@ main{display:grid;gap:var(--g);min-width:0}
 .scenes{display:grid;gap:var(--g)}
 .scene{position:sticky;top:var(--g);height:calc(100svh - 2*var(--g));min-height:620px;overflow:hidden;color:var(--cotton);background:var(--c);transform-origin:50% 0}
 .scene .giant{position:absolute;left:0;right:0;top:50%;transform:translateY(-58%);text-align:center;font:900 clamp(80px,14.5vw,260px)/.82 var(--disp);letter-spacing:-.02em;color:rgba(255,255,255,.14);white-space:nowrap;pointer-events:none}
-.scene .ph{position:absolute;left:50%;top:50%;width:min(64vh,44vw);aspect-ratio:4/5;transform:translate(-50%,-50%)}
-.scene .ph img{width:100%;height:100%;object-fit:cover;border-radius:22px;-webkit-mask-image:radial-gradient(50% 50% at 50% 52%,#000 58%,transparent 100%);mask-image:radial-gradient(50% 50% at 50% 52%,#000 58%,transparent 100%)}
+.scene .ph{position:absolute;inset:0 0 0 14%;margin:auto;width:min(66vh,40vw);height:min(66vh,40vw);z-index:1}
+.scene .info,.scene .pal{z-index:3}
+.scene .ph .tilt{position:relative;width:100%;height:100%;transform-style:preserve-3d;will-change:transform}
+.scene .ph::after{content:"";position:absolute;left:24%;right:24%;bottom:3%;height:7%;border-radius:50%;background:radial-gradient(closest-side,rgba(0,0,0,.42),transparent);filter:blur(8px);z-index:-1}
+.scene .ph img{width:100%;height:100%;object-fit:contain;filter:drop-shadow(0 40px 46px rgba(0,0,0,.34)) drop-shadow(0 10px 14px rgba(0,0,0,.2))}
 .scene .info{position:absolute;left:clamp(26px,4vw,64px);bottom:clamp(26px,4vw,56px);max-width:340px}
 .scene .info .lbl{opacity:.75}
 .scene .info h3{font:800 clamp(30px,3vw,46px)/1 var(--disp);text-transform:uppercase;margin-top:12px}
@@ -281,7 +284,7 @@ footer{padding:clamp(60px,8vw,120px) 0 6px;overflow:hidden}
  .facts{grid-template-columns:1fr}
  .scene{min-height:0;height:auto;position:relative;top:auto;padding:84px 20px 26px;display:grid;gap:22px}
  .scene .giant{top:120px;transform:none;font-size:22vw}
- .scene .ph{position:relative;left:auto;top:auto;transform:none;width:min(78vw,380px);margin:30px auto 0}
+ .scene .ph{position:relative;inset:auto;width:min(84vw,400px);height:min(84vw,400px);margin:20px auto 0}
  .scene .info,.scene .pal{position:relative;left:auto;right:auto;bottom:auto;max-width:none;justify-items:start}
  .sw button{width:64px;height:80px}
  .prods .head{flex-direction:column;align-items:start}
@@ -361,28 +364,28 @@ footer{padding:clamp(60px,8vw,120px) 0 6px;overflow:hidden}
    <section class="panel scene" style="--c:#114040" data-sec="Раннер сет">
     <div class="giant" aria-hidden="true">Раннер</div>
     <div class="idx" aria-hidden="true"><i class="on"></i><i></i><i></i><i></i></div><div class="tag">Ногоон палитр</div>
-    <div class="ph"><img src="img/sc-teal.webp" alt="Ногоон хээтэй тавгийн суурь, ширээний гол тавцан дээр" loading="lazy"></div>
+    <div class="ph"><div class="tilt"><img src="img/cut-teal.webp" alt="Ногоон хээтэй тавгийн суурь, ширээний гол" loading="lazy"></div></div>
     <div class="info"><div class="lbl">Раннер сет</div><h3>Ширээний гол</h3><p class="num">35 × 220 см · 6 тавгийн суурьтай</p><div class="pr num">88,000–120,000₮</div><a class="pill" href="#calc" data-preset="runner,teal,olzii" data-cur>Энэ өнгөөр тооцоол<i><svg><use href="#i-arr"/></svg></i></a></div>
     <div class="pal"><div class="lbl">Палитр — дарж хуулна</div><div class="sw"><button style="--s:#1E5A53" data-hex="#1E5A53"><span>#1E5A53</span></button><button style="--s:#F4F1EA;--t:#211c18" data-hex="#F4F1EA"><span>#F4F1EA</span></button><button style="--s:#0E2B27" data-hex="#0E2B27"><span>#0E2B27</span></button></div></div>
    </section>
    <section class="panel scene" style="--c:#a3412a" data-sec="Бүтээлэг">
     <div class="giant" aria-hidden="true">Бүтээлэг</div>
     <div class="idx" aria-hidden="true"><i></i><i class="on"></i><i></i><i></i></div><div class="tag">Улаан палитр</div>
-    <div class="ph"><img src="img/sc-clay.webp" alt="Өлзий хээтэй эвхсэн ширээний бүтээлэг тавцан дээр" loading="lazy"></div>
+    <div class="ph"><div class="tilt"><img src="img/cut-clay.webp" alt="Өлзий хээтэй эвхсэн ширээний бүтээлэг" loading="lazy"></div></div>
     <div class="info"><div class="lbl">Ширээний бүтээлэг</div><h3>Өлзий хээ</h3><p class="num">145 × 220 см · 100% хөвөн</p><div class="pr num">88,000₮</div><a class="pill" href="#calc" data-preset="cloth,clay,olzii" data-cur>Энэ өнгөөр тооцоол<i><svg><use href="#i-arr"/></svg></i></a></div>
     <div class="pal"><div class="lbl">Палитр — дарж хуулна</div><div class="sw"><button style="--s:#B0533A" data-hex="#B0533A"><span>#B0533A</span></button><button style="--s:#C4922C" data-hex="#C4922C"><span>#C4922C</span></button><button style="--s:#4A2E1F" data-hex="#4A2E1F"><span>#4A2E1F</span></button></div></div>
    </section>
-   <section class="panel scene" style="--c:#b87e24" data-sec="Дэрний уут">
+   <section class="panel scene" style="--c:#a46c1c" data-sec="Дэрний уут">
     <div class="giant" aria-hidden="true">Дэр</div>
     <div class="idx" aria-hidden="true"><i></i><i></i><i class="on"></i><i></i></div><div class="tag">Шар палитр</div>
-    <div class="ph"><img src="img/sc-ochre.webp" alt="Монгол хээтэй шар дэрний уут тавцан дээр" loading="lazy"></div>
+    <div class="ph"><div class="tilt"><img src="img/cut-ochre.webp" alt="Монгол хээтэй шар дэрний уут" loading="lazy"></div></div>
     <div class="info"><div class="lbl">Дэрний уут</div><h3>Тойрог хээ</h3><p class="num">45 × 45 см · хөвөн, тааран даавуу</p><div class="pr num">27,000₮</div><a class="pill" href="https://m.me/tsotantextile" target="_blank" rel="noopener" data-cur>Messenger-ээр захиалах<i><svg><use href="#i-arr"/></svg></i></a></div>
     <div class="pal"><div class="lbl">Палитр — дарж хуулна</div><div class="sw"><button style="--s:#C4922C" data-hex="#C4922C"><span>#C4922C</span></button><button style="--s:#2E86B5" data-hex="#2E86B5"><span>#2E86B5</span></button><button style="--s:#5A3A1E" data-hex="#5A3A1E"><span>#5A3A1E</span></button></div></div>
    </section>
    <section class="panel scene" style="--c:#153884" data-sec="Аяганы уут">
     <div class="giant" aria-hidden="true">Аяганы уут</div>
     <div class="idx" aria-hidden="true"><i></i><i></i><i></i><i class="on"></i></div><div class="tag">Хөх палитр</div>
-    <div class="ph"><img src="img/sc-cobalt.webp" alt="Мөнгөн аяга, хээтэй даавуун уут тавцан дээр" loading="lazy"></div>
+    <div class="ph"><div class="tilt"><img src="img/cut-cobalt.webp" alt="Мөнгөн аяга, хээтэй даавуун уут" loading="lazy"></div></div>
     <div class="info"><div class="lbl">Аяганы уут, шагайн уут</div><h3>Мөнгөн аягандаа</h3><p>Мөнгөн аяга, шагайгаа хадгалах хээтэй уут</p><div class="pr num">12,000₮ <small style="font:400 14px var(--sans);opacity:.8">шагайн уут</small></div><a class="pill" href="https://m.me/tsotantextile" target="_blank" rel="noopener" data-cur>Messenger-ээр захиалах<i><svg><use href="#i-arr"/></svg></i></a></div>
     <div class="pal"><div class="lbl">Палитр — дарж хуулна</div><div class="sw"><button style="--s:#2C4A8F" data-hex="#2C4A8F"><span>#2C4A8F</span></button><button style="--s:#3E8E86" data-hex="#3E8E86"><span>#3E8E86</span></button><button style="--s:#C9CCD1;--t:#211c18" data-hex="#C9CCD1"><span>#C9CCD1</span></button></div></div>
    </section>
@@ -604,7 +607,11 @@ gsap.from('.facts > div',{opacity:0,y:30,stagger:.12,duration:1,ease:'expo.out',
 const sc=$$('.scene');
 sc.forEach((s,i)=>{
  gsap.fromTo(s.querySelector('.giant'),{xPercent:12},{xPercent:-12,ease:'none',scrollTrigger:{trigger:s,start:'top bottom',end:'bottom top',scrub:true}});
- gsap.fromTo(s.querySelector('.ph'),{y:80,rotate:i%2?-3:3},{y:-40,rotate:0,ease:'none',scrollTrigger:{trigger:s,start:'top bottom',end:'top top',scrub:true}});
+ const ph=s.querySelector('.ph'),tl3=s.querySelector('.tilt');
+ gsap.fromTo(ph,{yPercent:26,rotationX:38,scale:.78,transformPerspective:1200},{yPercent:0,rotationX:0,scale:1,ease:'none',scrollTrigger:{trigger:s,start:'top bottom',end:'top 12%',scrub:true}});
+ gsap.to(tl3,{y:-18,rotationZ:i%2?-2.5:2.5,duration:3.4+i*.3,yoyo:true,repeat:-1,ease:'sine.inOut'});
+ if(FINE){gsap.set(tl3,{transformPerspective:1000});const rx=gsap.quickTo(tl3,'rotationX',{duration:.9,ease:'power3'}),ry=gsap.quickTo(tl3,'rotationY',{duration:.9,ease:'power3'});
+  s.addEventListener('pointermove',e=>{const r=s.getBoundingClientRect();ry(((e.clientX-r.left)/r.width-.5)*28);rx(-((e.clientY-r.top)/r.height-.5)*20)});s.addEventListener('pointerleave',()=>{rx(0);ry(0)})}
  gsap.from(s.querySelectorAll('.info > *, .pal > *'),{opacity:0,y:24,stagger:.06,duration:1,ease:'expo.out',scrollTrigger:{trigger:s,start:'top 55%'}});
  if(i<sc.length-1&&DESK.matches){gsap.to(s,{scale:.92,filter:'brightness(.55)',ease:'none',scrollTrigger:{trigger:sc[i+1],start:'top bottom',end:'top top',scrub:true}})}
 });
