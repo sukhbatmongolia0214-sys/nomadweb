@@ -63,7 +63,7 @@ section{padding-top:clamp(96px,11vw,150px)}
 @media(max-width:760px){.sh{grid-template-columns:1fr}}
 
 /* hang tags */
-.rail{display:flex;gap:22px;overflow-x:auto;scroll-snap-type:x mandatory;padding:30px var(--m) 30px;margin:0 calc(-1*var(--m));scrollbar-width:none}
+.rail{display:flex;gap:22px;overflow-x:auto;scroll-snap-type:x mandatory;scroll-padding-left:var(--m);padding:30px var(--m) 30px;margin:0 calc(-1*var(--m));scrollbar-width:none}
 .rail::-webkit-scrollbar{display:none}
 .tg{flex:0 0 clamp(260px,26vw,340px);scroll-snap-align:start;position:relative;transform-origin:50% 0;transition:transform .5s cubic-bezier(.3,1.6,.5,1)}
 .tg:hover{transform:rotate(-2.5deg)}
@@ -79,6 +79,7 @@ section{padding-top:clamp(96px,11vw,150px)}
 .tg .pr b{font:800 26px "JetBrains Mono";letter-spacing:-.03em}
 .bar{height:34px;width:110px;background:repeating-linear-gradient(90deg,var(--ink) 0 2px,transparent 2px 4px,var(--ink) 4px 5px,transparent 5px 8px,var(--ink) 8px 11px,transparent 11px 12px)}
 .st{position:absolute;right:14px;top:44px;transform:rotate(8deg);border:3px solid var(--red);color:var(--red);font:800 14px "JetBrains Mono";padding:6px 9px;text-transform:uppercase;background:rgba(247,246,242,.85)}
+@media(max-width:560px){.tg .bar{width:72px}.tg .pr b{font-size:22px}}
 .rhint{font:700 13px "JetBrains Mono";text-transform:uppercase;color:var(--mute);display:flex;gap:10px;align-items:center}
 
 /* lookbook */
