@@ -4,7 +4,7 @@ Logo: захиалагчийн лого — 2 нуман зураас + crosshai
 Color: --paper #f6f6f2 · --ink #0f1412 · --green #179151 (логоны ногоон) · --gdark #0f6e3d · --line rgba(15,20,18,.14) · CMYK (#00aeef #ec008c #ffe600 #111) зөвхөн тэмдэг, зурвас, үйлчилгээний tint-д
 Type: Manrope 500–800 (display/body, tracking -0.03em) · JetBrains Mono 500–700 (спец, хэмжээ, тэмдэглэгээ)
 Spacing: 8px step; section gap 140px desktop / 88px mobile; margin clamp(16px,4vw,56px)
-Radius: 4px (хэвлэмэл материалын бага дугуйрал); товч 999px биш, 4px
+Radius: зураг, hero, том панель --ri clamp(14px,1.4vw,22px) (захиалагчийн хүсэлтээр дугуй булантай); товч, chip, input 4px; hero доорх CMYK зурвас pill
 Motion:
 - Intro loader (#ld): логоны нум зурагдана → crosshair эргэж орно → CMYK цэг дараалан → wordmark clip reveal → дэлгэц дээш гулсаж гарна (~2.3s). sessionStorage-оор нэг удаа; reduced-motion / no-js үед гарахгүй.
 - Hero: h1 үг бүр 80ms зайтай доороос; видео loop.
