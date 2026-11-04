@@ -1,0 +1,446 @@
+<!doctype html>
+<html lang="mn">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="robots" content="noindex,nofollow">
+<title>Цотан — Монгол хээтэй ширээний бүтээлэг, раннер сет</title>
+<meta name="description" content="Цотан (Tsotan Textile) — монгол хээтэй ширээний бүтээлэг, раннер сет, дэрний уут, монгол бүсийг хөвөн даавуун дээр хэвлэж, оёдог Улаанбаатарын үйлдвэр.">
+<meta property="og:title" content="Цотан — Монгол хээ, хүссэн хэмжээгээр">
+<meta property="og:image" content="https://nomadweb.mn/demo/tsotan/img/og.jpg">
+<meta name="theme-color" content="#f4f1ea">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600;700&family=Geologica:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{--cotton:#f4f1ea;--paper:#fbfaf6;--ink:#211c18;--mute:rgba(33,28,24,.66);--line:rgba(33,28,24,.14);--teal:#1e5a53;--teal2:#16463f;--clay:#b0533a;--ochre:#c4922c;--cobalt:#2c4a8f;--m:clamp(16px,4vw,56px);--serif:"Cormorant Garamond",Georgia,serif;--sans:Geologica,system-ui,-apple-system,"Segoe UI",sans-serif}
+*{box-sizing:border-box;margin:0}
+html{scroll-behavior:smooth;-webkit-text-size-adjust:100%}
+body{background:var(--cotton);color:var(--ink);font:400 17px/1.6 var(--sans);font-feature-settings:"tnum" 0;overflow-x:hidden}
+img{display:block;max-width:100%;height:auto}
+a{color:inherit}
+button,input{font:inherit;color:inherit}
+:focus-visible{outline:2px solid var(--teal);outline-offset:3px}
+.wrap{padding-inline:var(--m);max-width:1480px;margin-inline:auto}
+.num{font-variant-numeric:tabular-nums}
+h1,h2,h3{font-family:var(--serif);font-weight:600;letter-spacing:-.01em;line-height:.98}
+h2{font-size:clamp(40px,5.4vw,80px)}
+.lead{font-size:clamp(17px,1.35vw,20px);color:var(--mute);max-width:56ch}
+.btn{display:inline-flex;align-items:center;gap:10px;height:52px;padding:0 22px;border-radius:4px;background:var(--teal);color:#fff;text-decoration:none;font-weight:500;font-size:16px;border:0;cursor:pointer;transition:background .2s,transform .2s}
+.btn:hover{background:var(--teal2)}.btn:active{transform:translateY(1px)}
+.btn.ghost{background:transparent;color:var(--ink);box-shadow:inset 0 0 0 1px var(--ink)}
+.btn.ghost:hover{background:var(--ink);color:#fff}
+.btn svg{width:18px;height:18px}
+
+/* ruler */
+.ruler{position:relative;height:16px;background:
+ repeating-linear-gradient(90deg,currentColor 0 1px,transparent 1px 10px) left bottom/100% 5px no-repeat,
+ repeating-linear-gradient(90deg,currentColor 0 1px,transparent 1px 50px) left bottom/100% 9px no-repeat,
+ repeating-linear-gradient(90deg,currentColor 0 1px,transparent 1px 100px) left bottom/100% 15px no-repeat;color:rgba(33,28,24,.42)}
+
+/* header */
+.top{position:sticky;top:0;z-index:40;background:rgba(244,241,234,.92);backdrop-filter:saturate(1.2) blur(10px);-webkit-backdrop-filter:saturate(1.2) blur(10px)}
+.top .bar{display:flex;align-items:center;gap:28px;height:68px}
+.logo{display:flex;align-items:center;gap:10px;text-decoration:none;margin-right:auto}
+.logo svg{width:30px;height:30px;color:var(--teal);--gap:#f4f1ea}
+.logo b{font:700 26px/1 var(--serif);letter-spacing:.08em}
+.logo small{display:block;font:500 10.5px/1 var(--sans);letter-spacing:.14em;color:var(--mute);text-transform:uppercase;margin-top:3px}
+.top nav{display:flex;gap:26px}
+.top nav a{text-decoration:none;font-size:15px;color:var(--mute);transition:color .2s}
+.top nav a:hover{color:var(--ink)}
+.top .tel{height:42px;font-size:15px;padding:0 16px}
+.prog{position:relative}
+.prog .ruler{height:12px}
+.prog i{position:absolute;left:0;bottom:0;width:2px;height:16px;background:var(--teal);transform:translateX(var(--x,0px));will-change:transform}
+.prog span{position:absolute;bottom:14px;left:0;font:500 11px/1 var(--sans);color:var(--teal);transform:translateX(calc(var(--x,0px) + 6px));white-space:nowrap;font-variant-numeric:tabular-nums}
+@media(max-width:900px){.top nav{display:none}.prog span{display:none}}
+
+/* hero */
+.hero{display:grid;grid-template-columns:1.05fr .95fr;gap:clamp(28px,4vw,72px);align-items:end;padding-top:clamp(40px,6vw,88px)}
+.hero h1{font-size:clamp(54px,8.2vw,132px);line-height:.92;letter-spacing:-.02em}
+.hero .lead{margin-top:26px;color:var(--ink);opacity:.82}
+.hero .cta{display:flex;flex-wrap:wrap;gap:12px;margin-top:32px}
+.facts{display:grid;grid-template-columns:repeat(3,auto);justify-content:start;gap:12px 40px;margin-top:48px;padding-top:20px;border-top:1px solid var(--line)}
+.facts dt{font-size:13px;color:var(--mute)}
+.facts dd{font-size:15px;font-weight:500;margin-top:2px}
+.hfig{position:relative;padding-left:44px}
+.hfig .ph{border-radius:6px;overflow:hidden;aspect-ratio:4/4.6;background:#d9c2a3}
+.hfig img{width:100%;height:100%;object-fit:cover;transform:scale(1.06);transition:transform 1.6s cubic-bezier(.2,.7,.2,1)}
+.loaded .hfig img{transform:none}
+.vr{position:absolute;left:0;top:0;bottom:30px;width:30px;background:
+ repeating-linear-gradient(180deg,currentColor 0 1px,transparent 1px 10px) right top/6px 100% no-repeat,
+ repeating-linear-gradient(180deg,currentColor 0 1px,transparent 1px 50px) right top/11px 100% no-repeat;color:rgba(33,28,24,.45);transform-origin:top;transform:scaleY(0);transition:transform 1.4s cubic-bezier(.2,.7,.2,1) .2s}
+.loaded .vr{transform:none}
+.vr b{position:absolute;right:16px;font:500 11px/1 var(--sans);color:var(--mute);transform:translateY(-50%);font-variant-numeric:tabular-nums}
+.hfig figcaption{margin-top:12px;font-size:14px;color:var(--mute)}
+@media(max-width:900px){.hero{grid-template-columns:1fr}.facts{grid-template-columns:1fr 1fr}.hfig{padding-left:36px}}
+
+section{scroll-margin-top:90px}
+.sec{padding-top:clamp(96px,12vw,176px)}
+.shead{display:grid;grid-template-columns:1fr minmax(0,460px);gap:24px 48px;align-items:end;margin-bottom:clamp(36px,4vw,56px)}
+@media(max-width:900px){.shead{grid-template-columns:1fr}}
+
+/* features */
+.feat{display:grid;grid-template-columns:1.15fr .85fr;gap:clamp(24px,4vw,64px);align-items:start;padding:clamp(28px,3vw,44px) 0;border-top:1px solid var(--line)}
+.feat.rev{grid-template-columns:.85fr 1.15fr}.feat.rev .gal{order:2}
+.gal{display:grid;grid-template-columns:1fr 92px;gap:12px}
+.gal .main{border-radius:6px;overflow:hidden;aspect-ratio:4/4.4;background:#d9c2a3}
+.gal .main img{width:100%;height:100%;object-fit:cover;transition:opacity .35s}
+.gal .th{display:flex;flex-direction:column;gap:12px}
+.gal .th button{all:unset;cursor:pointer;border-radius:4px;overflow:hidden;aspect-ratio:1;box-shadow:inset 0 0 0 1px var(--line);opacity:.62;transition:opacity .2s,box-shadow .2s}
+.gal .th button[aria-pressed=true]{opacity:1;box-shadow:0 0 0 2px var(--teal)}
+.gal .th button:hover{opacity:1}
+.gal .th button:focus-visible{outline:2px solid var(--teal);outline-offset:2px}
+.gal .th img{width:100%;height:100%;object-fit:cover}
+.info h3{font-size:clamp(38px,4.2vw,62px)}
+.size{display:flex;align-items:center;gap:14px;margin-top:18px;font-weight:500}
+.size .ruler{flex:1;max-width:220px;height:12px}
+.price{font:600 clamp(40px,4vw,56px)/1 var(--serif);margin-top:20px;font-variant-numeric:lining-nums}
+.price small{font:400 15px var(--sans);color:var(--mute);margin-left:8px}
+.info ul{list-style:none;padding:0;margin-top:24px;border-top:1px solid var(--line)}
+.info li{padding:12px 0;border-bottom:1px solid var(--line);font-size:16px}
+.info .more{display:inline-flex;gap:8px;align-items:center;margin-top:24px;color:var(--teal);font-weight:500;text-decoration:none}
+.info .more:hover{text-decoration:underline}
+@media(max-width:900px){.feat,.feat.rev{grid-template-columns:1fr}.feat.rev .gal{order:0}.gal{grid-template-columns:1fr;}.gal .th{flex-direction:row}.gal .th button{width:72px}}
+
+/* ledger */
+.ledger{list-style:none;padding:0;margin-top:clamp(40px,5vw,72px);border-top:1.5px solid var(--ink)}
+.ledger li{display:grid;grid-template-columns:120px minmax(0,1.2fr) minmax(0,1fr) auto;gap:16px 28px;align-items:center;padding:18px 0;border-bottom:1px solid var(--line)}
+.ledger .im{width:120px;aspect-ratio:1;border-radius:4px;overflow:hidden;background:#e7e0d3;display:grid;place-items:center}
+.ledger .im img{width:100%;height:100%;object-fit:cover}
+.ledger .im svg{width:56px;height:56px;color:var(--teal)}
+.ledger h4{font:600 26px/1.05 var(--serif)}
+.ledger p{font-size:15px;color:var(--mute);margin-top:4px}
+.ledger .sz{font-size:15px;color:var(--mute)}
+.ledger .pr{font:600 26px/1.15 var(--serif);text-align:right;white-space:nowrap}
+.ledger .pr small{display:block;font:400 13px var(--sans);color:var(--mute)}
+@media(max-width:760px){.ledger li{grid-template-columns:84px minmax(0,1fr);gap:6px 16px;align-items:start}.ledger .im{width:84px;grid-row:span 3}.ledger .pr{text-align:left}.ledger .sz{font-size:14px}}
+
+/* calculator */
+.calc{background:var(--paper);border-radius:6px;box-shadow:0 0 0 1px var(--line);display:grid;grid-template-columns:minmax(0,.9fr) minmax(0,1.1fr)}
+.ctl{padding:clamp(22px,3vw,40px);border-right:1px solid var(--line);display:grid;gap:26px;align-content:start}
+.fld>label,.fld>.lb{display:flex;justify-content:space-between;font-size:14px;color:var(--mute);margin-bottom:10px}
+.fld output{color:var(--ink);font-weight:500;font-variant-numeric:tabular-nums}
+.seg{display:flex;flex-wrap:wrap;gap:6px}
+.seg button{all:unset;cursor:pointer;padding:10px 14px;border-radius:4px;font-size:15px;box-shadow:inset 0 0 0 1px var(--line);transition:background .2s,color .2s,box-shadow .2s}
+.seg button[aria-pressed=true]{background:var(--ink);color:#fff;box-shadow:none}
+.seg button:focus-visible{outline:2px solid var(--teal);outline-offset:2px}
+.seg.sw button{display:flex;align-items:center;gap:8px}
+.seg.sw i{width:16px;height:16px;border-radius:50%;display:block}
+.seg.mo button{display:flex;align-items:center;gap:8px}.seg.mo button svg{width:22px;height:22px;--gap:var(--paper)}.seg.mo button[aria-pressed=true] svg{--gap:var(--ink)}
+.dim{display:grid;grid-template-columns:minmax(0,1fr) 96px;gap:14px;align-items:center}
+.dim .in{display:flex;align-items:center;height:44px;border-radius:4px;box-shadow:inset 0 0 0 1px var(--line);background:#fff;padding:0 10px}
+.dim input[type=number]{width:100%;border:0;background:transparent;font-weight:500;font-size:17px;font-variant-numeric:tabular-nums;-moz-appearance:textfield;outline:none}
+.dim input[type=number]::-webkit-inner-spin-button{appearance:none}
+.dim .in span{font-size:13px;color:var(--mute)}
+.dim .in:focus-within{box-shadow:inset 0 0 0 2px var(--teal)}
+input[type=range]{-webkit-appearance:none;appearance:none;width:100%;height:28px;background:transparent;cursor:pointer}
+input[type=range]::-webkit-slider-runnable-track{height:2px;background:var(--ink);opacity:.9}
+input[type=range]::-moz-range-track{height:2px;background:var(--ink)}
+input[type=range]::-webkit-slider-thumb{-webkit-appearance:none;width:20px;height:20px;border-radius:50%;background:var(--teal);margin-top:-9px;box-shadow:0 0 0 4px var(--paper)}
+input[type=range]::-moz-range-thumb{width:20px;height:20px;border:0;border-radius:50%;background:var(--teal)}
+.out{padding:clamp(22px,3vw,40px);display:grid;gap:22px;align-content:start}
+.stage{background:#e9e1d3;border-radius:4px;aspect-ratio:16/11;display:grid;place-items:center;overflow:hidden}
+.stage svg{width:100%;height:100%}
+.res{display:grid;grid-template-columns:auto 1fr;gap:6px 28px;align-items:end}
+.res .big{font:600 clamp(38px,4vw,56px)/1 var(--serif);font-variant-numeric:lining-nums;white-space:nowrap}
+.res .lbl{font-size:13px;color:var(--mute);grid-column:1/-1}
+.res .note{font-size:15px;line-height:1.5}
+.res .note b{font-weight:600}
+.ok{color:var(--teal)}.cu{color:var(--clay)}
+.msg{background:var(--cotton);border-radius:4px;padding:14px 16px;font-size:15px;line-height:1.5}
+.msg small{display:block;font-size:12px;color:var(--mute);margin-bottom:4px}
+.act{display:flex;flex-wrap:wrap;gap:10px}
+.act .btn{height:46px;font-size:15px}
+.copied{font-size:14px;color:var(--teal);align-self:center;opacity:0;transition:opacity .2s}
+.copied.on{opacity:1}
+@media(max-width:980px){.calc{grid-template-columns:1fr}.ctl{border-right:0;border-bottom:1px solid var(--line)}.res{grid-template-columns:1fr}}
+
+/* custom */
+.cust{display:grid;grid-template-columns:1fr 1fr;gap:clamp(24px,4vw,64px);align-items:start}
+.case{display:grid;grid-template-columns:1.05fr .95fr;gap:16px}
+.case figure{border-radius:6px;overflow:hidden;background:#d9c2a3;position:relative}
+.case figure img{width:100%;height:100%;object-fit:cover}
+.case .a{grid-row:span 2;aspect-ratio:4/5.2}
+.case .b,.case .c{aspect-ratio:1}
+.case figcaption{position:absolute;left:10px;right:10px;bottom:10px;font-size:13px;line-height:1.35;color:#fff;background:rgba(20,16,13,.62);padding:8px 10px;border-radius:4px}
+.cust blockquote{font:500 clamp(26px,2.4vw,34px)/1.2 var(--serif);border-left:2px solid var(--teal);padding-left:20px;margin-top:28px}
+.cust blockquote cite{display:block;font:400 14px/1.4 var(--sans);font-style:normal;color:var(--mute);margin-top:10px}
+.steps{list-style:none;padding:0;margin-top:36px;counter-reset:s;border-top:1px solid var(--line)}
+.steps li{counter-increment:s;display:grid;grid-template-columns:44px 1fr;gap:14px;padding:16px 0;border-bottom:1px solid var(--line)}
+.steps li::before{content:counter(s);font:600 28px/1 var(--serif);color:var(--teal)}
+.steps b{display:block;font-weight:500}
+.steps span{color:var(--mute);font-size:15px}
+@media(max-width:900px){.cust{grid-template-columns:1fr}}
+
+/* contact */
+.visit{display:grid;grid-template-columns:1.1fr .9fr;gap:clamp(24px,4vw,64px);align-items:stretch}
+.vbox{background:var(--teal);color:#fff;border-radius:6px;padding:clamp(26px,4vw,56px);display:grid;align-content:space-between;gap:36px}
+.vbox h2{color:#fff}
+.vbox dl{display:grid;grid-template-columns:auto 1fr;gap:14px 28px;font-size:16px}
+.vbox dt{color:rgba(255,255,255,.66);font-size:14px;padding-top:2px}
+.vbox dd a{text-decoration:none;border-bottom:1px solid rgba(255,255,255,.4)}
+.vbox dd a:hover{border-color:#fff}
+.vbox .btn{background:#fff;color:var(--teal)}
+.vbox .btn:hover{background:var(--cotton)}
+.vph{border-radius:6px;overflow:hidden;min-height:420px;background:#d9c2a3}
+.vph img{width:100%;height:100%;object-fit:cover}
+@media(max-width:900px){.visit{grid-template-columns:1fr}.vph{min-height:0;aspect-ratio:4/3}.vbox dl{grid-template-columns:1fr;gap:4px}.vbox dd{margin-bottom:10px}}
+
+footer{padding-top:clamp(96px,12vw,160px);padding-bottom:28px;overflow:hidden}
+.wm{font:700 clamp(96px,24vw,380px)/.86 var(--serif);letter-spacing:.02em;color:var(--ink);text-align:center;margin-top:12px;padding-bottom:.12em}
+.fl{display:flex;flex-wrap:wrap;justify-content:space-between;gap:12px;margin-top:22px;font-size:14px;color:var(--mute)}
+.fl a{text-decoration:none}.fl a:hover{color:var(--ink)}
+
+/* reveal: observed element only fades/moves */
+.rv{opacity:0;transform:translateY(16px);transition:opacity .8s cubic-bezier(.2,.7,.2,1),transform .8s cubic-bezier(.2,.7,.2,1)}
+.rv.on{opacity:1;transform:none}
+.no-js .rv{opacity:1;transform:none}
+@media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}.rv{opacity:1;transform:none;transition:none}.hfig img,.vr{transform:none!important;transition:none}}
+</style>
+</head>
+<body class="no-js">
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+ <symbol id="m-olzii" viewBox="-18 -18 136 136">
+  <g transform="rotate(45 50 50)" fill="none" stroke-linejoin="miter">
+   <g style="stroke:var(--gap,#fbfaf6)" stroke-width="13"><path d="M20 20V4H4V20H20M80 20V4H96V20H80M20 80V96H4V80H20M80 80V96H96V80H80"/></g>
+   <g stroke="currentColor" stroke-width="8"><path d="M20 20V4H4V20H20M80 20V4H96V20H80M20 80V96H4V80H20M80 80V96H96V80H80"/></g>
+   <path d="M20 20H80V80H20Z" style="stroke:var(--gap,#fbfaf6)" stroke-width="13"/><path d="M20 20H80V80H20Z" stroke="currentColor" stroke-width="8"/>
+   <path d="M20 40H80M20 60H80" style="stroke:var(--gap,#fbfaf6)" stroke-width="13"/><path d="M20 40H80M20 60H80" stroke="currentColor" stroke-width="8"/>
+   <path d="M40 20V80M60 20V80" style="stroke:var(--gap,#fbfaf6)" stroke-width="13"/><path d="M40 20V80M60 20V80" stroke="currentColor" stroke-width="8"/>
+   <path d="M33 40H47M53 60H67" style="stroke:var(--gap,#fbfaf6)" stroke-width="13"/><path d="M32 40H48M52 60H68" stroke="currentColor" stroke-width="8"/>
+  </g>
+ </symbol>
+ <symbol id="m-hanan" viewBox="0 0 100 100"><g fill="none" stroke="currentColor" stroke-width="7" stroke-linecap="square"><path d="M10 90V10H90V90H30V30H70V70H50V50"/></g></symbol>
+ <symbol id="m-toirog" viewBox="0 0 100 100"><g fill="none" stroke="currentColor"><circle cx="50" cy="50" r="42" stroke-width="5"/><circle cx="50" cy="50" r="24" stroke-width="5"/><g stroke-width="5"><path id="tk" d="M50 9V20H58V28"/><use href="#tk" transform="rotate(45 50 50)"/><use href="#tk" transform="rotate(90 50 50)"/><use href="#tk" transform="rotate(135 50 50)"/><use href="#tk" transform="rotate(180 50 50)"/><use href="#tk" transform="rotate(225 50 50)"/><use href="#tk" transform="rotate(270 50 50)"/><use href="#tk" transform="rotate(315 50 50)"/></g><circle cx="50" cy="50" r="7" fill="currentColor" stroke="none"/></g></symbol>
+</svg>
+
+<header class="top">
+ <div class="wrap bar">
+  <a class="logo" href="#top" aria-label="Цотан — нүүр"><svg aria-hidden="true"><use href="#m-olzii"/></svg><span><b>ЦОТАН</b><small>Tsotan Textile</small></span></a>
+  <nav aria-label="Үндсэн цэс"><a href="#products">Бүтээгдэхүүн</a><a href="#calc">Тооцоолуур</a><a href="#custom">Захиалгаар</a><a href="#visit">Холбоо барих</a></nav>
+  <a class="btn tel" href="tel:+97693300991"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M5 4h4l2 5-2.5 1.5a11 11 0 0 0 5 5L15 13l5 2v4a2 2 0 0 1-2 2A16 16 0 0 1 3 6a2 2 0 0 1 2-2"/></svg><span class="num">9330 0991</span></a>
+ </div>
+ <div class="wrap prog" aria-hidden="true"><div class="ruler"></div><i></i><span>0 см</span></div>
+</header>
+
+<main id="top">
+<section class="wrap hero">
+ <div>
+  <h1>Монгол хээ,<br>хүссэн хэмжээгээр</h1>
+  <p class="lead">Ширээний бүтээлэг, раннер сет, дэрний уут, монгол бүсийг хөвөн даавуун дээр Улаанбаатар дахь өөрсдийн үйлдвэртээ хэвлэж, оёдог.</p>
+  <div class="cta"><a class="btn" href="#calc">Ширээгээ хэмжээд тооцоол<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a><a class="btn ghost" href="#products">Үнэ харах</a></div>
+  <dl class="facts">
+   <div><dt>Ширээний бүтээлэг</dt><dd class="num">145 × 220 см · 88,000₮</dd></div>
+   <div><dt>Цагийн хуваарь</dt><dd>Да–Бя 10:00–19:00</dd></div>
+   <div><dt>Хаяг</dt><dd>Төмөр замын 222-р байр</dd></div>
+  </dl>
+ </div>
+ <figure class="hfig">
+  <div class="vr" aria-hidden="true"><b style="top:0">0</b><b style="top:22.7%">50</b><b style="top:45.4%">100</b><b style="top:68.1%">150</b><b style="top:90.8%">200</b></div>
+  <div class="ph"><img src="img/hero.webp" width="1300" height="1430" alt="Монгол хээтэй раннер сет: ширээний гол, зургаан тавгийн суурь модон ширээн дээр" fetchpriority="high"></div>
+  <figcaption>Раннер сет: ширээний гол 35 × 220 см, 6 тавгийн суурь</figcaption>
+ </figure>
+</section>
+
+<section id="products" class="wrap sec">
+ <div class="shead rv"><h2>Бэлэн бүтээгдэхүүн,<br>үнэ</h2><p class="lead">Үнэ нь стандарт хэмжээнийх. Өөр хэмжээ, хээ, өнгөөр захиалж болно.</p></div>
+
+ <article class="feat rv">
+  <div class="gal" data-gal>
+   <div class="main"><img src="img/cloth-knot.webp" width="1100" height="1225" alt="Өлзий хээтэй цагаан ширээний бүтээлэг" loading="lazy"></div>
+   <div class="th" role="group" aria-label="Бүтээлгийн загварууд">
+    <button aria-pressed="true" data-src="img/cloth-knot.webp" data-alt="Өлзий хээтэй цагаан ширээний бүтээлэг" aria-label="Өлзий хээтэй загвар"><img src="img/cloth-knot.webp" alt="" loading="lazy"></button>
+    <button aria-pressed="false" data-src="img/cloth-diamond.webp" data-alt="Голдоо ромбон хээтэй, булангийн угалзтай бүтээлэг" aria-label="Ромбон хээтэй загвар"><img src="img/cloth-diamond.webp" alt="" loading="lazy"></button>
+    <button aria-pressed="false" data-src="img/cloth-gold.webp" data-alt="Шар хүрээтэй, голдоо угалзан хээтэй бүтээлэг" aria-label="Шар хүрээтэй загвар"><img src="img/cloth-gold.webp" alt="" loading="lazy"></button>
+   </div>
+  </div>
+  <div class="info">
+   <h3>Ширээний бүтээлэг</h3>
+   <div class="size num"><span>145 × 220 см</span><div class="ruler" aria-hidden="true"></div></div>
+   <p class="price num">88,000₮</p>
+   <ul><li>100% хөвөн даавуу</li><li>Голдоо том хээ, дөрвөн өнцөгтөө булангийн хээ</li><li>Өлзий, угалз, ханан хээтэй загварууд</li></ul>
+   <a class="more" href="#calc" data-mode="cloth">Миний ширээнд таарах уу? <span aria-hidden="true">→</span></a>
+  </div>
+ </article>
+
+ <article class="feat rev rv">
+  <div class="gal" data-gal>
+   <div class="main"><img src="img/runner-brown.webp" width="1100" height="1181" alt="Хүрэн, ногоон хээтэй раннер сет" loading="lazy"></div>
+   <div class="th" role="group" aria-label="Раннер сетийн загварууд">
+    <button aria-pressed="true" data-src="img/runner-brown.webp" data-alt="Хүрэн, ногоон хээтэй раннер сет" aria-label="Хүрэн хээтэй загвар"><img src="img/runner-brown.webp" alt="" loading="lazy"></button>
+    <button aria-pressed="false" data-src="img/runner-blue.webp" data-alt="Хөх, ногоон, улаан хээтэй раннер сет" aria-label="Хөх хээтэй загвар"><img src="img/runner-blue.webp" alt="" loading="lazy"></button>
+    <button aria-pressed="false" data-src="img/runner-teal.webp" data-alt="Ногоон хээтэй раннер сет" aria-label="Ногоон хээтэй загвар"><img src="img/runner-teal.webp" alt="" loading="lazy"></button>
+    <button aria-pressed="false" data-src="img/runner-ring.webp" data-alt="Тойрог болон өлзий хээтэй раннер сет" aria-label="Тойрог хээтэй загвар"><img src="img/runner-ring.webp" alt="" loading="lazy"></button>
+   </div>
+  </div>
+  <div class="info">
+   <h3>Раннер сет</h3>
+   <div class="size num"><span>Ширээний гол 35 × 220 см</span><div class="ruler" aria-hidden="true"></div></div>
+   <p class="price num">88,000–120,000₮</p>
+   <ul><li>6 тавгийн суурьтай иж бүрэн</li><li>Хөвөн болон зузаан тааран даавуу</li><li>Наадам, баяр ёслолын ширээнд</li></ul>
+   <a class="more" href="#calc" data-mode="runner">Миний ширээнд таарах уу? <span aria-hidden="true">→</span></a>
+  </div>
+ </article>
+
+ <ul class="ledger rv" aria-label="Бусад бүтээгдэхүүн">
+  <li><div class="im"><img src="img/cushion.webp" alt="Монгол хээтэй өнгөт дэрний уутнууд" loading="lazy"></div><div><h4>Дэрний уут</h4><p>Хөвөн эсвэл тааран даавуу, хээгээ сонгоно</p></div><div class="sz num">45 × 45 см</div><div class="pr num">27,000₮</div></li>
+  <li><div class="im"><img src="img/shirts.webp" alt="Монгол хээтэй хөвөн цамцнууд өлгүүр дээр" loading="lazy"></div><div><h4>Монгол хээтэй цамц</h4><p>Маш зөөлөн, цэвэр хөвөн даавуу</p></div><div class="sz">Том · 7–12 нас · 3–5 нас</div><div class="pr num">88,000₮<small>хүүхдийнх 55,000–68,000₮</small></div></li>
+  <li><div class="im"><svg aria-hidden="true"><use href="#m-hanan"/></svg></div><div><h4>Монгол бүс</h4><p>Дээлийн бүс, халаастай бүс</p></div><div class="sz">Эрэгтэй · эмэгтэй</div><div class="pr num">49,000₮<small>эмэгтэй 35,000₮</small></div></li>
+  <li><div class="im"><img src="img/bowl.webp" alt="Мөнгөн аяга, хээтэй даавуун уутнууд" loading="lazy"></div><div><h4>Аяганы уут, шагайн уут</h4><p>Мөнгөн аяга, шагайгаа хадгалах хээтэй уут</p></div><div class="sz">Олон өнгө</div><div class="pr num">12,000₮<small>шагайн уут</small></div></li>
+  <li><div class="im"><img src="img/bags.webp" alt="Монгол хээтэй өнгөт уутнууд" loading="lazy"></div><div><h4>Эко тор, уут</h4><p>Хүссэн хэмжээ, хээгээр</p></div><div class="sz">Хэд хэдэн хэмжээ</div><div class="pr num">30,000–45,000₮</div></li>
+  <li><div class="im"><svg aria-hidden="true"><use href="#m-toirog"/></svg></div><div><h4>Жижиг бэлэг</h4><p>Нүдний шилний гэр, үзэг балны сав 14,900₮ · Картны гэр 12,900₮ · Түлхүүрийн оосор 9,900₮</p></div><div class="sz">Ном, iPad-ны уут</div><div class="pr num">44,900₮<small>iPad-ны уут</small></div></li>
+ </ul>
+</section>
+
+<section id="calc" class="wrap sec">
+ <div class="shead rv"><h2>Ширээгээ хэмжээд,<br>бүтээлгээ тааруул</h2><p class="lead">Ширээнийхээ урт, өргөнийг оруулахад таарах хэмжээ гарч, хээ, өнгө нь зураг дээр шууд харагдана.</p></div>
+ <div class="calc rv">
+  <form class="ctl" id="cf" onsubmit="return false">
+   <div class="fld"><div class="lb" id="l-mode">Бүтээгдэхүүн</div><div class="seg" role="group" aria-labelledby="l-mode" data-k="mode"><button type="button" aria-pressed="true" data-v="cloth">Ширээний бүтээлэг</button><button type="button" aria-pressed="false" data-v="runner">Раннер сет</button></div></div>
+   <div class="fld"><label for="L">Ширээний урт <output id="oL" class="num">180 см</output></label><div class="dim"><input type="range" id="Lr" min="60" max="320" step="1" value="180" aria-label="Ширээний урт, гулсуур"><div class="in"><input type="number" id="L" min="60" max="320" value="180" inputmode="numeric"><span>см</span></div></div></div>
+   <div class="fld"><label for="W">Ширээний өргөн <output id="oW" class="num">90 см</output></label><div class="dim"><input type="range" id="Wr" min="40" max="180" step="1" value="90" aria-label="Ширээний өргөн, гулсуур"><div class="in"><input type="number" id="W" min="40" max="180" value="90" inputmode="numeric"><span>см</span></div></div></div>
+   <div class="fld" id="fo"><div class="lb" id="l-o">Ирмэгээс унжих урт</div><div class="seg" role="group" aria-labelledby="l-o" data-k="o"><button type="button" aria-pressed="false" data-v="15">Богино 15 см</button><button type="button" aria-pressed="true" data-v="25">Дунд 25 см</button><button type="button" aria-pressed="false" data-v="35">Урт 35 см</button></div></div>
+   <div class="fld"><div class="lb" id="l-m">Голын хээ</div><div class="seg mo" role="group" aria-labelledby="l-m" data-k="motif"><button type="button" aria-pressed="true" data-v="olzii"><svg aria-hidden="true"><use href="#m-olzii"/></svg>Өлзий</button><button type="button" aria-pressed="false" data-v="hanan"><svg aria-hidden="true"><use href="#m-hanan"/></svg>Ханан хээ</button><button type="button" aria-pressed="false" data-v="toirog"><svg aria-hidden="true"><use href="#m-toirog"/></svg>Тойрог хээ</button></div></div>
+   <div class="fld"><div class="lb" id="l-c">Хээний өнгө</div><div class="seg sw" role="group" aria-labelledby="l-c" data-k="color"><button type="button" aria-pressed="true" data-v="teal"><i style="background:var(--teal)"></i>Ногоон</button><button type="button" aria-pressed="false" data-v="clay"><i style="background:var(--clay)"></i>Улаан</button><button type="button" aria-pressed="false" data-v="ochre"><i style="background:var(--ochre)"></i>Шар</button><button type="button" aria-pressed="false" data-v="cobalt"><i style="background:var(--cobalt)"></i>Хөх</button></div></div>
+  </form>
+  <div class="out">
+   <div class="stage" id="stage" role="img" aria-label="Ширээ, бүтээлгийн дээрээс харсан зураг"></div>
+   <div class="res" aria-live="polite">
+    <div class="lbl" id="rl">Танд тохирох бүтээлэг</div>
+    <div class="big num" id="rb">230 × 140 см</div>
+    <div class="note" id="rn"></div>
+   </div>
+   <div class="msg"><small>Захиалгын мессеж</small><span id="msg"></span></div>
+   <div class="act"><button class="btn" type="button" id="cp">Мессеж хуулах</button><a class="btn ghost" href="https://m.me/tsotantextile" target="_blank" rel="noopener">Messenger-ээр бичих</a><a class="btn ghost" href="tel:+97693300991">Залгах</a><span class="copied" id="cpd" role="status">Хуулагдлаа</span></div>
+  </div>
+ </div>
+</section>
+
+<section id="custom" class="wrap sec">
+ <div class="cust">
+  <div class="case rv">
+   <figure class="a"><img src="img/vest.webp" width="1000" height="1200" alt="Хүннүгийн хивсний хээтэй ноосон даавуун хантааз" loading="lazy"><figcaption>Black Rock Resort Mongolia — амрагчдын хантааз</figcaption></figure>
+   <figure class="b"><img src="img/tote-lexus.webp" alt="Байгууллагын логотой хоёр эко цүнх" loading="lazy"><figcaption>Байгууллагын аялалд зориулсан логотой цүнх</figcaption></figure>
+   <figure class="c"><img src="img/print-blue.webp" alt="Цагаан даавуун дээр хэвлэсэн хөх хээ" loading="lazy"><figcaption>Даавуун дээрх хээний хэвлэл</figcaption></figure>
+  </div>
+  <div class="rv">
+   <h2>Танай хээ, лого —<br>даавуун дээр</h2>
+   <p class="lead" style="margin-top:22px">Зочид буудал, амралтын газар, байгууллага, арга хэмжээнд зориулж хээ зохиомжлон хэвлэж, оёдог. Уран зураг, фото зургийг торго, даавуун дээр хэвлэнэ.</p>
+   <blockquote>Хүннүгийн хивсний хээг зохиомжлон, зөөлөн ноосон даавуун дээр хэвлэж хийсэн хантааз.<cite>Black Rock Resort Mongolia-гийн захиалга</cite></blockquote>
+   <ol class="steps">
+    <li><div><b>Хээ, лого, хэмжээгээ илгээнэ</b><span>tsotan.factory@gmail.com хаягаар эсвэл Messenger-ээр</span></div></li>
+    <li><div><b>Үнэ, загвараа батална</b><span>Хээний өнгө, хэмжээ, тоо ширхгээс хамаарч үнэ гарна</span></div></li>
+    <li><div><b>Хэвлэж, оёно</b><span>Даавуун дээр хэвлээд өөрсдийн үйлдвэрт оёдог</span></div></li>
+    <li><div><b>Бэлэн болмогц авна</b><span>Төмөр замын 222-р байрны дэлгүүрээс</span></div></li>
+   </ol>
+   <div class="cta" style="display:flex;flex-wrap:wrap;gap:12px;margin-top:28px"><a class="btn" href="mailto:tsotan.factory@gmail.com?subject=%D0%97%D0%B0%D1%85%D0%B8%D0%B0%D0%BB%D0%B3%D1%8B%D0%BD%20%D2%AF%D0%BD%D0%B8%D0%B9%D0%BD%20%D1%81%D0%B0%D0%BD%D0%B0%D0%BB">Хээгээ илгээж үнэ авах</a></div>
+  </div>
+ </div>
+</section>
+
+<section id="visit" class="wrap sec">
+ <div class="visit">
+  <div class="vbox rv">
+   <h2>Дэлгүүр, үйлдвэр<br>нэг дор</h2>
+   <dl>
+    <dt>Хаяг</dt><dd>Төмөр замын 222-р байр, Замчид гудамж, Улаанбаатар</dd>
+    <dt>Цагийн хуваарь</dt><dd>Даваа–Бямба 10:00–19:00<br>Ням гараг амарна</dd>
+    <dt>Утас</dt><dd><a class="num" href="tel:+97693300991">9330 0991</a> · <a class="num" href="tel:+97621255091">21-255091</a></dd>
+    <dt>И-мэйл</dt><dd><a href="mailto:tsotan.factory@gmail.com">tsotan.factory@gmail.com</a></dd>
+    <dt>Сошиал</dt><dd><a href="https://www.facebook.com/tsotantextile" target="_blank" rel="noopener">Facebook</a> · <a href="https://www.instagram.com/tsotan_mongolia" target="_blank" rel="noopener">Instagram</a></dd>
+   </dl>
+   <div><a class="btn" href="https://goo.gl/maps/SGC4GXbdEHPJjTJr5" target="_blank" rel="noopener">Газрын зураг нээх</a></div>
+  </div>
+  <div class="vph rv"><img src="img/bowl-linen.webp" alt="Мөнгөн аяга, хээтэй даавуун уутнууд модон ширээн дээр" loading="lazy"></div>
+ </div>
+</section>
+</main>
+
+<footer class="wrap">
+ <div class="ruler" aria-hidden="true"></div>
+ <div class="wm" aria-hidden="true">ЦОТАН</div>
+ <div class="fl"><span>Tsotan Textile · Монгол хээтэй даавуун бүтээгдэхүүн · Улаанбаатар</span><span><a href="https://www.facebook.com/tsotantextile" target="_blank" rel="noopener">Facebook</a> · <a href="https://www.instagram.com/tsotan_mongolia" target="_blank" rel="noopener">Instagram</a> · <a class="num" href="tel:+97693300991">9330 0991</a></span></div>
+</footer>
+
+<script>
+document.body.classList.remove('no-js');
+const RM=matchMedia('(prefers-reduced-motion: reduce)').matches;
+addEventListener('load',()=>document.body.classList.add('loaded'));
+setTimeout(()=>document.body.classList.add('loaded'),1200);
+
+/* reveal */
+const io=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('on');io.unobserve(e.target)}}),{threshold:.08,rootMargin:'0px 0px -5% 0px'});
+document.querySelectorAll('.rv').forEach(el=>io.observe(el));
+setTimeout(()=>document.querySelectorAll('.rv').forEach(el=>{const r=el.getBoundingClientRect();if(r.top<innerHeight&&r.bottom>0)el.classList.add('on')}),1500);
+
+/* scroll ruler */
+const pg=document.querySelector('.prog'),pr=pg.querySelector('.ruler'),pl=pg.querySelector('span');let tk=false;
+function prog(){tk=false;const h=document.documentElement.scrollHeight-innerHeight,p=h>0?Math.min(1,Math.max(0,scrollY/h)):0,w=pr.clientWidth;pg.style.setProperty('--x',(p*(w-2)).toFixed(1)+'px');pl.textContent=Math.round(p*220)+' см'}
+addEventListener('scroll',()=>{if(!tk){tk=true;requestAnimationFrame(prog)}},{passive:true});addEventListener('resize',prog);prog();
+
+/* galleries */
+document.querySelectorAll('[data-gal]').forEach(g=>{const m=g.querySelector('.main img'),bs=[...g.querySelectorAll('.th button')];bs.forEach(b=>b.addEventListener('click',()=>{bs.forEach(x=>x.setAttribute('aria-pressed',x===b));m.style.opacity=0;const im=new Image();im.onload=()=>{m.src=b.dataset.src;m.alt=b.dataset.alt;m.style.opacity=1};im.src=b.dataset.src}))});
+
+/* calculator */
+const S={mode:'cloth',o:25,motif:'olzii',color:'teal'};
+const COL={teal:'#1e5a53',clay:'#b0533a',ochre:'#c4922c',cobalt:'#2c4a8f'},CN={teal:'ногоон',clay:'улаан',ochre:'шар',cobalt:'хөх'},MN={olzii:'Өлзий хээ',hanan:'Ханан хээ',toirog:'Тойрог хээ'};
+const $=id=>document.getElementById(id);
+const L=$('L'),Lr=$('Lr'),W=$('W'),Wr=$('Wr');
+document.querySelectorAll('.seg[data-k]').forEach(sg=>{const k=sg.dataset.k,bs=[...sg.querySelectorAll('button')];bs.forEach(b=>b.addEventListener('click',()=>{bs.forEach(x=>x.setAttribute('aria-pressed',x===b));S[k]=k==='o'?+b.dataset.v:b.dataset.v;draw()}))});
+function setMode(v){S.mode=v;document.querySelectorAll('[data-k=mode] button').forEach(x=>x.setAttribute('aria-pressed',x.dataset.v===v));draw()}
+document.querySelectorAll('.more[data-mode]').forEach(a=>a.addEventListener('click',()=>setMode(a.dataset.mode)));
+function clamp(v,a,b){v=Math.round(+v);return isNaN(v)?a:Math.min(b,Math.max(a,v))}
+function link(n,r,min,max){r.addEventListener('input',()=>{n.value=r.value;draw()});n.addEventListener('input',()=>{if(n.value!==''){r.value=clamp(n.value,min,max);draw()}});n.addEventListener('change',()=>{n.value=clamp(n.value,min,max);r.value=n.value;draw()})}
+link(L,Lr,60,320);link(W,Wr,40,180);
+const fmt=n=>(Math.round(n*10)/10).toString().replace('.',',');
+function corner(x,y,s,sx,sy,c,sw){return `<path d="M${x} ${y+sy*s}V${y}H${x+sx*s}M${x+sx*s*.34} ${y+sy*s*.34}h${sx*s*.32}v${sy*s*.32}h${-sx*s*.32}z" fill="none" stroke="${c}" stroke-width="${sw}"/>`}
+function motif(m,cx,cy,size,c){if(m==='olzii')return `<svg x="${cx-size/2}" y="${cy-size/2}" width="${size}" height="${size}" style="color:${c};--gap:#fffdf8"><use href="#m-olzii"/></svg>`;
+ if(m==='toirog')return `<svg x="${cx-size/2}" y="${cy-size/2}" width="${size}" height="${size}" style="color:${c}"><use href="#m-toirog"/></svg>`;
+ const s=size*.42;return `<g transform="rotate(45 ${cx} ${cy})" fill="none" stroke="${c}" stroke-width="${size*.035}"><rect x="${cx-s}" y="${cy-s}" width="${2*s}" height="${2*s}"/><rect x="${cx-s*.62}" y="${cy-s*.62}" width="${1.24*s}" height="${1.24*s}"/></g><svg x="${cx-size*.2}" y="${cy-size*.2}" width="${size*.4}" height="${size*.4}" style="color:${c}"><use href="#m-hanan"/></svg>`}
+function rulerH(x1,x2,y,label){const n=Math.round((x2-x1));return `<g stroke="#211c18" stroke-width=".6" opacity=".7"><path d="M${x1} ${y}H${x2}M${x1} ${y-4}v8M${x2} ${y-4}v8"/></g><text x="${(x1+x2)/2}" y="${y-7}" text-anchor="middle" font-size="13" font-family="Geologica,sans-serif" fill="#211c18">${label}</text>`}
+function rulerV(y1,y2,x,label){return `<g stroke="#211c18" stroke-width=".6" opacity=".7"><path d="M${x} ${y1}V${y2}M${x-4} ${y1}h8M${x-4} ${y2}h8"/></g><text x="${x-8}" y="${(y1+y2)/2}" text-anchor="middle" font-size="13" font-family="Geologica,sans-serif" fill="#211c18" transform="rotate(-90 ${x-8} ${(y1+y2)/2})">${label}</text>`}
+function draw(){
+ const l=clamp(Lr.value,60,320),w=clamp(Wr.value,40,180),c=COL[S.color];
+ $('oL').textContent=l+' см';$('oW').textContent=w+' см';
+ $('fo').style.display=S.mode==='cloth'?'':'none';
+ const VW=440,VH=302,pad=46;let sheetL,sheetW,html='',note='',big='',lbl='',msg='';
+ if(S.mode==='cloth'){
+  const oL=(220-l)/2,oW=(145-w)/2,lo=Math.max(10,S.o-10),hi=S.o+10,fit=oL>=lo&&oL<=hi&&oW>=lo&&oW<=hi;
+  const cl=fit?220:l+2*S.o,cw=fit?145:w+2*S.o; sheetL=Math.max(cl,l);sheetW=Math.max(cw,w);
+  lbl=fit?'Бэлэн бүтээлэг таарна':'Захиалгат хэмжээ';big=`${cw} × ${cl} см`;
+  note=fit?`<span class="ok"><b>Бэлэн 145 × 220 см бүтээлэг.</b></span> Урт талдаа ${fmt(oL)} см, өргөн талдаа ${fmt(oW)} см унжина. Үнэ <b class="num">88,000₮</b>.`:`<span class="cu"><b>Захиалгаар хийнэ.</b></span> Бэлэн 145 × 220 см бүтээлэг энэ ширээнд ${oL<lo||oW<lo?'богино':'хэт урт'} байна. Үнийг хэмжээ, хээний өнгөөр тохирно.`;
+  msg=`Сайн байна уу? Манай ширээ урт ${l}, өргөн ${w} см. ${cw} × ${cl} см ширээний бүтээлэг, ${MN[S.motif]}, ${CN[S.color]} өнгөөр авмаар байна.`;
+  const sc=Math.min((VW-2*pad)/sheetL,(VH-2*pad)/sheetW),X=(VW-cl*sc)/2,Y=(VH-cw*sc)/2,tX=(VW-l*sc)/2,tY=(VH-w*sc)/2;
+  html+=`<rect x="${X+3}" y="${Y+4}" width="${cl*sc}" height="${cw*sc}" fill="#000" opacity=".08" rx="1"/>`;
+  html+=`<rect x="${X}" y="${Y}" width="${cl*sc}" height="${cw*sc}" fill="#fffdf8" stroke="rgba(33,28,24,.18)" stroke-width=".8"/>`;
+  html+=`<rect x="${tX}" y="${tY}" width="${l*sc}" height="${w*sc}" fill="none" stroke="#9a5b28" stroke-width="1" stroke-dasharray="4 4" opacity=".75"/>`;
+  const ins=Math.min(cl,cw)*sc*.07,fx=X+ins,fy=Y+ins,fw=cl*sc-2*ins,fh=cw*sc-2*ins,cs=Math.min(fw,fh)*.13,sw=Math.max(1.4,Math.min(fw,fh)*.012);
+  html+=`<rect x="${fx}" y="${fy}" width="${fw}" height="${fh}" fill="none" stroke="${c}" stroke-width="${sw}"/>`;
+  html+=corner(fx,fy,cs,1,1,c,sw)+corner(fx+fw,fy,cs,-1,1,c,sw)+corner(fx,fy+fh,cs,1,-1,c,sw)+corner(fx+fw,fy+fh,cs,-1,-1,c,sw);
+  html+=motif(S.motif,VW/2,VH/2,Math.min(fw,fh)*.46,c);
+  html+=rulerH(X,X+cl*sc,Y-12,cl+' см')+rulerV(Y,Y+cw*sc,X-12,cw+' см');
+ } else {
+  const rl=220,rw=35,o=(rl-l)/2,fit=o>=0&&o<=45;
+  lbl='Ширээний гол';big=`35 × ${fit?220:Math.max(60,l+(l>220?40:0))} см`;
+  note=fit?`<span class="ok"><b>Бэлэн раннер сет таарна.</b></span> Ширээний гол хоёр үзүүрээсээ ${fmt(o)} см унжина. 6 тавгийн суурьтай иж бүрэн <b class="num">88,000–120,000₮</b>.`:(l>220?`<span class="cu"><b>Ширээ урт тул захиалгаар хийнэ.</b></span> Ширээний голыг ${l+40} см урттай хийж болно.`:`<span class="cu"><b>Ширээ богино тул захиалгаар хийнэ.</b></span> Бэлэн 220 см гол нэг талдаа ${fmt(o)} см унжина.`);
+  msg=`Сайн байна уу? Манай ширээ урт ${l}, өргөн ${w} см. ${fit?'Бэлэн раннер сет':'Захиалгат хэмжээтэй раннер сет'}, ${MN[S.motif]}, ${CN[S.color]} өнгөөр авмаар байна.`;
+  const RL=fit?rl:(l>220?l+40:rl);sheetL=Math.max(RL,l);sheetW=w;
+  const sc=Math.min((VW-2*pad)/sheetL,(VH-2*pad)/sheetW),tX=(VW-l*sc)/2,tY=(VH-w*sc)/2;
+  html+=`<rect x="${tX}" y="${tY}" width="${l*sc}" height="${w*sc}" fill="#b98351" rx="2"/>`;
+  for(let i=1;i<6;i++)html+=`<path d="M${tX} ${tY+w*sc*i/6}H${tX+l*sc}" stroke="#a5703f" stroke-width=".7" opacity=".6"/>`;
+  const rX=(VW-RL*sc)/2,rY=VH/2-rw*sc/2;
+  const pmW=Math.max(12,Math.min(30,(w-rw)/2-5)),pmL=Math.min(44,l/3.6),gap=(l-3*pmL)/4;
+  for(let i=0;i<3;i++){const px=tX+(gap+i*(pmL+gap))*sc;[tY+2*sc,tY+(w-pmW-2)*sc].forEach(py=>{html+=`<rect x="${px}" y="${py}" width="${pmL*sc}" height="${pmW*sc}" fill="#fffdf8" stroke="rgba(33,28,24,.15)" stroke-width=".6"/><rect x="${px+pmL*sc*.1}" y="${py+pmW*sc*.12}" width="${pmL*sc*.8}" height="${pmW*sc*.76}" fill="none" stroke="${c}" stroke-width="1"/>`+motif(S.motif,px+pmL*sc/2,py+pmW*sc/2,Math.min(pmL,pmW)*sc*.48,c)})}
+  html+=`<rect x="${rX}" y="${rY}" width="${RL*sc}" height="${rw*sc}" fill="#fffdf8" stroke="rgba(33,28,24,.18)" stroke-width=".8"/>`;
+  html+=`<rect x="${rX+rw*sc*.12}" y="${rY+rw*sc*.12}" width="${RL*sc-rw*sc*.24}" height="${rw*sc*.76}" fill="none" stroke="${c}" stroke-width="1.2"/>`;
+  [.22,.5,.78].forEach(f=>{html+=motif(S.motif,rX+RL*sc*f,VH/2,rw*sc*.62,c)});
+  html+=rulerH(rX,rX+RL*sc,tY-12,RL+' см');
+ }
+ $('stage').innerHTML=`<svg viewBox="0 0 ${VW} ${VH}" xmlns="http://www.w3.org/2000/svg">${html}</svg>`;
+ $('rl').textContent=lbl;$('rb').textContent=big;$('rn').innerHTML=note;$('msg').textContent=msg;
+}
+$('cp').addEventListener('click',async()=>{const t=$('msg').textContent;try{await navigator.clipboard.writeText(t)}catch(_){const a=document.createElement('textarea');a.value=t;document.body.appendChild(a);a.select();try{document.execCommand('copy')}catch(e){}a.remove()}const d=$('cpd');d.classList.add('on');setTimeout(()=>d.classList.remove('on'),1800)});
+draw();
+</script>
+</body>
+</html>
