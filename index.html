@@ -286,6 +286,9 @@ textarea{min-height:110px;resize:vertical}
 .out{grid-column:1/-1;border-radius:18px;border:1px solid rgba(61,220,132,.4);background:rgba(61,220,132,.06);padding:20px}
 .out pre{white-space:pre-wrap;font-family:var(--f-mono);font-size:14px;margin:10px 0 14px;color:var(--fg)}
 .err{grid-column:1/-1;color:#ff8a80;font-size:14px;margin:0}
+.hint{font-family:var(--f-display);font-size:13px;letter-spacing:0;text-transform:none;color:var(--mute);min-height:18px}
+label.inv input{border-color:#ff6b5e;box-shadow:0 0 0 3px rgba(255,107,94,.16)}label.inv .hint{color:#ff8a80}
+label.good .hint{color:#5fe39a}
 @media (max-width:860px){.order{grid-template-columns:minmax(0,1fr)}form{grid-template-columns:minmax(0,1fr)}}
 
 footer{border-top:1px solid var(--line);padding-block:40px;color:var(--mute);font-size:14px}
@@ -488,7 +491,7 @@ html.intro-on{overflow:hidden}
    </div>
    <form id="f" novalidate>
     <label for="fn">Таны нэр<input id="fn" name="fn" autocomplete="name" placeholder="Жишээ: Болормаа"></label>
-    <label for="fp">Утас<input id="fp" name="fp" inputmode="tel" autocomplete="tel" placeholder="Жишээ: 9911 2233"></label>
+    <label for="fp" id="fpL">Утас<input id="fp" name="fp" type="tel" inputmode="numeric" autocomplete="tel-national" placeholder="Жишээ: 9911 2233" aria-describedby="fpHint"><span class="hint" id="fpHint" aria-live="polite">8 оронтой дугаар</span></label>
     <label for="fb">Бизнесийн нэр<input id="fb" name="fb" placeholder="Жишээ: Монгол Ноолуур"></label>
     <label for="ft">Сайтын төрөл<select id="ft" name="ft"><option>Онлайн дэлгүүр</option><option>Хүргэлт</option><option>Цаг захиалга</option><option>Тасалбар, эвент</option><option>Кино сайт</option><option>Байгууллага</option><option>Танилцуулга сайт</option><option>Тусгай төсөл</option><option>Мэдэхгүй, зөвлөгөө авъя</option></select></label>
     <label class="full" for="fm">Юу хэрэгтэй байна вэ?<textarea id="fm" name="fm" placeholder="Жишээ: Ноолуур бараа зарах дэлгүүр, QPay төлбөр, хүргэлтийн бүс"></textarea></label>
@@ -579,18 +582,29 @@ document.querySelectorAll('a[href^="tel:"],a[href^="viber:"]').forEach(a=>a.addE
 try{const pr=document.getElementById('price');if(pr&&'IntersectionObserver' in window){const io=new IntersectionObserver(es=>{if(es.some(x=>x.isIntersecting)){px('ViewContent',{content_name:'Price 1,500,000',content_category:'Website',value:1500000,currency:'MNT'});io.disconnect()}},{threshold:.35});io.observe(pr)}}catch(_){}
 /* first interaction with the order form (once) */
 let pxForm=0;document.getElementById('f').addEventListener('focusin',()=>{if(pxForm)return;pxForm=1;try{if(window.fbq)fbq('trackCustom','OrderFormStart')}catch(_){}});
+/* phone: exactly 8 digits (a leading +976 is accepted and dropped) */
+const phoneDigits=s=>{let d=String(s||'').replace(/\D/g,'');if(d.length===11&&d.startsWith('976'))d=d.slice(3);return d};
+const fpL=$('#fpL'),fpH=$('#fpHint'),fpI=$('#fp');
+function phoneState(final){const d=phoneDigits(fpI.value),n=d.length;let bad='',ok=false;
+ if(n>8)bad=`Дугаар илүү байна: ${n} орон. Утасны дугаар 8 оронтой байх ёстой.`;
+ else if(n===8)ok=true;
+ else if(n>0&&final)bad=`Дугаар дутуу байна: ${n} орон. Утасны дугаар 8 оронтой байх ёстой.`;
+ fpL.classList.toggle('inv',!!bad);fpL.classList.toggle('good',ok);fpI.setAttribute('aria-invalid',bad?'true':'false');
+ fpH.textContent=bad||(ok?'✓ Дугаар зөв':(n?`${n}/8 орон`:'8 оронтой дугаар'));return ok}
+fpI.addEventListener('input',()=>{const c=fpI.value.replace(/[^\d\s+\-]/g,'');if(c!==fpI.value)fpI.value=c;phoneState(false)});
+fpI.addEventListener('blur',()=>{if(phoneState(!!fpI.value.trim())){const d=phoneDigits(fpI.value);fpI.value=d.slice(0,4)+' '+d.slice(4)}});
 const ORDER_API='https://rdekzdmcajycojxutyqz.supabase.co/functions/v1/nomad-orders';
 $('#f').addEventListener('submit',async e=>{e.preventDefault();const v=id=>$('#'+id).value.trim();const err=$('#err'),btn=$('#fsend');
  if(!v('fn')||!v('fp')){err.textContent='Нэр, утасны дугаараа бичнэ үү.';err.hidden=false;return}
- if(v('fp').replace(/\D/g,'').length<8){err.textContent='Утасны дугаараа бүтэн бичнэ үү.';err.hidden=false;return}
+ if(!phoneState(true)){const n=phoneDigits(v('fp')).length;err.textContent=n>8?`Утасны дугаар илүү байна (${n} орон). 8 оронтой дугаар бичнэ үү.`:`Утасны дугаар дутуу байна (${n} орон). 8 оронтой дугаар бичнэ үү.`;err.hidden=false;fpI.focus();return}
  if(!$('#fa').checked){err.textContent='Зөвшөөрлийн нүдийг чагтална уу.';err.hidden=false;return}
  err.hidden=true;$('#out').hidden=true;btn.disabled=true;btn.textContent='Илгээж байна…';
  const src=(location.search||'')+(location.hash||'');
- try{const r=await fetch(ORDER_API,{method:'POST',headers:{'content-type':'application/json'},body:JSON.stringify({action:'create',name:v('fn'),phone:v('fp'),business:v('fb'),site_type:v('ft'),message:v('fm'),source:src,website:v('fw')})});
+ try{const r=await fetch(ORDER_API,{method:'POST',headers:{'content-type':'application/json'},body:JSON.stringify({action:'create',name:v('fn'),phone:(d=>d.slice(0,4)+' '+d.slice(4))(phoneDigits(v('fp'))),business:v('fb'),site_type:v('ft'),message:v('fm'),source:src,website:v('fw')})});
   if(r.status===429){err.textContent='Таны захиалга аль хэдийн ирсэн байна. Бид удахгүй холбогдоно.';err.hidden=false;btn.disabled=false;btn.textContent='Захиалга илгээх';return}
   if(!r.ok)throw new Error(r.status);
   const ft0=v('ft');
-  $('#f').querySelectorAll('input:not([type=checkbox]),textarea').forEach(i=>i.value='');
+  $('#f').querySelectorAll('input:not([type=checkbox]),textarea').forEach(i=>i.value='');phoneState(false);
   $('#okBox').hidden=false;btn.textContent='Илгээгдлээ ✓';$('#okBox').scrollIntoView({behavior:reduce?'auto':'smooth',block:'nearest'});
   px('Lead',{content_name:'Website order',content_category:ft0||'Website',value:1500000,currency:'MNT'},'lead-'+Date.now().toString(36)+'-'+Math.random().toString(36).slice(2,8));
  }catch(x){const msg=`Сайн байна уу, Nomad Web Studio!\nНэр: ${v('fn')}\nУтас: ${v('fp')}\nБизнес: ${v('fb')||'—'}\nСайтын төрөл: ${v('ft')}\nХэрэгцээ: ${v('fm')||'—'}`;

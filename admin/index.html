@@ -25,7 +25,13 @@ input.q{flex:1;min-width:200px;background:var(--card);border:1px solid var(--lin
 .o{background:var(--card);border:1px solid var(--line);border-radius:18px;padding:18px;display:grid;gap:10px}
 .o.new{border-color:rgba(255,122,26,.55);box-shadow:0 0 0 1px rgba(255,122,26,.15)}
 .top{display:flex;justify-content:space-between;gap:10px;flex-wrap:wrap;align-items:baseline}
-.nm{font-size:20px;font-weight:600}.dt{font:400 12px "IBM Plex Mono";color:var(--mute)}
+.nm{font-size:20px;font-weight:600}
+.phr{display:flex;align-items:center;gap:10px;flex-wrap:wrap}
+.ph{font:600 clamp(28px,6vw,36px)/1.05 Geologica;letter-spacing:.04em;font-variant-numeric:tabular-nums;color:var(--fg);text-decoration:none;white-space:nowrap}
+.ph:hover{color:var(--sun)}
+.ph small{font-size:.5em;color:var(--mute);letter-spacing:.06em;margin-right:6px;vertical-align:middle}
+.cp{font:500 12px 'IBM Plex Mono';padding:6px 11px;border-radius:999px;border:1px solid var(--line);background:transparent;color:var(--mute);cursor:pointer}
+.bad{font:500 12px 'IBM Plex Mono';padding:5px 10px;border-radius:999px;background:rgba(255,90,90,.12);border:1px solid rgba(255,90,90,.5);color:#ff9a9a}.dt{font:400 12px "IBM Plex Mono";color:var(--mute)}
 .meta{display:flex;gap:8px;flex-wrap:wrap}
 .tag{font:500 12px "IBM Plex Mono";padding:5px 10px;border-radius:999px;background:#1b1b23;border:1px solid var(--line)}
 .msg{white-space:pre-wrap;line-height:1.5;color:rgba(236,232,224,.85);background:#0c0c11;border-radius:12px;padding:12px}
@@ -73,6 +79,8 @@ textarea.note{width:100%;min-height:44px;background:#0c0c11;border:1px solid var
   app.innerHTML=`<div class="deny"><b>NOMAD <span style="font-family:Geologica;font-weight:600;letter-spacing:.08em">АДМИН</span></b>${msg?`<p style="color:#ff8a8a">${esc(msg)}</p>`:'<p>Зөвхөн эзэмшигчийн Google данс нэвтэрнэ.</p>'}<button class="btn sun" id="gl" style="margin-top:14px;font-size:16px;padding:12px 22px"><svg width="18" height="18" viewBox="0 0 48 48"><path fill="#140800" d="M44.5 20H24v8.5h11.8C34.7 33.9 30.1 37 24 37c-7.2 0-13-5.8-13-13s5.8-13 13-13c3.1 0 5.9 1.1 8.1 2.9l6.4-6.4C34.6 4.1 29.6 2 24 2 11.8 2 2 11.8 2 24s9.8 22 22 22c11 0 21-8 21-22 0-1.3-.2-2.7-.5-4z"/></svg> Google-ээр нэвтрэх</button></div>`;
   document.getElementById('gl').onclick=()=>sb.auth.signInWithOAuth({provider:'google',options:{redirectTo:location.origin+'/admin/',queryParams:{login_hint:OWNER,prompt:'select_account'}}})}
  const L={new:'Шинэ',contacted:'Холбогдсон',done:'Гэрээ хийсэн',spam:'Спам'};let all=[],filt='all',q='',notifyOn=true;
+ const pd=s=>{let d=String(s||'').replace(/\D/g,'');if(d.length===11&&d.startsWith('976'))d=d.slice(3);return d};
+ const pfmt=s=>{const d=pd(s);return d.length===8?d.slice(0,4)+' '+d.slice(4):String(s||'')};
  const fmt=d=>new Date(d).toLocaleTimeString('mn-MN',{hour:'2-digit',minute:'2-digit',hour12:false});
  const p2=n=>String(n).padStart(2,'0');
  const dk=d=>{const x=new Date(d);return x.getFullYear()+'-'+p2(x.getMonth()+1)+'-'+p2(x.getDate())};
@@ -101,16 +109,17 @@ textarea.note{width:100%;min-height:44px;background:#0c0c11;border:1px solid var
    <select id="mon"><option value="">Сараар…</option>${months.map(m=>`<option value="${m}" ${rng==='mon'&&mon===m?'selected':''}>${m.replace('-','.')} сар</option>`).join('')}</select>
    ${rng==='custom'?`<span class="rng"><input type="date" id="from" value="${from}"> – <input type="date" id="to" value="${to}"></span>`:''}</div>
   <div class="tools"><input class="q" id="q" placeholder="Хайх: нэр, утас, бизнес…" value="${esc(q)}"></div>
-  <div class="list">${rows.length?groups.map(g=>`<div class="day"><b>${isFu?'⏰ ':''}${dayLabel(g.k)}</b><span>${g.items.length} захиалга</span></div>`+g.items.map(o=>{const tel=String(o.phone||'').replace(/[^\d+]/g,'');const fu=fuOf(o),due=fuDue(fu);return `<article class="o ${o.status} ${due?'fudue':''}" data-id="${o.id}">
+  <div class="list">${rows.length?groups.map(g=>`<div class="day"><b>${isFu?'⏰ ':''}${dayLabel(g.k)}</b><span>${g.items.length} захиалга</span></div>`+g.items.map(o=>{const pdg=pd(o.phone),ok8=pdg.length===8,tel=ok8?'+976'+pdg:String(o.phone||'').replace(/[^\d+]/g,'');const fu=fuOf(o),due=fuDue(fu);return `<article class="o ${o.status} ${due?'fudue':''}" data-id="${o.id}">
    <div class="top"><div class="nm">${esc(o.name)}</div><div class="dt">#${o.id} · ${fmt(o.created_at)}</div></div>
-   <div class="meta"><span class="tag">📞 ${esc(o.phone)}</span>${o.business?`<span class="tag">🏪 ${esc(o.business)}</span>`:''}${o.site_type?`<span class="tag">🌐 ${esc(o.site_type)}</span>`:''}${o.source?`<span class="tag">↗ ${esc(o.source)}</span>`:''}</div>
+   <div class="phr"><a class="ph" href="tel:${esc(tel)}" title="Залгах"><small>📞</small>${esc(pfmt(o.phone))}</a><button class="cp" data-cp="${esc(ok8?pdg:o.phone)}">Хуулах</button>${ok8?'':`<span class="bad">⚠ 8 оронтой биш (${pdg.length} орон)</span>`}</div>
+   <div class="meta">${o.business?`<span class="tag">🏪 ${esc(o.business)}</span>`:''}${o.site_type?`<span class="tag">🌐 ${esc(o.site_type)}</span>`:''}${o.source?`<span class="tag">↗ ${esc(o.source)}</span>`:''}</div>
    ${o.message?`<div class="msg">${esc(o.message)}</div>`:''}
    ${fu?`<div class="acts"><span class="fub ${due?'due':''}">⏰ ${due?'Хугацаа болсон · ':''}${esc(fuLabel(fu))}-д дахин холбогдох</span><button class="btn" data-fudone>✓ Холбогдсон</button><button class="btn" data-fuopen>Цаг солих</button></div>`:''}
    ${openFu===o.id?`<div class="fu"><span style="color:var(--mute);font-size:13px">Хэзээ дахин холбогдох вэ?</span>
     <button class="q2" data-fq="2h">2 цагийн дараа</button><button class="q2" data-fq="eve">Өнөөдөр 19:00</button><button class="q2" data-fq="tm">Маргааш 10:00</button><button class="q2" data-fq="3d">3 хоногийн дараа</button>
     <input type="date" data-fd value="${fu?fu.d:dk(Date.now()+864e5)}"><input type="time" data-ft value="${fu?fu.t:'10:00'}">
     <button class="btn sun" data-fusave>Хадгалах</button><button class="btn" data-fucancel>Болих</button></div>`:''}
-   <div class="acts"><a class="btn sun" href="tel:${esc(tel)}">Залгах</a><a class="btn" href="viber://chat?number=${encodeURIComponent(tel.length===8?'+976'+tel:tel)}">Viber</a>${fu?'':'<button class="btn" data-fuopen>⏰ Дахин холбогдох</button>'}
+   <div class="acts"><a class="btn sun" href="tel:${esc(tel)}">Залгах</a><a class="btn" href="viber://chat?number=${encodeURIComponent(tel)}">Viber</a>${fu?'':'<button class="btn" data-fuopen>⏰ Дахин холбогдох</button>'}
     <div class="sel">${Object.keys(L).map(s=>`<button data-s="${s}" class="${o.status===s?'on':''}">${L[s]}</button>`).join('')}</div>
     <button class="btn" data-del style="margin-left:auto">Устгах</button></div>
    <textarea class="note" placeholder="Тэмдэглэл (жишээ: Маргааш 14:00-д дахин залгана)">${esc(noteOf(o))}</textarea>
@@ -131,6 +140,7 @@ textarea.note{width:100%;min-height:44px;background:#0c0c11;border:1px solid var
     if(k==='2h')x=new Date(now.getTime()+2*3600e3);else if(k==='eve'){x=new Date(now);x.setHours(19,0,0,0)}else if(k==='tm'){x=new Date(now.getTime()+864e5);x.setHours(10,0,0,0)}else{x=new Date(now.getTime()+3*864e5);x.setHours(10,0,0,0)}
     setFu({d:dk(x),t:p2(x.getHours())+':'+p2(x.getMinutes())},'Сануулга хадгаллаа')});
    const fs=card.querySelector('[data-fusave]');if(fs)fs.onclick=()=>{const d=card.querySelector('[data-fd]').value,t=card.querySelector('[data-ft]').value;if(!d)return toast('Огноо сонгоно уу');setFu({d,t},'Сануулга хадгаллаа')};
+   const cpb=card.querySelector('[data-cp]');if(cpb)cpb.onclick=()=>{const t=cpb.dataset.cp;try{navigator.clipboard.writeText(t).then(()=>toast('Дугаар хуулагдлаа: '+t),()=>toast(t))}catch(e){toast(t)}};
    card.querySelector('[data-del]').onclick=async()=>{if(!window.confirm('#'+id+' захиалгыг бүр мөсөн устгах уу?'))return;try{await call({action:'delete',id});all=all.filter(x=>x.id!==id);render();toast('Устгалаа')}catch(e){toast('Алдаа гарлаа')}};
   });}
  async function load(){const {data}=await sb.auth.getSession();if(!data.session)return loginView();token=data.session.access_token;
