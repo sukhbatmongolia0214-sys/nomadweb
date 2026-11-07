@@ -753,7 +753,11 @@ goOrder();addEventListener('hashchange',goOrder);
  W.querySelectorAll('.rvl').forEach(el=>rio.observe(el));
  // videos: load + play only while visible
  const play=v=>{if(!v.src&&v.dataset.src)v.src=v.dataset.src;const p=v.play();if(p&&p.catch)p.catch(()=>{})};
- const vio=new IntersectionObserver(es=>es.forEach(e=>{const vs=e.target.querySelectorAll('video');if(e.isIntersecting&&!reduce)vs.forEach(play);else vs.forEach(v=>v.pause())}),{threshold:.2});
+ const seen=new Set();
+ const vio=new IntersectionObserver(es=>es.forEach(e=>{const vs=e.target.querySelectorAll('video');if(e.isIntersecting){seen.add(e.target);if(!reduce)vs.forEach(play)}else{seen.delete(e.target);vs.forEach(v=>v.pause())}}),{threshold:.2});
+ // autoplay can be refused (background tab, power saving): retry on the next visit / touch / scroll
+ let kt=0;const kick=()=>{if(reduce||document.hidden)return;const n=Date.now();if(n-kt<800)return;kt=n;seen.forEach(b=>b.querySelectorAll('video').forEach(v=>{if(v.paused)play(v)}))};
+ document.addEventListener('visibilitychange',kick);['pointerdown','touchstart','scroll','focus'].forEach(t=>addEventListener(t,kick,{passive:true}));
  W.querySelectorAll('.bw').forEach(b=>vio.observe(b));
  if(reduce)W.querySelectorAll('video').forEach(v=>{v.preload='metadata'});
  // before/after: divider follows the cursor, eased
