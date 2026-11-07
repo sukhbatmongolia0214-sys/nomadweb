@@ -296,40 +296,68 @@ footer .wrap{display:flex;justify-content:space-between;align-items:center;gap:2
 .toast{position:fixed;left:50%;bottom:calc(24px + env(safe-area-inset-bottom,0px));transform:translateX(-50%);background:var(--fg);color:var(--bg);padding:12px 20px;border-radius:999px;font-size:15px;z-index:90}
 
 /* ---------- real work (portfolio) ---------- */
-#work .grid{display:grid;grid-template-columns:minmax(0,1.25fr) minmax(0,1fr);gap:24px;margin-top:48px;align-items:start}
-.wk{border-radius:24px;border:1px solid var(--line);background:var(--bg2);padding:24px;min-width:0}
-.wk .meta{display:flex;justify-content:space-between;align-items:baseline;gap:12px;margin-bottom:16px}
-.wk h3{font-size:24px;font-weight:600}
-.wk .dom{font-family:var(--f-mono);font-size:12px;letter-spacing:.12em;color:var(--mute)}
-.wk p{color:var(--mute);margin:14px 0 18px;font-size:16px}
-.wk .btn{height:48px;padding:0 22px;font-size:16px}
-.cmp{position:relative;aspect-ratio:9/16;max-height:620px;margin:0 auto;border-radius:22px;overflow:hidden;border:1px solid var(--line2);background:#000;touch-action:pan-y;user-select:none;cursor:ew-resize}
-.cmp img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:top;pointer-events:none}
-.cmp .newer{clip-path:inset(0 0 0 var(--x,50%))}
-.cmp .bar{position:absolute;top:0;bottom:0;left:var(--x,50%);width:2px;background:var(--sun);transform:translateX(-1px)}
-.cmp .knob{position:absolute;top:50%;left:var(--x,50%);width:44px;height:44px;margin:-22px 0 0 -22px;border-radius:50%;background:var(--sun);color:#0a0a0a;display:grid;place-items:center;font:600 16px/1 var(--f-mono)}
-.cmp .tag{position:absolute;top:12px;font-family:var(--f-mono);font-size:11px;letter-spacing:.2em;padding:6px 12px;border-radius:999px;background:rgba(0,0,0,.65)}
-.cmp .tag.l{left:12px;color:#ff8a80}.cmp .tag.r{right:12px;color:var(--ok)}
-.wk .shot{position:relative;aspect-ratio:9/16;max-height:420px;margin:0 auto;border-radius:20px;overflow:hidden;border:1px solid var(--line2);cursor:pointer;display:block;width:100%;padding:0;background:#000}
-.wk .shot img{width:100%;height:100%;object-fit:cover;object-position:top;transition:transform .5s ease}
-.wk .shot:hover img{transform:scale(1.03)}
-.wk .shot .play{position:absolute;left:50%;bottom:18px;transform:translateX(-50%);font-family:var(--f-mono);font-size:12px;letter-spacing:.18em;text-transform:uppercase;padding:10px 16px;border-radius:999px;background:rgba(0,0,0,.7);color:#fff;white-space:nowrap}
-.side2{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:24px}
-@media (max-width:900px){#work .grid{grid-template-columns:minmax(0,1fr)}.cmp{max-height:560px;max-width:340px}}
-@media (max-width:560px){.side2{grid-template-columns:minmax(0,1fr)}.wk .shot{max-width:300px}}
+#work .whead{display:flex;justify-content:space-between;align-items:flex-end;gap:24px 48px;flex-wrap:wrap}
+#work .whint{font-family:var(--f-mono);font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:var(--mute);display:flex;align-items:center;gap:10px}
+#work .whint i{width:8px;height:8px;border-radius:50%;background:var(--sun);box-shadow:0 0 0 0 rgba(255,122,26,.6);animation:wpulse 2.2s infinite}
+@keyframes wpulse{70%{box-shadow:0 0 0 10px rgba(255,122,26,0)}100%{box-shadow:0 0 0 0 rgba(255,122,26,0)}}
+.bw{position:relative;border-radius:18px;overflow:hidden;border:1px solid var(--line2);background:#0b0c10;box-shadow:0 50px 120px -50px rgba(0,0,0,.9);transform:translateZ(0)}
+.bw .chrome{display:flex;align-items:center;gap:7px;height:40px;padding:0 16px;border-bottom:1px solid var(--line);background:#111318}
+.bw .chrome i{width:10px;height:10px;border-radius:50%;background:#2a2c33;flex:none}
+.bw .chrome .url{margin-left:12px;min-width:0;max-width:360px;flex:1;height:24px;border-radius:999px;background:#1a1c22;font:12px/24px var(--f-mono);color:var(--mute);padding:0 12px;overflow:hidden;white-space:nowrap;text-overflow:ellipsis}
+.bw .scr{position:relative;aspect-ratio:16/9;overflow:hidden;background:#0b0c10}
+.bw video,.bw .scr>img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;display:block}
+/* before / after */
+.feat{margin-top:48px}
+.cmp{--x:50%;cursor:col-resize;touch-action:pan-y;user-select:none;-webkit-user-select:none}
+.cmp .newer{clip-path:inset(0 0 0 var(--x));will-change:clip-path}
+.cmp .bar{position:absolute;top:0;bottom:0;left:var(--x);width:2px;margin-left:-1px;background:var(--sun);box-shadow:0 0 24px rgba(255,122,26,.55);pointer-events:none}
+.cmp .knob{position:absolute;top:50%;left:var(--x);width:52px;height:52px;margin:-26px 0 0 -26px;border-radius:50%;background:var(--sun);color:#0a0a0a;display:grid;place-items:center;pointer-events:none;box-shadow:0 10px 30px rgba(0,0,0,.45);transition:transform .35s cubic-bezier(.2,.8,.2,1)}
+.cmp .knob svg{width:22px;height:22px}
+.cmp:hover .knob{transform:scale(.82)}
+.cmp .tag{position:absolute;bottom:16px;font-family:var(--f-mono);font-size:11px;letter-spacing:.22em;padding:8px 14px;border-radius:999px;background:rgba(7,8,11,.72);backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);pointer-events:none;transition:opacity .3s}
+.cmp .tag.l{left:16px;color:#ff9b8f}.cmp .tag.r{right:16px;color:var(--ok)}
+.feat .fbot{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:20px 40px;align-items:center;margin-top:24px}
+.feat h3,.wk2 h3{font-size:clamp(22px,2.2vw,28px);font-weight:600;margin:0}
+.feat p,.wk2 p{color:var(--mute);margin:8px 0 0;font-size:16px;max-width:62ch}
+.dom{font-family:var(--f-mono);font-size:12px;letter-spacing:.14em;color:var(--mute);text-transform:uppercase}
+/* other projects */
+.wgrid{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:28px;margin-top:28px}
+.wk2 .open{display:block;width:100%;padding:0;border:0;background:none;color:inherit;text-align:left;cursor:pointer;border-radius:18px;transition:transform .7s cubic-bezier(.2,.8,.2,1)}
+.wk2 .open .bw{transition:border-color .4s,box-shadow .7s cubic-bezier(.2,.8,.2,1)}
+.wk2 .open video{transition:transform 1.2s cubic-bezier(.2,.8,.2,1)}
+.wk2 .open .go{position:absolute;left:50%;bottom:18px;transform:translate(-50%,12px);opacity:0;padding:12px 20px;border-radius:999px;background:var(--fg);color:var(--bg);font-weight:500;font-size:15px;white-space:nowrap;transition:opacity .4s,transform .6s cubic-bezier(.2,.8,.2,1);pointer-events:none}
+.wk2 .meta{display:flex;justify-content:space-between;align-items:baseline;gap:12px;margin-top:20px}
+@media (hover:hover){.wk2 .open:hover{transform:translateY(-6px)}.wk2 .open:hover .bw{border-color:rgba(255,122,26,.55);box-shadow:0 60px 120px -40px rgba(255,122,26,.18)}.wk2 .open:hover video{transform:scale(1.025)}.wk2 .open:hover .go{opacity:1;transform:translate(-50%,0)}}
+@media (hover:none){.wk2 .open .go{opacity:1;transform:translate(-50%,0);padding:10px 16px;font-size:14px}}
+.open:focus-visible,.cmp:focus-visible{outline:2px solid var(--sun);outline-offset:4px}
+/* reveal */
+.js-rv .rvl{opacity:0;transform:translateY(32px);transition:opacity 1s cubic-bezier(.2,.8,.2,1) var(--d,0s),transform 1s cubic-bezier(.2,.8,.2,1) var(--d,0s)}
+.js-rv .rvl.in{opacity:1;transform:none}
+@media (max-width:820px){.wgrid{grid-template-columns:minmax(0,1fr)}.feat .fbot{grid-template-columns:minmax(0,1fr)}.feat .fbot .btn{justify-self:start}}
+@media (max-width:560px){.bw .chrome{height:32px;padding:0 12px}.bw .chrome i{width:8px;height:8px}.bw .chrome .url{font-size:11px;height:20px;line-height:20px}.cmp .knob{width:44px;height:44px;margin:-22px 0 0 -22px}.cmp .tag{bottom:10px;font-size:10px;padding:6px 10px}.cmp .tag.l{left:10px}.cmp .tag.r{right:10px}}
+@media (prefers-reduced-motion:reduce){.js-rv .rvl{opacity:1;transform:none;transition:none}#work .whint i{animation:none}}
 /* viewer */
-#viewer{position:fixed;inset:0;z-index:9000;background:rgba(4,4,6,.94);display:none;flex-direction:column}
-#viewer.on{display:flex}
-#viewer .vbar{display:flex;align-items:center;gap:12px;padding:10px max(16px,env(safe-area-inset-left));padding-top:max(10px,env(safe-area-inset-top));border-bottom:1px solid var(--line)}
-#viewer .vt{flex:1;min-width:0;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+#viewer{position:fixed;inset:0;z-index:9000;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:14px;padding:clamp(16px,3vw,40px);background:rgba(4,4,6,0);visibility:hidden;transition:background .45s,visibility 0s .5s;cursor:zoom-out}
+#viewer.on{visibility:visible;background:rgba(4,4,6,.86);transition:background .45s}
+@supports (backdrop-filter:blur(1px)){#viewer.on{background:rgba(4,4,6,.72);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px)}}
+#viewer .vwin{width:min(1320px,100%,calc((100dvh - 150px)*16/9));display:flex;flex-direction:column;border-radius:16px;overflow:hidden;border:1px solid var(--line2);background:#111318;box-shadow:0 60px 160px -40px rgba(0,0,0,.95);transform:translateY(28px) scale(.965);opacity:0;transition:transform .6s cubic-bezier(.2,.8,.2,1),opacity .45s;cursor:auto}
+#viewer.on .vwin{transform:none;opacity:1}
+#viewer .vbar{display:flex;align-items:center;gap:8px;height:48px;padding:0 10px 0 18px;border-bottom:1px solid var(--line)}
+#viewer .vbar i{width:11px;height:11px;border-radius:50%;background:#2a2c33;flex:none}
+#viewer .vt{flex:1;min-width:0;margin-left:12px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
 #viewer .vt b{font-weight:600}
 #viewer .vt span{font-family:var(--f-mono);font-size:12px;color:var(--mute);margin-left:10px}
-#viewer .vbtn{height:40px;padding:0 16px;border-radius:999px;border:1px solid var(--line2);background:transparent;color:var(--fg);font:500 14px/1 var(--f-display);cursor:pointer}
-#viewer .vext{display:inline-flex;align-items:center;text-decoration:none}@media(max-width:600px){#viewer .vext{padding:0 12px;font-size:13px}}#viewer .vbtn.x{width:40px;padding:0;font-size:20px}
-#viewer .vstage{flex:1;display:grid;place-items:center;padding:16px;min-height:0}
-#viewer iframe{border:0;background:#fff;width:390px;height:min(844px,100%);border-radius:28px;box-shadow:0 0 0 10px #15161b,0 0 0 11px var(--line2)}
-#viewer.desk iframe{width:100%;height:100%;border-radius:12px;box-shadow:none}
-@media (max-width:700px){#viewer .vstage{padding:0}#viewer iframe,#viewer.desk iframe{width:100%;height:100%;border-radius:0;box-shadow:none}#viewer .mode{display:none}}
+#viewer .vx{width:36px;height:36px;border-radius:50%;border:1px solid var(--line2);background:transparent;color:var(--fg);font-size:20px;line-height:1;cursor:pointer;transition:background .2s,transform .3s}
+#viewer .vx:hover{background:rgba(255,255,255,.08);transform:rotate(90deg)}
+#viewer .vscr{position:relative;aspect-ratio:16/9;background:#0b0c10}
+#viewer iframe{position:absolute;inset:0;width:100%;height:100%;border:0;background:#fff;opacity:0;transition:opacity .5s}
+#viewer.ok iframe{opacity:1}
+#viewer .vload{position:absolute;inset:0;display:grid;place-items:center;color:var(--mute);font-family:var(--f-mono);font-size:12px;letter-spacing:.2em;text-transform:uppercase}
+#viewer .vload::before{content:"";position:absolute;width:44px;height:44px;margin-top:-64px;border-radius:50%;border:2px solid var(--line2);border-top-color:var(--sun);animation:vspin .9s linear infinite}
+@keyframes vspin{to{transform:rotate(360deg)}}
+#viewer .vhint{font-family:var(--f-mono);font-size:11px;letter-spacing:.18em;text-transform:uppercase;color:var(--mute);opacity:0;transition:opacity .5s .2s}
+#viewer.on .vhint{opacity:1}
+@media (max-width:700px){#viewer{padding:0;gap:0}#viewer .vwin{width:100%;height:100%;border-radius:0;border:0}#viewer .vbar{height:auto;min-height:52px;padding-top:env(safe-area-inset-top)}#viewer .vbar i{display:none}#viewer .vt{margin-left:0}#viewer .vscr{flex:1;aspect-ratio:auto}#viewer .vhint{display:none}}
 /* ---------- welcome intro (video) ---------- */
 #intro{position:fixed;inset:0;z-index:9999;background:#040303;overflow:hidden;cursor:pointer;transition:opacity .3s ease}
 #intro.out{opacity:0;pointer-events:none}
@@ -421,40 +449,63 @@ html.intro-on{overflow:hidden}
 
 <section id="work">
  <div class="wrap">
-  <div class="eyebrow">Хийсэн ажлууд</div>
-  <h2>Бодит захиалагч. <b>Бодит сайт.</b></h2>
-  <p class="lead">Манай захиалагчдын сайтууд. Nomad-аас гаралгүйгээр дотроос нь нээж, утсан дээр яг ажиллаж байгаагаар нь үзээрэй.</p>
-  <div class="grid">
-   <article class="wk">
-    <div class="meta"><h3>Цотан Текстиль</h3><span class="dom">НЭХМЭЛ · ДЭЛГҮҮР</span></div>
-    <div class="cmp" id="cmp" style="--x:50%" role="slider" aria-label="Өмнө ба дараах харьцуулалт" aria-valuemin="0" aria-valuemax="100" aria-valuenow="50" tabindex="0">
-     <img src="a/work/tsotan-old.webp" alt="Цотангийн хуучин сайт утсан дээр" loading="lazy">
-     <img class="newer" src="a/work/tsotan-new.webp" alt="Nomad-ын хийсэн Цотангийн шинэ сайт утсан дээр" loading="lazy">
-     <span class="tag l">ӨМНӨ</span><span class="tag r">ДАРАА</span>
-     <span class="bar"></span><span class="knob" aria-hidden="true">⇆</span>
-    </div>
-    <p>Хуучин сайтыг Монгол хээтэй intro анимаци, 3D бараа, ширээний бүтээлгийн хэмжээ тооцоолуур бүхий шинэ сайтаар сольсон. Дундах шугамыг чирж харьцуулаарай.</p>
-    <button class="btn primary" type="button" data-view="demo/tsotan/" data-name="Цотан Текстиль" data-dom="шинэ сайт">Шинэ сайтыг үзэх</button>
-   </article>
-   <div class="side2">
-    <article class="wk">
-     <div class="meta"><h3>Skyland Mongolia</h3><span class="dom">АЯЛАЛ</span></div>
-     <button class="shot" type="button" data-view="https://skylandmongolia.com/" data-name="Skyland Mongolia" data-dom="skylandmongolia.com"><img src="a/work/skyland.webp" alt="Skyland Mongolia аяллын сайт" loading="lazy"><span class="play">▶ Сайтыг үзэх</span></button>
-     <p>Аяллын маршрут, газрын зураг, захиалгын хүсэлттэй сайт.</p>
-    </article>
-    <article class="wk">
-     <div class="meta"><h3>Nomad Gate Tour</h3><span class="dom">ГАДААД ЖУУЛЧИН</span></div>
-     <button class="shot" type="button" data-view="https://nomadgatetour.com/" data-name="Nomad Gate Tour" data-dom="nomadgatetour.com"><img src="a/work/nomadgate.webp" alt="Nomad Gate Tour аяллын сайт" loading="lazy"><span class="play">▶ Сайтыг үзэх</span></button>
-     <p>Гадаад жуулчдад зориулсан олон хэлтэй, онлайн урьдчилгаа авдаг сайт.</p>
-    </article>
+  <div class="whead">
+   <div>
+    <div class="eyebrow">Хийсэн ажлууд</div>
+    <h2>Бодит захиалагч. <b>Бодит сайт.</b></h2>
+    <p class="lead">Манай захиалагчдын сайтууд. Дээр нь дарвал Nomad дотроо нээгдэнэ, өөрөө гүйлгэж үзээрэй.</p>
    </div>
+   <div class="whint"><i></i><span id="whint">Хулганаа хөдөлгөж өмнө ба дараахыг харьцуул</span></div>
+  </div>
+
+  <article class="feat rvl">
+   <div class="bw cmp" id="cmp" role="slider" aria-label="Цотангийн хуучин ба шинэ сайтын харьцуулалт" aria-valuemin="0" aria-valuemax="100" aria-valuenow="50" tabindex="0">
+    <div class="chrome" aria-hidden="true"><i></i><i></i><i></i><span class="url">thetsotan.com → Nomad Web Studio</span></div>
+    <div class="scr">
+     <video class="older" muted playsinline loop preload="none" poster="a/work/tsotan-old-poster.jpg" data-src="a/work/tsotan-old.mp4" aria-hidden="true"></video>
+     <video class="newer" muted playsinline loop preload="none" poster="a/work/tsotan-new-poster.jpg" data-src="a/work/tsotan-new.mp4" aria-hidden="true"></video>
+     <span class="bar"></span>
+     <span class="knob" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 6l-6 6 6 6M15 6l6 6-6 6"/></svg></span>
+     <span class="tag l">ӨМНӨ</span><span class="tag r">NOMAD-ЫН ХИЙСЭН</span>
+    </div>
+   </div>
+   <div class="fbot">
+    <div>
+     <div class="dom">Нэхмэл · онлайн дэлгүүр</div>
+     <h3 style="margin-top:8px">Цотан Текстиль</h3>
+     <p>Хуучин сайтыг Монгол хээтэй intro анимаци, 3D бараа, ширээний бүтээлгийн хэмжээ тооцоолуур бүхий шинэ сайтаар сольсон.</p>
+    </div>
+    <button class="btn primary" type="button" data-view="demo/tsotan/" data-name="Цотан Текстиль" data-dom="шинэ сайт">Шинэ сайтыг дотроос нь үзэх</button>
+   </div>
+  </article>
+
+  <div class="wgrid">
+   <article class="wk2 rvl">
+    <button class="open" type="button" data-view="https://skylandmongolia.com/" data-name="Skyland Mongolia" data-dom="skylandmongolia.com" aria-label="Skyland Mongolia сайтыг үзэх">
+     <div class="bw"><div class="chrome" aria-hidden="true"><i></i><i></i><i></i><span class="url">skylandmongolia.com</span></div>
+      <div class="scr"><video muted playsinline loop preload="none" poster="a/work/skyland-poster.jpg" data-src="a/work/skyland.mp4" aria-hidden="true"></video><span class="go">Дотроос нь үзэх →</span></div></div>
+    </button>
+    <div class="meta"><h3>Skyland Mongolia</h3><span class="dom">Аялал</span></div>
+    <p>Аяллын маршрут, 3D газрын зураг, захиалгын хүсэлттэй сайт.</p>
+   </article>
+   <article class="wk2 rvl" style="--d:.12s">
+    <button class="open" type="button" data-view="https://nomadgatetour.com/" data-name="Nomad Gate Tour" data-dom="nomadgatetour.com" aria-label="Nomad Gate Tour сайтыг үзэх">
+     <div class="bw"><div class="chrome" aria-hidden="true"><i></i><i></i><i></i><span class="url">nomadgatetour.com</span></div>
+      <div class="scr"><video muted playsinline loop preload="none" poster="a/work/nomadgate-poster.jpg" data-src="a/work/nomadgate.mp4" aria-hidden="true"></video><span class="go">Дотроос нь үзэх →</span></div></div>
+    </button>
+    <div class="meta"><h3>Nomad Gate Tour</h3><span class="dom">Гадаад жуулчин</span></div>
+    <p>Гадаад жуулчдад зориулсан олон хэлтэй, онлайн урьдчилгаа авдаг сайт.</p>
+   </article>
   </div>
  </div>
 </section>
 
 <div id="viewer" role="dialog" aria-modal="true" aria-label="Сайт үзэх">
- <div class="vbar"><div class="vt" id="vt"></div><a class="vbtn vext" id="vext" target="_blank" rel="noopener" href="#">Шинэ цонхонд ↗</a><button class="vbtn mode" type="button" id="vmode">Компьютер</button><button class="vbtn x" type="button" id="vx" aria-label="Хаах">×</button></div>
- <div class="vstage"><iframe id="vif" title="Сайт" referrerpolicy="no-referrer-when-downgrade"></iframe></div>
+ <div class="vwin">
+  <div class="vbar"><i></i><i></i><i></i><div class="vt" id="vt"></div><button class="vx" type="button" id="vx" aria-label="Хаах">×</button></div>
+  <div class="vscr"><div class="vload">Ачаалж байна</div></div>
+ </div>
+ <div class="vhint">Гадна талд дарж эсвэл Esc дарж хаана</div>
 </div>
 
 <section id="show">
@@ -692,16 +743,56 @@ $('#cpMsg').addEventListener('click',()=>copy($('#outTxt').textContent,$('#outTx
 function goOrder(){if(['#order','#zahialga'].includes(location.hash)){const s=$('#order');s.scrollIntoView({behavior:'auto'});setTimeout(()=>$('#fn').focus({preventScroll:true}),300)}}
 goOrder();addEventListener('hashchange',goOrder);
 
-// ---- portfolio: before/after slider + in-page viewer ----
-(()=>{const c=document.getElementById('cmp');if(c){let drag=false;const set=e=>{const r=c.getBoundingClientRect();const x=Math.max(0,Math.min(100,((e.clientX-r.left)/r.width)*100));c.style.setProperty('--x',x+'%');c.setAttribute('aria-valuenow',Math.round(x))};
- c.addEventListener('pointerdown',e=>{drag=true;c.setPointerCapture(e.pointerId);set(e)});c.addEventListener('pointermove',e=>{if(drag)set(e)});c.addEventListener('pointerup',()=>drag=false);
- c.addEventListener('keydown',e=>{const v=parseFloat(c.getAttribute('aria-valuenow'))||50;const n=e.key==='ArrowLeft'?v-5:e.key==='ArrowRight'?v+5:null;if(n===null)return;e.preventDefault();const x=Math.max(0,Math.min(100,n));c.style.setProperty('--x',x+'%');c.setAttribute('aria-valuenow',x)})}
- const V=document.getElementById('viewer'),F=document.getElementById('vif'),T=document.getElementById('vt'),M=document.getElementById('vmode');let last=null;
- function close(){if(!V.classList.contains('on'))return;V.classList.remove('on','desk');F.src='about:blank';document.documentElement.style.overflow='';M.textContent='Компьютер';if(last)last.focus()}
- document.querySelectorAll('[data-view]').forEach(b=>b.addEventListener('click',()=>{last=b;T.innerHTML='';const n=document.createElement('b');n.textContent=b.dataset.name;const d=document.createElement('span');d.textContent=b.dataset.dom;T.append(n,d);F.src=b.dataset.view;document.getElementById('vext').href=new URL(b.dataset.view,location.href).href;V.classList.add('on');document.documentElement.style.overflow='hidden';history.pushState({v:1},'');document.getElementById('vx').focus();try{if(typeof px==='function')px('ViewContent',{content_name:'Portfolio: '+b.dataset.name})}catch(e){}}));
- document.getElementById('vx').addEventListener('click',()=>{if(history.state&&history.state.v)history.back();else close()});
- M.addEventListener('click',()=>{const d=V.classList.toggle('desk');M.textContent=d?'Утас':'Компьютер'});
- addEventListener('popstate',close);addEventListener('keydown',e=>{if(e.key==='Escape'&&V.classList.contains('on'))document.getElementById('vx').click()});
+// ---- portfolio: scroll videos, hover before/after, in-page viewer ----
+(()=>{
+ const reduce=matchMedia('(prefers-reduced-motion: reduce)').matches;
+ const W=document.getElementById('work');if(!W)return;
+ // reveal
+ document.documentElement.classList.add('js-rv');
+ const rio=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in');rio.unobserve(e.target)}}),{threshold:.15,rootMargin:'0px 0px -8% 0px'});
+ W.querySelectorAll('.rvl').forEach(el=>rio.observe(el));
+ // videos: load + play only while visible
+ const play=v=>{if(!v.src&&v.dataset.src)v.src=v.dataset.src;const p=v.play();if(p&&p.catch)p.catch(()=>{})};
+ const vio=new IntersectionObserver(es=>es.forEach(e=>{const vs=e.target.querySelectorAll('video');if(e.isIntersecting&&!reduce)vs.forEach(play);else vs.forEach(v=>v.pause())}),{threshold:.2});
+ W.querySelectorAll('.bw').forEach(b=>vio.observe(b));
+ if(reduce)W.querySelectorAll('video').forEach(v=>{v.preload='metadata'});
+ // before/after: divider follows the cursor, eased
+ const c=document.getElementById('cmp');
+ if(c){
+  const vo=c.querySelector('video.older'),vn=c.querySelector('video.newer'),tl=c.querySelector('.tag.l'),tr=c.querySelector('.tag.r'),hint=document.getElementById('whint');
+  const touch=matchMedia('(hover: none)').matches;if(touch&&hint)hint.textContent='Хуруугаараа чирж өмнө ба дараахыг харьцуул';
+  let x=50,tx=50,hover=false,last=0,vis=false,raf=0,fr=0,t0=performance.now();
+  const setT=e=>{const r=c.getBoundingClientRect();tx=Math.max(0,Math.min(100,(e.clientX-r.left)/r.width*100));last=performance.now()};
+  const loop=now=>{
+   if(!hover&&now-last>2600&&!reduce)tx=50+16*Math.sin((now-t0)/1400);
+   x+=(tx-x)*(hover?.16:.06);
+   c.style.setProperty('--x',x.toFixed(2)+'%');c.setAttribute('aria-valuenow',Math.round(x));
+   tl.style.opacity=x<14?0:1;tr.style.opacity=x>86?0:1;
+   if(++fr%20===0){if(!vn.paused&&vo.paused)play(vo);sync()}
+   raf=vis?requestAnimationFrame(loop):0};
+  new IntersectionObserver(es=>{vis=es[0].isIntersecting;if(vis&&!raf){t0=performance.now();raf=requestAnimationFrame(loop)}},{threshold:.05}).observe(c);
+  c.addEventListener('pointerenter',e=>{if(e.pointerType==='mouse'){hover=true;setT(e)}});
+  c.addEventListener('pointermove',e=>{if(e.pointerType==='mouse'||e.buttons){hover=true;setT(e)}});
+  c.addEventListener('pointerleave',()=>{hover=false;tx=50;last=performance.now()});
+  c.addEventListener('pointerdown',e=>{if(e.pointerType!=='mouse'){hover=true;setT(e)}});
+  c.addEventListener('pointerup',e=>{if(e.pointerType!=='mouse'){hover=false;last=performance.now()}});
+  c.addEventListener('keydown',e=>{const d=e.key==='ArrowLeft'?-6:e.key==='ArrowRight'?6:0;if(!d)return;e.preventDefault();tx=Math.max(0,Math.min(100,tx+d));last=performance.now()+4000});
+  c.addEventListener('click',()=>{if(!touch){const b=W.querySelector('.feat [data-view]');if(b)b.click()}});
+  // keep both videos in step
+  function sync(){if(vo.readyState>1&&vn.readyState>1&&Math.abs(vo.currentTime-vn.currentTime)>.12)vo.currentTime=vn.currentTime}
+  vn.addEventListener('playing',()=>{vo.currentTime=vn.currentTime;play(vo)});
+  vn.addEventListener('seeked',sync);vo.addEventListener('loadeddata',sync);
+ }
+ // viewer
+ const V=document.getElementById('viewer'),SC=V.querySelector('.vscr'),T=document.getElementById('vt'),X=document.getElementById('vx');let last=null,tm=0,F=document.getElementById('vif');
+ // a fresh iframe per open: changing src on a live iframe adds history entries and breaks Back/Esc
+ function frame(url){if(F)F.remove();F=document.createElement('iframe');F.title='Сайт';F.referrerPolicy='no-referrer-when-downgrade';F.addEventListener('load',()=>{V.classList.add('ok');try{F.contentWindow.addEventListener('keydown',e=>{if(e.key==='Escape')shut()})}catch(_){}});F.src=url;SC.append(F)}
+ function close(){if(!V.classList.contains('on'))return;V.classList.remove('on','ok');clearTimeout(tm);tm=setTimeout(()=>{if(F){F.remove();F=null}},500);document.documentElement.style.overflow='';if(last)last.focus({preventScroll:true})}
+ W.querySelectorAll('[data-view]').forEach(b=>b.addEventListener('click',e=>{e.stopPropagation();last=b;clearTimeout(tm);T.innerHTML='';const n=document.createElement('b');n.textContent=b.dataset.name;const d=document.createElement('span');d.textContent=b.dataset.dom;T.append(n,d);V.classList.remove('ok');frame(b.dataset.view);V.classList.add('on');document.documentElement.style.overflow='hidden';history.pushState({v:1},'');X.focus({preventScroll:true});try{if(typeof px==='function')px('ViewContent',{content_name:'Portfolio: '+b.dataset.name})}catch(_){}}));
+ const shut=()=>{if(history.state&&history.state.v)history.back();else close()};
+ X.addEventListener('click',shut);
+ V.addEventListener('click',e=>{if(!e.target.closest('.vwin'))shut()});
+ addEventListener('popstate',close);addEventListener('keydown',e=>{if(e.key==='Escape'&&V.classList.contains('on'))shut()});
 })();
 </script>
 
