@@ -325,7 +325,7 @@ footer .wrap{display:flex;justify-content:space-between;align-items:center;gap:2
 #viewer .vt b{font-weight:600}
 #viewer .vt span{font-family:var(--f-mono);font-size:12px;color:var(--mute);margin-left:10px}
 #viewer .vbtn{height:40px;padding:0 16px;border-radius:999px;border:1px solid var(--line2);background:transparent;color:var(--fg);font:500 14px/1 var(--f-display);cursor:pointer}
-#viewer .vbtn.x{width:40px;padding:0;font-size:20px}
+#viewer .vext{display:inline-flex;align-items:center;text-decoration:none}@media(max-width:600px){#viewer .vext{display:none}}#viewer .vbtn.x{width:40px;padding:0;font-size:20px}
 #viewer .vstage{flex:1;display:grid;place-items:center;padding:16px;min-height:0}
 #viewer iframe{border:0;background:#fff;width:390px;height:min(844px,100%);border-radius:28px;box-shadow:0 0 0 10px #15161b,0 0 0 11px var(--line2)}
 #viewer.desk iframe{width:100%;height:100%;border-radius:12px;box-shadow:none}
@@ -453,7 +453,7 @@ html.intro-on{overflow:hidden}
 </section>
 
 <div id="viewer" role="dialog" aria-modal="true" aria-label="Сайт үзэх">
- <div class="vbar"><div class="vt" id="vt"></div><button class="vbtn mode" type="button" id="vmode">Компьютер</button><button class="vbtn x" type="button" id="vx" aria-label="Хаах">×</button></div>
+ <div class="vbar"><div class="vt" id="vt"></div><a class="vbtn vext" id="vext" target="_blank" rel="noopener" href="#">Шинэ цонхонд ↗</a><button class="vbtn mode" type="button" id="vmode">Компьютер</button><button class="vbtn x" type="button" id="vx" aria-label="Хаах">×</button></div>
  <div class="vstage"><iframe id="vif" title="Сайт" referrerpolicy="no-referrer-when-downgrade"></iframe></div>
 </div>
 
@@ -698,7 +698,7 @@ goOrder();addEventListener('hashchange',goOrder);
  c.addEventListener('keydown',e=>{const v=parseFloat(c.getAttribute('aria-valuenow'))||50;const n=e.key==='ArrowLeft'?v-5:e.key==='ArrowRight'?v+5:null;if(n===null)return;e.preventDefault();const x=Math.max(0,Math.min(100,n));c.style.setProperty('--x',x+'%');c.setAttribute('aria-valuenow',x)})}
  const V=document.getElementById('viewer'),F=document.getElementById('vif'),T=document.getElementById('vt'),M=document.getElementById('vmode');let last=null;
  function close(){if(!V.classList.contains('on'))return;V.classList.remove('on','desk');F.src='about:blank';document.documentElement.style.overflow='';M.textContent='Компьютер';if(last)last.focus()}
- document.querySelectorAll('[data-view]').forEach(b=>b.addEventListener('click',()=>{last=b;T.innerHTML='';const n=document.createElement('b');n.textContent=b.dataset.name;const d=document.createElement('span');d.textContent=b.dataset.dom;T.append(n,d);F.src=b.dataset.view;V.classList.add('on');document.documentElement.style.overflow='hidden';history.pushState({v:1},'');document.getElementById('vx').focus();try{if(typeof px==='function')px('ViewContent',{content_name:'Portfolio: '+b.dataset.name})}catch(e){}}));
+ document.querySelectorAll('[data-view]').forEach(b=>b.addEventListener('click',()=>{last=b;T.innerHTML='';const n=document.createElement('b');n.textContent=b.dataset.name;const d=document.createElement('span');d.textContent=b.dataset.dom;T.append(n,d);F.src=b.dataset.view;document.getElementById('vext').href=new URL(b.dataset.view,location.href).href;V.classList.add('on');document.documentElement.style.overflow='hidden';history.pushState({v:1},'');document.getElementById('vx').focus();try{if(typeof px==='function')px('ViewContent',{content_name:'Portfolio: '+b.dataset.name})}catch(e){}}));
  document.getElementById('vx').addEventListener('click',()=>{if(history.state&&history.state.v)history.back();else close()});
  M.addEventListener('click',()=>{const d=V.classList.toggle('desk');M.textContent=d?'Утас':'Компьютер'});
  addEventListener('popstate',close);addEventListener('keydown',e=>{if(e.key==='Escape'&&V.classList.contains('on'))document.getElementById('vx').click()});
