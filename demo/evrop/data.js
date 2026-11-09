@@ -17,7 +17,7 @@ window.EV_PRODUCTS=[
  {id:'p42',cat:'cookie',brand:'Love Day',name:'Almond бүйлсэн самартай жигнэмэг',spec:'300г',pack:12,unit:'ш',price:7900,old:8500,stock:47,desc:'Дээд зэрэглэлийн цуврал. Бүйлс самар, цөцгийтэй.'},
  {id:'p43',cat:'cookie',brand:'Love Day',name:'Нэрсний хавчууртай цөцгийтэй жигнэмэг',spec:'300г',pack:12,unit:'ш',price:7900,old:8500,stock:31,desc:'Дээд зэрэглэлийн цуврал. Нэрсний хавчуур, цөцгийтэй.'},
  {id:'p44',cat:'cookie',brand:'Love Day',name:'Шоколадтай цөцгийтэй жигнэмэг',spec:'300г',pack:12,unit:'ш',price:7900,old:8500,stock:28,desc:'Дээд зэрэглэлийн цуврал. Шоколадан хавчуур, цөцгийтэй.'},
- {id:'p00',cat:'cookie',brand:'The Gaodian',name:'Төмөр хайрцагтай холимог жигнэмэг',spec:'188г',pack:24,unit:'ш',price:12000,stock:18,desc:'Төмөр бэлгийн хайрцагтай, цөцгийн тосон холимог жигнэмэг. Баяр, бэлгийн улиралд эрэлттэй.'},
+ {id:'p00',cat:'cookie',brand:'GaoDian',name:'Төмөр хайрцагтай холимог жигнэмэг',spec:'188г',pack:24,unit:'ш',price:12000,stock:18,desc:'Төмөр бэлгийн хайрцагтай, цөцгийн тосон холимог жигнэмэг. Баяр, бэлгийн улиралд эрэлттэй.'},
  {id:'p01',cat:'cookie',brand:'GaoDian',name:'Chocolate Oat Bar овъёосон печень',spec:'300г',pack:16,unit:'ш',price:8000,stock:36,desc:'Буталсан овъёос, жимсний амттай, өглөөний цайнд тохиромжтой эрүүл печень.'},
 
  {id:'p32',cat:'drink',brand:"T'best",name:'Korean Ginseng энерги ундаа',spec:'250мл',pack:24,unit:'лааз',price:2100,stock:150,desc:'Солонгос жэнсэний хандтай энерги ундаа. Хадгалалтын бодисгүй, архигүй.'},

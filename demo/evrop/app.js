@@ -177,8 +177,8 @@ function home(){
  const tot=lines.reduce((s,l)=>s+boxPrice(l.p)*l.q,0);
  const act=P.filter(p=>p.active),sale=act.filter(p=>p.old).slice(0,4);
  const bento=CATS.map(c=>({...c,n:act.filter(p=>p.cat===c.id).length})).filter(c=>c.n).slice(0,5);
- const brands=[...new Set(act.map(p=>p.brand).filter(Boolean))];
- const mq=[...brands,...brands].map((b,i)=>`<span class="${i%2?'o':''}">${esc(b)}</span>`).join('');
+ const seen=new Set(),brands=act.map(p=>(p.brand||'').replace(/^the\s+/i,'').trim()).filter(b=>b&&!seen.has(b.toLowerCase())&&seen.add(b.toLowerCase()));
+ const mq=[...brands,...brands].map(b=>`<span>${esc(b)}</span>`).join('');
  return `<section class="hero"><picture><source media="(max-width:640px)" srcset="img/hero-m.webp"><img class="hbg" src="img/hero.webp" alt="" fetchpriority="high"></picture>
   <div class="wrap"><div class="hin">
    <span class="tagline ld" style="animation-delay:.1s">Чанартай бараа — найдвартай хамтын ажиллагаа</span>
