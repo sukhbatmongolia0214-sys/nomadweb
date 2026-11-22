@@ -71,6 +71,7 @@ h3{font-size:clamp(30px,3vw,46px)}
 .btn.sky:hover{background:#0A7591}
 .link{font-weight:500;text-decoration:underline;text-underline-offset:5px;text-decoration-thickness:1.5px}
 
+html.lenis,html.lenis body{height:auto}.lenis.lenis-smooth{scroll-behavior:auto!important}.lenis.lenis-stopped{overflow:hidden}
 /* ---------- intro ---------- */
 #ld{position:fixed;inset:0;z-index:100;background:#0B1C1B;display:grid;place-items:center;transition:transform .9s cubic-bezier(.76,0,.24,1)}
 #ld.out{transform:translateY(-100%)}
@@ -107,24 +108,32 @@ h3{font-size:clamp(30px,3vw,46px)}
 .mnav p{margin-top:auto;color:rgba(243,239,230,.7)}
 
 /* ---------- hero ---------- */
-.hero{position:relative;height:100svh;min-height:660px;max-height:1080px;color:#fff;overflow:hidden;
-  background:linear-gradient(180deg,rgba(0,74,104,.38),rgba(0,74,104,0) 55%),linear-gradient(90deg,#006a8a 0%,#007e9c 20%,#0892ae 45%,#1499b5 62%,#45a6bf 85%,#4ba8c0 100%)}
-.hero .media{position:absolute;left:0;right:0;bottom:0;height:74%;-webkit-mask-image:linear-gradient(180deg,transparent 0,#000 34%);mask-image:linear-gradient(180deg,transparent 0,#000 34%)}
-.hero .media picture,.hero .media img,.hero .media video{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:50% 100%}
-.hero .hin{position:relative;padding-top:clamp(112px,14.5vh,160px)}
-.hero h1{font-size:clamp(50px,6.6vw,108px);white-space:nowrap}
-.hero .row{display:flex;justify-content:space-between;align-items:flex-end;gap:24px 48px;margin-top:22px}
-.hero p{font-size:clamp(17px,1.3vw,20px);max-width:34em;color:rgba(255,255,255,.95)}
+.hero-wrap{position:relative}
+.motion .hero-wrap{height:230vh}
+.hero{position:relative;height:100svh;min-height:600px;color:#fff;overflow:hidden;background:var(--paper)}
+.motion .hero{position:sticky;top:0}
+.hv{position:absolute;inset:0;background:#0B4F63;clip-path:circle(150% at 50% 50%);will-change:clip-path}
+.hv picture,.hv img,.hv video{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+.hv .vin{position:absolute;inset:0;will-change:transform}
+.hv .shade{position:absolute;inset:0;background:linear-gradient(180deg,rgba(6,28,34,.5) 0%,rgba(6,28,34,0) 26%),linear-gradient(0deg,rgba(6,28,34,.72) 0%,rgba(6,28,34,.25) 38%,rgba(6,28,34,0) 62%)}
+.hero .hin{position:absolute;left:0;right:0;bottom:clamp(36px,7vh,80px);margin:0 auto}
+.hero h1{font-size:clamp(54px,9vw,150px);line-height:.96;letter-spacing:-.03em}
+.ln{display:block;overflow:hidden;padding-bottom:.08em;margin-bottom:-.08em}
+.ln>span{display:inline-block;will-change:transform}
+.hero .row{display:flex;justify-content:space-between;align-items:flex-end;gap:24px 48px;margin-top:28px}
+.hero p{font-size:clamp(16px,1.25vw,19px);max-width:31em;color:rgba(255,255,255,.92)}
 .hero .ctas{display:flex;flex-wrap:wrap;gap:12px;flex:none}
-@media (max-width:1100px){.hero .row{flex-direction:column;align-items:flex-start}}
-@media (min-width:700px) and (max-width:1100px){.hero{height:auto;min-height:0;max-height:none}.hero .hin{padding-bottom:calc(66.7vw - 110px)}.hero .media{height:66.7vw}}
-@media (max-width:699px){
-  .hero{height:auto;min-height:max(100svh,700px);max-height:none}
-  .hero .hin{padding-top:108px}
-  .hero h1{white-space:normal;font-size:clamp(40px,11.4vw,58px)}
-  .hero .media{height:56%}
-  .hero p{font-size:16.5px}
-}
+.badge{position:absolute;right:var(--m);top:50%;width:132px;height:132px;margin-top:-66px;display:grid;place-items:center;color:#fff;text-decoration:none}
+.badge svg{position:absolute;inset:0;width:100%;height:100%;animation:spin 18s linear infinite}
+.badge text{font:600 9.6px/1 var(--sans);letter-spacing:.32em;fill:currentColor;text-transform:uppercase}
+.badge i{width:46px;height:46px;border-radius:50%;background:rgba(255,255,255,.16);box-shadow:inset 0 0 0 1px rgba(255,255,255,.5);display:grid;place-items:center;font-style:normal;font-size:20px;transition:background .3s,transform .3s}
+.badge:hover i{background:#fff;color:var(--ink);transform:scale(1.08)}
+@keyframes spin{to{transform:rotate(360deg)}}
+.rim{position:absolute;left:50%;top:50%;width:var(--rimw,600px);height:var(--rimw,600px);margin:calc(var(--rimw,600px)/-2) 0 0 calc(var(--rimw,600px)/-2);opacity:0;pointer-events:none;color:var(--ink)}
+.hero .pcap{max-width:none;position:absolute;left:0;right:0;bottom:clamp(28px,6vh,64px);text-align:center;color:var(--ink);opacity:0;font-family:var(--serif);font-weight:300;font-size:clamp(20px,2vw,30px)}
+.pcap small{display:block;font:500 13px/1.6 var(--sans);letter-spacing:.14em;text-transform:uppercase;color:var(--mute);margin-top:6px}
+@media (max-width:900px){.badge{display:none}.hero .row{flex-direction:column;align-items:flex-start}}
+@media (max-width:699px){.hero h1{font-size:clamp(44px,13.4vw,64px)}.hero p{font-size:15.5px}.hero .hin{bottom:28px}}
 .band{border-bottom:1px solid var(--line)}
 .band ul{list-style:none;display:flex;flex-wrap:wrap;gap:10px 40px;justify-content:space-between;padding-block:22px;font-size:15px;font-weight:500}
 .band li{display:flex;align-items:center;gap:10px}
@@ -164,8 +173,6 @@ h3{font-size:clamp(30px,3vw,46px)}
   .col .ct{padding-bottom:0}.col .cp{margin-top:72px}
   .col .ph{aspect-ratio:5/6}
   .plate-seam{position:relative;left:auto;top:auto;transform:none;margin:0 auto 32px;width:min(64vw,300px);order:-1;grid-row:1}
-  .col .pair{grid-template-areas:"pl" "rp" "rt" "cp" "ct"}
-  .plate-seam{grid-area:pl}
   .bone{grid-template-columns:1fr}
 }
 
@@ -366,6 +373,33 @@ h3{font-size:clamp(30px,3vw,46px)}
   .lm-t{padding:24px 20px calc(28px + env(safe-area-inset-bottom))}
   .lm .x{position:fixed;top:14px;right:14px;z-index:2;background:rgba(251,249,244,.92)}
 }
+
+/* ---------- motion v2 ---------- */
+.mq{overflow:hidden;padding:clamp(56px,7vw,96px) 0 0;border-top:0}
+.mq-in{display:flex;align-items:center;gap:clamp(28px,3vw,48px);width:max-content;animation:mq 46s linear infinite;font-family:var(--serif);font-weight:300;font-size:clamp(44px,6.4vw,104px);letter-spacing:-.02em;white-space:nowrap;color:var(--ink)}
+.mq-in span:nth-child(4n+3){color:transparent;-webkit-text-stroke:1px var(--ink)}
+.mq-in i{flex:none;width:.42em;height:.42em;border-radius:50%;box-shadow:inset 0 0 0 2px var(--turq)}
+@keyframes mq{to{transform:translateX(-50%)}}
+.flamp{position:relative;width:100%;aspect-ratio:164/46.2}
+.flamp svg{position:absolute;inset:0;width:100%;height:100%}
+.flamp .dim{color:rgba(0,194,190,.16)}
+.flamp .lit{color:var(--turq);-webkit-mask-image:radial-gradient(circle at 74.7% 40%,#000 0,#000 var(--r),transparent calc(var(--r) + 18%));mask-image:radial-gradient(circle at 74.7% 40%,#000 0,#000 var(--r),transparent calc(var(--r) + 18%))}
+.flamp .fglow{position:absolute;left:74.7%;top:43.5%;width:48%;height:150%;transform:translateX(-50%);background:radial-gradient(ellipse 70% 95% at 50% 0%,rgba(255,214,150,.32),rgba(255,214,150,.08) 55%,transparent 88%);clip-path:polygon(43% 0,57% 0,100% 100%,0 100%);opacity:0;pointer-events:none}
+.flamp.on .lit{animation:lit 1.8s cubic-bezier(.3,.6,.2,1) forwards}
+.flamp.on .fglow{animation:glow 1.6s ease-out forwards}
+.no-js-motion .flamp .lit,.reduce .flamp .lit{--r:130%}
+.w{display:inline-block;overflow:hidden;vertical-align:top;padding-bottom:.1em;margin-bottom:-.1em}
+.w>span{display:inline-block}
+.ph,.gift .ph,.visit .tall{overflow:hidden}
+[data-par] img{transform:scale(1.16)}
+.hd{transition:background .35s,color .35s,box-shadow .35s,transform .5s cubic-bezier(.2,.8,.2,1)}
+.hd.hide{transform:translateY(-100%)}
+.cur{position:fixed;left:0;top:0;z-index:120;width:38px;height:38px;margin:-19px 0 0 -19px;border-radius:50%;box-shadow:inset 0 0 0 1.5px #fff;mix-blend-mode:difference;pointer-events:none;display:grid;place-items:center;transition:width .35s,height .35s,margin .35s,background .35s;opacity:0}
+.cur span{font:600 12px var(--sans);color:#000;opacity:0;transition:opacity .2s}
+.cur.big{width:84px;height:84px;margin:-42px 0 0 -42px;background:#fff}
+.cur.big span{opacity:1}
+.cur.link{width:58px;height:58px;margin:-29px 0 0 -29px}
+@media (pointer:coarse){.cur{display:none}}
 /* ---------- reveal ---------- */
 .js .rv{opacity:0;transform:translateY(26px);transition:opacity .9s cubic-bezier(.2,.7,.2,1),transform .9s cubic-bezier(.2,.7,.2,1)}
 .js .rv.in{opacity:1;transform:none}
@@ -378,7 +412,7 @@ h3{font-size:clamp(30px,3vw,46px)}
 </style>
 </head>
 <body>
-<script>document.documentElement.classList.add('js');try{if(sessionStorage.getItem('tq-intro')||matchMedia('(prefers-reduced-motion: reduce)').matches)document.documentElement.classList.add('no-intro')}catch(e){}</script>
+<script>document.documentElement.classList.add('js');if(!matchMedia('(prefers-reduced-motion: reduce)').matches)document.documentElement.classList.add('motion');try{if(sessionStorage.getItem('tq-intro')||matchMedia('(prefers-reduced-motion: reduce)').matches)document.documentElement.classList.add('no-intro')}catch(e){}</script>
 <svg width="0" height="0" style="position:absolute" aria-hidden="true">
   <symbol id="logo" viewBox="0 0 164 46.2"><path fill="currentColor" fill-rule="evenodd" d="M68.6 46.2C68.5 46.1 68.4 46.0 68.4 46.0C68.4 45.9 68.4 44.4 68.4 42.6L68.4 39.4L68.1 39.3C67.9 39.3 67.7 39.4 67.4 39.6C67.1 39.9 66.6 40.1 66.0 40.3C65.2 40.6 65.0 40.6 63.6 40.6C62.3 40.6 62.1 40.6 61.3 40.3C59.7 39.9 58.7 39.2 57.6 38.0C56.4 36.8 55.8 35.4 55.6 33.6C55.4 32.3 55.4 31.6 55.5 30.3C55.9 27.8 57.0 26.0 59.1 24.4C59.5 24.2 59.8 24.0 59.8 24.0C59.9 24.0 60.1 23.9 60.3 23.8C60.9 23.5 61.8 23.3 63.1 23.2C65.3 23.1 66.7 23.5 67.8 24.3C68.0 24.5 68.3 24.7 68.3 24.7C68.6 24.7 68.7 24.4 68.7 24.1C68.6 23.9 68.6 23.7 68.7 23.6C68.8 23.4 68.9 23.4 71.4 23.4C73.8 23.4 74.0 23.4 74.1 23.6C74.3 23.8 74.3 24.7 74.3 34.9L74.3 46.0L74.1 46.1C73.9 46.3 73.5 46.3 71.4 46.3C70.0 46.3 68.7 46.2 68.6 46.2ZM91.6 46.1C91.1 45.8 90.9 45.6 90.6 44.9L90.4 44.4L90.7 43.8C91.2 42.5 92.4 42.2 93.4 43.0C94.2 43.8 94.2 44.9 93.4 45.7C92.9 46.3 92.3 46.4 91.6 46.1ZM108.4 46.2C107.7 46.1 107.7 46.0 107.7 44.4C107.7 43.2 107.7 43.0 107.9 42.8C108.1 42.6 109.0 42.5 109.4 42.6C109.8 42.8 109.6 43.2 109.0 43.2C108.8 43.2 108.4 43.4 108.4 43.6C108.4 43.7 108.6 44.0 108.8 44.0C108.9 44.0 109.1 44.1 109.2 44.2C109.5 44.4 109.4 44.7 108.9 44.8C108.3 45.0 108.3 45.6 108.9 45.6C109.3 45.6 109.6 45.8 109.6 46.0C109.6 46.2 109.2 46.3 108.4 46.2ZM121.0 46.1C120.9 46.0 120.6 45.8 120.5 45.6C120.4 45.4 120.4 45.4 120.5 45.2C120.7 45.1 120.8 45.1 121.0 45.3C121.2 45.3 121.3 45.4 121.3 45.5C121.4 45.7 122.0 45.6 122.0 45.4C122.1 45.2 121.9 45.0 121.2 44.6C120.2 43.9 120.1 43.5 120.8 42.9C121.4 42.4 121.9 42.4 122.4 42.8C123.0 43.4 122.7 44.0 122.1 43.5C121.7 43.2 121.6 43.1 121.4 43.3C121.1 43.5 121.2 43.7 122.0 44.2C123.0 44.8 123.1 45.3 122.4 45.9C122.0 46.3 121.5 46.4 121.0 46.1ZM136.0 46.1C135.8 46.0 135.6 45.8 135.4 45.7C135.2 45.4 135.2 45.3 135.2 44.2C135.2 42.8 135.2 42.7 135.6 42.7C135.9 42.7 136.0 43.1 136.0 44.0C135.9 45.1 136.0 45.4 136.5 45.5C137.0 45.5 137.1 45.3 137.1 44.0C137.1 43.0 137.2 42.9 137.3 42.8C137.5 42.7 137.5 42.7 137.7 42.8C137.9 42.9 138.0 45.0 137.8 45.5C137.4 46.1 136.6 46.4 136.0 46.1ZM157.9 46.2C157.3 46.0 156.6 45.1 156.6 44.4C156.6 43.7 157.3 42.8 158.0 42.6C158.4 42.5 158.9 42.6 159.4 43.0C160.0 43.5 160.2 44.1 160.0 44.9C159.8 45.8 158.7 46.5 157.9 46.2ZM84.9 46.1C84.9 46.0 84.8 45.8 84.8 45.5C84.8 45.0 84.6 44.7 84.2 44.7C83.8 44.7 83.4 45.2 83.6 45.6C83.7 46.0 83.0 46.3 82.8 45.9C82.8 45.8 82.7 45.1 82.8 44.3C82.8 42.8 82.8 42.7 83.2 42.7C83.4 42.7 83.5 42.8 83.5 43.0C83.5 43.5 83.6 43.7 83.8 43.9C84.3 44.3 84.8 44.0 84.8 43.4C84.8 43.2 84.8 42.9 84.9 42.9C84.9 42.6 85.5 42.6 85.5 42.9C85.6 42.9 85.6 43.7 85.6 44.5C85.6 46.0 85.6 46.2 85.2 46.2C85.1 46.2 85.0 46.1 84.9 46.1ZM100.6 46.0C100.5 46.0 100.4 45.8 100.3 45.7C100.3 45.4 99.8 44.9 99.7 44.9C99.6 44.9 99.6 45.1 99.6 45.4C99.6 45.9 99.5 46.1 99.2 46.1C98.8 46.1 98.8 45.9 98.9 44.3L99.0 42.8L99.3 42.8L99.7 42.8L100.0 43.6C100.4 44.5 100.5 44.7 100.9 44.7C101.0 44.7 101.1 44.6 101.2 44.4C101.4 43.5 101.7 42.8 102.0 42.7C102.3 42.5 102.5 42.8 102.5 43.5C102.5 43.8 102.5 44.5 102.6 45.0C102.6 45.7 102.6 45.8 102.4 46.0C102.1 46.3 101.9 46.1 101.8 45.5C101.6 44.8 101.4 44.8 101.2 45.5C101.0 46.1 100.8 46.3 100.6 46.0ZM128.7 46.0C128.5 45.8 128.5 45.7 128.5 44.8C128.6 43.7 128.6 43.5 128.0 43.2C127.7 43.1 127.6 42.8 127.9 42.7C128.2 42.5 129.9 42.6 130.0 42.7C130.2 42.9 130.1 43.0 129.7 43.2L129.3 43.5L129.3 44.7C129.3 45.9 129.3 46.0 129.1 46.1C128.9 46.2 128.9 46.2 128.7 46.0ZM143.2 46.0C143.0 45.9 143.0 45.6 143.0 44.4C143.0 42.7 143.0 42.6 144.0 42.6C144.8 42.6 145.3 42.9 145.7 43.5C146.1 44.2 146.2 44.4 145.9 45.1C145.4 45.9 145.0 46.2 144.1 46.2C143.5 46.2 143.3 46.2 143.2 46.0ZM151.1 46.1C150.9 46.0 150.9 45.7 150.9 44.3L151.0 42.8L151.2 42.7C151.3 42.7 151.5 42.7 151.5 42.8C151.6 42.9 151.6 43.6 151.6 44.5C151.6 45.9 151.6 46.0 151.4 46.1C151.3 46.2 151.2 46.2 151.1 46.1ZM92.6 45.5C93.1 45.2 93.4 44.5 93.2 44.0C92.7 43.2 92.1 43.1 91.6 43.8C91.2 44.2 91.2 44.5 91.6 45.1C91.9 45.6 92.2 45.7 92.6 45.5ZM144.6 45.5C144.7 45.4 144.9 45.2 145.0 44.9C145.4 44.4 145.3 44.2 144.8 43.6C144.5 43.3 144.4 43.2 144.2 43.3C143.8 43.4 143.8 43.5 143.7 44.4C143.7 45.1 143.7 45.2 143.9 45.4C144.1 45.6 144.4 45.7 144.6 45.5ZM158.6 45.5C159.2 45.3 159.4 44.5 159.2 44.0C158.9 43.4 158.5 43.2 158.0 43.4C157.8 43.4 157.4 44.1 157.4 44.4C157.4 44.7 157.8 45.4 158.0 45.5C158.3 45.6 158.4 45.6 158.6 45.5ZM26.1 40.3C24.8 39.9 24.2 39.6 23.4 38.8C22.2 37.6 21.6 36.2 21.4 34.2C21.3 33.6 21.3 31.0 21.3 28.4C21.3 24.3 21.3 23.7 21.5 23.6C21.7 23.3 27.0 23.3 27.2 23.5C27.3 23.6 27.3 25.3 27.3 28.6L27.4 33.6L27.6 34.1C28.1 34.9 28.7 35.4 29.6 35.5C30.6 35.6 31.1 35.4 31.8 35.0C32.3 34.6 32.5 34.5 32.7 34.0C33.1 33.0 33.2 32.3 33.2 27.8C33.2 24.7 33.2 23.6 33.3 23.5C33.5 23.4 38.6 23.3 38.9 23.5C39.1 23.6 39.1 23.8 39.1 31.9L39.1 40.1L38.9 40.2C38.7 40.4 38.2 40.4 36.2 40.4C33.8 40.4 33.7 40.3 33.5 40.2C33.4 40.0 33.4 39.8 33.5 39.6C33.6 39.0 33.2 38.8 32.7 39.3C32.2 39.7 31.5 40.1 30.6 40.3C29.9 40.6 29.7 40.6 28.4 40.6C27.1 40.6 26.8 40.6 26.1 40.3ZM82.7 40.3C82.2 40.2 81.6 39.9 81.4 39.8C80.4 39.2 79.2 38.0 78.9 37.1C78.8 36.9 78.6 36.6 78.5 36.5C78.5 36.3 78.3 35.7 78.2 35.1C77.9 33.4 77.9 23.0 78.2 20.5C78.3 19.6 78.5 18.6 78.5 18.4C78.6 18.2 78.8 17.6 78.9 17.2C79.3 15.5 80.4 12.9 81.4 11.3C81.6 11.0 81.9 10.6 82.0 10.5C83.5 8.0 86.0 5.6 89.2 3.4C91.0 2.3 94.3 1.0 96.6 0.5C97.1 0.4 97.9 0.2 98.2 0.2C99.0-0.0 102.8-0.1 103.6 0.1C105.8 0.5 107.9 1.0 109.4 1.6C110.9 2.2 113.0 3.3 114.1 4.1C114.3 4.3 114.6 4.5 114.9 4.7C116.1 5.5 117.9 7.2 119.1 8.8C119.8 9.7 121.4 12.0 121.5 12.5C121.7 12.9 122.3 14.0 122.5 14.1C122.5 14.2 123.0 14.3 123.5 14.4C125.3 14.6 126.5 15.5 127.7 17.3C128.1 17.9 128.5 19.1 128.5 19.7C128.5 20.3 128.6 20.3 122.5 20.3L116.9 20.3L116.7 20.0C116.6 19.8 116.6 19.7 116.7 19.1C117.0 17.4 118.2 15.8 119.8 15.0C120.1 14.8 120.3 14.6 120.4 14.5C120.4 14.3 120.3 13.7 120.2 13.6C120.1 13.6 120.0 13.3 119.8 13.0C119.6 12.6 119.4 12.1 119.2 11.9C119.0 11.6 118.7 11.2 118.5 11.0C118.4 10.7 117.8 10.0 117.3 9.4C115.3 7.1 113.5 5.6 110.4 4.0C109.9 3.8 109.5 3.6 109.5 3.6C109.4 3.6 109.2 3.5 108.9 3.4C107.2 2.6 104.3 2.0 102.1 1.8C96.2 1.6 90.3 3.9 86.1 8.1C85.3 8.9 84.1 10.4 83.6 11.2C83.4 11.4 83.2 11.7 83.0 12.0C82.6 12.6 81.6 14.6 81.1 15.9C80.8 16.6 80.4 17.9 80.1 19.3C79.9 20.1 79.6 22.8 79.7 23.0C79.8 23.3 80.4 23.4 81.8 23.4C83.1 23.3 83.7 23.4 83.8 23.6C83.9 23.7 83.9 25.7 83.9 28.1C83.9 33.6 84.0 34.1 84.9 34.9C85.2 35.1 85.5 35.3 85.7 35.4C86.2 35.6 87.6 35.5 88.0 35.3C88.5 35.0 89.0 34.6 89.3 34.1C89.8 33.3 89.8 32.9 89.8 28.1C89.8 24.9 89.8 23.6 89.9 23.5C90.1 23.3 95.4 23.3 95.6 23.5C95.7 23.6 95.7 25.8 95.7 31.9C95.7 39.6 95.7 40.2 95.5 40.3C95.3 40.4 90.8 40.4 90.4 40.3C90.2 40.2 90.2 40.1 90.2 39.6C90.1 38.9 89.9 38.8 89.2 39.3C88.0 40.3 86.9 40.6 85.0 40.6C83.7 40.6 83.5 40.6 82.7 40.3ZM105.2 40.3C103.3 39.8 102.1 39.1 100.8 37.8C100.0 37.0 99.6 36.3 99.1 35.0C98.7 34.2 98.4 32.6 98.4 31.9C98.4 30.8 99.1 28.2 99.5 27.7C99.6 27.6 99.8 27.4 99.9 27.2C100.6 25.6 103.3 23.8 105.4 23.4C106.3 23.2 108.4 23.2 109.7 23.3C112.4 23.5 114.7 24.9 116.3 27.4C117.7 29.3 117.9 33.1 116.9 35.4C116.1 37.2 114.3 38.9 112.4 39.8C111.1 40.4 109.9 40.6 107.9 40.6C106.3 40.6 106.1 40.6 105.2 40.3ZM132.6 40.3C130.5 39.9 128.9 39.2 128.7 38.8C128.7 38.7 128.8 38.3 129.2 37.6C129.4 37.1 129.7 36.4 129.9 36.0C130.2 35.0 130.5 34.8 131.2 35.2C132.4 35.9 135.0 36.4 136.5 36.4C139.4 36.3 139.8 34.5 137.0 34.2C132.8 33.7 130.9 33.0 129.8 31.5C129.2 30.7 129.0 30.0 129.0 28.7C129.0 27.6 129.1 27.5 129.4 26.7C130.3 25.1 132.1 23.8 134.2 23.4C135.1 23.2 139.3 23.2 140.3 23.4C141.4 23.6 143.0 24.1 143.4 24.4C143.8 24.7 143.8 25.0 143.5 25.5C143.3 25.8 143.1 26.2 143.1 26.5C143.0 26.7 142.7 27.3 142.5 27.7C142.1 28.6 141.9 28.7 141.3 28.3C140.3 27.8 138.7 27.5 136.8 27.5C135.5 27.6 135.0 27.7 134.7 28.2C134.5 28.5 134.5 28.5 134.6 28.8C134.7 29.0 134.9 29.2 135.0 29.3C135.5 29.5 136.8 29.8 138.2 29.9C141.3 30.3 142.9 31.2 144.0 32.9C144.4 33.6 144.4 34.0 144.4 35.4C144.3 36.4 144.3 36.5 144.0 37.1C143.0 38.8 141.5 39.8 139.2 40.4C138.2 40.6 137.9 40.6 136.0 40.6C134.1 40.6 133.7 40.5 132.6 40.3ZM152.8 40.3C150.9 39.8 149.7 39.1 148.4 37.9C147.5 37.0 147.2 36.6 146.6 35.2C146.1 34.3 146.0 33.5 146.0 31.9C146.0 30.3 146.1 29.5 146.4 28.8C146.6 28.5 146.7 28.2 146.7 28.2C146.7 27.9 147.7 26.5 148.5 25.8C150.5 23.7 152.8 23.0 156.5 23.3C158.0 23.4 158.8 23.6 160.0 24.3C161.7 25.3 163.1 26.9 163.6 28.6C164.0 29.6 164.0 29.7 164.0 31.5C164.0 33.1 164.0 33.1 163.8 33.3C163.6 33.5 163.4 33.5 157.9 33.5C151.6 33.5 151.8 33.5 152.1 34.1C152.3 34.5 153.1 35.3 153.8 35.6C155.4 36.4 157.9 36.1 159.2 35.1C159.7 34.7 160.0 34.7 160.5 35.3C162.0 36.8 162.4 37.3 162.6 37.5C162.9 37.8 162.9 38.1 162.3 38.6C161.3 39.4 160.3 39.9 158.9 40.3C157.8 40.6 157.7 40.6 155.8 40.6C154.0 40.6 153.8 40.6 152.8 40.3ZM7.1 40.3C6.9 40.2 6.9 39.6 6.9 31.9C6.9 24.5 6.9 23.7 6.7 23.6C6.6 23.4 6.2 23.4 3.5 23.4C0.6 23.4 0.3 23.4 0.2 23.2C0.0 23.1-0.0 22.7 0.0 20.9C0.0 18.9 0.0 18.8 0.2 18.7C0.4 18.5 1.5 18.5 9.9 18.5C19.2 18.5 19.4 18.5 19.5 18.7C19.7 18.9 19.7 19.1 19.7 21.0C19.7 22.5 19.7 23.2 19.6 23.3C19.5 23.4 19.0 23.4 16.4 23.4C13.5 23.4 13.4 23.4 13.2 23.6C13.0 23.8 13.0 23.9 13.0 31.8C13.0 36.2 13.0 39.9 13.0 40.0C13.0 40.0 12.9 40.2 12.8 40.2C12.6 40.5 7.3 40.5 7.1 40.3ZM43.1 40.2L42.9 40.1L42.9 31.9C42.9 25.6 42.9 23.6 43.0 23.5C43.1 23.4 43.8 23.4 45.7 23.4C48.7 23.4 48.6 23.4 48.6 24.3C48.6 24.6 48.6 24.9 48.6 25.0C48.8 25.1 49.2 24.9 49.6 24.5C50.0 24.1 51.1 23.5 51.7 23.4C52.0 23.4 52.5 23.3 53.0 23.2C54.3 23.1 54.3 23.1 54.3 25.8C54.3 28.6 54.3 28.6 53.3 28.5C52.6 28.4 51.2 28.6 50.6 29.0C50.1 29.2 49.5 29.9 49.2 30.5L49.0 31.0L48.9 35.5C48.9 39.1 48.8 40.1 48.7 40.2C48.6 40.3 48.0 40.4 46.0 40.4C43.7 40.4 43.3 40.4 43.1 40.2ZM120.4 40.2C120.2 40.0 120.2 39.9 120.2 31.9C120.2 22.6 120.1 23.4 121.1 23.4C122.5 23.4 125.1 23.4 125.5 23.4C126.3 23.4 126.2 22.7 126.2 31.9C126.2 39.4 126.2 40.1 126.0 40.2C125.9 40.3 125.3 40.4 123.2 40.4C120.7 40.4 120.6 40.4 120.4 40.2ZM66.4 35.6C68.2 34.6 68.9 32.3 68.1 30.0C67.7 29.0 66.6 28.1 65.3 27.9C64.1 27.8 62.4 28.6 61.9 29.7C61.0 31.4 61.4 34.0 62.6 35.0C63.6 35.7 64.0 35.9 65.1 35.9C65.7 35.8 66.0 35.8 66.4 35.6ZM109.4 35.6C111.1 34.7 111.8 33.0 111.4 30.6C111.2 29.9 111.1 29.6 110.4 29.0C109.5 28.0 108.3 27.7 107.0 28.1C105.4 28.6 104.5 29.9 104.5 31.9C104.5 33.7 105.2 35.0 106.8 35.6C107.5 36.0 108.7 36.0 109.4 35.6ZM158.5 30.2C158.9 30.0 158.2 28.7 157.2 28.0C156.6 27.6 156.1 27.5 155.0 27.5C153.8 27.6 153.6 27.7 152.9 28.3C152.0 29.1 151.7 29.9 152.2 30.1C152.4 30.3 158.2 30.3 158.5 30.2Z"/></symbol>
 </svg>
@@ -420,25 +454,33 @@ h3{font-size:clamp(30px,3vw,46px)}
 </div>
 
 <main id="top">
+<div class="hero-wrap" id="heroWrap">
 <section class="hero" aria-label="Нүүр">
-  <div class="media">
-    <picture>
-      <source media="(max-width:699px)" srcset="img/hero-m.webp">
-      <img src="img/hero.webp" alt="Turquoise Celeste bone china хоолны сет цагаан бүтээлэгтэй ширээн дээр, ард нь turquoise хана, цэцэг" width="2400" height="1600" fetchpriority="high">
-    </picture>
-    <video id="heroVid" muted loop playsinline preload="none" poster="img/hero.webp" data-d="hero.mp4" data-m="hero-m.mp4" style="position:absolute;inset:0;opacity:0;transition:opacity 1.2s" aria-hidden="true"></video>
+  <div class="hv" id="hv">
+    <div class="vin" id="vin">
+      <picture>
+        <source media="(max-width:699px)" srcset="img/hero-m.webp">
+        <img src="img/hero.webp" alt="Turquoise Celeste bone china хоолны сет цагаан бүтээлэгтэй ширээн дээр, ард нь turquoise хана, цэцэг" width="1600" height="900" fetchpriority="high">
+      </picture>
+      <video id="heroVid" muted loop playsinline preload="none" poster="img/hero.webp" data-d="hero.mp4" data-m="hero-m.mp4" style="position:absolute;inset:0;opacity:0;transition:opacity 1.2s" aria-hidden="true"></video>
+    </div>
+    <div class="shade"></div>
   </div>
-  <div class="wrap hin">
-    <h1 class="rv">Гэрт тань тайван тансаг</h1>
+  <svg class="rim" id="heroRim" viewBox="-100 -100 200 200" aria-hidden="true"></svg>
+  <p class="pcap" id="pcap">Royal Ware · Celeste<small>TURQUOISE bone china коллекц</small></p>
+  <div class="wrap hin" id="hin">
+    <h1><span class="ln"><span>Гэрт тань</span></span><span class="ln"><span>тайван тансаг</span></span></h1>
     <div class="row">
-      <p class="rv">Туркийн Madame Coco брэндийн ор хөнжил, алчуур, гэрэл, толь болон өөрсдийн бүтээсэн TURQUOISE bone china шаазан — Хан-Уул, Кинг Тауэр 147.</p>
-      <div class="ctas rv">
-        <a class="btn light" href="#shop">Дэлгүүр үзэх</a>
-        <a class="btn line" href="#builder">Ширээгээ засаад үз</a>
+      <p class="hfade">Туркийн Madame Coco брэндийн ор хөнжил, алчуур, гэрэл, толь болон өөрсдийн бүтээсэн TURQUOISE bone china шаазан — Хан-Уул, Кинг Тауэр 147.</p>
+      <div class="ctas hfade">
+        <a class="btn light mag" href="#shop">Дэлгүүр үзэх</a>
+        <a class="btn line mag" href="#builder">Ширээгээ засаад үз</a>
       </div>
     </div>
   </div>
+  <a class="badge" href="#collections" aria-label="Коллекц руу гүйлгэх"><svg viewBox="0 0 132 132" aria-hidden="true"><defs><path id="bp" d="M66,66 m-52,0 a52,52 0 1,1 104,0 a52,52 0 1,1 -104,0"/></defs><text><textPath href="#bp">Turquoise home studio · Кинг Тауэр 147 · </textPath></text></svg><i aria-hidden="true">↓</i></a>
 </section>
+</div>
 <div class="band">
   <ul class="wrap">
     <li><a href="#visit" data-loc>Кинг Тауэр, 147-р байр</a></li>
@@ -451,12 +493,11 @@ h3{font-size:clamp(30px,3vw,46px)}
 
 <section class="col wrap" id="collections" aria-labelledby="colH">
   <div class="top">
-    <h2 id="colH" class="rv">Тооноос тэнгэр хүртэл</h2>
+    <h2 id="colH" class="sp">Тооноос тэнгэр хүртэл</h2>
     <p class="lead rv">Монголчууд аяга тавгийг дээш харсан сав гэж бэлгэдэж, хүндтэй хүндээ бэлэглэдэг. TURQUOISE-ийн өөрсдийн бүтээсэн хоёр bone china коллекц энэ утгыг өдөр бүрийн ширээнд тань авчирна.</p>
   </div>
   <div class="pair">
-    <div class="plate-seam" aria-hidden="true"><svg viewBox="-110 -110 220 220" id="seamPlate"></svg></div>
-    <figure class="ph rp rv"><img src="img/royal.webp" alt="Turquoise Royal Ware — улаан, turquoise хээтэй таваг, аяга, хатгамалтай салфетка" loading="lazy" width="1100" height="1878"></figure>
+    <figure class="ph rp" data-par data-clip><img src="img/royal.webp" alt="Turquoise Royal Ware — улаан, turquoise хээтэй таваг, аяга, хатгамалтай салфетка" loading="lazy" width="1100" height="1878"></figure>
     <div class="tx rt rv">
       <h3>Royal Ware <small>Тооно</small></h3>
       <p>Монгол гэрийн тооны дүрслэлийг орчин үеийн хэв маягтай хослуулж, гал улаан өнгийг гол болгосон коллекц.</p>
@@ -473,7 +514,7 @@ h3{font-size:clamp(30px,3vw,46px)}
       </div>
       <p class="extra">20 ширхэг · 4 хүнд · бэлгийн хайрцагтай</p>
     </div>
-    <figure class="ph cp rv"><img src="img/celeste.webp" alt="Turquoise Celeste — цэнхэр судалтай, платинум хүрээтэй тавагнууд цэцэг дунд" loading="lazy" width="1100" height="1408"></figure>
+    <figure class="ph cp" data-par data-clip><img src="img/celeste.webp" alt="Turquoise Celeste — цэнхэр судалтай, платинум хүрээтэй тавагнууд цэцэг дунд" loading="lazy" width="1100" height="1408"></figure>
     <div class="tx ct rv">
       <h3>Celeste <small>Тэнгэр</small></h3>
       <p>Цэлмэг тэнгэрийн цэнхэр өнгө, платинум хүрээтэй, хэзээ ч хуучрахгүй загвар.</p>
@@ -500,7 +541,7 @@ h3{font-size:clamp(30px,3vw,46px)}
 <section class="tb" id="builder" aria-labelledby="tbH">
   <div class="wrap grid">
     <div>
-      <h2 id="tbH" class="rv">Хэдэн хүний ширээ засах вэ?</h2>
+      <h2 id="tbH" class="sp">Хэдэн хүний ширээ засах вэ?</h2>
       <p class="lead rv">Коллекцоо сонгоод зочдынхоо тоог оруулахад хэдэн сет хэрэгтэйг тооцоолж, ширээг тань дээрээс нь харуулна.</p>
       <div class="ctl rv">
         <div>
@@ -525,13 +566,14 @@ h3{font-size:clamp(30px,3vw,46px)}
         </div>
       </div>
     </div>
-    <div class="tablewrap rv" aria-hidden="true"><svg viewBox="-320 -320 640 640" id="tableSvg"></svg></div>
+    <div class="tablewrap" aria-hidden="true"><svg viewBox="-320 -320 640 640" id="tableSvg"></svg></div>
   </div>
 </section>
 
+<div class="mq" aria-hidden="true"><div class="mq-in"><span>Bone china</span><i></i><span>Royal Ware</span><i></i><span>Celeste</span><i></i><span>Madame Coco</span><i></i><span>Mulberry silk</span><i></i><span>Тенсел</span><i></i><span>100% хөвөн</span><i></i><span>Bone china</span><i></i><span>Royal Ware</span><i></i><span>Celeste</span><i></i><span>Madame Coco</span><i></i><span>Mulberry silk</span><i></i><span>Тенсел</span><i></i><span>100% хөвөн</span><i></i></div></div>
 <section class="shop wrap" id="shop" aria-labelledby="shopH">
   <div class="top">
-    <h2 id="shopH" class="rv">Өрөө өрөөгөөр нь сонго</h2>
+    <h2 id="shopH" class="sp">Өрөө өрөөгөөр нь сонго</h2>
     <div class="chips rv" role="group" aria-label="Ангилал">
       <button type="button" data-f="all" aria-pressed="true">Бүгд</button>
       <button type="button" data-f="table" aria-pressed="false">Ширээ засалт</button>
@@ -547,7 +589,7 @@ h3{font-size:clamp(30px,3vw,46px)}
 <section class="mat" aria-labelledby="matH">
   <div class="wrap">
     <div class="top">
-      <h2 id="matH" class="rv">Хүрэхэд л мэдрэгдэнэ</h2>
+      <h2 id="matH" class="sp">Хүрэхэд л мэдрэгдэнэ</h2>
       <p class="lead rv">Бүтээгдэхүүн бүрийн материалыг бид өндөр зэрэглэлийн стандартаар сонгодог. Тансаг гэдэг нь гадна төрх төдийгүй өдөр бүр хүрэх мэдрэмж.</p>
     </div>
     <ul class="rings">
@@ -562,10 +604,10 @@ h3{font-size:clamp(30px,3vw,46px)}
 
 <section class="gift wrap" id="gift" aria-labelledby="giftH">
   <div class="grid">
-    <figure class="ph rv"><img src="img/celeste-gift.webp" alt="Turquoise Celeste цайны сет turquoise бэлгийн хайрцагт, цэцэгтэй" loading="lazy" width="2000" height="1337"></figure>
+    <figure class="ph" data-par data-clip><img src="img/celeste-gift.webp" alt="Turquoise Celeste цайны сет turquoise бэлгийн хайрцагт, цэцэгтэй" loading="lazy" width="2000" height="1337"></figure>
     <div>
-      <h2 id="giftH" class="rv">Хурим, шинэ гэрийн бэлэг</h2>
-      <blockquote class="rv">«Идээ ундаа элбэг дэлбэг, буян хишиг нь дүүрэн, гал голомт нь өөдөө»</blockquote>
+      <h2 id="giftH" class="sp">Хурим, шинэ гэрийн бэлэг</h2>
+      <blockquote class="qw">«Идээ ундаа элбэг дэлбэг, буян хишиг нь дүүрэн, гал голомт нь өөдөө»</blockquote>
       <p class="gp rv">Аяга тавгийг ийм ерөөлтэйгээр бэлэглэдэг уламжлалаа бид гоёмсог бэлгийн хайрцагтай нь хүргэнэ.</p>
       <ul class="gl rv">
         <li><span class="n">Royal Ware хоолны сет<small>20 ширхэг · 4 хүнд</small></span><span class="price num">1,321,000₮</span><button class="add" data-add="royal" aria-label="Royal Ware сагсанд нэмэх">+</button></li>
@@ -580,9 +622,9 @@ h3{font-size:clamp(30px,3vw,46px)}
 
 <section class="visit" id="visit" aria-labelledby="visitH">
   <div class="wrap grid">
-    <figure class="tall"><img src="img/store-sign.webp" alt="Turquoise Home Studio дэлгүүрийн гэрэлтэй бичиг, turquoise тавиурууд дээрх шаазан" loading="lazy"></figure>
+    <figure class="tall" data-par data-clip><img src="img/store-sign.webp" alt="Turquoise Home Studio дэлгүүрийн гэрэлтэй бичиг, turquoise тавиурууд дээрх шаазан" loading="lazy"></figure>
     <div class="tx">
-      <h2 id="visitH" class="rv">Кинг Тауэр, <span style="white-space:nowrap">147-р байр</span></h2>
+      <h2 id="visitH" class="sp">Кинг Тауэр, <span style="white-space:nowrap">147-р байр</span></h2>
       <p class="lead rv">Бүтээгдэхүүнээ гартаа барьж, өнгө, материалыг нь мэдэрч сонгоорой.</p>
       <dl class="rv">
         <dt>Хаяг</dt><dd>Хан-Уул дүүрэг, 17-р хороо, Кинг Тауэр хотхон 147-р байр (зүүн хойд тал). Кинг спорт комплексийн чанх урд.</dd>
@@ -607,7 +649,7 @@ h3{font-size:clamp(30px,3vw,46px)}
 
 <footer class="foot">
   <div class="wrap">
-    <svg class="big" viewBox="0 0 164 46.2" role="img" aria-label="Turquoise Home Studio"><use href="#logo"/></svg>
+    <div class="flamp" id="flamp" role="img" aria-label="Turquoise Home Studio"><svg class="dim" viewBox="0 0 164 46.2"><use href="#logo"/></svg><div class="fglow"></div><svg class="lit" viewBox="0 0 164 46.2"><use href="#logo"/></svg></div>
     <div class="row">
       <p class="tag">Минимал дизайн, дулаан уур амьсгал, тайван мэдрэмж.</p>
       <ul>
@@ -630,14 +672,14 @@ h3{font-size:clamp(30px,3vw,46px)}
 <div class="ov" id="ov"></div>
 <aside class="dr" id="dr" role="dialog" aria-modal="true" aria-labelledby="drH" aria-hidden="true">
   <header><h2 id="drH">Сагс</h2><button class="x" id="drX" aria-label="Сагс хаах">×</button></header>
-  <div class="body" id="drBody"></div>
+  <div class="body" id="drBody" data-lenis-prevent></div>
   <footer id="drFoot"></footer>
 </aside>
 <a class="msg" href="https://m.me/61583997217924" target="_blank" rel="noopener" aria-label="Messenger-ээр бичих"><svg viewBox="0 0 24 24" width="26" height="26" aria-hidden="true"><path fill="currentColor" d="M12 2C6.36 2 2 6.13 2 11.7c0 2.91 1.19 5.44 3.14 7.17.16.14.26.35.27.57l.05 1.78c.02.57.6.94 1.12.71l1.98-.87c.17-.08.36-.09.54-.04.91.25 1.87.38 2.9.38 5.64 0 10-4.13 10-9.7S17.64 2 12 2zm6 7.46l-2.94 4.66c-.47.74-1.47.93-2.17.4l-2.34-1.75a.6.6 0 0 0-.72 0l-3.16 2.4c-.42.32-.97-.18-.69-.63l2.94-4.66c.47-.74 1.47-.93 2.17-.4l2.34 1.75c.21.16.51.16.72 0l3.16-2.4c.42-.32.97.18.69.63z"/></svg><span>Бичих</span></a>
 <div class="lm" id="lm" role="dialog" aria-modal="true" aria-labelledby="lmH" aria-hidden="true">
   <div class="lm-in">
     <div class="lm-v"><video id="lmV" muted playsinline loop preload="none" poster="img/loc-poster.webp" src="" data-src="location.mp4"></video></div>
-    <div class="lm-t">
+    <div class="lm-t" data-lenis-prevent>
       <button class="x" id="lmX" aria-label="Хаах">×</button>
       <h2 id="lmH">Манай байршил</h2>
       <p>Хан-Уул дүүрэг, 17-р хороо, Кинг Тауэр хотхон 147-р байр — зүүн хойд тал, Кинг спорт комплексийн чанх урд. Орцны хажууд TURQUOISE HOME STORE гэсэн хар самбартай.</p>
@@ -652,6 +694,10 @@ h3{font-size:clamp(30px,3vw,46px)}
 </div>
 <div class="toast" id="toast" role="status" aria-live="polite"></div>
 
+<div class="cur" id="cur" aria-hidden="true"><span>Үзэх</span></div>
+<script src="js/gsap.min.js"></script>
+<script src="js/ScrollTrigger.min.js"></script>
+<script src="js/lenis.min.js"></script>
 <script>
 window.TQ_P={"royal": {"n": "Turquoise Royal Ware хоолны сет", "p": 1321000, "img": "royal-plate"}, "celeste": {"n": "Turquoise Celeste оройн хоолны сет", "p": 1149000, "img": "table-set"}, "celeste-tea": {"n": "Turquoise Celeste цайны сет", "p": 0, "img": "celeste-pot"}, "flutes": {"n": "Шампанскийн хундага", "p": 79000, "img": "flutes"}, "placemat": {"n": "Тавагны суурь", "p": 0, "img": "placemat"}, "tablecloth": {"n": "Ширээний бүтээлэг", "p": 0, "img": "tablecloth"}, "comforter": {"n": "Тенсел торгон хөнжил", "p": 419000, "img": "bed-comforter"}, "spread": {"n": "Орны бүтээлэг + 2 дэрний уут", "p": 299000, "img": "bed-spread"}, "single": {"n": "1 хүний ор хөнжлийн даавуу", "p": 149000, "img": "bed-single"}, "silk": {"n": "Mulberry silk сет", "p": 0, "img": "silk-blue"}, "ruffle": {"n": "Хормойтой ор хөнжлийн сет", "p": 0, "img": "bed-ruffle"}, "teal": {"n": "Ор хөнжлийн даавууны сет", "p": 0, "img": "bed-teal"}, "blue": {"n": "Цэцэгтэй ор хөнжлийн сет", "p": 0, "img": "bed-blue"}, "robe": {"n": "Халад", "p": 169000, "img": "robe-aqua"}, "towel": {"n": "Алчуур · 100% хөвөн", "p": 49000, "img": "towel-sand"}, "slippers": {"n": "Гэрийн шаахай", "p": 0, "img": "slippers"}, "lamp": {"n": "Ширээний гэрэл · Madame Coco", "p": 569000, "img": "lamp"}, "mirror": {"n": "Алтан навчит хүрээтэй толь", "p": 0, "img": "mirror-gold"}, "oval": {"n": "Зууван толь", "p": 0, "img": "mirror-oval"}, "vases": {"n": "Мини ваар · Madame Coco", "p": 29000, "img": "vases"}, "luxury": {"n": "Luxury collection орны сет · 7ш", "p": 699000, "img": null}};
 (()=>{
@@ -664,21 +710,22 @@ const P=window.TQ_P;
 const ld=$('#ld');
 if(ld&&getComputedStyle(ld).display!=='none'){
   let ended=false;
-  const end=()=>{if(ended)return;ended=true;ld.classList.add('out');try{sessionStorage.setItem('tq-intro','1')}catch(e){}setTimeout(()=>ld.remove(),950)};
+  const end=()=>{if(ended)return;ended=true;ld.classList.add('out');setTimeout(()=>document.dispatchEvent(new Event('tq:ready')),350);try{sessionStorage.setItem('tq-intro','1')}catch(e){}setTimeout(()=>ld.remove(),950)};
   const start=()=>{ld.classList.add('go');setTimeout(end,2300)};
   (document.fonts&&document.fonts.ready?Promise.race([document.fonts.ready,new Promise(r=>setTimeout(r,700))]):Promise.resolve()).then(start);
   ld.addEventListener('click',end);setTimeout(end,4500);
-}else if(ld){ld.remove()}
+}else{ld&&ld.remove();setTimeout(()=>document.dispatchEvent(new Event('tq:ready')),60)}
 
 /* ---------- header ---------- */
 const hd=$('#hd'),hero=$('.hero');
 const onScroll=()=>{hd.classList.toggle('solid',scrollY>60)};
-addEventListener('scroll',onScroll,{passive:true});onScroll();
+addEventListener('scroll',onScroll,{passive:true});
 const mnav=$('#mnav'),mb=$('#menuBtn');
 const menu=o=>{mnav.classList.toggle('open',o);mb.setAttribute('aria-expanded',o);document.body.style.overflow=o?'hidden':''};
 mb.onclick=()=>menu(true);$('#menuX').onclick=()=>menu(false);
 $$('.mnav a').forEach(a=>a.addEventListener('click',()=>menu(false)));
 $$('[data-go]').forEach(a=>a.addEventListener('click',()=>filter(a.dataset.go)));
+onScroll();
 
 /* ---------- hero video ---------- */
 const v=$('#heroVid');
@@ -856,6 +903,86 @@ const loc=o=>{lm.classList.toggle('open',o);lm.setAttribute('aria-hidden',!o);do
 $$('[data-loc]').forEach(a=>a.addEventListener('click',e=>{e.preventDefault();menu(false);loc(true)}));
 $('#lmX').onclick=()=>loc(false);lm.addEventListener('click',e=>{if(e.target===lm)loc(false)});
 addEventListener('keydown',e=>{if(e.key==='Escape'&&lm.classList.contains('open'))loc(false)});
+
+
+/* ---------- motion v2 (GSAP + ScrollTrigger + Lenis) ---------- */
+const root=document.documentElement;
+const G=window.gsap,ST=window.ScrollTrigger;
+if(!G||!ST||RM){root.classList.remove('motion');$$('.flamp').forEach(f=>f.classList.add('on'));}
+else{
+  G.registerPlugin(ST);
+  let lenis=null;
+  if(window.Lenis){lenis=new Lenis({duration:1.15,easing:t=>Math.min(1,1.001-Math.pow(2,-10*t)),smoothWheel:true});
+    lenis.on('scroll',ST.update);G.ticker.add(t=>lenis.raf(t*1000));G.ticker.lagSmoothing(0);
+    $$('a[href^="#"]').forEach(a=>a.addEventListener('click',e=>{const id=a.getAttribute('href');if(id.length<2||a.hasAttribute('data-loc'))return;const el=$(id);if(!el)return;e.preventDefault();lenis.scrollTo(el,{offset:id==='#top'?0:-70,duration:1.4})}));
+    window.__lenis=lenis;
+    // stop lenis while overlays open
+    const mo=new MutationObserver(()=>{const open=$('#dr').classList.contains('open')||$('#lm').classList.contains('open')||$('#mnav').classList.contains('open');open?lenis.stop():lenis.start()});
+    ['#dr','#lm','#mnav'].forEach(s=>mo.observe($(s),{attributes:true,attributeFilter:['class']}));
+  }
+  /* hero rim (split plate ring) */
+  const ringR=()=>{let s='<defs><clipPath id="rl"><rect x="-100" y="-100" width="100" height="200"/></clipPath><clipPath id="rr"><rect x="0" y="-100" width="100" height="200"/></clipPath></defs><g clip-path="url(#rl)"><g class="rg">';
+    const N=36,T=Math.PI*2/N;s+='<circle r="82" fill="none" stroke="#FCFBF8" stroke-width="36"/>';
+    for(let i=0;i<N;i++){const a=i*T;s+=wedge(66,88,a+.012,a+T-.012,i%2?'#F5C3A3':'#7FD0CB')}
+    for(let i=0;i<N;i++){const a=i*T,m=a+T/2;const[x1,y1]=pt(97,a),[x2,y2]=pt(87,m),[x3,y3]=pt(97,a+T),[x4,y4]=pt(92,a+T),[x5,y5]=pt(83,m),[x6,y6]=pt(92,a);s+=`<path d="M${x1} ${y1}L${x2} ${y2}L${x3} ${y3}L${x4} ${y4}L${x5} ${y5}L${x6} ${y6}Z" fill="${i%2?'#F1A9B5':'#CF2A2F'}"/>`}
+    s+='<circle r="99" fill="none" stroke="#C9A24A" stroke-width="2"/><circle r="65" fill="none" stroke="#C9A24A" stroke-width="1.4"/></g></g><g clip-path="url(#rr)"><g class="rg2"><circle r="82" fill="none" stroke="#FCFDFE" stroke-width="36"/>';
+    const M=64,U=Math.PI*2/M;for(let i=0;i<M;i++){const a=i*U;s+=wedge(70,96,a,a+U*.62,'#A9C4DD')}
+    s+='<circle r="83" fill="none" stroke="#7E97B2" stroke-width=".9" stroke-dasharray="2.6 4.4"/>';for(let i=0;i<8;i++){const[x,y]=pt(83,i*Math.PI/4+.2);s+=`<circle cx="${x}" cy="${y}" r="1.9" fill="#1E2A33"/>`}
+    s+='<circle r="99" fill="none" stroke="#AEB6BF" stroke-width="2.2"/><circle r="66.5" fill="none" stroke="#AEB6BF" stroke-width="1.2"/></g></g><line x1="0" y1="-100" x2="0" y2="-64" stroke="#F3EFE6" stroke-width="2"/><line x1="0" y1="64" x2="0" y2="100" stroke="#F3EFE6" stroke-width="2"/>';
+    return s};
+  const rim=$('#heroRim');rim.innerHTML=ringR();
+  const hv=$('#hv'),vin=$('#vin'),hin=$('#hin'),pcap=$('#pcap'),badge=$('.badge');
+  const endR=()=>Math.min(innerWidth,innerHeight)*(innerWidth<700?.27:.215);
+  const startR=()=>Math.hypot(innerWidth,innerHeight)/2+20;
+  const setRim=()=>{root.style.setProperty('--rimw',(endR()*2*100/64).toFixed(0)+'px')};setRim();
+  const htl=G.timeline({scrollTrigger:{trigger:'#heroWrap',start:'top top',end:'bottom bottom',scrub:.9,invalidateOnRefresh:true,onRefresh:setRim}});
+  htl.to(hin,{y:-60,opacity:0,ease:'power2.in',duration:.22},0)
+     .to(badge,{opacity:0,duration:.12},0)
+     .fromTo(hv,{clipPath:()=>`circle(${startR()}px at 50% 50%)`},{clipPath:()=>`circle(${endR()}px at 50% 50%)`,ease:'power2.inOut',duration:.72},.06)
+     .fromTo(vin,{scale:1.14},{scale:1,ease:'none',duration:.78},0)
+     .fromTo(rim,{opacity:0,scale:1.25,rotate:-50},{opacity:1,scale:1,rotate:0,ease:'power3.out',duration:.3},.56)
+     .fromTo(pcap,{opacity:0,y:24},{opacity:1,y:0,duration:.16},.8)
+     .to('.rg',{rotation:60,duration:.44,ease:'none',svgOrigin:'0 0'},.56)
+     .to('.rg2',{rotation:-60,duration:.44,ease:'none',svgOrigin:'0 0'},.56);
+  /* hero intro lines */
+  G.set('.hero .ln>span',{yPercent:110});G.set('.hfade',{opacity:0,y:20});G.set(badge,{opacity:0,scale:.8});
+  const heroIn=()=>{G.to('.hero .ln>span',{yPercent:0,duration:1.25,ease:'expo.out',stagger:.12});G.to('.hfade',{opacity:1,y:0,duration:1,ease:'power3.out',stagger:.1,delay:.35});G.to(badge,{opacity:1,scale:1,duration:1,ease:'expo.out',delay:.6})};
+  document.addEventListener('tq:ready',heroIn,{once:true});
+  /* split headings into words */
+  $$('.sp').forEach(h=>{const walk=n=>{[...n.childNodes].forEach(c=>{if(c.nodeType===3){const frag=document.createDocumentFragment();c.textContent.split(/(\s+)/).forEach(w=>{if(!w)return;if(/^\s+$/.test(w)){frag.appendChild(document.createTextNode(w));return}const o=document.createElement('span');o.className='w';const i=document.createElement('span');i.textContent=w;o.appendChild(i);frag.appendChild(o)});c.replaceWith(frag)}else if(c.nodeType===1&&!c.classList.contains('w'))walk(c)})};walk(h);
+    G.from($$('.w>span',h),{yPercent:115,rotate:3,duration:1.15,ease:'expo.out',stagger:.06,scrollTrigger:{trigger:h,start:'top 88%'}})});
+  /* clip reveals + parallax */
+  $$('[data-clip]').forEach(el=>G.fromTo(el,{clipPath:'inset(14% 10% 14% 10%)'},{clipPath:'inset(0% 0% 0% 0%)',duration:1.6,ease:'expo.out',scrollTrigger:{trigger:el,start:'top 86%'}}));
+  $$('[data-par]').forEach(el=>{const im=$('img',el);if(im)G.fromTo(im,{yPercent:-7},{yPercent:7,ease:'none',scrollTrigger:{trigger:el,start:'top bottom',end:'bottom top',scrub:true}})});
+  /* product cards: staggered rise */
+  G.set('.pc',{opacity:0,y:60});
+  ST.batch('.pc',{start:'top 90%',onEnter:b=>G.fromTo(b,{y:60,opacity:0},{y:0,opacity:1,duration:1.1,ease:'expo.out',stagger:.08,overwrite:true})});
+  $$('.pc').forEach(c=>{c.classList.remove('rv');c.style.transitionDelay=''});
+  /* materials: rolling plates */
+  if(innerWidth>900){const lis=$$('.rings li');lis.forEach(l=>{l.classList.remove('rv');l.style.transitionDelay=''});
+    G.fromTo(lis,{x:(i)=>260+i*70,y:0,opacity:0},{x:0,y:0,opacity:1,ease:'power3.out',stagger:.06,scrollTrigger:{trigger:'.rings',start:'top 95%',end:'top 55%',scrub:1}});
+    G.fromTo($$('.rings .c'),{rotate:(i)=>140+i*20},{rotate:0,ease:'power3.out',stagger:.06,scrollTrigger:{trigger:'.rings',start:'top 95%',end:'top 55%',scrub:1}});}
+  /* quote words light up */
+  const q=$('.qw');if(q){q.innerHTML=q.textContent.split(/(\s+)/).map(w=>/^\s+$/.test(w)?w:`<span class="qwd" style="opacity:.16">${w}</span>`).join('');
+    G.to($$('.qwd',q),{opacity:1,stagger:.08,ease:'none',scrollTrigger:{trigger:q,start:'top 80%',end:'bottom 45%',scrub:true}})}
+  /* builder table entrance */
+  G.from('.tablewrap',{rotate:-25,scale:.86,opacity:0,duration:1.6,ease:'expo.out',scrollTrigger:{trigger:'.tablewrap',start:'top 82%'}});
+  /* marquee speed follows scroll velocity */
+  const mq=$('.mq-in');if(mq&&lenis){let v=0;lenis.on('scroll',e=>{v=e.velocity});const anim=mq.getAnimations()[0];G.ticker.add(()=>{if(anim)anim.playbackRate=1+Math.min(6,Math.abs(v)*.35)})}
+  /* footer lamp turns on */
+  ST.create({trigger:'#flamp',start:'top 85%',once:true,onEnter:()=>$('#flamp').classList.add('on')});
+  /* visit circles float */
+  G.utils.toArray('.circles figure').forEach((f,i)=>G.to(f,{y:i%2?-10:10,duration:2.6+i*.4,ease:'sine.inOut',yoyo:true,repeat:-1}));
+  /* magnetic buttons + cursor (desktop) */
+  if(matchMedia('(pointer:fine)').matches){
+    $$('.mag').forEach(b=>{const xT=G.quickTo(b,'x',{duration:.5,ease:'power3'}),yT=G.quickTo(b,'y',{duration:.5,ease:'power3'});b.addEventListener('mousemove',e=>{const r=b.getBoundingClientRect();xT((e.clientX-r.left-r.width/2)*.28);yT((e.clientY-r.top-r.height/2)*.4)});b.addEventListener('mouseleave',()=>{xT(0);yT(0)})});
+    const cur=$('#cur'),cx=G.quickTo(cur,'x',{duration:.35,ease:'power3'}),cy=G.quickTo(cur,'y',{duration:.35,ease:'power3'});
+    addEventListener('mousemove',e=>{cur.style.opacity=1;cx(e.clientX);cy(e.clientY)},{passive:true});
+    document.addEventListener('mouseover',e=>{const im=e.target.closest('.pc .im,.rings .c,.circles figure,[data-par]');const l=e.target.closest('a,button');cur.classList.toggle('big',!!im&&!l);cur.classList.toggle('link',!!l)});
+    document.addEventListener('mouseleave',()=>cur.style.opacity=0);
+  }
+  addEventListener('load',()=>ST.refresh());
+}
 
 /* image retry (mobile networks) */
 $$('img').forEach(im=>im.addEventListener('error',()=>{if(!im.dataset.r){im.dataset.r=1;const s=im.src;im.src='';im.src=s}},{once:true}));

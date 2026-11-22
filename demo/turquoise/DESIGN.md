@@ -23,12 +23,18 @@ Signature motion: intro дээр логоны **гэрэл асна** (нум з
 - Radius: зураг 0 (editorial), товч ба chip 999px (тойргийн санаа), материалын дээж = тойрог
 - Хөрш section өөр composition: hero full-bleed видео → 2 багана коллекц + голд таваг → ширээ засагч (зүүн control, баруун SVG ширээ) → каталог grid → хэвтээ тойрог дээжүүд → том зураг + бэлгийн жагсаалт → дэлгүүр (өндөр зураг + мэдээлэл) → footer том лого
 
-## Motion
-- Section хэсгүүд 70ms зайтай, 24px дээш (IntersectionObserver); зөвхөн transform/opacity
-- Тавагны амсар scroll-оор эргэнэ (rotate), ширээ засагчид тавагнууд scale-оор орж ирнэ
-- prefers-reduced-motion / no-JS үед бүх агуулга шууд харагдана
+## Motion (v2 — GSAP 3.12.5 + ScrollTrigger + Lenis 1.1.13, js/ дотор self-host)
+- Lenis smooth scroll (duration 1.15); overlay нээлттэй үед зогсоно
+- **Signature:** hero бичлэг (5 кино хэсгийн montage) 230vh pin дотор scroll-оор **тойрог болж агшиж**, эргэн тойронд нь Royal Ware | Celeste хоёр талт тавагны амсар эргэлдэн орж ирнэ → "тооноос тэнгэр" таваг. Доор нь "Royal Ware · Celeste" caption
+- Hero гарчиг мөр мөрөөр mask-аас дээш (expo.out), эргэлддэг тойрог текстэн badge, magnetic товч
+- h2 гарчиг үг үгээр mask reveal; зураг clip-path inset reveal + parallax; бүтээгдэхүүний карт ST.batch stagger
+- Материалын тойргууд баруунаас эргэлдэн "өнхөрч" орж ирнэ (scrub); бэлгийн ерөөл үг үгээр тодорно (scrub)
+- Marquee (Bone china · Royal Ware · Celeste …) хурд нь scroll velocity-тэй уялдана
+- Footer: логоны дүүжин гэрэл асна (intro-той ижил); desktop дээр mix-blend cursor ring
+- prefers-reduced-motion эсвэл GSAP ачаалагдахгүй үед: pin, Lenis, бичлэг autoplay унтарч бүх агуулга статик харагдана
 
 ## Images
 - Захиалагчийн FB/IG бодит зураг (Downloads\Turquoise, 60 ш), текст давхарлагатайг нь тайрсан
-- Hero видео: Higgsfield kling3_0 pro 10s, tq_001.jpg-ээс (start=end → тасралтгүй давталт)
+- Hero видео v2: Higgsfield kling3_0 pro 5s × 8 (камер dolly/orbit/track), Higgsfield sandbox ffmpeg-ээр fade montage (эхний 0.8с-ийг төгсгөлд crossfade → тасралтгүй давталт). Desktop 1600×900 (Celeste ширээ → Royal ширээ → унтлагын өрөө → цайны гүц → бэлгийн хайрцаг), утас 720×1280 (Celeste → дэлгүүрийн бичиг → Royal Ware → өрөө → Mulberry silk)
+- Байршлын бичлэг: IG-ийн хамгийн сүүлийн reel (эхний 35с, CapCut тамга тайрсан, дуугүй)
 - Лого: cover зурагнаас potrace-аар SVG болгосон (захиалагчийн жинхэнэ лого, шинээр зураагүй)
