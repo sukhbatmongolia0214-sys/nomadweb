@@ -672,7 +672,7 @@ if(ld&&getComputedStyle(ld).display!=='none'){
 
 /* ---------- header ---------- */
 const hd=$('#hd'),hero=$('.hero');
-const onScroll=()=>{hd.classList.toggle('solid',scrollY>hero.offsetHeight-90)};
+const onScroll=()=>{hd.classList.toggle('solid',scrollY>60)};
 addEventListener('scroll',onScroll,{passive:true});onScroll();
 const mnav=$('#mnav'),mb=$('#menuBtn');
 const menu=o=>{mnav.classList.toggle('open',o);mb.setAttribute('aria-expanded',o);document.body.style.overflow=o?'hidden':''};
