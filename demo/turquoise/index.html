@@ -997,6 +997,7 @@ if(FINE&&!RM){
   tw.addEventListener('mousemove',e=>{const r=tw.getBoundingClientRect();const p=Math.min(1,Math.max(0,(e.clientX-r.left-r.width*.1)/(r.width*.8)));gt=-p*gmax;gKick()});
   track.addEventListener('focusin',e=>{const c=e.target.closest('.pc');if(!c)return;const r=tw.getBoundingClientRect(),cr=c.getBoundingClientRect();if(cr.left<r.left+40)gt+= (r.left+40-cr.left);else if(cr.right>r.right-40)gt-=(cr.right-(r.right-40));gt=Math.max(-gmax,Math.min(0,gt));gKick()});
 }
+const gio=new IntersectionObserver(es=>{if(es[0].isIntersecting){$$('.pv img').forEach(i=>i.loading='eager');gio.disconnect()}},{rootMargin:'900px 0px'});gio.observe(gal);
 function filter(f){
   $$('.chips button').forEach(b=>b.setAttribute('aria-pressed',b.dataset.f===f));
   $$('#track .pc').forEach(c=>c.hidden=!(f==='all'||c.dataset.cat===f));
