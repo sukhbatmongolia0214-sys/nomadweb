@@ -14,7 +14,7 @@ Live thing: **Ширээ засагч** — коллекц + зочдын тоо
 - Өрөөнүүдийн суурь: Tableware #00C2BE · Sleep #F2DCD4 · Cotton #D5E5EE · Madame Coco #E9DDC7
 
 ## Type
-- Display: **Cormorant Garamond** 300/400/500 + italic (гарчиг, үнэ)
+- Display: **EB Garamond** 400/500/600 + italic (гарчиг, үнэ) — Cormorant-ийн кирилл «л» Λ хэлбэртэй байсан тул сольсон
 - Script: **Pinyon Script** (зөвхөн латин: Royal Ware, Celeste, Tableware, Sleep in Luxury…)
 - Body/UI: **Commissioner** 300–600; жижиг label 12px uppercase .13–.24em
 - Ү Ө ₮ шалгасан, self-host (fonts/, unicode-range subset)
@@ -23,7 +23,7 @@ Live thing: **Ширээ засагч** — коллекц + зочдын тоо
 - Light (default) ба dark горим: header-ийн сар/нар товч, localStorage `tq-theme`. Бүх өнгө CSS token-оор ([data-theme=dark] доор дахин тодорхойлсон). Hero бичлэг хоёр горимд ижил.
 
 ## Layout (v4)
-- Hero: нэг static камертай бичлэг; гарчиг Cormorant Garamond 500, зааны ясан (#FFF9F0) өнгө, дээд caption champagne (#F1E2BF) — гурван мөр бүгд нэг хэв маяг
+- Hero: нэг static камертай бичлэг; гарчиг EB Garamond 400, зааны ясан (#FFF9F0) өнгө, дээд caption champagne (#F1E2BF) — гурван мөр бүгд нэг хэв маяг
 - Коллекц: pin хийгдсэн бүтэн дэлгэц, хулганы дугуйгаар гүйлгэхэд 3 тавагны загвар солигдоно (Royal Ware → Celeste → Lace), гүйлгэлттэй уялдаж таваг эргэнэ, хоёр чиглэлд ажиллана; баруун талд 01–03 навигаци
 - Өрөөнүүд (desktop): нэг дугуй хүрээ байрандаа эргэлдэж (алтан хуваарьт цагираг scroll-оор эргэнэ), дотор нь дараагийн өрөөний зураг дугуйгаар нээгдэн гарч ирнэ; өнгө, текст, cutout объект хамт солигдоно (scrub, хоёр чиглэл). Утсан дээр өрөө бүр тусдаа, зураг нь scroll-оор эргэнэ
 - Шинэ ирэлт: pin байхгүй — хулгана дагаж хэвтээ хөдөлнө, дугуйгаар доошоо гүйлгэнэ; бараа бүр тавагны амсартай дискэн дээрээс 3D-ээр "гарч" ирнэ (Higgsfield cutout), дээр нь дарахад дэлгэрэнгүй цонх (зураг + луп, тайлбар, хэмжээ, тоо, сагс, шууд авах)
