@@ -171,7 +171,7 @@ h2{font-size:clamp(38px,4.6vw,76px)}
 .hero .tl{display:inline-flex;align-items:center;gap:12px;min-height:52px;padding:0 26px;border-radius:999px;background:rgba(3,40,54,.4);box-shadow:inset 0 0 0 1px rgba(255,249,240,.55);transition:background .35s var(--ease);color:#FFF9F0;font:500 12.5px/1 var(--sans);letter-spacing:.16em;text-transform:uppercase;text-decoration:none}
 .hero .tl i{display:block;width:22px;height:1px;background:currentColor;transition:width .45s var(--ease)}
 .hero .tl:hover{background:rgba(3,40,54,.62)}.hero .tl:hover i{width:40px}
-@media (max-width:699px){.hero .ht{left:0;right:0;width:auto;top:104px;text-align:center;padding:0 var(--m)}.hero .cap{justify-content:center;font-size:12px;letter-spacing:.16em;max-width:300px;margin:0 auto;text-wrap:balance}.hero .cap::before{display:none}.hero h1{font-size:clamp(36px,10vw,48px)}.hero .ctas{justify-content:center;gap:12px;margin-top:22px}.hero .sh{background:linear-gradient(180deg,rgba(3,40,54,.55),rgba(3,40,54,.12) 42%,rgba(3,40,54,0) 56%)}.hero .vf img,.hero .vf video{object-position:50% 50%}}
+@media (max-width:699px){.hero .ht{left:0;right:0;width:auto;top:0;bottom:0;padding:104px var(--m) 0;text-align:center}.hero .ctas{position:absolute;left:var(--m);bottom:calc(24px + env(safe-area-inset-bottom));margin:0!important;gap:8px;justify-content:flex-start}.hero .ctas .btn,.hero .tl{min-height:40px;padding:0 15px;font-size:12px;letter-spacing:.1em}.hero .tl i{width:14px}.hero .cap{justify-content:center;font-size:12px;letter-spacing:.16em;max-width:300px;margin:0 auto;text-wrap:balance}.hero .cap::before{display:none}.hero h1{font-size:clamp(36px,10vw,48px)}.hero .ctas{justify-content:center;gap:12px;margin-top:22px}.hero .sh{background:linear-gradient(180deg,rgba(3,40,54,.55),rgba(3,40,54,.12) 42%,rgba(3,40,54,0) 56%)}.hero .vf img,.hero .vf video{object-position:50% 50%}}
 
 /* ---------- info band ---------- */
 .band ul{list-style:none;display:flex;flex-wrap:wrap;justify-content:center;gap:12px 46px;padding:26px var(--m);border-bottom:1px solid var(--line)}
@@ -302,6 +302,25 @@ h2{font-size:clamp(38px,4.6vw,76px)}
 .rnav button[aria-current=true]{opacity:1}
 .rnav button[aria-current=true] i{width:40px}
 @media (max-height:780px){.pinrooms .room .lead{display:none}.pinrooms .room li{padding:8px 0}.pinrooms .room h3{font-size:clamp(34px,3.2vw,50px)}}
+@media (max-width:900px){
+  .pinrooms .room .g{display:flex;flex-direction:column;justify-content:center;gap:0;padding:86px 20px 50px}
+  .pinrooms .room .vis{width:min(40vw,34svh,240px);margin:0 auto 14px}
+  .pinrooms .room .lead,.pinrooms .room .more,.pinrooms .room li .n small{display:none}
+  .pinrooms .room .idx{font-size:12px;letter-spacing:.18em;text-align:center}
+  .pinrooms .room h3{font-size:clamp(24px,6.6vw,32px);text-align:center;margin-top:4px}
+  .pinrooms .room h3 .scr{font-size:.86em}
+  .pinrooms .room ul{margin-top:14px}
+  .pinrooms .room li{padding:7px 0;gap:10px}
+  .pinrooms .room li .n{font-size:14px}
+  .pinrooms .room li .pr{font-size:18px}
+  .pinrooms .room .add{width:34px;height:34px;font-size:17px}
+  .pinrooms .room .obj{width:46%;right:-34%;bottom:-6%}
+  .pinrooms .room .obj.tl{left:-34%;top:-8%;width:40%}
+  .pinrooms .room .giantw{font-size:34vw;bottom:-2%}
+  .pinrooms .rnav{left:50%;transform:translateX(-50%);bottom:12px}
+  .pinrooms .rnav button{font-size:0;min-height:30px;padding:0 4px;gap:0}
+  .pinrooms .rnav button i{width:14px}.pinrooms .rnav button[aria-current=true] i{width:34px}
+}
 @media (max-width:900px){.room .g{grid-template-columns:1fr;padding:64px 22px 52px}.room .vis{width:min(80%,400px);margin-bottom:22px}.room h3{font-size:clamp(32px,8.6vw,42px)}.room .obj{width:44%;right:-10%}.room .obj.tl{left:-10%;width:38%}}
 
 /* ---------- gallery (new arrivals) ---------- */
@@ -424,7 +443,26 @@ h2{font-size:clamp(38px,4.6vw,76px)}
 .tablewrap .pi{transition:transform .32s ease-in}
 .tablewrap .pi.flip{transform:scaleX(0) rotate(30deg)}
 .tablewrap .ctr{transition:opacity .6s}
-@media (max-width:900px){.tb .grid{grid-template-columns:1fr}.tablewrap{max-width:520px;order:-1}}
+.tw-top,.tw-bot{display:none;position:absolute;left:0;right:0;z-index:2;justify-content:center}
+.tw-top{top:0}.tw-bot{bottom:0}
+.tablewrap .seg{background:var(--tb-bg);box-shadow:0 12px 30px rgba(0,0,0,.28),inset 0 0 0 1px rgba(245,240,232,.18)}
+@media (max-width:900px){
+  .tb{padding-block:34px 26px}
+  .tb .grid{display:flex;flex-direction:column;gap:0}
+  .tb .grid>div:first-child,.tb .ctl{display:contents}
+  .tb .grid>div>.cap{order:1;font-size:12px;letter-spacing:.16em}
+  .tb h2{order:2;font-size:clamp(23px,6.6vw,30px);margin-top:6px!important;white-space:nowrap}
+  .tb .lead,.tb .ctl>div:not(.res){display:none}
+  .tablewrap{order:3;width:100%;max-width:400px;margin:6px auto 0;aspect-ratio:1/1.08}
+  .tw-top,.tw-bot{display:flex}
+  .res{order:4;display:grid;grid-template-columns:1fr auto;align-items:center;gap:0 14px;padding-top:14px;margin-top:6px}
+  .res .row{flex-direction:column;align-items:flex-start;gap:2px}
+  .res .row span:first-child{font-size:12.5px;color:rgba(245,240,232,.7)}
+  .res .sum{font-size:30px}
+  .res p{display:none}
+  .res .btn{margin-top:0;min-height:46px;padding:0 20px;font-size:12px}
+  .tablewrap .seg.n button{min-width:44px;padding:0 8px}
+}
 @media (max-width:480px){.seg button{font-size:22px;padding:0 14px;min-height:42px}.seg.n button{min-width:50px;padding:0 10px}.step output{min-width:70px;font-size:44px}.step button{width:46px;height:46px}}
 
 /* ---------- gift ---------- */
@@ -555,17 +593,18 @@ h2{font-size:clamp(38px,4.6vw,76px)}
 .toast.on{transform:translate(-50%,0);visibility:visible}
 .msg{position:fixed;right:max(18px,env(safe-area-inset-right));bottom:calc(18px + env(safe-area-inset-bottom));z-index:65;display:inline-flex;align-items:center;gap:8px;height:54px;padding:0 20px 0 16px;border-radius:999px;background:linear-gradient(135deg,#0A7CFF,#A033FF 70%,#FF5280);color:#fff;font:600 13px var(--sans);letter-spacing:.06em;text-decoration:none;box-shadow:0 10px 30px rgba(10,60,120,.28);transition:transform .3s var(--ease)}
 .msg:hover{transform:translateY(-2px)}
-@media (max-width:600px){.msg{width:54px;padding:0;justify-content:center}.msg span{display:none}}
+@media (max-width:600px){.msg{width:50px;height:50px;padding:0;justify-content:center}.msg span{display:none}}
 /* back to top: a small plate with a gold progress rim */
 .totop{position:fixed;right:max(18px,env(safe-area-inset-right));bottom:calc(86px + env(safe-area-inset-bottom));z-index:65;width:58px;height:58px;border-radius:50%;background:var(--porc);color:#14211F;box-shadow:0 12px 30px rgba(0,0,0,.2),0 0 0 1px rgba(20,33,31,.08);display:grid;place-items:center;opacity:0;visibility:hidden;transform:translateY(16px) scale(.85);transition:opacity .45s var(--ease),transform .55s var(--ease),visibility .45s}
 .totop.show{opacity:1;visibility:visible;transform:none}
+@media (max-width:900px){.pinning .totop.show,.pinning .msg{opacity:0;visibility:hidden;transform:translateY(16px) scale(.85)}.msg{transition:transform .3s var(--ease),opacity .45s,visibility .45s}}
 .totop svg.rg{position:absolute;inset:0;width:100%;height:100%;transform:rotate(-90deg)}
 .totop .trk{fill:none;stroke:rgba(194,161,90,.28);stroke-width:1.6}
 .totop .prg{fill:none;stroke:var(--gold);stroke-width:2.2;stroke-linecap:round;stroke-dasharray:100;stroke-dashoffset:var(--o,100)}
 .totop .ar{position:relative;width:20px;height:20px;transition:transform .45s var(--ease)}
 .totop:hover .ar{transform:translateY(-4px)}
 .totop::after{content:"";position:absolute;inset:7px;border-radius:50%;box-shadow:inset 0 0 0 1px rgba(194,161,90,.55)}
-@media (max-width:600px){.totop{width:50px;height:50px;bottom:calc(82px + env(safe-area-inset-bottom))}}
+@media (max-width:600px){.totop{width:44px;height:44px;right:max(21px,env(safe-area-inset-right));bottom:calc(78px + env(safe-area-inset-bottom))}.totop .ar{width:17px;height:17px}.totop::after{inset:5px}}
 .lm{position:fixed;inset:0;z-index:90;display:grid;place-items:center;padding:20px;background:rgba(8,20,19,.62);opacity:0;visibility:hidden;transition:opacity .4s,visibility .4s;overscroll-behavior:contain}
 .lm.open{opacity:1;visibility:visible}
 .lm-in{position:relative;display:grid;grid-template-columns:auto 1fr;width:min(920px,100%);max-height:calc(100svh - 40px);background:var(--card);color:var(--ink);border-radius:24px;overflow:hidden;transform:translateY(24px) scale(.98);transition:transform .5s var(--ease)}
@@ -794,17 +833,17 @@ h2{font-size:clamp(38px,4.6vw,76px)}
       <h2 id="tbH" class="sp" style="margin-top:14px">Хэдэн хүний ширээ засах вэ?</h2>
       <p class="lead">Коллекцоо сонгоод зочдынхоо тоог оруулахад хэдэн сет хэрэгтэйг тооцоолж, ширээг тань дээрээс нь харуулна.</p>
       <div class="ctl">
-        <div><span class="lab cap" id="segL">Коллекц</span><div class="seg" id="segC" role="group" aria-labelledby="segL"><span class="knob" aria-hidden="true"></span><button type="button" data-c="royal" aria-pressed="true">Royal Ware</button><button type="button" data-c="celeste" aria-pressed="false">Celeste</button><button type="button" data-c="lace" aria-pressed="false">Lace</button></div></div>
+        <div><span class="lab cap" id="segL">Коллекц</span><div class="seg" id="segC" role="group" aria-label="Коллекц"><span class="knob" aria-hidden="true"></span><button type="button" data-c="royal" aria-pressed="true">Royal Ware</button><button type="button" data-c="celeste" aria-pressed="false">Celeste</button><button type="button" data-c="lace" aria-pressed="false">Lace</button></div></div>
         <div><span class="lab cap" id="gL">Зочид</span>
-          <div style="display:flex;flex-wrap:wrap;gap:14px;align-items:center">
-            <div class="seg n" id="segN" role="group" aria-labelledby="gL"><span class="knob" aria-hidden="true"></span><button type="button" data-n="2" aria-pressed="false">2</button><button type="button" data-n="4" aria-pressed="true">4</button><button type="button" data-n="6" aria-pressed="false">6</button><button type="button" data-n="8" aria-pressed="false">8</button></div>
+          <div id="gWrap" style="display:flex;flex-wrap:wrap;gap:14px;align-items:center">
+            <div class="seg n" id="segN" role="group" aria-label="Зочдын тоо"><span class="knob" aria-hidden="true"></span><button type="button" data-n="2" aria-pressed="false">2</button><button type="button" data-n="4" aria-pressed="true">4</button><button type="button" data-n="6" aria-pressed="false">6</button><button type="button" data-n="8" aria-pressed="false">8</button><button type="button" data-n="10" aria-pressed="false">10</button><button type="button" data-n="12" aria-pressed="false">12</button></div>
             <div class="step" role="group" aria-label="Зочдын тоо"><button type="button" id="gMinus" aria-label="Нэгээр хасах">−</button><output id="gOut" aria-live="polite">4<small>хүн</small></output><button type="button" id="gPlus" aria-label="Нэгээр нэмэх">+</button></div>
           </div>
         </div>
         <div class="res"><div class="row"><span id="rSets" class="num">1 сет · 20 ширхэг</span><span class="sum" id="rSum">1,321,000₮</span></div><p id="rNote"></p><button class="btn lt" id="rAdd" type="button">Сагсанд нэмэх</button><a class="btn lt" id="rAsk" href="https://m.me/61583997217924" target="_blank" rel="noopener" hidden>Messenger-ээр лавлах</a></div>
       </div>
     </div>
-    <div class="tablewrap" aria-hidden="true"><svg viewBox="-340 -340 680 680" id="tableSvg"></svg></div>
+    <div class="tablewrap"><div class="tw-top"></div><svg viewBox="-340 -340 680 680" id="tableSvg" aria-hidden="true"></svg><div class="tw-bot"></div></div>
   </div>
 </section>
 
@@ -1106,11 +1145,14 @@ function updTable(swap){
   $$('#segN button').forEach(b=>b.setAttribute('aria-pressed',+b.dataset.n===N));knob($('#segN'));
   if(S.p){$('#rSets').textContent=`${sets} сет · ${sets*S.n} ширхэг`;$('#rSum').textContent=fmt(sets*S.p);
     $('#rNote').textContent=extra?`Сет бүр 4 хүнд зориулагдсан тул ${extra} хүний илүү иж бүрдэл үлдэнэ — зочин нэмэгдвэл бэлэн.`:`${S.label}: ${N} хүний ширээнд яг таарч байна.`;
-    $('#rAdd').hidden=false;$('#rAsk').hidden=true;$('#rAdd').textContent=`${sets} сетийг сагсанд нэмэх`}
-  else{$('#rSets').textContent=`${N} хүний ширээ`;$('#rSum').textContent='Үнэ лавлах';$('#rNote').textContent='Lace тавагны үнэ, иж бүрдлийг Messenger-ээр лавлана уу.';$('#rAdd').hidden=true;$('#rAsk').hidden=false}
+    $('#rAdd').hidden=false;$('#rAsk').hidden=true;$('#rAdd').textContent=mqTB.matches?'Сагсанд нэмэх':`${sets} сетийг сагсанд нэмэх`}
+  else{$('#rSets').textContent=`${N} хүний ширээ`;$('#rSum').textContent='Үнэ лавлах';$('#rNote').textContent='Lace тавагны үнэ, иж бүрдлийг Messenger-ээр лавлана уу.';$('#rAdd').hidden=true;$('#rAsk').hidden=false;$('#rAsk').textContent=mqTB.matches?'Үнэ лавлах':'Messenger-ээр лавлах'}
   $('#gMinus').disabled=N<=2;$('#gPlus').disabled=N>=12;
 }
+const mqTB=matchMedia('(max-width:900px)'),segCHome=$('#segC')?$('#segC').parentElement:null,gWrap=$('#gWrap');
+function placeTB(){if(!segCHome)return;if(mqTB.matches){$('.tw-top').appendChild($('#segC'));$('.tw-bot').appendChild($('#segN'))}else{segCHome.appendChild($('#segC'));gWrap.prepend($('#segN'))}requestAnimationFrame(()=>{knob($('#segC'));knob($('#segN'))})}
 if(tsvg){
+  placeTB();mqTB.addEventListener('change',()=>{placeTB();updTable(false)});
   drawTable();requestAnimationFrame(()=>{updTable(false);knob($('#segC'));knob($('#segN'))});
   addEventListener('resize',()=>{knob($('#segC'));knob($('#segN'))});document.fonts&&document.fonts.ready.then(()=>{knob($('#segC'));knob($('#segN'))});
   $$('#segC button').forEach(b=>b.onclick=()=>{if(b.dataset.c===coll)return;coll=b.dataset.c;$$('#segC button').forEach(x=>x.setAttribute('aria-pressed',x===b));knob($('#segC'));updTable(true)});
@@ -1237,7 +1279,7 @@ const G=window.gsap,ST=window.ScrollTrigger;
 if(!G||!ST||RM){
   root.classList.remove('motion');collEl.classList.add('static');$$('.flamp').forEach(f=>f.classList.add('on'));
 }else{
-  G.registerPlugin(ST);
+  G.registerPlugin(ST);ST.config({ignoreMobileResize:true});
   if(window.Lenis){lenis=new Lenis({duration:1.2,easing:t=>Math.min(1,1.001-Math.pow(2,-10*t)),smoothWheel:true,wheelMultiplier:.95});
     lenis.on('scroll',ST.update);G.ticker.add(t=>lenis.raf(t*1000));G.ticker.lagSmoothing(0);window.__lenis=lenis;
     $$('a[href^="#"]').forEach(a=>a.addEventListener('click',e=>{const id=a.getAttribute('href');if(id.length<2||a.hasAttribute('data-loc')||id.startsWith('#r-'))return;const el=$(id);if(!el)return;e.preventDefault();lenis.scrollTo(el,{offset:id==='#top'?0:-84,duration:1.6})}));
@@ -1252,7 +1294,7 @@ if(!G||!ST||RM){
   G.to('.hero .ht',{yPercent:-28,opacity:0,ease:'none',scrollTrigger:{trigger:'#hero',start:'top top',end:'70% top',scrub:true}});
 
   /* collection: pinned, scrolling turns and changes the plate (both directions) */
-  collST=ST.create({trigger:'#coll',start:'top top',end:()=>'+='+Math.round(innerHeight*2.1),pin:true,scrub:true,invalidateOnRefresh:true,
+  collST=ST.create({trigger:'#coll',start:'top top',end:()=>'+='+Math.round(innerHeight*2.1),pin:true,scrub:true,invalidateOnRefresh:true,onToggle:s=>document.body.classList.toggle('pinning',s.isActive),
     onUpdate:s=>{const i=Math.min(2,Math.floor(s.progress*3));setColl(i);$('#cbar').parentElement.style.setProperty('--p',s.progress.toFixed(3))}});
   G.fromTo('#cspin',{rotate:0},{rotate:200,ease:'none',scrollTrigger:{trigger:'#coll',start:'top top',end:()=>'+='+Math.round(innerHeight*2.1),scrub:.6,invalidateOnRefresh:true}});
   G.from('#stage',{scale:.7,rotate:-40,opacity:0,duration:1.6,ease:'expo.out',scrollTrigger:{trigger:'#coll',start:'top 75%',toggleActions:both}});
@@ -1270,14 +1312,14 @@ if(!G||!ST||RM){
 
   /* rooms */
   const rooms=$$('.room');
-  const pinRooms=innerWidth>900&&innerHeight>=620;
+  const pinRooms=innerWidth>900?innerHeight>=620:innerHeight>=600;
   if(pinRooms){
     root.classList.add('pinrooms');
     const rnav=$('.rnav'),RF=['--r1f','--r2f','--r3f','--r4f'];
     const setNav=i=>{$$('.rnav button').forEach(b=>b.setAttribute('aria-current',+b.dataset.ri===i));rnav.style.setProperty('--rnav',`var(${RF[i]})`)};
     rooms.forEach((r,i)=>{if(!i)return;G.set(r,{autoAlpha:0});G.set($('.pin',r),{clipPath:'circle(0% at 50% 50%)'});G.set($('.pin img',r),{rotate:-80,scale:1.25});G.set($('.orb',r),{rotate:-60,autoAlpha:0});G.set($$('.tx>*',r),{y:50,autoAlpha:0});G.set($('.giantw',r),{xPercent:12,autoAlpha:0})});
     let cur=0;
-    const tl=G.timeline({defaults:{ease:'none'},scrollTrigger:{trigger:'#rooms',start:'top top',end:()=>'+='+Math.round(innerHeight*(rooms.length-1)*1.3),pin:true,scrub:.9,invalidateOnRefresh:true,
+    const tl=G.timeline({defaults:{ease:'none'},scrollTrigger:{trigger:'#rooms',start:'top top',end:()=>'+='+Math.round(innerHeight*(rooms.length-1)*1.3),pin:true,scrub:.9,invalidateOnRefresh:true,onToggle:s=>document.body.classList.toggle('pinning',s.isActive),
       onUpdate:s=>{const l=tl.labels;let k=0;const t=s.progress*tl.duration();for(let i=0;i<rooms.length;i++){if(t>=l['r'+i]-.5)k=i}if(k!==cur){cur=k;setNav(k)}}}});
     tl.addLabel('r0',0).to({},{duration:.35});
     for(let i=0;i<rooms.length-1;i++){
